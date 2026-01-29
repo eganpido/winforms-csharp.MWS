@@ -1,0 +1,6 @@
+﻿{
+  "DataSource": "localhost",
+  "InitialCatalog": "mws_ctl",
+  "UserId": "sa",
+  "Password": "easyfis"
+}

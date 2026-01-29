@@ -52,8 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\TrnProductionController.cs" />
     <Compile Include="Controllers\TrnReceivingController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\TrnProductionItemController.cs" />
     <Compile Include="Controllers\TrnReceivingItemController.cs" />
     <Compile Include="Controls\CustomProgressbarControl.cs" />
     <Compile Include="DB\mwsdb.designer.cs">
@@ -61,6 +63,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>mwsdb.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\DgvTrnProductionItemModel.cs" />
     <Compile Include="Models\DgvTrnReceivingItemModel.cs" />
     <Compile Include="Models\MstSupplier.cs" />
     <Compile Include="Models\MstSizeModel.cs" />
@@ -68,6 +71,8 @@
     <Compile Include="Models\MstUserModel.cs" />
     <Compile Include="Models\SysConnectionStringModel.cs" />
     <Compile Include="Models\SysCurrentModel.cs" />
+    <Compile Include="Models\TrnProductionItemModel.cs" />
+    <Compile Include="Models\TrnProductionModel.cs" />
     <Compile Include="Models\TrnReceivingModel.cs" />
     <Compile Include="Models\TrnReceivingItemModel.cs" />
     <Compile Include="Modules\SysConnectionStringModule.cs" />
@@ -91,6 +96,18 @@
     </Compile>
     <Compile Include="Views\LoginView.Designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProductionDetailView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ProductionDetailView.Designer.cs">
+      <DependentUpon>ProductionDetailView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProductionWeightView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ProductionWeightView.Designer.cs">
+      <DependentUpon>ProductionWeightView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\RecevingDetailView.cs">
       <SubType>Form</SubType>
@@ -116,6 +133,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ProductionDetailView.resx">
+      <DependentUpon>ProductionDetailView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ProductionWeightView.resx">
+      <DependentUpon>ProductionWeightView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RecevingDetailView.resx">
       <DependentUpon>RecevingDetailView.cs</DependentUpon>
@@ -161,6 +184,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\meat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delivery.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\beef.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\diskette.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new-folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\log-out1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

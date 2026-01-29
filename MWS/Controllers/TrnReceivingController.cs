@@ -36,7 +36,8 @@ namespace MWS.Controllers
                            where d.ReceivingDate == dateFilter
                            && (d.ReceivingNo.Contains(filter)
                            || d.MstSupplier.Supplier.Contains(filter))
-                           select new Models.TrnReceivingModel
+                           || d.Remarks.Contains(filter)
+                            select new Models.TrnReceivingModel
                            {
                                Id = d.Id,
                                ReceivingDate = d.ReceivingDate.ToShortDateString(),
@@ -52,7 +53,7 @@ namespace MWS.Controllers
             return receiving.OrderByDescending(d => d.Id).ToList();
         }
 
-        // Detail Receiving
+        // Receiving Detail
         public Models.TrnReceivingModel RecevingDetail(Int32 id)
         {
             var receiving = from d in db.TrnReceivings
@@ -133,7 +134,7 @@ namespace MWS.Controllers
         }
 
         // Lock Receiving
-        public String[] LockStockIn(Int32 id, Models.TrnReceivingModel objReceiving)
+        public String[] LockReceiving(Int32 id, Models.TrnReceivingModel objReceiving)
         {
             try
             {

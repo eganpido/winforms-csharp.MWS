@@ -48,6 +48,12 @@ namespace MWS.DB
     partial void InsertMstSize(MstSize instance);
     partial void UpdateMstSize(MstSize instance);
     partial void DeleteMstSize(MstSize instance);
+    partial void InsertTrnProduction(TrnProduction instance);
+    partial void UpdateTrnProduction(TrnProduction instance);
+    partial void DeleteTrnProduction(TrnProduction instance);
+    partial void InsertTrnProductionItem(TrnProductionItem instance);
+    partial void UpdateTrnProductionItem(TrnProductionItem instance);
+    partial void DeleteTrnProductionItem(TrnProductionItem instance);
     #endregion
 		
 		public mwsdbDataContext() : 
@@ -125,6 +131,22 @@ namespace MWS.DB
 			get
 			{
 				return this.GetTable<MstSize>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TrnProduction> TrnProductions
+		{
+			get
+			{
+				return this.GetTable<TrnProduction>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TrnProductionItem> TrnProductionItems
+		{
+			get
+			{
+				return this.GetTable<TrnProductionItem>();
 			}
 		}
 	}
@@ -375,6 +397,8 @@ namespace MWS.DB
 		
 		private EntitySet<TrnReceiving> _TrnReceivings;
 		
+		private EntitySet<TrnProduction> _TrnProductions;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -394,6 +418,7 @@ namespace MWS.DB
 		public MstUser()
 		{
 			this._TrnReceivings = new EntitySet<TrnReceiving>(new Action<TrnReceiving>(this.attach_TrnReceivings), new Action<TrnReceiving>(this.detach_TrnReceivings));
+			this._TrnProductions = new EntitySet<TrnProduction>(new Action<TrnProduction>(this.attach_TrnProductions), new Action<TrnProduction>(this.detach_TrnProductions));
 			OnCreated();
 		}
 		
@@ -510,6 +535,19 @@ namespace MWS.DB
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MstUser_TrnProduction", Storage="_TrnProductions", ThisKey="Id", OtherKey="PrepareById")]
+		public EntitySet<TrnProduction> TrnProductions
+		{
+			get
+			{
+				return this._TrnProductions;
+			}
+			set
+			{
+				this._TrnProductions.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -537,6 +575,18 @@ namespace MWS.DB
 		}
 		
 		private void detach_TrnReceivings(TrnReceiving entity)
+		{
+			this.SendPropertyChanging();
+			entity.MstUser = null;
+		}
+		
+		private void attach_TrnProductions(TrnProduction entity)
+		{
+			this.SendPropertyChanging();
+			entity.MstUser = this;
+		}
+		
+		private void detach_TrnProductions(TrnProduction entity)
 		{
 			this.SendPropertyChanging();
 			entity.MstUser = null;
@@ -879,6 +929,8 @@ namespace MWS.DB
 		
 		private decimal _Weight;
 		
+		private EntitySet<TrnProductionItem> _TrnProductionItems;
+		
 		private EntityRef<MstItem> _MstItem;
 		
 		private EntityRef<TrnReceiving> _TrnReceiving;
@@ -907,6 +959,7 @@ namespace MWS.DB
 		
 		public TrnReceivingItem()
 		{
+			this._TrnProductionItems = new EntitySet<TrnProductionItem>(new Action<TrnProductionItem>(this.attach_TrnProductionItems), new Action<TrnProductionItem>(this.detach_TrnProductionItems));
 			this._MstItem = default(EntityRef<MstItem>);
 			this._TrnReceiving = default(EntityRef<TrnReceiving>);
 			this._MstSize = default(EntityRef<MstSize>);
@@ -1065,6 +1118,19 @@ namespace MWS.DB
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TrnReceivingItem_TrnProductionItem", Storage="_TrnProductionItems", ThisKey="Id", OtherKey="ReceivingItemId")]
+		public EntitySet<TrnProductionItem> TrnProductionItems
+		{
+			get
+			{
+				return this._TrnProductionItems;
+			}
+			set
+			{
+				this._TrnProductionItems.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MstItem_TrnReceivingItem", Storage="_MstItem", ThisKey="ItemId", OtherKey="Id", IsForeignKey=true)]
 		public MstItem MstItem
 		{
@@ -1185,6 +1251,18 @@ namespace MWS.DB
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_TrnProductionItems(TrnProductionItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.TrnReceivingItem = this;
+		}
+		
+		private void detach_TrnProductionItems(TrnProductionItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.TrnReceivingItem = null;
 		}
 	}
 	
@@ -1347,6 +1425,473 @@ namespace MWS.DB
 		{
 			this.SendPropertyChanging();
 			entity.MstSize = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TrnProduction")]
+	public partial class TrnProduction : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _ProductionNo;
+		
+		private System.DateTime _ProductionDate;
+		
+		private string _Remarks;
+		
+		private bool _IsLocked;
+		
+		private int _PrepareById;
+		
+		private EntitySet<TrnProductionItem> _TrnProductionItems;
+		
+		private EntityRef<MstUser> _MstUser;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnProductionNoChanging(string value);
+    partial void OnProductionNoChanged();
+    partial void OnProductionDateChanging(System.DateTime value);
+    partial void OnProductionDateChanged();
+    partial void OnRemarksChanging(string value);
+    partial void OnRemarksChanged();
+    partial void OnIsLockedChanging(bool value);
+    partial void OnIsLockedChanged();
+    partial void OnPrepareByIdChanging(int value);
+    partial void OnPrepareByIdChanged();
+    #endregion
+		
+		public TrnProduction()
+		{
+			this._TrnProductionItems = new EntitySet<TrnProductionItem>(new Action<TrnProductionItem>(this.attach_TrnProductionItems), new Action<TrnProductionItem>(this.detach_TrnProductionItems));
+			this._MstUser = default(EntityRef<MstUser>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductionNo", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string ProductionNo
+		{
+			get
+			{
+				return this._ProductionNo;
+			}
+			set
+			{
+				if ((this._ProductionNo != value))
+				{
+					this.OnProductionNoChanging(value);
+					this.SendPropertyChanging();
+					this._ProductionNo = value;
+					this.SendPropertyChanged("ProductionNo");
+					this.OnProductionNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductionDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ProductionDate
+		{
+			get
+			{
+				return this._ProductionDate;
+			}
+			set
+			{
+				if ((this._ProductionDate != value))
+				{
+					this.OnProductionDateChanging(value);
+					this.SendPropertyChanging();
+					this._ProductionDate = value;
+					this.SendPropertyChanged("ProductionDate");
+					this.OnProductionDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remarks", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Remarks
+		{
+			get
+			{
+				return this._Remarks;
+			}
+			set
+			{
+				if ((this._Remarks != value))
+				{
+					this.OnRemarksChanging(value);
+					this.SendPropertyChanging();
+					this._Remarks = value;
+					this.SendPropertyChanged("Remarks");
+					this.OnRemarksChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsLocked", DbType="Bit NOT NULL")]
+		public bool IsLocked
+		{
+			get
+			{
+				return this._IsLocked;
+			}
+			set
+			{
+				if ((this._IsLocked != value))
+				{
+					this.OnIsLockedChanging(value);
+					this.SendPropertyChanging();
+					this._IsLocked = value;
+					this.SendPropertyChanged("IsLocked");
+					this.OnIsLockedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrepareById", DbType="Int NOT NULL")]
+		public int PrepareById
+		{
+			get
+			{
+				return this._PrepareById;
+			}
+			set
+			{
+				if ((this._PrepareById != value))
+				{
+					if (this._MstUser.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPrepareByIdChanging(value);
+					this.SendPropertyChanging();
+					this._PrepareById = value;
+					this.SendPropertyChanged("PrepareById");
+					this.OnPrepareByIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TrnProduction_TrnProductionItem", Storage="_TrnProductionItems", ThisKey="Id", OtherKey="ProductionId")]
+		public EntitySet<TrnProductionItem> TrnProductionItems
+		{
+			get
+			{
+				return this._TrnProductionItems;
+			}
+			set
+			{
+				this._TrnProductionItems.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MstUser_TrnProduction", Storage="_MstUser", ThisKey="PrepareById", OtherKey="Id", IsForeignKey=true)]
+		public MstUser MstUser
+		{
+			get
+			{
+				return this._MstUser.Entity;
+			}
+			set
+			{
+				MstUser previousValue = this._MstUser.Entity;
+				if (((previousValue != value) 
+							|| (this._MstUser.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MstUser.Entity = null;
+						previousValue.TrnProductions.Remove(this);
+					}
+					this._MstUser.Entity = value;
+					if ((value != null))
+					{
+						value.TrnProductions.Add(this);
+						this._PrepareById = value.Id;
+					}
+					else
+					{
+						this._PrepareById = default(int);
+					}
+					this.SendPropertyChanged("MstUser");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_TrnProductionItems(TrnProductionItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.TrnProduction = this;
+		}
+		
+		private void detach_TrnProductionItems(TrnProductionItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.TrnProduction = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TrnProductionItem")]
+	public partial class TrnProductionItem : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _ProductionId;
+		
+		private int _ReceivingItemId;
+		
+		private decimal _ActualWeight;
+		
+		private EntityRef<TrnProduction> _TrnProduction;
+		
+		private EntityRef<TrnReceivingItem> _TrnReceivingItem;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnProductionIdChanging(int value);
+    partial void OnProductionIdChanged();
+    partial void OnReceivingItemIdChanging(int value);
+    partial void OnReceivingItemIdChanged();
+    partial void OnActualWeightChanging(decimal value);
+    partial void OnActualWeightChanged();
+    #endregion
+		
+		public TrnProductionItem()
+		{
+			this._TrnProduction = default(EntityRef<TrnProduction>);
+			this._TrnReceivingItem = default(EntityRef<TrnReceivingItem>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductionId", DbType="Int NOT NULL")]
+		public int ProductionId
+		{
+			get
+			{
+				return this._ProductionId;
+			}
+			set
+			{
+				if ((this._ProductionId != value))
+				{
+					if (this._TrnProduction.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProductionIdChanging(value);
+					this.SendPropertyChanging();
+					this._ProductionId = value;
+					this.SendPropertyChanged("ProductionId");
+					this.OnProductionIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReceivingItemId", DbType="Int NOT NULL")]
+		public int ReceivingItemId
+		{
+			get
+			{
+				return this._ReceivingItemId;
+			}
+			set
+			{
+				if ((this._ReceivingItemId != value))
+				{
+					if (this._TrnReceivingItem.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnReceivingItemIdChanging(value);
+					this.SendPropertyChanging();
+					this._ReceivingItemId = value;
+					this.SendPropertyChanged("ReceivingItemId");
+					this.OnReceivingItemIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActualWeight", DbType="Decimal(18,2) NOT NULL")]
+		public decimal ActualWeight
+		{
+			get
+			{
+				return this._ActualWeight;
+			}
+			set
+			{
+				if ((this._ActualWeight != value))
+				{
+					this.OnActualWeightChanging(value);
+					this.SendPropertyChanging();
+					this._ActualWeight = value;
+					this.SendPropertyChanged("ActualWeight");
+					this.OnActualWeightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TrnProduction_TrnProductionItem", Storage="_TrnProduction", ThisKey="ProductionId", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public TrnProduction TrnProduction
+		{
+			get
+			{
+				return this._TrnProduction.Entity;
+			}
+			set
+			{
+				TrnProduction previousValue = this._TrnProduction.Entity;
+				if (((previousValue != value) 
+							|| (this._TrnProduction.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TrnProduction.Entity = null;
+						previousValue.TrnProductionItems.Remove(this);
+					}
+					this._TrnProduction.Entity = value;
+					if ((value != null))
+					{
+						value.TrnProductionItems.Add(this);
+						this._ProductionId = value.Id;
+					}
+					else
+					{
+						this._ProductionId = default(int);
+					}
+					this.SendPropertyChanged("TrnProduction");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TrnReceivingItem_TrnProductionItem", Storage="_TrnReceivingItem", ThisKey="ReceivingItemId", OtherKey="Id", IsForeignKey=true)]
+		public TrnReceivingItem TrnReceivingItem
+		{
+			get
+			{
+				return this._TrnReceivingItem.Entity;
+			}
+			set
+			{
+				TrnReceivingItem previousValue = this._TrnReceivingItem.Entity;
+				if (((previousValue != value) 
+							|| (this._TrnReceivingItem.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TrnReceivingItem.Entity = null;
+						previousValue.TrnProductionItems.Remove(this);
+					}
+					this._TrnReceivingItem.Entity = value;
+					if ((value != null))
+					{
+						value.TrnProductionItems.Add(this);
+						this._ReceivingItemId = value.Id;
+					}
+					else
+					{
+						this._ReceivingItemId = default(int);
+					}
+					this.SendPropertyChanged("TrnReceivingItem");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

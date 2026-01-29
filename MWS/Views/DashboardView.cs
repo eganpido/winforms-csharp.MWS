@@ -122,5 +122,25 @@ namespace MWS.Views
                 }
             }
         }
+
+        private void buttonProduction_Click(object sender, EventArgs e)
+        {
+            DialogResult proceed = MessageBox.Show("Confirm proceed to production?", "MWS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (proceed == DialogResult.Yes)
+            {
+                Controllers.TrnProductionController trnProductionController = new Controllers.TrnProductionController();
+                String[] addProduction = trnProductionController.AddProduction();
+                if (addProduction[1].Equals("0") == false)
+                {
+                    Close();
+                    ProductionDetailView productionDetailView = new ProductionDetailView(trnProductionController.ProductionDetail(Convert.ToInt32(addProduction[1])));
+                    productionDetailView.Show();
+                }
+                else
+                {
+                    MessageBox.Show(addProduction[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }

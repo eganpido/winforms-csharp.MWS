@@ -96,7 +96,7 @@ namespace MWS.Controllers
                 }
                 else
                 {
-                    return new String[] { "Stock-In line not found.", "0" };
+                    return new String[] { "Receiving item not found.", "0" };
                 }
             }
             catch (Exception e)

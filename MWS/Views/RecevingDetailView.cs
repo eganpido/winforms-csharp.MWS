@@ -284,7 +284,7 @@ namespace MWS.Views
         {
             if (e.RowIndex > -1 && dataGridViewReceivingItem.CurrentCell.ColumnIndex == dataGridViewReceivingItem.Columns["ColumnDelete"].Index)
             {
-                DialogResult deleteDialogResult = MessageBox.Show("Confirm delete?", "Liteclerk", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult deleteDialogResult = MessageBox.Show("Confirm delete?", "MWS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (deleteDialogResult == DialogResult.Yes)
                 {
                     var id = Convert.ToInt32(dataGridViewReceivingItem.Rows[e.RowIndex].Cells[dataGridViewReceivingItem.Columns["ColumnId"].Index].Value);
@@ -295,6 +295,8 @@ namespace MWS.Views
                     {
                         receivingItemPageNumber = 1;
                         UpdateReceivingItemListDataSource();
+                        textBoxWeight.Text = "";
+                        textBoxWeight.Focus();
                     }
                     else
                     {
@@ -306,7 +308,7 @@ namespace MWS.Views
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            DialogResult saveDialogResult = MessageBox.Show("Confirm save? This will lock the record.", "Liteclerk", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult saveDialogResult = MessageBox.Show("Confirm save? This will lock the record.", "MWS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (saveDialogResult == DialogResult.Yes)
             {
                 Controllers.TrnReceivingController trnReceivingController = new Controllers.TrnReceivingController();
@@ -317,7 +319,7 @@ namespace MWS.Views
                     Remarks = textBoxRemarks.Text.Trim(),
                 };
 
-                String[] saveReceiving = trnReceivingController.LockStockIn(trnReceivingModel.Id, newReceivingModel);
+                String[] saveReceiving = trnReceivingController.LockReceiving(trnReceivingModel.Id, newReceivingModel);
                 if (saveReceiving[1].Equals("0") == false)
                 {
                     UpdateComponents(true);

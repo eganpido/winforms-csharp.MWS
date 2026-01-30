@@ -31,9 +31,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.labelTotal = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.labelTotal = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -45,6 +45,7 @@
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelDeveloper = new System.Windows.Forms.Label();
             this.btnProceed = new System.Windows.Forms.Button();
+            this.buttonPullOut = new System.Windows.Forms.Button();
             this.buttonProduction = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -82,7 +83,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 345F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 349F));
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 161);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -102,6 +103,19 @@
             this.panel9.Size = new System.Drawing.Size(994, 58);
             this.panel9.TabIndex = 3;
             // 
+            // labelTotal
+            // 
+            this.labelTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelTotal.AutoSize = true;
+            this.labelTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.labelTotal.Font = new System.Drawing.Font("Open Sans SemiBold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.labelTotal.Location = new System.Drawing.Point(658, 18);
+            this.labelTotal.Name = "labelTotal";
+            this.labelTotal.Size = new System.Drawing.Size(103, 26);
+            this.labelTotal.TabIndex = 1;
+            this.labelTotal.Text = "Total Cuts:";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -117,25 +131,13 @@
             // panel8
             // 
             this.panel8.Controls.Add(this.btnProceed);
+            this.panel8.Controls.Add(this.buttonPullOut);
             this.panel8.Controls.Add(this.buttonProduction);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel8.Location = new System.Drawing.Point(0, 493);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(994, 75);
             this.panel8.TabIndex = 2;
-            // 
-            // labelTotal
-            // 
-            this.labelTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelTotal.AutoSize = true;
-            this.labelTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.labelTotal.Font = new System.Drawing.Font("Open Sans SemiBold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.labelTotal.Location = new System.Drawing.Point(658, 18);
-            this.labelTotal.Name = "labelTotal";
-            this.labelTotal.Size = new System.Drawing.Size(103, 26);
-            this.labelTotal.TabIndex = 1;
-            this.labelTotal.Text = "Total Cuts:";
             // 
             // panel4
             // 
@@ -157,9 +159,9 @@
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
             this.label3.Location = new System.Drawing.Point(88, 18);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(266, 33);
+            this.label3.Size = new System.Drawing.Size(406, 33);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Meat Weighing System";
+            this.label3.Text = "Meat Weighing System - Dashboard";
             // 
             // label5
             // 
@@ -269,13 +271,32 @@
             this.btnProceed.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
             this.btnProceed.Image = global::MWS.Properties.Resources.delivery;
             this.btnProceed.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProceed.Location = new System.Drawing.Point(671, 5);
+            this.btnProceed.Location = new System.Drawing.Point(509, 6);
             this.btnProceed.Name = "btnProceed";
             this.btnProceed.Size = new System.Drawing.Size(155, 63);
             this.btnProceed.TabIndex = 4;
             this.btnProceed.Text = "        Receiving";
             this.btnProceed.UseVisualStyleBackColor = false;
             this.btnProceed.Click += new System.EventHandler(this.btnProceed_Click);
+            // 
+            // buttonPullOut
+            // 
+            this.buttonPullOut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonPullOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
+            this.buttonPullOut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonPullOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPullOut.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPullOut.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.buttonPullOut.Image = global::MWS.Properties.Resources.inbox;
+            this.buttonPullOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonPullOut.Location = new System.Drawing.Point(832, 7);
+            this.buttonPullOut.Name = "buttonPullOut";
+            this.buttonPullOut.Size = new System.Drawing.Size(156, 62);
+            this.buttonPullOut.TabIndex = 4;
+            this.buttonPullOut.Text = "  Pull Out";
+            this.buttonPullOut.UseVisualStyleBackColor = false;
+            this.buttonPullOut.Click += new System.EventHandler(this.buttonPullOut_Click);
             // 
             // buttonProduction
             // 
@@ -288,7 +309,7 @@
             this.buttonProduction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
             this.buttonProduction.Image = global::MWS.Properties.Resources.beef;
             this.buttonProduction.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonProduction.Location = new System.Drawing.Point(832, 6);
+            this.buttonProduction.Location = new System.Drawing.Point(670, 7);
             this.buttonProduction.Name = "buttonProduction";
             this.buttonProduction.Size = new System.Drawing.Size(156, 62);
             this.buttonProduction.TabIndex = 4;
@@ -395,5 +416,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label labelTotal;
         private System.Windows.Forms.Button buttonProduction;
+        private System.Windows.Forms.Button buttonPullOut;
     }
 }

@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\TrnPullOutItemController.cs" />
+    <Compile Include="Controllers\TrnPullOutController.cs" />
     <Compile Include="Controllers\TrnProductionController.cs" />
     <Compile Include="Controllers\TrnReceivingController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
@@ -63,6 +65,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>mwsdb.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\DgvTrnPullOutItemModel.cs" />
     <Compile Include="Models\DgvTrnProductionItemModel.cs" />
     <Compile Include="Models\DgvTrnReceivingItemModel.cs" />
     <Compile Include="Models\MstSupplier.cs" />
@@ -71,7 +74,9 @@
     <Compile Include="Models\MstUserModel.cs" />
     <Compile Include="Models\SysConnectionStringModel.cs" />
     <Compile Include="Models\SysCurrentModel.cs" />
+    <Compile Include="Models\TrnPullOutItemModel.cs" />
     <Compile Include="Models\TrnProductionItemModel.cs" />
+    <Compile Include="Models\TrnPullOutModel.cs" />
     <Compile Include="Models\TrnProductionModel.cs" />
     <Compile Include="Models\TrnReceivingModel.cs" />
     <Compile Include="Models\TrnReceivingItemModel.cs" />
@@ -109,6 +114,12 @@
     <Compile Include="Views\ProductionWeightView.Designer.cs">
       <DependentUpon>ProductionWeightView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\PullOutDetailView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PullOutDetailView.Designer.cs">
+      <DependentUpon>PullOutDetailView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\RecevingDetailView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ProductionWeightView.resx">
       <DependentUpon>ProductionWeightView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PullOutDetailView.resx">
+      <DependentUpon>PullOutDetailView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RecevingDetailView.resx">
       <DependentUpon>RecevingDetailView.cs</DependentUpon>
@@ -205,6 +219,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inbox.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

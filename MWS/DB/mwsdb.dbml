@@ -23,6 +23,7 @@
       <Column Name="IsLocked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="MstUser_TrnReceiving" Member="TrnReceivings" ThisKey="Id" OtherKey="PrepareById" Type="TrnReceiving" />
       <Association Name="MstUser_TrnProduction" Member="TrnProductions" ThisKey="Id" OtherKey="PrepareById" Type="TrnProduction" />
+      <Association Name="MstUser_TrnPullOut" Member="TrnPullOuts" ThisKey="Id" OtherKey="PrepareById" Type="TrnPullOut" />
     </Type>
   </Table>
   <Table Name="dbo.TrnReceiving" Member="TrnReceivings">
@@ -49,6 +50,7 @@
       <Column Name="SizeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Weight" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
       <Association Name="TrnReceivingItem_TrnProductionItem" Member="TrnProductionItems" ThisKey="Id" OtherKey="ReceivingItemId" Type="TrnProductionItem" />
+      <Association Name="TrnReceivingItem_TrnPullOutItem" Member="TrnPullOutItems" ThisKey="Id" OtherKey="ReceivingItemId" Type="TrnPullOutItem" />
       <Association Name="MstItem_TrnReceivingItem" Member="MstItem" ThisKey="ItemId" OtherKey="Id" Type="MstItem" IsForeignKey="true" />
       <Association Name="TrnReceiving_TrnReceivingItem" Member="TrnReceiving" ThisKey="ReceivingId" OtherKey="Id" Type="TrnReceiving" IsForeignKey="true" />
       <Association Name="MstSize_TrnReceivingItem" Member="MstSize" ThisKey="SizeId" OtherKey="Id" Type="MstSize" IsForeignKey="true" />
@@ -83,6 +85,27 @@
       <Column Name="ActualWeight" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
       <Association Name="TrnProduction_TrnProductionItem" Member="TrnProduction" ThisKey="ProductionId" OtherKey="Id" Type="TrnProduction" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="TrnReceivingItem_TrnProductionItem" Member="TrnReceivingItem" ThisKey="ReceivingItemId" OtherKey="Id" Type="TrnReceivingItem" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrnPullOut" Member="TrnPullOuts">
+    <Type Name="TrnPullOut">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PullOutNo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PullOutDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Remarks" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="IsLocked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PrepareById" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TrnPullOut_TrnPullOutItem" Member="TrnPullOutItems" ThisKey="Id" OtherKey="PullOutId" Type="TrnPullOutItem" />
+      <Association Name="MstUser_TrnPullOut" Member="MstUser" ThisKey="PrepareById" OtherKey="Id" Type="MstUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrnPullOutItem" Member="TrnPullOutItems">
+    <Type Name="TrnPullOutItem">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PullOutId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ReceivingItemId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TrnPullOut_TrnPullOutItem" Member="TrnPullOut" ThisKey="PullOutId" OtherKey="Id" Type="TrnPullOut" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="TrnReceivingItem_TrnPullOutItem" Member="TrnReceivingItem" ThisKey="ReceivingItemId" OtherKey="Id" Type="TrnReceivingItem" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

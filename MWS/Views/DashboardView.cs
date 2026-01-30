@@ -142,5 +142,25 @@ namespace MWS.Views
                 }
             }
         }
+
+        private void buttonPullOut_Click(object sender, EventArgs e)
+        {
+            DialogResult proceed = MessageBox.Show("Confirm proceed to pull out?", "MWS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (proceed == DialogResult.Yes)
+            {
+                Controllers.TrnPullOutController trnPullOutController = new Controllers.TrnPullOutController();
+                String[] addPullOut = trnPullOutController.AddPullOut();
+                if (addPullOut[1].Equals("0") == false)
+                {
+                    Close();
+                    PullOutDetailView pullOutDetailView = new PullOutDetailView(trnPullOutController.PullOutDetail(Convert.ToInt32(addPullOut[1])));
+                    pullOutDetailView.Show();
+                }
+                else
+                {
+                    MessageBox.Show(addPullOut[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }

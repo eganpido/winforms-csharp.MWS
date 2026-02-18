@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MWS.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,17 +16,16 @@ namespace MWS.Controllers
         public List<Models.TrnPullOutItemModel> PullOutItemList(Int32 pullOutId)
         {
             var pullOutItems = from d in db.TrnPullOutItems
-
                                   select new Models.TrnPullOutItemModel
                                   {
                                      Id = d.Id,
                                      PullOutId = d.PullOutId,
-                                     ReceivingItemId = d.ReceivingItemId,
-                                     ItemId = d.TrnReceivingItem.ItemId,
-                                     Barcode = d.TrnReceivingItem.Barcode,
-                                     ItemDescription = d.TrnReceivingItem.ItemDescription,
-                                     SizeId = d.TrnReceivingItem.SizeId,
-                                     Size = d.TrnReceivingItem.MstSize.Size,
+                                     ReceivingItemId = d.TrnProductionItem.TrnReceivingItem.ReceivingId,
+                                     ItemId = d.TrnProductionItem.TrnReceivingItem.ItemId,
+                                     Barcode = d.TrnProductionItem.ProductionBarcode,
+                                     ItemDescription = d.TrnProductionItem.TrnReceivingItem.ItemDescription,
+                                     SizeId = d.TrnProductionItem.TrnReceivingItem.SizeId,
+                                     Size = d.TrnProductionItem.TrnReceivingItem.MstSize.Size,
                                   };
 
             return pullOutItems.Where(d => d.PullOutId == pullOutId).OrderByDescending(e => e.Id).ToList();
@@ -45,7 +45,7 @@ namespace MWS.Controllers
                 DB.TrnPullOutItem newPullOutItem = new DB.TrnPullOutItem
                 {
                     PullOutId = pullOutId,
-                    ReceivingItemId = GetReceivingItem(barcode),
+                    ProductionItemId = GetProductionItem(barcode),
                 };
 
                 db.TrnPullOutItems.InsertOnSubmit(newPullOutItem);
@@ -92,17 +92,31 @@ namespace MWS.Controllers
                 return new String[] { e.Message, "0" };
             }
         }
-        public int GetReceivingItem(string barcode)
+        public int GetProductionItem(string barcode)
         {
-            int receivingItemId = 0;
-            var receivingItem = from d in db.TrnReceivingItems
-                                where d.Barcode == barcode
+            int productionItemId = 0;
+            var productionItem = from d in db.TrnProductionItems
+                                where d.ProductionBarcode == barcode
                                 select d;
-            if (receivingItem.Any())
+            if (productionItem.Any())
             {
-                receivingItemId = receivingItem.FirstOrDefault().Id;
+                productionItemId = productionItem.FirstOrDefault().Id;
             }
-            return receivingItemId;
+            return productionItemId;
+        }
+        public bool isAlreadyAdded(string barcode)
+        {
+            bool added = false;
+
+            var barcodeExist = from d in db.TrnPullOutItems
+                               where d.TrnProductionItem.ProductionBarcode == barcode
+                               select d;
+            if (barcodeExist.Any())
+            {
+                added = true;
+            }
+
+            return added;
         }
     }
 }

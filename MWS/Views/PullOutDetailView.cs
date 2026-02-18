@@ -272,7 +272,7 @@ namespace MWS.Views
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            DialogResult add = MessageBox.Show("Confirm add new production record?", "MWS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult add = MessageBox.Show("Confirm add new record?", "MWS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (add == DialogResult.Yes)
             {
                 Controllers.TrnPullOutController trnPullOutController = new Controllers.TrnPullOutController();
@@ -326,21 +326,30 @@ namespace MWS.Views
             if (e.KeyCode == Keys.Enter)
             {
                 Controllers.TrnPullOutItemController trnPullOutItemController = new Controllers.TrnPullOutItemController();
-                int receivingItemId = trnPullOutItemController.GetReceivingItem(textBoxBarcode.Text);
-                if (receivingItemId > 0)
+                if (trnPullOutItemController.isAlreadyAdded(textBoxBarcode.Text) == false)
                 {
-                    trnPullOutItemController.AddPullOutItem(trnPullOutModel.Id, textBoxBarcode.Text);
-                    UpdatePullOutItemListDataSource();
-                    textBoxBarcode.Text = "";
-                    textBoxBarcode.Focus();
+
+                    int receivingItemId = trnPullOutItemController.GetProductionItem(textBoxBarcode.Text);
+                    if (receivingItemId > 0)
+                    {
+                        trnPullOutItemController.AddPullOutItem(trnPullOutModel.Id, textBoxBarcode.Text);
+                        UpdatePullOutItemListDataSource();
+                        textBoxBarcode.Text = "";
+                        textBoxBarcode.Focus();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Barcode doesn't exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        textBoxBarcode.Text = "";
+                        textBoxBarcode.Focus();
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Barcode doesn't exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Barcode already exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     textBoxBarcode.Text = "";
                     textBoxBarcode.Focus();
                 }
-                
             }
         }
     }

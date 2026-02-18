@@ -9,6 +9,7 @@ namespace MWS.Models
     public class TrnPullOutModel
     {
         public Int32 Id { get; set; }
+        public Int32 BranchId { get; set; }
         public String PullOutDate { get; set; }
         public String PullOutNo { get; set; }
         public String Remarks { get; set; }

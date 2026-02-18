@@ -47,7 +47,9 @@ namespace MWS.Modules
                 CurrentUserName = userName,
                 CurrentVersion = currentSettings.CurrentVersion,
                 CurrentDeveloper = currentSettings.CurrentDeveloper,
-                CurrentSupport = currentSettings.CurrentSupport
+                CurrentSupport = currentSettings.CurrentSupport,
+                BranchId = currentSettings.BranchId,
+                IsReceiver = currentSettings.IsReceiver
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newCurrent);
@@ -69,6 +71,8 @@ namespace MWS.Modules
                 CurrentVersion = objSysCurrentModel.CurrentVersion,
                 CurrentDeveloper = objSysCurrentModel.CurrentDeveloper,
                 CurrentSupport = objSysCurrentModel.CurrentSupport,
+                BranchId = objSysCurrentModel.BranchId,
+                IsReceiver = objSysCurrentModel.IsReceiver
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newSysCurrents);

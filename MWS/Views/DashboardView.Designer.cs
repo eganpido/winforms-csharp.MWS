@@ -34,23 +34,24 @@
             this.labelTotal = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.labelCurrentUser = new System.Windows.Forms.Label();
-            this.labelSupport = new System.Windows.Forms.Label();
-            this.labelVersion = new System.Windows.Forms.Label();
-            this.labelDeveloper = new System.Windows.Forms.Label();
+            this.buttonHistory = new System.Windows.Forms.Button();
             this.btnProceed = new System.Windows.Forms.Button();
             this.buttonPullOut = new System.Windows.Forms.Button();
             this.buttonProduction = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.btnLogOut = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.labelCurrentUser = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.labelSupport = new System.Windows.Forms.Label();
+            this.labelVersion = new System.Windows.Forms.Label();
+            this.labelDeveloper = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -83,7 +84,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 349F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 355F));
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 161);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -130,6 +131,7 @@
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.buttonHistory);
             this.panel8.Controls.Add(this.btnProceed);
             this.panel8.Controls.Add(this.buttonPullOut);
             this.panel8.Controls.Add(this.buttonProduction);
@@ -139,127 +141,23 @@
             this.panel8.Size = new System.Drawing.Size(994, 75);
             this.panel8.TabIndex = 2;
             // 
-            // panel4
+            // buttonHistory
             // 
-            this.panel4.Controls.Add(this.btnLogOut);
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Controls.Add(this.label5);
-            this.panel4.Controls.Add(this.label4);
-            this.panel4.Controls.Add(this.panel7);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(994, 103);
-            this.panel4.TabIndex = 1;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Open Sans SemiBold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.label3.Location = new System.Drawing.Point(88, 18);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(406, 33);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Meat Weighing System - Dashboard";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.label5.Font = new System.Drawing.Font("Open Sans", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
-            this.label5.Location = new System.Drawing.Point(90, 65);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(164, 22);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Weigh Right. Sell Right.";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.label4.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
-            this.label4.Location = new System.Drawing.Point(90, 45);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(305, 24);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Precision Weighing for Meat Products.";
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.panel2.Controls.Add(this.panel5);
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.labelSupport);
-            this.panel2.Controls.Add(this.labelVersion);
-            this.panel2.Controls.Add(this.labelDeveloper);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 568);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(994, 81);
-            this.panel2.TabIndex = 0;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.panel6);
-            this.panel5.Controls.Add(this.labelCurrentUser);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel5.Location = new System.Drawing.Point(482, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(512, 81);
-            this.panel5.TabIndex = 2;
-            // 
-            // labelCurrentUser
-            // 
-            this.labelCurrentUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelCurrentUser.AutoSize = true;
-            this.labelCurrentUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.labelCurrentUser.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCurrentUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.labelCurrentUser.Location = new System.Drawing.Point(442, 33);
-            this.labelCurrentUser.Name = "labelCurrentUser";
-            this.labelCurrentUser.Size = new System.Drawing.Size(47, 19);
-            this.labelCurrentUser.TabIndex = 0;
-            this.labelCurrentUser.Text = "admin";
-            // 
-            // labelSupport
-            // 
-            this.labelSupport.AutoSize = true;
-            this.labelSupport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.labelSupport.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSupport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
-            this.labelSupport.Location = new System.Drawing.Point(90, 31);
-            this.labelSupport.Name = "labelSupport";
-            this.labelSupport.Size = new System.Drawing.Size(94, 19);
-            this.labelSupport.TabIndex = 0;
-            this.labelSupport.Text = "(032) 000-0000";
-            // 
-            // labelVersion
-            // 
-            this.labelVersion.AutoSize = true;
-            this.labelVersion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.labelVersion.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
-            this.labelVersion.Location = new System.Drawing.Point(90, 47);
-            this.labelVersion.Name = "labelVersion";
-            this.labelVersion.Size = new System.Drawing.Size(84, 19);
-            this.labelVersion.TabIndex = 0;
-            this.labelVersion.Text = "Version 1.0.1";
-            // 
-            // labelDeveloper
-            // 
-            this.labelDeveloper.AutoSize = true;
-            this.labelDeveloper.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.labelDeveloper.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDeveloper.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.labelDeveloper.Location = new System.Drawing.Point(90, 15);
-            this.labelDeveloper.Name = "labelDeveloper";
-            this.labelDeveloper.Size = new System.Drawing.Size(139, 19);
-            this.labelDeveloper.TabIndex = 0;
-            this.labelDeveloper.Text = "Streetsmart Solutions";
+            this.buttonHistory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonHistory.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.buttonHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonHistory.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonHistory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.buttonHistory.Image = global::MWS.Properties.Resources.history;
+            this.buttonHistory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonHistory.Location = new System.Drawing.Point(364, 5);
+            this.buttonHistory.Name = "buttonHistory";
+            this.buttonHistory.Size = new System.Drawing.Size(139, 63);
+            this.buttonHistory.TabIndex = 4;
+            this.buttonHistory.Text = "    History";
+            this.buttonHistory.UseVisualStyleBackColor = false;
+            this.buttonHistory.Click += new System.EventHandler(this.buttonHistory_Click);
             // 
             // btnProceed
             // 
@@ -317,6 +215,19 @@
             this.buttonProduction.UseVisualStyleBackColor = false;
             this.buttonProduction.Click += new System.EventHandler(this.buttonProduction_Click);
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.btnLogOut);
+            this.panel4.Controls.Add(this.label3);
+            this.panel4.Controls.Add(this.label5);
+            this.panel4.Controls.Add(this.label4);
+            this.panel4.Controls.Add(this.panel7);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(994, 103);
+            this.panel4.TabIndex = 1;
+            // 
             // btnLogOut
             // 
             this.btnLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -333,6 +244,41 @@
             this.btnLogOut.UseVisualStyleBackColor = false;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Open Sans SemiBold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.label3.Location = new System.Drawing.Point(88, 18);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(406, 33);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Meat Weighing System - Dashboard";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.label5.Font = new System.Drawing.Font("Open Sans", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
+            this.label5.Location = new System.Drawing.Point(90, 65);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(164, 22);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Weigh Right. Sell Right.";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.label4.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
+            this.label4.Location = new System.Drawing.Point(90, 45);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(305, 24);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Precision Weighing for Meat Products.";
+            // 
             // panel7
             // 
             this.panel7.BackgroundImage = global::MWS.Properties.Resources.Weighing1;
@@ -342,6 +288,31 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(87, 103);
             this.panel7.TabIndex = 2;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.panel2.Controls.Add(this.panel5);
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Controls.Add(this.labelSupport);
+            this.panel2.Controls.Add(this.labelVersion);
+            this.panel2.Controls.Add(this.labelDeveloper);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 568);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(994, 81);
+            this.panel2.TabIndex = 0;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.panel6);
+            this.panel5.Controls.Add(this.labelCurrentUser);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel5.Location = new System.Drawing.Point(482, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(512, 81);
+            this.panel5.TabIndex = 2;
             // 
             // panel6
             // 
@@ -353,6 +324,19 @@
             this.panel6.Size = new System.Drawing.Size(44, 35);
             this.panel6.TabIndex = 0;
             // 
+            // labelCurrentUser
+            // 
+            this.labelCurrentUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelCurrentUser.AutoSize = true;
+            this.labelCurrentUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.labelCurrentUser.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCurrentUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.labelCurrentUser.Location = new System.Drawing.Point(442, 33);
+            this.labelCurrentUser.Name = "labelCurrentUser";
+            this.labelCurrentUser.Size = new System.Drawing.Size(47, 19);
+            this.labelCurrentUser.TabIndex = 0;
+            this.labelCurrentUser.Text = "admin";
+            // 
             // panel3
             // 
             this.panel3.BackgroundImage = global::MWS.Properties.Resources.streetsmartLogo_9;
@@ -362,6 +346,42 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(87, 81);
             this.panel3.TabIndex = 1;
+            // 
+            // labelSupport
+            // 
+            this.labelSupport.AutoSize = true;
+            this.labelSupport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.labelSupport.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSupport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
+            this.labelSupport.Location = new System.Drawing.Point(90, 31);
+            this.labelSupport.Name = "labelSupport";
+            this.labelSupport.Size = new System.Drawing.Size(94, 19);
+            this.labelSupport.TabIndex = 0;
+            this.labelSupport.Text = "(032) 000-0000";
+            // 
+            // labelVersion
+            // 
+            this.labelVersion.AutoSize = true;
+            this.labelVersion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.labelVersion.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
+            this.labelVersion.Location = new System.Drawing.Point(90, 47);
+            this.labelVersion.Name = "labelVersion";
+            this.labelVersion.Size = new System.Drawing.Size(84, 19);
+            this.labelVersion.TabIndex = 0;
+            this.labelVersion.Text = "Version 1.0.1";
+            // 
+            // labelDeveloper
+            // 
+            this.labelDeveloper.AutoSize = true;
+            this.labelDeveloper.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.labelDeveloper.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDeveloper.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.labelDeveloper.Location = new System.Drawing.Point(90, 15);
+            this.labelDeveloper.Name = "labelDeveloper";
+            this.labelDeveloper.Size = new System.Drawing.Size(139, 19);
+            this.labelDeveloper.TabIndex = 0;
+            this.labelDeveloper.Text = "Streetsmart Solutions";
             // 
             // DashboardView
             // 
@@ -417,5 +437,6 @@
         private System.Windows.Forms.Label labelTotal;
         private System.Windows.Forms.Button buttonProduction;
         private System.Windows.Forms.Button buttonPullOut;
+        private System.Windows.Forms.Button buttonHistory;
     }
 }

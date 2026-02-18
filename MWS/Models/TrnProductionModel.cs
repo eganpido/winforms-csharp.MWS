@@ -9,6 +9,7 @@ namespace MWS.Models
     public class TrnProductionModel
     {
         public Int32 Id { get; set; }
+        public Int32 BranchId { get; set; }
         public String ProductionDate { get; set; }
         public String ProductionNo { get; set; }
         public String Remarks { get; set; }

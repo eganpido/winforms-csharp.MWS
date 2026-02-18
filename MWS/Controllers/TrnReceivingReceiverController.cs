@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MWS.Controllers
 {
-    class TrnReceivingController
+    class TrnReceivingReceiverController
     {
         // ============
         // Data Context
@@ -30,16 +30,15 @@ namespace MWS.Controllers
         }
 
         // Receiving List 
-        public List<Models.TrnReceivingModel> ReceivingList(DateTime startDate, DateTime endDate, String filter)
+        public List<Models.TrnReceivingModel> ReceivingList(DateTime dateFilter, String filter)
         {
             var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
             var receiving = from d in db.TrnReceivings
-                           where d.ReceivingDate >= startDate
-                           && d.ReceivingDate <= endDate
+                           where d.ReceivingDate == dateFilter
                            && d.BranchId == currentBranchId
                            && (d.ReceivingNo.Contains(filter)
-                           || d.MstSupplier.Supplier.Contains(filter)
-                           || d.Remarks.Contains(filter))
+                           || d.MstSupplier.Supplier.Contains(filter))
+                           || d.Remarks.Contains(filter)
                             select new Models.TrnReceivingModel
                            {
                                Id = d.Id,
@@ -57,7 +56,7 @@ namespace MWS.Controllers
         }
 
         // Receiving Detail
-        public Models.TrnReceivingModel RecevingDetail(Int32 id)
+        public Models.TrnReceivingModel ReceivingDetail(Int32 id)
         {
             var receiving = from d in db.TrnReceivings
                           where d.Id == id
@@ -88,6 +87,21 @@ namespace MWS.Controllers
                             };
 
             return suppliers.OrderBy(d => d.Supplier).ToList();
+        }
+        // Pull Out List
+        public List<Models.TrnPullOutModel> PullOutList()
+        {
+            var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
+            var pullOuts = from d in db.TrnPullOuts
+                           where d.IsLocked == true
+                           && d.BranchId != currentBranchId
+                            select new Models.TrnPullOutModel
+                            {
+                                Id = d.Id,
+                                PullOutNo = d.PullOutNo
+                            };
+
+            return pullOuts.OrderBy(d => d.Id).ToList();
         }
 
         // Add Receiving

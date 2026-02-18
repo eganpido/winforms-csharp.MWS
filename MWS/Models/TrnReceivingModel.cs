@@ -9,6 +9,7 @@ namespace MWS.Models
     public class TrnReceivingModel
     {
         public Int32 Id { get; set; }
+        public Int32 BranchId { get; set; }
         public String ReceivingDate { get; set; }
         public String ReceivingNo { get; set; }
         public Int32 SupplierId { get; set; }

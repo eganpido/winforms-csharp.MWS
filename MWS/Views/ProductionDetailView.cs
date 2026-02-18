@@ -143,6 +143,7 @@ namespace MWS.Views
                                 ColumnProductionId = d.ProductionId,
                                 ColumnReceivingItemId = d.ReceivingItemId,
                                 ColumnItemId = d.ItemId,
+                                ColumnReceivingBarcode = d.ReceivingBarcode,
                                 ColumnBarcode = d.Barcode,
                                 ColumnItemDescription = d.ItemDescription,
                                 ColumnSizeId = d.SizeId,
@@ -164,7 +165,7 @@ namespace MWS.Views
             buttonSave.Enabled = !isLocked;
             textBoxBarcode.Enabled = !isLocked;
 
-            dataGridViewProductionItem.Columns[8].Visible = !isLocked;
+            dataGridViewProductionItem.Columns[10].Visible = !isLocked;
             textBoxBarcode.Focus();
 
             if (isLocked)
@@ -175,21 +176,40 @@ namespace MWS.Views
             {
                 labelIndicator.Visible = false;
             }
+
+            bool IsReceiver = Convert.ToBoolean(Modules.SysCurrentModule.GetCurrentSettings().IsReceiver);
+            if (IsReceiver)
+            {
+                labelProductionTitle.Text = "Meat Weighing System - Production";
+            }
+            else
+            {
+                labelProductionTitle.Text = "Meat Weighing System - Processing";
+            }
         }
         private void textBoxBarcode_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 Controllers.TrnProductionItemController trnProductionItemController = new Controllers.TrnProductionItemController();
-                int receivingItemId = trnProductionItemController.GetReceivingItem(textBoxBarcode.Text);
-                if(receivingItemId > 0)
+                if(trnProductionItemController.isAlreadyAdded(textBoxBarcode.Text) ==  false)
                 {
-                    ProductionWeightView productionWeightView = new ProductionWeightView(this, trnProductionModel, textBoxBarcode.Text);
-                    productionWeightView.Show();
+                    int receivingItemId = trnProductionItemController.GetReceivingItem(textBoxBarcode.Text);
+                    if (receivingItemId > 0)
+                    {
+                        ProductionWeightView productionWeightView = new ProductionWeightView(this, trnProductionModel, textBoxBarcode.Text);
+                        productionWeightView.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Barcode doesn't exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        textBoxBarcode.Text = "";
+                        textBoxBarcode.Focus();
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Barcode doesn't exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Barcode already exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     textBoxBarcode.Text = "";
                     textBoxBarcode.Focus();
                 }
@@ -292,7 +312,7 @@ namespace MWS.Views
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            DialogResult add = MessageBox.Show("Confirm add new production record?", "MWS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult add = MessageBox.Show("Confirm add new record?", "MWS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (add == DialogResult.Yes)
             {
                 Controllers.TrnProductionController trnProductionController = new Controllers.TrnProductionController();

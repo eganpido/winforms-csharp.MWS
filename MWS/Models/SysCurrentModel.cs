@@ -16,5 +16,7 @@ namespace MWS.Models
         public String CurrentVersion { get; set; }
         public String CurrentDeveloper { get; set; }
         public String CurrentSupport { get; set; }
+        public int BranchId { get; set; }
+        public bool IsReceiver { get; set; }
     }
 }

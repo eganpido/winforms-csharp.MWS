@@ -30,10 +30,13 @@ namespace MWS.Controllers
         }
 
         // Production List 
-        public List<Models.TrnProductionModel> ProductionList(DateTime dateFilter, String filter)
+        public List<Models.TrnProductionModel> ProductionList(DateTime startDateFilter, DateTime endDateFilter, String filter)
         {
+            var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
             var production = from d in db.TrnProductions
-                           where d.ProductionDate == dateFilter
+                           where d.ProductionDate >= startDateFilter
+                           && d.ProductionDate <= endDateFilter
+                           && d.BranchId == currentBranchId
                            && (d.ProductionNo.Contains(filter)
                            || d.Remarks.Contains(filter))
                            select new Models.TrnProductionModel
@@ -73,6 +76,7 @@ namespace MWS.Controllers
         {
             try
             {
+                var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
                 var currentUserLogin = from d in db.MstUsers where d.Id == Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId) select d;
                 if (currentUserLogin.Any() == false)
                 {
@@ -89,6 +93,7 @@ namespace MWS.Controllers
 
                 DB.TrnProduction newProduction = new DB.TrnProduction()
                 {
+                    BranchId = currentBranchId,
                     ProductionDate = DateTime.Today,
                     ProductionNo = productionNumber,
                     Remarks = "NA",

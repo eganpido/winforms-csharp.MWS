@@ -30,10 +30,13 @@ namespace MWS.Controllers
         }
 
         // Pull Out List 
-        public List<Models.TrnPullOutModel> PullOutList(DateTime dateFilter, String filter)
+        public List<Models.TrnPullOutModel> PullOutList(DateTime startDateFilter, DateTime endDateFilter, String filter)
         {
+            var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
             var pullOut = from d in db.TrnPullOuts
-                           where d.PullOutDate == dateFilter
+                           where d.PullOutDate >= startDateFilter
+                           && d.PullOutDate <= endDateFilter
+                           && d.BranchId == currentBranchId
                            && (d.PullOutNo.Contains(filter)
                            || d.Remarks.Contains(filter))
                            select new Models.TrnPullOutModel
@@ -73,6 +76,7 @@ namespace MWS.Controllers
         {
             try
             {
+                var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
                 var currentUserLogin = from d in db.MstUsers where d.Id == Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId) select d;
                 if (currentUserLogin.Any() == false)
                 {
@@ -89,6 +93,7 @@ namespace MWS.Controllers
 
                 DB.TrnPullOut newPullOut = new DB.TrnPullOut()
                 {
+                    BranchId = currentBranchId,
                     PullOutDate = DateTime.Today,
                     PullOutNo = pullOutNumber,
                     Remarks = "NA",

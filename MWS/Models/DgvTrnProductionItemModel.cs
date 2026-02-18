@@ -12,6 +12,7 @@ namespace MWS.Models
         public Int32 ColumnProductionId { get; set; }
         public Int32 ColumnReceivingItemId { get; set; }
         public Int32 ColumnItemId { get; set; }
+        public String ColumnReceivingBarcode { get; set; }
         public String ColumnBarcode { get; set; }
         public String ColumnItemDescription { get; set; }
         public Int32 ColumnSizeId { get; set; }

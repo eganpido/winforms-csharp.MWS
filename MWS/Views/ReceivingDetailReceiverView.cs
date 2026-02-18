@@ -9,11 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace MWS.Views
 {
-    public partial class RecevingDetailView : Form
+    public partial class ReceivingDetailReceiverView : Form
     {
         public Models.TrnReceivingModel trnReceivingModel;
 
@@ -22,7 +21,7 @@ namespace MWS.Views
         public static Int32 receivingItemPageSize = 20;
         public PagedList<Models.DgvTrnReceivingItemModel> receivingItemPageList = new PagedList<Models.DgvTrnReceivingItemModel>(receivingItemData, receivingItemPageNumber, receivingItemPageSize);
         public BindingSource receivingItemDataSource = new BindingSource();
-        public RecevingDetailView(Models.TrnReceivingModel receivingModel)
+        public ReceivingDetailReceiverView(Models.TrnReceivingModel receivingModel)
         {
             InitializeComponent();
 
@@ -43,6 +42,19 @@ namespace MWS.Views
                 comboBoxSupplier.DataSource = trnReceivingController.SupplierList();
                 comboBoxSupplier.ValueMember = "Id";
                 comboBoxSupplier.DisplayMember = "Supplier";
+
+                GetPullOutList();
+            }
+        }
+        public void GetPullOutList()
+        {
+            Controllers.TrnReceivingReceiverController trnReceivingController = new Controllers.TrnReceivingReceiverController();
+            if (trnReceivingController.PullOutList().Any())
+            {
+                comboBoxPullOutNumber.DataSource = trnReceivingController.PullOutList();
+                comboBoxPullOutNumber.ValueMember = "Id";
+                comboBoxPullOutNumber.DisplayMember = "PullOutNo";
+                comboBoxPullOutNumber.SelectedValue = 0;
 
                 SetFooter();
             }
@@ -76,20 +88,20 @@ namespace MWS.Views
 
             comboBoxSupplier.SelectedValue = trnReceivingModel.SupplierId;
             textBoxRemarks.Text = trnReceivingModel.Remarks;
-            textBoxWeight.Focus();
+            comboBoxPullOutNumber.Focus();
 
             CreateReceivingItemListDataGridView();
         }
-
         public void UpdateComponents(Boolean isLocked)
         {
             buttonSave.Enabled = !isLocked;
             comboBoxSupplier.Enabled = !isLocked;
             textBoxRemarks.Enabled = !isLocked;
-            textBoxWeight.Enabled = !isLocked;
+            comboBoxPullOutNumber.Enabled = !isLocked;
+            buttonDownload.Enabled = !isLocked;
 
             dataGridViewReceivingItem.Columns[8].Visible = !isLocked;
-            textBoxWeight.Focus();
+            comboBoxPullOutNumber.Focus();
 
             if (isLocked)
             {
@@ -268,15 +280,28 @@ namespace MWS.Views
             textBoxPageNumber.Text = receivingItemPageNumber + " / " + receivingItemPageList.PageCount;
         }
 
-        private void textBoxWeight_KeyDown(object sender, KeyEventArgs e)
+        private void comboBoxPullOutNumber_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+           
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            DialogResult add = MessageBox.Show("Confirm add new record?", "MWS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (add == DialogResult.Yes)
             {
-                Controllers.TrnReceivingItemController trnReceivingItemController = new Controllers.TrnReceivingItemController();
-                trnReceivingItemController.AddReceivingItem(trnReceivingModel.Id, Convert.ToDecimal(textBoxWeight.Text));
-                UpdateReceivingItemListDataSource();
-                textBoxWeight.Text = "";
-                textBoxWeight.Focus();
+                Controllers.TrnReceivingReceiverController trnReceivingController = new Controllers.TrnReceivingReceiverController();
+                String[] addReceiving = trnReceivingController.AddReceiving();
+                if (addReceiving[1].Equals("0") == false)
+                {
+                    Close();
+                    ReceivingDetailReceiverView recevingDetailView = new ReceivingDetailReceiverView(trnReceivingController.ReceivingDetail(Convert.ToInt32(addReceiving[1])));
+                    recevingDetailView.Show();
+                }
+                else
+                {
+                    MessageBox.Show(addReceiving[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -289,14 +314,14 @@ namespace MWS.Views
                 {
                     var id = Convert.ToInt32(dataGridViewReceivingItem.Rows[e.RowIndex].Cells[dataGridViewReceivingItem.Columns["ColumnId"].Index].Value);
 
-                    Controllers.TrnReceivingItemController trnReceivingItemController = new Controllers.TrnReceivingItemController();
+                    Controllers.TrnReceivingReceiverItemController trnReceivingItemController = new Controllers.TrnReceivingReceiverItemController();
                     String[] deleteReceivingItem = trnReceivingItemController.DeleteReceivingItem(id);
                     if (deleteReceivingItem[1].Equals("0") == false)
                     {
                         receivingItemPageNumber = 1;
                         UpdateReceivingItemListDataSource();
-                        textBoxWeight.Text = "";
-                        textBoxWeight.Focus();
+                        comboBoxPullOutNumber.Text = "";
+                        comboBoxPullOutNumber.Focus();
                     }
                     else
                     {
@@ -311,7 +336,7 @@ namespace MWS.Views
             DialogResult saveDialogResult = MessageBox.Show("Confirm save? This will lock the record.", "MWS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (saveDialogResult == DialogResult.Yes)
             {
-                Controllers.TrnReceivingController trnReceivingController = new Controllers.TrnReceivingController();
+                Controllers.TrnReceivingReceiverController trnReceivingController = new Controllers.TrnReceivingReceiverController();
 
                 Models.TrnReceivingModel newReceivingModel = new Models.TrnReceivingModel()
                 {
@@ -331,23 +356,17 @@ namespace MWS.Views
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void buttonDownload_Click(object sender, EventArgs e)
         {
-            DialogResult add = MessageBox.Show("Confirm add new record?", "MWS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (add == DialogResult.Yes)
+            DialogResult downloadDialogResult = MessageBox.Show("Confirm download? This will delete the existing item records.", "MWS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (downloadDialogResult == DialogResult.Yes)
             {
-                Controllers.TrnReceivingController trnReceivingController = new Controllers.TrnReceivingController();
-                String[] addReceiving = trnReceivingController.AddReceiving();
-                if (addReceiving[1].Equals("0") == false)
-                {
-                    Close();
-                    RecevingDetailView recevingDetailView = new RecevingDetailView(trnReceivingController.RecevingDetail(Convert.ToInt32(addReceiving[1])));
-                    recevingDetailView.Show();
-                }
-                else
-                {
-                    MessageBox.Show(addReceiving[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                Controllers.TrnReceivingReceiverItemController trnReceivingItemController = new Controllers.TrnReceivingReceiverItemController();
+                trnReceivingItemController.DeleteAllReceivingItem(trnReceivingModel.Id);
+                trnReceivingItemController.AddReceivingItem(trnReceivingModel.Id, Convert.ToInt32(comboBoxPullOutNumber.SelectedValue));
+                UpdateReceivingItemListDataSource();
+                comboBoxPullOutNumber.Text = "";
+                comboBoxPullOutNumber.Focus();
             }
         }
     }

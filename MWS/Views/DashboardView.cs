@@ -1,4 +1,5 @@
-﻿using MWS.Modules;
+﻿using MWS.Controllers;
+using MWS.Modules;
 using MWS.Views;
 using System;
 using System.Collections.Generic;
@@ -60,6 +61,16 @@ namespace MWS.Views
             int total = minis + extraSmall + small + medium + large + extraLarge;
 
             labelTotal.Text = $"TOTAL CUTS: {total:N0}";
+
+            bool IsReceiver = Convert.ToBoolean(Modules.SysCurrentModule.GetCurrentSettings().IsReceiver);
+            if (IsReceiver)
+            {
+                buttonProduction.Text = "       Production";
+            }
+            else
+            {
+                buttonProduction.Text = "       Processing";
+            }
         }
         private void btnLogOut_Click(object sender, EventArgs e)
         {
@@ -105,20 +116,39 @@ namespace MWS.Views
 
         private void btnProceed_Click(object sender, EventArgs e)
         {
+            bool IsReceiver = Convert.ToBoolean(Modules.SysCurrentModule.GetCurrentSettings().IsReceiver);
             DialogResult proceed = MessageBox.Show("Confirm proceed to receiving?", "MWS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (proceed == DialogResult.Yes)
             {
-                Controllers.TrnReceivingController trnReceivingController = new Controllers.TrnReceivingController();
-                String[] addReceiving = trnReceivingController.AddReceiving();
-                if (addReceiving[1].Equals("0") == false)
+                if(IsReceiver)
                 {
-                    Close();
-                    RecevingDetailView recevingDetailView = new RecevingDetailView(trnReceivingController.RecevingDetail(Convert.ToInt32(addReceiving[1])));
-                    recevingDetailView.Show();
+                    Controllers.TrnReceivingReceiverController trnReceivingController = new Controllers.TrnReceivingReceiverController();
+                    String[] addReceiving = trnReceivingController.AddReceiving();
+                    if (addReceiving[1].Equals("0") == false)
+                    {
+                        Close();
+                        ReceivingDetailReceiverView recevingDetailView = new ReceivingDetailReceiverView(trnReceivingController.ReceivingDetail(Convert.ToInt32(addReceiving[1])));
+                        recevingDetailView.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show(addReceiving[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show(addReceiving[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Controllers.TrnReceivingController trnReceivingController = new Controllers.TrnReceivingController();
+                    String[] addReceiving = trnReceivingController.AddReceiving();
+                    if (addReceiving[1].Equals("0") == false)
+                    {
+                        Close();
+                        RecevingDetailView recevingDetailView = new RecevingDetailView(trnReceivingController.RecevingDetail(Convert.ToInt32(addReceiving[1])));
+                        recevingDetailView.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show(addReceiving[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -161,6 +191,13 @@ namespace MWS.Views
                     MessageBox.Show(addPullOut[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void buttonHistory_Click(object sender, EventArgs e)
+        {
+            Close();
+            HistoryView historyView = new HistoryView();
+            historyView.Show();
         }
     }
 }

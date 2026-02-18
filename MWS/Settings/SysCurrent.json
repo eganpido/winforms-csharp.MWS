@@ -6,5 +6,7 @@
   "CurrentUserName": "admin",
   "CurrentVersion": "v1.0.1",
   "CurrentDeveloper": "Streetsmart Solutions",
-  "CurrentSupport": "(032) 000-0000"
+  "CurrentSupport": "(032) 000-0000",
+  "BranchId": 2,
+  "IsReceiver": true
 }

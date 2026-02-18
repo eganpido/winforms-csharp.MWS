@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,12 +50,20 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="zxing, Version=0.16.11.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.11\lib\net48\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.11.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.11\lib\net48\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\TrnPullOutItemController.cs" />
     <Compile Include="Controllers\TrnPullOutController.cs" />
     <Compile Include="Controllers\TrnProductionController.cs" />
+    <Compile Include="Controllers\TrnReceivingReceiverItemController.cs" />
+    <Compile Include="Controllers\TrnReceivingReceiverController.cs" />
     <Compile Include="Controllers\TrnReceivingController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\TrnProductionItemController.cs" />
@@ -65,8 +74,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>mwsdb.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\DgvTrnPullOutModel.cs" />
     <Compile Include="Models\DgvTrnPullOutItemModel.cs" />
     <Compile Include="Models\DgvTrnProductionItemModel.cs" />
+    <Compile Include="Models\DgvTrnProductionModel.cs" />
+    <Compile Include="Models\DgvTrnReceivingModel.cs" />
     <Compile Include="Models\DgvTrnReceivingItemModel.cs" />
     <Compile Include="Models\MstSupplier.cs" />
     <Compile Include="Models\MstSizeModel.cs" />
@@ -89,6 +101,12 @@
     </Compile>
     <Compile Include="Views\DashboardView.Designer.cs">
       <DependentUpon>DashboardView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HistoryView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\HistoryView.Designer.cs">
+      <DependentUpon>HistoryView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\LoadingView.cs">
       <SubType>Form</SubType>
@@ -120,6 +138,12 @@
     <Compile Include="Views\PullOutDetailView.Designer.cs">
       <DependentUpon>PullOutDetailView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ReceivingDetailReceiverView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ReceivingDetailReceiverView.Designer.cs">
+      <DependentUpon>ReceivingDetailReceiverView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\RecevingDetailView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +163,9 @@
     <EmbeddedResource Include="Views\DashboardView.resx">
       <DependentUpon>DashboardView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\HistoryView.resx">
+      <DependentUpon>HistoryView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\LoadingView.resx">
       <DependentUpon>LoadingView.cs</DependentUpon>
     </EmbeddedResource>
@@ -153,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\PullOutDetailView.resx">
       <DependentUpon>PullOutDetailView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReceivingDetailReceiverView.resx">
+      <DependentUpon>ReceivingDetailReceiverView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RecevingDetailView.resx">
       <DependentUpon>RecevingDetailView.cs</DependentUpon>
@@ -222,6 +252,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\inbox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\history.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

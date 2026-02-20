@@ -17,18 +17,18 @@ namespace MWS.Views
     public partial class PullOutDetailView : Form
     {
         public Models.TrnPullOutModel trnPullOutModel;
-
+        public HistoryView historyView;
         public static List<Models.DgvTrnPullOutItemModel> pullOutItemData = new List<Models.DgvTrnPullOutItemModel>();
         public static Int32 pullOutItemPageNumber = 1;
         public static Int32 pullOutItemPageSize = 20;
         public PagedList<Models.DgvTrnPullOutItemModel> pullOutItemPageList = new PagedList<Models.DgvTrnPullOutItemModel>(pullOutItemData, pullOutItemPageNumber, pullOutItemPageSize);
         public BindingSource pullOutItemDataSource = new BindingSource();
-        public PullOutDetailView(Models.TrnPullOutModel pullOutModel)
+        public PullOutDetailView(Models.TrnPullOutModel pullOutModel, HistoryView _historyView)
         {
             InitializeComponent();
 
             trnPullOutModel = pullOutModel;
-
+            historyView = _historyView;
             var id = trnPullOutModel.Id;
 
             Controllers.TrnPullOutController trnPullOutController = new Controllers.TrnPullOutController();
@@ -174,13 +174,30 @@ namespace MWS.Views
             {
                 labelIndicator.Visible = false;
             }
+
+            if (historyView == null)
+            {
+                btnAdd.Enabled = true;
+            }
+            else
+            {
+                btnAdd.Enabled = false;
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            Close();
-            DashboardView dashboardView = new DashboardView();
-            dashboardView.Show();
+            if (historyView == null)
+            {
+                Close();
+                DashboardView dashboardView = new DashboardView();
+                dashboardView.Show();
+            }
+            else
+            {
+                Close();
+
+            }
         }
 
         private void buttonFirst_Click(object sender, EventArgs e)
@@ -280,7 +297,7 @@ namespace MWS.Views
                 if (addPullOut[1].Equals("0") == false)
                 {
                     Close();
-                    PullOutDetailView pullOutDetailView = new PullOutDetailView(trnPullOutController.PullOutDetail(Convert.ToInt32(addPullOut[1])));
+                    PullOutDetailView pullOutDetailView = new PullOutDetailView(trnPullOutController.PullOutDetail(Convert.ToInt32(addPullOut[1])), null);
                     pullOutDetailView.Show();
                 }
                 else

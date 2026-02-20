@@ -127,7 +127,7 @@ namespace MWS.Views
                     if (addReceiving[1].Equals("0") == false)
                     {
                         Close();
-                        ReceivingDetailReceiverView recevingDetailView = new ReceivingDetailReceiverView(trnReceivingController.ReceivingDetail(Convert.ToInt32(addReceiving[1])));
+                        ReceivingDetailReceiverView recevingDetailView = new ReceivingDetailReceiverView(trnReceivingController.ReceivingDetail(Convert.ToInt32(addReceiving[1])), null);
                         recevingDetailView.Show();
                     }
                     else
@@ -142,7 +142,7 @@ namespace MWS.Views
                     if (addReceiving[1].Equals("0") == false)
                     {
                         Close();
-                        RecevingDetailView recevingDetailView = new RecevingDetailView(trnReceivingController.RecevingDetail(Convert.ToInt32(addReceiving[1])));
+                        RecevingDetailView recevingDetailView = new RecevingDetailView(trnReceivingController.ReceivingDetail(Convert.ToInt32(addReceiving[1])), null);
                         recevingDetailView.Show();
                     }
                     else
@@ -163,7 +163,7 @@ namespace MWS.Views
                 if (addProduction[1].Equals("0") == false)
                 {
                     Close();
-                    ProductionDetailView productionDetailView = new ProductionDetailView(trnProductionController.ProductionDetail(Convert.ToInt32(addProduction[1])));
+                    ProductionDetailView productionDetailView = new ProductionDetailView(trnProductionController.ProductionDetail(Convert.ToInt32(addProduction[1])), null);
                     productionDetailView.Show();
                 }
                 else
@@ -183,7 +183,7 @@ namespace MWS.Views
                 if (addPullOut[1].Equals("0") == false)
                 {
                     Close();
-                    PullOutDetailView pullOutDetailView = new PullOutDetailView(trnPullOutController.PullOutDetail(Convert.ToInt32(addPullOut[1])));
+                    PullOutDetailView pullOutDetailView = new PullOutDetailView(trnPullOutController.PullOutDetail(Convert.ToInt32(addPullOut[1])), null);
                     pullOutDetailView.Show();
                 }
                 else

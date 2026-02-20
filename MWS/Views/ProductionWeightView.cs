@@ -28,6 +28,8 @@ namespace MWS.Views
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
+            productionDetailView.textBoxBarcode.Text = "";
+            productionDetailView.textBoxBarcode.Focus();
         }
 
         private void textBoxWeight_KeyDown(object sender, KeyEventArgs e)

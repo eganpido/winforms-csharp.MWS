@@ -169,9 +169,12 @@ namespace MWS.Controllers
         }
         public int GetReceivingItem(string barcode)
         {
+            var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
             int receivingItemId = 0;
             var receivingItem = from d in db.TrnReceivingItems
                                 where d.Barcode == barcode
+                                && d.TrnReceiving.IsLocked == true
+                                && d.TrnReceiving.BranchId == currentBranchId
                                 select d;
             if (receivingItem.Any())
             {
@@ -182,11 +185,12 @@ namespace MWS.Controllers
 
         public bool isAlreadyAdded(string barcode)
         {
+            var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
             bool added = false;
-
             var barcodeExist = from d in db.TrnProductionItems
                                where d.TrnReceivingItem.Barcode == barcode
                                && d.TrnProduction.IsLocked == true
+                               && d.TrnProduction.BranchId == currentBranchId
                                select d;
             if (barcodeExist.Any())
             {

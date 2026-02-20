@@ -15,22 +15,21 @@ namespace MWS.Views
     public partial class ReceivingDetailReceiverView : Form
     {
         public Models.TrnReceivingModel trnReceivingModel;
-
+        public HistoryView historyView;
         public static List<Models.DgvTrnReceivingItemModel> receivingItemData = new List<Models.DgvTrnReceivingItemModel>();
         public static Int32 receivingItemPageNumber = 1;
         public static Int32 receivingItemPageSize = 20;
         public PagedList<Models.DgvTrnReceivingItemModel> receivingItemPageList = new PagedList<Models.DgvTrnReceivingItemModel>(receivingItemData, receivingItemPageNumber, receivingItemPageSize);
         public BindingSource receivingItemDataSource = new BindingSource();
-        public ReceivingDetailReceiverView(Models.TrnReceivingModel receivingModel)
+        public ReceivingDetailReceiverView(Models.TrnReceivingModel receivingModel, HistoryView _historyView)
         {
             InitializeComponent();
 
             trnReceivingModel = receivingModel;
-
+            historyView = _historyView;
             var id = trnReceivingModel.Id;
-
             Controllers.TrnReceivingController trnReceivingController = new Controllers.TrnReceivingController();
-            var detail = trnReceivingController.RecevingDetail(id);
+            var detail = trnReceivingController.ReceivingDetail(id);
 
             GetSupplierList();
         }
@@ -80,9 +79,9 @@ namespace MWS.Views
             dataGridViewReceivingItem.AllowUserToResizeRows = false;
             dataGridViewReceivingItem.RowTemplate.Height = 32;
 
-            GetRecevingDetail();
+            GetReceivingDetail();
         }
-        public void GetRecevingDetail()
+        public void GetReceivingDetail()
         {
             UpdateComponents(trnReceivingModel.IsLocked);
 
@@ -110,6 +109,15 @@ namespace MWS.Views
             else
             {
                 labelIndicator.Visible = false;
+            }
+
+            if (historyView == null)
+            {
+                btnAdd.Enabled = true;
+            }
+            else
+            {
+                btnAdd.Enabled = false;
             }
         }
         public void CreateReceivingItemListDataGridView()
@@ -207,9 +215,17 @@ namespace MWS.Views
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            Close();
-            DashboardView dashboardView = new DashboardView();
-            dashboardView.Show();
+            if (historyView == null)
+            {
+                Close();
+                DashboardView dashboardView = new DashboardView();
+                dashboardView.Show();
+            }
+            else
+            {
+                Close();
+
+            }
         }
 
         private void buttonFirst_Click(object sender, EventArgs e)
@@ -295,7 +311,7 @@ namespace MWS.Views
                 if (addReceiving[1].Equals("0") == false)
                 {
                     Close();
-                    ReceivingDetailReceiverView recevingDetailView = new ReceivingDetailReceiverView(trnReceivingController.ReceivingDetail(Convert.ToInt32(addReceiving[1])));
+                    ReceivingDetailReceiverView recevingDetailView = new ReceivingDetailReceiverView(trnReceivingController.ReceivingDetail(Convert.ToInt32(addReceiving[1])), null);
                     recevingDetailView.Show();
                 }
                 else

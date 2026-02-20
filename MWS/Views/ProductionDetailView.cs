@@ -16,18 +16,18 @@ namespace MWS.Views
     public partial class ProductionDetailView : Form
     {
         public Models.TrnProductionModel trnProductionModel;
-
+        public HistoryView historyView;
         public static List<Models.DgvTrnProductionItemModel> productionItemData = new List<Models.DgvTrnProductionItemModel>();
         public static Int32 productionItemPageNumber = 1;
         public static Int32 productionItemPageSize = 20;
         public PagedList<Models.DgvTrnProductionItemModel> productionItemPageList = new PagedList<Models.DgvTrnProductionItemModel>(productionItemData, productionItemPageNumber, productionItemPageSize);
         public BindingSource productionItemDataSource = new BindingSource();
-        public ProductionDetailView(Models.TrnProductionModel productionModel)
+        public ProductionDetailView(Models.TrnProductionModel productionModel, HistoryView _historyView)
         {
             InitializeComponent();
 
             trnProductionModel = productionModel;
-
+            historyView = _historyView;
             var id = trnProductionModel.Id;
 
             Controllers.TrnProductionController trnProductionController = new Controllers.TrnProductionController();
@@ -165,7 +165,7 @@ namespace MWS.Views
             buttonSave.Enabled = !isLocked;
             textBoxBarcode.Enabled = !isLocked;
 
-            dataGridViewProductionItem.Columns[10].Visible = !isLocked;
+            dataGridViewProductionItem.Columns[11].Visible = !isLocked;
             textBoxBarcode.Focus();
 
             if (isLocked)
@@ -185,6 +185,15 @@ namespace MWS.Views
             else
             {
                 labelProductionTitle.Text = "Meat Weighing System - Processing";
+            }
+
+            if(historyView == null)
+            {
+                btnAdd.Enabled = true;
+            }
+            else
+            {
+                btnAdd.Enabled = false;
             }
         }
         private void textBoxBarcode_KeyDown(object sender, KeyEventArgs e)
@@ -218,9 +227,17 @@ namespace MWS.Views
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            Close();
-            DashboardView dashboardView = new DashboardView();
-            dashboardView.Show();
+            if (historyView == null)
+            {
+                Close();
+                DashboardView dashboardView = new DashboardView();
+                dashboardView.Show();
+            }
+            else
+            {
+                Close();
+
+            }
         }
 
         private void buttonFirst_Click(object sender, EventArgs e)
@@ -320,7 +337,7 @@ namespace MWS.Views
                 if (addProduction[1].Equals("0") == false)
                 {
                     Close();
-                    ProductionDetailView productionDetailView = new ProductionDetailView(trnProductionController.ProductionDetail(Convert.ToInt32(addProduction[1])));
+                    ProductionDetailView productionDetailView = new ProductionDetailView(trnProductionController.ProductionDetail(Convert.ToInt32(addProduction[1])), null);
                     productionDetailView.Show();
                 }
                 else

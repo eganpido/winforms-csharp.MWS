@@ -37,6 +37,7 @@ namespace MWS.Controllers
                            where d.ProductionDate >= startDateFilter
                            && d.ProductionDate <= endDateFilter
                            && d.BranchId == currentBranchId
+                           && d.IsLocked == true
                            && (d.ProductionNo.Contains(filter)
                            || d.Remarks.Contains(filter))
                            select new Models.TrnProductionModel
@@ -84,7 +85,7 @@ namespace MWS.Controllers
                 }
 
                 String productionNumber = "0000000001";
-                var lastProduction = from d in db.TrnProductions.OrderByDescending(d => d.Id) where d.ProductionNo.Contains("-") == false select d;
+                var lastProduction = from d in db.TrnProductions.OrderByDescending(d => d.Id) where d.ProductionNo.Contains("-") == false && d.BranchId == currentBranchId select d;
                 if (lastProduction.Any())
                 {
                     Int32 newProductionNumber = Convert.ToInt32(lastProduction.FirstOrDefault().ProductionNo) + 1;

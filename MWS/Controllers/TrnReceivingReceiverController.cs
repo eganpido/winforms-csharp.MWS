@@ -36,6 +36,7 @@ namespace MWS.Controllers
             var receiving = from d in db.TrnReceivings
                            where d.ReceivingDate == dateFilter
                            && d.BranchId == currentBranchId
+                           && d.IsLocked == true
                            && (d.ReceivingNo.Contains(filter)
                            || d.MstSupplier.Supplier.Contains(filter))
                            || d.Remarks.Contains(filter)
@@ -101,7 +102,7 @@ namespace MWS.Controllers
                                 PullOutNo = d.PullOutNo
                             };
 
-            return pullOuts.OrderBy(d => d.Id).ToList();
+            return pullOuts.OrderByDescending(d => d.Id).ToList();
         }
 
         // Add Receiving
@@ -123,7 +124,7 @@ namespace MWS.Controllers
                 }
 
                 String receivingNumber = "0000000001";
-                var lastReceiving = from d in db.TrnReceivings.OrderByDescending(d => d.Id) where d.ReceivingNo.Contains("-") == false select d;
+                var lastReceiving = from d in db.TrnReceivings.OrderByDescending(d => d.Id) where d.ReceivingNo.Contains("-") == false && d.BranchId == currentBranchId select d;
                 if (lastReceiving.Any())
                 {
                     Int32 newReceivingNumber = Convert.ToInt32(lastReceiving.FirstOrDefault().ReceivingNo) + 1;

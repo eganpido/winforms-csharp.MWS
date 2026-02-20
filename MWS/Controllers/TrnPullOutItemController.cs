@@ -16,17 +16,17 @@ namespace MWS.Controllers
         public List<Models.TrnPullOutItemModel> PullOutItemList(Int32 pullOutId)
         {
             var pullOutItems = from d in db.TrnPullOutItems
-                                  select new Models.TrnPullOutItemModel
-                                  {
-                                     Id = d.Id,
-                                     PullOutId = d.PullOutId,
-                                     ReceivingItemId = d.TrnProductionItem.TrnReceivingItem.ReceivingId,
-                                     ItemId = d.TrnProductionItem.TrnReceivingItem.ItemId,
-                                     Barcode = d.TrnProductionItem.ProductionBarcode,
-                                     ItemDescription = d.TrnProductionItem.TrnReceivingItem.ItemDescription,
-                                     SizeId = d.TrnProductionItem.TrnReceivingItem.SizeId,
-                                     Size = d.TrnProductionItem.TrnReceivingItem.MstSize.Size,
-                                  };
+                               select new Models.TrnPullOutItemModel
+                               {
+                                   Id = d.Id,
+                                   PullOutId = d.PullOutId,
+                                   ReceivingItemId = d.TrnProductionItem.TrnReceivingItem.ReceivingId,
+                                   ItemId = d.TrnProductionItem.TrnReceivingItem.ItemId,
+                                   Barcode = d.TrnProductionItem.ProductionBarcode,
+                                   ItemDescription = d.TrnProductionItem.TrnReceivingItem.ItemDescription,
+                                   SizeId = d.TrnProductionItem.TrnReceivingItem.SizeId,
+                                   Size = d.TrnProductionItem.TrnReceivingItem.MstSize.Size,
+                               };
 
             return pullOutItems.Where(d => d.PullOutId == pullOutId).OrderByDescending(e => e.Id).ToList();
         }
@@ -71,8 +71,8 @@ namespace MWS.Controllers
                 }
 
                 var pullOutItem = from d in db.TrnPullOutItems
-                                    where d.Id == id
-                                    select d;
+                                  where d.Id == id
+                                  select d;
 
                 if (pullOutItem.Any())
                 {
@@ -94,10 +94,13 @@ namespace MWS.Controllers
         }
         public int GetProductionItem(string barcode)
         {
+            var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
             int productionItemId = 0;
             var productionItem = from d in db.TrnProductionItems
-                                where d.ProductionBarcode == barcode
-                                select d;
+                                 where d.ProductionBarcode == barcode
+                                 && d.TrnProduction.IsLocked == true
+                                 && d.TrnProduction.BranchId == currentBranchId
+                                 select d;
             if (productionItem.Any())
             {
                 productionItemId = productionItem.FirstOrDefault().Id;
@@ -106,10 +109,13 @@ namespace MWS.Controllers
         }
         public bool isAlreadyAdded(string barcode)
         {
+            var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
             bool added = false;
 
             var barcodeExist = from d in db.TrnPullOutItems
                                where d.TrnProductionItem.ProductionBarcode == barcode
+                               && d.TrnPullOut.IsLocked == true
+                               && d.TrnPullOut.BranchId == currentBranchId
                                select d;
             if (barcodeExist.Any())
             {

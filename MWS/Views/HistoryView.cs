@@ -40,6 +40,16 @@ namespace MWS.Views
             CreateReceivingListDataGridView();
             CreateProductionListDataGridView();
             CreatePullOutListDataGridView();
+
+            var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
+            if(currentBranchId == 1)
+            {
+                tabPageProcessing.Text = "Processing";
+            }
+            else
+            {
+                tabPageProcessing.Text = "Production";
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -260,6 +270,7 @@ namespace MWS.Views
                             select new DgvTrnReceivingModel
                             {
                                 ColumnId = d.Id,
+                                ColumnReceivingBranchId = d.BranchId,
                                 ColumnReceivingDate = d.ReceivingDate,
                                 ColumnReceivingNo = d.ReceivingNo,
                                 ColumnReceivingSupplierId = d.SupplierId,
@@ -595,6 +606,46 @@ namespace MWS.Views
         private void dtPullEndDate_ValueChanged(object sender, EventArgs e)
         {
             UpdatePullOutListDataSource();
+        }
+
+        private void dataGridViewReceiving_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1 && dataGridViewReceiving.CurrentCell.ColumnIndex == dataGridViewReceiving.Columns["ColumnReceivingView"].Index)
+            {
+                int branchId = Convert.ToInt32(dataGridViewReceiving.Rows[e.RowIndex].Cells[1].Value);
+                if (branchId == 1)
+                {
+                    Controllers.TrnReceivingController trnReceivingController = new Controllers.TrnReceivingController();
+                    RecevingDetailView recevingDetailView = new RecevingDetailView(trnReceivingController.ReceivingDetail(Convert.ToInt32(dataGridViewReceiving.Rows[e.RowIndex].Cells[0].Value)), this);
+                    recevingDetailView.Show();
+                }
+                else
+                {
+                    Controllers.TrnReceivingReceiverController trnReceivingReceiverController = new Controllers.TrnReceivingReceiverController();
+                    ReceivingDetailReceiverView recevingDetailReceiverView = new ReceivingDetailReceiverView(trnReceivingReceiverController.ReceivingDetail(Convert.ToInt32(dataGridViewReceiving.Rows[e.RowIndex].Cells[0].Value)), this);
+                    recevingDetailReceiverView.Show();
+                }
+            }
+        }
+
+        private void dataGridViewProcessing_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1 && dataGridViewProcessing.CurrentCell.ColumnIndex == dataGridViewProcessing.Columns["ColumnProcessingView"].Index)
+            {
+                Controllers.TrnProductionController trnProductionController = new Controllers.TrnProductionController();
+                ProductionDetailView productionDetailView = new ProductionDetailView(trnProductionController.ProductionDetail(Convert.ToInt32(dataGridViewProcessing.Rows[e.RowIndex].Cells[0].Value)), this);
+                productionDetailView.Show();
+            }
+        }
+
+        private void dataGridViewPullOut_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1 && dataGridViewPullOut.CurrentCell.ColumnIndex == dataGridViewPullOut.Columns["ColumnPullOutView"].Index)
+            {
+                Controllers.TrnPullOutController trnPullOutController = new Controllers.TrnPullOutController();
+                PullOutDetailView pullOutDetailView = new PullOutDetailView(trnPullOutController.PullOutDetail(Convert.ToInt32(dataGridViewPullOut.Rows[e.RowIndex].Cells[0].Value)), this);
+                pullOutDetailView.Show();
+            }
         }
     }
 }

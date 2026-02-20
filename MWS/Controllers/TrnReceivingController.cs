@@ -37,12 +37,14 @@ namespace MWS.Controllers
                            where d.ReceivingDate >= startDate
                            && d.ReceivingDate <= endDate
                            && d.BranchId == currentBranchId
+                           && d.IsLocked == true
                            && (d.ReceivingNo.Contains(filter)
                            || d.MstSupplier.Supplier.Contains(filter)
                            || d.Remarks.Contains(filter))
                             select new Models.TrnReceivingModel
                            {
                                Id = d.Id,
+                               BranchId = d.BranchId,
                                ReceivingDate = d.ReceivingDate.ToShortDateString(),
                                ReceivingNo = d.ReceivingNo,
                                SupplierId = d.SupplierId,
@@ -57,7 +59,7 @@ namespace MWS.Controllers
         }
 
         // Receiving Detail
-        public Models.TrnReceivingModel RecevingDetail(Int32 id)
+        public Models.TrnReceivingModel ReceivingDetail(Int32 id)
         {
             var receiving = from d in db.TrnReceivings
                           where d.Id == id
@@ -109,7 +111,7 @@ namespace MWS.Controllers
                 }
 
                 String receivingNumber = "0000000001";
-                var lastReceiving = from d in db.TrnReceivings.OrderByDescending(d => d.Id) where d.ReceivingNo.Contains("-") == false select d;
+                var lastReceiving = from d in db.TrnReceivings.OrderByDescending(d => d.Id) where d.ReceivingNo.Contains("-") == false && d.BranchId == currentBranchId select d;
                 if (lastReceiving.Any())
                 {
                     Int32 newReceivingNumber = Convert.ToInt32(lastReceiving.FirstOrDefault().ReceivingNo) + 1;

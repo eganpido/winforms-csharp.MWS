@@ -190,9 +190,9 @@
             this.labelIndicator.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
             this.labelIndicator.Location = new System.Drawing.Point(474, 16);
             this.labelIndicator.Name = "labelIndicator";
-            this.labelIndicator.Size = new System.Drawing.Size(577, 24);
+            this.labelIndicator.Size = new System.Drawing.Size(507, 24);
             this.labelIndicator.TabIndex = 102;
-            this.labelIndicator.Text = "The current record is locked. You may close it or add a new receiving record.";
+            this.labelIndicator.Text = "The current record is locked. You may close it or add a new record.";
             // 
             // buttonLast
             // 

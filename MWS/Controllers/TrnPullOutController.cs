@@ -37,6 +37,7 @@ namespace MWS.Controllers
                            where d.PullOutDate >= startDateFilter
                            && d.PullOutDate <= endDateFilter
                            && d.BranchId == currentBranchId
+                           && d.IsLocked == true
                            && (d.PullOutNo.Contains(filter)
                            || d.Remarks.Contains(filter))
                            select new Models.TrnPullOutModel
@@ -84,7 +85,7 @@ namespace MWS.Controllers
                 }
 
                 String pullOutNumber = "0000000001";
-                var lastPullOut = from d in db.TrnPullOuts.OrderByDescending(d => d.Id) where d.PullOutNo.Contains("-") == false select d;
+                var lastPullOut = from d in db.TrnPullOuts.OrderByDescending(d => d.Id) where d.PullOutNo.Contains("-") == false && d.BranchId == currentBranchId select d;
                 if (lastPullOut.Any())
                 {
                     Int32 newPullOutNumber = Convert.ToInt32(lastPullOut.FirstOrDefault().PullOutNo) + 1;

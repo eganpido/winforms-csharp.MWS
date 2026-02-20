@@ -60,7 +60,7 @@ namespace MWS.Views
 
             int total = minis + extraSmall + small + medium + large + extraLarge;
 
-            labelTotal.Text = $"TOTAL CUTS: {total:N0}";
+            labelTotal.Text = $"TOTAL SLAB(S): {total:N0}";
 
             bool IsReceiver = Convert.ToBoolean(Modules.SysCurrentModule.GetCurrentSettings().IsReceiver);
             if (IsReceiver)

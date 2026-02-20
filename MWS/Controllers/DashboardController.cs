@@ -14,9 +14,11 @@ namespace MWS.Controllers
         // Get Cut Quantity Per Sizes
         public int GetQuantity(int sizeId)
         {
+            var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
             int totalCut = 0;
             var receivingItem = from d in db.TrnReceivingItems
                                 where d.TrnReceiving.IsLocked == true
+                                && d.TrnReceiving.BranchId == currentBranchId
                                 && d.SizeId == sizeId
                                 select d;
             if (receivingItem.Any())

@@ -278,6 +278,7 @@ namespace MWS.Views
                                 ColumnReceivingRemarks = d.Remarks,
                                 ColumnReceivingPreparedById = d.PreparedById,
                                 ColumnReceivingPreparedBy = d.PreparedBy.ToString(),
+                                ColumnReceivingTotalWeight = d.TotalWeight.ToString(),
                                 ColumnReceivingIsLocked = d.IsLocked,
                                 ColumnReceivingView = "View",
                             };
@@ -308,6 +309,7 @@ namespace MWS.Views
                                 ColumnProcessingRemarks = d.Remarks,
                                 ColumnProcessingPreparedById = d.PreparedById,
                                 ColumnProcessingPreparedBy = d.PreparedBy.ToString(),
+                                ColumnProcessingTotalWeight = d.TotalWeight.ToString(),
                                 ColumnProcessingIsLocked = d.IsLocked,
                                 ColumnProcessingView = "View",
                             };

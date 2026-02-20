@@ -14,6 +14,7 @@ namespace MWS.Models
         public String ColumnProcessingRemarks { get; set; }
         public Int32 ColumnProcessingPreparedById { get; set; }
         public String ColumnProcessingPreparedBy { get; set; }
+        public String ColumnProcessingTotalWeight { get; set; }
         public Boolean ColumnProcessingIsLocked { get; set; }
         public String ColumnProcessingView { get; set; }
     }

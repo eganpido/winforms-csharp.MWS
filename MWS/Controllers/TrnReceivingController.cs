@@ -52,6 +52,7 @@ namespace MWS.Controllers
                                Remarks = d.Remarks,
                                PreparedById = d.PrepareById,
                                PreparedBy = d.MstUser.FullName,
+                               TotalWeight = d.TrnReceivingItems.Sum(a => a.Weight),
                                IsLocked = d.IsLocked
                            };
 

@@ -50,14 +50,19 @@ namespace MWS.Controllers
                 string baseBarcode = "100000000000";
 
                 var lastReceivingItem = db.TrnReceivingItems
-                                          .OrderByDescending(d => d.Id)
+                                          .OrderByDescending(d => d.Barcode)
                                           .FirstOrDefault();
 
                 if (lastReceivingItem != null)
                 {
-                    long lastNumber = Convert.ToInt64(lastReceivingItem.Barcode.Substring(0, 12));
-                    long nextNumber = lastNumber + 1;
-                    baseBarcode = nextNumber.ToString().PadLeft(12, '0');
+                    string currentBarcode = lastReceivingItem.Barcode;
+
+                    if (currentBarcode.Length >= 12)
+                    {
+                        long lastNumber = Convert.ToInt64(currentBarcode.Substring(0, 12));
+                        long nextNumber = lastNumber + 1;
+                        baseBarcode = nextNumber.ToString().PadLeft(12, '0');
+                    }
                 }
 
                 string finalBarcode = CalculateEAN13(baseBarcode);
@@ -67,9 +72,10 @@ namespace MWS.Controllers
                     ReceivingId = receivingId,
                     ItemId = 1,
                     Barcode = finalBarcode, 
-                    ItemDescription = "SLOB",
+                    ItemDescription = "SLAB",
                     SizeId = GetSize(weight),
-                    Weight = weight
+                    Weight = weight,
+                    Classification = "None"
                 };
 
                 db.TrnReceivingItems.InsertOnSubmit(newReceivingItem);

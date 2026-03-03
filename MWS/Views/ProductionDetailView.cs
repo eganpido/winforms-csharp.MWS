@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZXing.QrCode.Internal;
 
 namespace MWS.Views
 {
@@ -148,7 +149,9 @@ namespace MWS.Views
                                 ColumnItemDescription = d.ItemDescription,
                                 ColumnSizeId = d.SizeId,
                                 ColumnSize = d.Size,
+                                ColumnClassification = d.Classification,
                                 ColumnReceivedWeight = d.ReceivedWeight.ToString("#,##0.00"),
+                                ColumnInputWeight = "WEIGHT",
                                 ColumnActualWeight = d.ActualWeight.ToString("#,##0.00"),
                                 ColumnDelete = "DELETE",
                             };
@@ -165,7 +168,7 @@ namespace MWS.Views
             buttonSave.Enabled = !isLocked;
             textBoxBarcode.Enabled = !isLocked;
 
-            dataGridViewProductionItem.Columns[11].Visible = !isLocked;
+            dataGridViewProductionItem.Columns[12].Visible = !isLocked;
             textBoxBarcode.Focus();
 
             if (isLocked)
@@ -195,6 +198,19 @@ namespace MWS.Views
             {
                 btnAdd.Enabled = false;
             }
+
+            var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
+            if(currentBranchId == 1)
+            {
+                dataGridViewProductionItem.Columns[4].Visible = true;
+                dataGridViewProductionItem.Columns[11].Visible = false;
+            }
+            else
+            {
+                dataGridViewProductionItem.Columns[4].Visible = false;
+                dataGridViewProductionItem.Columns[11].Visible = true;
+
+            }
         }
         private void textBoxBarcode_KeyDown(object sender, KeyEventArgs e)
         {
@@ -206,8 +222,19 @@ namespace MWS.Views
                     int receivingItemId = trnProductionItemController.GetReceivingItem(textBoxBarcode.Text);
                     if (receivingItemId > 0)
                     {
-                        ProductionWeightView productionWeightView = new ProductionWeightView(this, trnProductionModel, textBoxBarcode.Text);
-                        productionWeightView.Show();
+                        var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
+                        if (currentBranchId == 1)
+                        {
+                            ProductionWeightView productionWeightView = new ProductionWeightView(this, trnProductionModel, textBoxBarcode.Text, 0);
+                            productionWeightView.Show();
+                        }
+                        else
+                        {
+                            trnProductionItemController.AddProductionItem(trnProductionModel.Id, textBoxBarcode.Text, 0);
+                            UpdateProductionItemListDataSource();
+                            textBoxBarcode.Text = "";
+                            textBoxBarcode.Focus();
+                        }
                     }
                     else
                     {
@@ -349,25 +376,48 @@ namespace MWS.Views
 
         private void dataGridViewProductionItem_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > -1 && dataGridViewProductionItem.CurrentCell.ColumnIndex == dataGridViewProductionItem.Columns["ColumnDelete"].Index)
+            if (e.RowIndex > -1 && e.ColumnIndex > -1)
             {
-                DialogResult deleteDialogResult = MessageBox.Show("Confirm delete?", "MWS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (deleteDialogResult == DialogResult.Yes)
-                {
-                    var id = Convert.ToInt32(dataGridViewProductionItem.Rows[e.RowIndex].Cells[dataGridViewProductionItem.Columns["ColumnId"].Index].Value);
+                var grid = dataGridViewProductionItem;
 
-                    Controllers.TrnProductionItemController trnProductionItemController = new Controllers.TrnProductionItemController();
-                    String[] deleteProductionItem = trnProductionItemController.DeleteProductionItem(id);
-                    if (deleteProductionItem[1].Equals("0") == false)
+                if (grid.Columns["ColumnDelete"] != null && e.ColumnIndex == grid.Columns["ColumnDelete"].Index)
+                {
+                    DialogResult deleteDialogResult = MessageBox.Show("Confirm delete?", "MWS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (deleteDialogResult == DialogResult.Yes)
                     {
-                        productionItemPageNumber = 1;
-                        UpdateProductionItemListDataSource();
-                        textBoxBarcode.Text = "";
-                        textBoxBarcode.Focus();
+                        var cellValue = grid.Rows[e.RowIndex].Cells["ColumnId"].Value;
+
+                        if (cellValue != null)
+                        {
+                            int id = Convert.ToInt32(cellValue);
+
+                            Controllers.TrnProductionItemController trnProductionItemController = new Controllers.TrnProductionItemController();
+                            String[] deleteProductionItem = trnProductionItemController.DeleteProductionItem(id);
+
+                            if (deleteProductionItem.Length > 1 && deleteProductionItem[1].Equals("0") == false)
+                            {
+                                productionItemPageNumber = 1;
+                                UpdateProductionItemListDataSource();
+                                textBoxBarcode.Text = "";
+                                textBoxBarcode.Focus();
+                            }
+                            else
+                            {
+                                MessageBox.Show(deleteProductionItem[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
                     }
-                    else
+                }
+
+                else if (grid.Columns["ColumnInputWeight"] != null && e.ColumnIndex == grid.Columns["ColumnInputWeight"].Index)
+                {
+                    var cellValue = grid.Rows[e.RowIndex].Cells["ColumnId"].Value;
+
+                    if (cellValue != null)
                     {
-                        MessageBox.Show(deleteProductionItem[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        int id = Convert.ToInt32(cellValue);
+                        ProductionWeightView productionWeightView = new ProductionWeightView(this, trnProductionModel, textBoxBarcode.Text, id);
+                        productionWeightView.Show();
                     }
                 }
             }

@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZXing;
 using System.Drawing;
+using System.Data.SqlClient;
+using MWS.Models;
 
 namespace MWS.Controllers
 {
@@ -16,6 +18,19 @@ namespace MWS.Controllers
         // Data Context
         public DB.mwsdbDataContext db = new DB.mwsdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
         private Bitmap barcodeBitmap;
+
+        // Classification - List
+        public List<MstClassificationModel> DropDownClassification()
+        {
+            List<MstClassificationModel> classifications = new List<MstClassificationModel>();
+
+            classifications.Add(new MstClassificationModel { Classification = "NONE" });
+            classifications.Add(new MstClassificationModel { Classification = "CUTS" });
+            classifications.Add(new MstClassificationModel { Classification = "CLASSIC" });
+            classifications.Add(new MstClassificationModel { Classification = "SPICY" });
+
+            return classifications;
+        }
         // List Production Item
         public List<Models.TrnProductionItemModel> ProductionItemList(Int32 productionId)
         {
@@ -32,6 +47,7 @@ namespace MWS.Controllers
                                      ItemDescription = d.TrnReceivingItem.ItemDescription,
                                      SizeId = d.TrnReceivingItem.SizeId,
                                      Size = d.TrnReceivingItem.MstSize.Size,
+                                     Classification = d.Classification,
                                      ReceivedWeight = d.TrnReceivingItem.Weight,
                                      ActualWeight = d.ActualWeight
                                   };
@@ -44,6 +60,7 @@ namespace MWS.Controllers
         {
             try
             {
+                var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
                 var currentUserLogin = from d in db.MstUsers where d.Id == Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId) select d;
                 if (currentUserLogin.Any() == false)
                 {
@@ -51,32 +68,128 @@ namespace MWS.Controllers
                 }
 
                 String productionBarcode = "100000000000";
+
                 var lastProductionItem = db.TrnProductionItems
-                                          .OrderByDescending(d => d.Id)
-                                          .FirstOrDefault();
+                                           .OrderByDescending(d => d.ProductionBarcode)
+                                           .FirstOrDefault();
+
                 if (lastProductionItem != null)
                 {
-                    long lastNumber = Convert.ToInt64(lastProductionItem.ProductionBarcode.Substring(0, 12));
-                    long nextNumber = lastNumber + 1;
-                    productionBarcode = nextNumber.ToString().PadLeft(12, '0');
+                    string currentBarcode = lastProductionItem.ProductionBarcode ?? "";
+
+                    if (currentBarcode.Length >= 12)
+                    {
+                        long lastNumber = Convert.ToInt64(currentBarcode.Substring(0, 12));
+                        long nextNumber = lastNumber + 1;
+                        productionBarcode = nextNumber.ToString().PadLeft(12, '0');
+                    }
                 }
 
                 string finalBarcode = CalculateEAN13(productionBarcode);
 
-                DB.TrnProductionItem newProductionItem = new DB.TrnProductionItem
+                if (currentBranchId == 1)
                 {
-                    ProductionId = productionId,
-                    ReceivingItemId = GetReceivingItem(barcode),
-                    ProductionBarcode = finalBarcode,
-                    ActualWeight = weight
-                };
+                    DB.TrnProductionItem newProductionItem = new DB.TrnProductionItem
+                    {
+                        ProductionId = productionId,
+                        ReceivingItemId = GetReceivingItem(barcode),
+                        ProductionBarcode = finalBarcode,
+                        ActualWeight = weight,
+                        Classification = "NONE"
+                    };
 
-                db.TrnProductionItems.InsertOnSubmit(newProductionItem);
-                db.SubmitChanges();
+                    db.TrnProductionItems.InsertOnSubmit(newProductionItem);
+                    db.SubmitChanges();
 
-                GenerateAndPrintBarcode(finalBarcode);
+                    return new String[] { "", newProductionItem.Id.ToString() };
+                }
+                else
+                {
+                    DB.TrnProductionItem newProductionItem = new DB.TrnProductionItem
+                    {
+                        ProductionId = productionId,
+                        ReceivingItemId = GetReceivingItem(barcode),
+                        ProductionBarcode = barcode,
+                        ActualWeight = 0,
+                        Classification = "NONE"
+                    };
 
-                return new String[] { "", "1" };
+                    db.TrnProductionItems.InsertOnSubmit(newProductionItem);
+                    db.SubmitChanges();
+
+                    return new String[] { "", "1" };
+                }
+            }
+            catch (Exception e)
+            {
+                return new String[] { e.Message, "0" };
+            }
+        }
+
+
+        // Update Production Item Weight
+        public String[] UpdateProductionItemWeight(int id, decimal weight)
+        {
+            try
+            {
+                var currentUserLogin = from d in db.MstUsers where d.Id == Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId) select d;
+                if (currentUserLogin.Any() == false)
+                {
+                    return new String[] { "Current login user not found.", "0" };
+                }
+
+                var productionItem = from d in db.TrnProductionItems
+                                     where d.Id == id
+                                     select d;
+
+                if (productionItem.Any())
+                {
+                    var updateProductionItem = productionItem.FirstOrDefault();
+                    updateProductionItem.ActualWeight = weight; 
+                    db.SubmitChanges();
+
+                    return new String[] { "", "1" };
+                }
+                else
+                {
+                    return new String[] { "Production item not found.", "0" };
+                }
+            }
+            catch (Exception e)
+            {
+                return new String[] { e.Message, "0" };
+            }
+        }
+
+        // Update Production Item Classification
+        public String[] UpdateProductionItemClassification(int id, string classification)
+        {
+            try
+            {
+                var currentUserLogin = from d in db.MstUsers where d.Id == Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId) select d;
+                if (currentUserLogin.Any() == false)
+                {
+                    return new String[] { "Current login user not found.", "0" };
+                }
+
+                var productionItem = from d in db.TrnProductionItems
+                                     where d.Id == id
+                                     select d;
+
+                if (productionItem.Any())
+                {
+                    var updateProductionItem = productionItem.FirstOrDefault();
+                    updateProductionItem.Classification = classification;
+                    db.SubmitChanges();
+
+                    GenerateAndPrintBarcode(updateProductionItem.ProductionBarcode);
+
+                    return new String[] { "", "1" };
+                }
+                else
+                {
+                    return new String[] { "Production item not found.", "0" };
+                }
             }
             catch (Exception e)
             {
@@ -123,7 +236,7 @@ namespace MWS.Controllers
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: Siguradua nga 12 o 13 digits ang EAN-13.\n" + ex.Message, "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: Make sure it is 12 or 13 digits ang EAN-13.\n" + ex.Message, "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void PrintBarcodeHandler(object sender, PrintPageEventArgs e)

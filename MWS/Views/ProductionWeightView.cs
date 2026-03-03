@@ -16,13 +16,15 @@ namespace MWS.Views
         ProductionDetailView productionDetailView;
         TrnProductionModel trnProductionModel;
         public string barcode;
-        public ProductionWeightView(ProductionDetailView _productionDetailView, TrnProductionModel _trnProductionModel, string _barcode)
+        public int productionItemId;
+        public ProductionWeightView(ProductionDetailView _productionDetailView, TrnProductionModel _trnProductionModel, string _barcode, int _productionItemId)
         {
             InitializeComponent();
 
             productionDetailView = _productionDetailView;
             trnProductionModel = _trnProductionModel;
             barcode = _barcode;
+            productionItemId = _productionItemId;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -39,12 +41,29 @@ namespace MWS.Views
                 DialogResult saveDialogResult = MessageBox.Show("Confirm weight?", "MWS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (saveDialogResult == DialogResult.Yes)
                 {
-                    Controllers.TrnProductionItemController trnProductionItemController = new Controllers.TrnProductionItemController();
-                    trnProductionItemController.AddProductionItem(trnProductionModel.Id, barcode, Convert.ToDecimal(textBoxWeight.Text));
-                    Close();
-                    productionDetailView.UpdateProductionItemListDataSource();
-                    productionDetailView.textBoxBarcode.Text = "";
-                    productionDetailView.textBoxBarcode.Focus();
+                    var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
+                    if (currentBranchId == 1)
+                    {
+                        Controllers.TrnProductionItemController trnProductionItemController = new Controllers.TrnProductionItemController();
+                        String[] addItem = trnProductionItemController.AddProductionItem(trnProductionModel.Id, barcode, Convert.ToDecimal(textBoxWeight.Text));
+                        if (addItem[1].Equals("0") == false)
+                        {
+                            Close();
+                            ProductionDetailClassificationView productionDetailClassificationView = new ProductionDetailClassificationView(Convert.ToInt32(addItem[1]), productionDetailView);
+                            productionDetailClassificationView.Show();
+                        }
+                        else
+                        {
+                            MessageBox.Show(addItem[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        Controllers.TrnProductionItemController trnProductionItemController = new Controllers.TrnProductionItemController();
+                        trnProductionItemController.UpdateProductionItemWeight(productionItemId, Convert.ToDecimal(textBoxWeight.Text));
+                        Close();
+                        productionDetailView.UpdateProductionItemListDataSource();
+                    }
                 }
             }
         }

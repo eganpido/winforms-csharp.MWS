@@ -54,9 +54,10 @@ namespace MWS.Controllers
                             ReceivingId = receivingId,
                             ItemId = 1,
                             Barcode = item.TrnProductionItem.ProductionBarcode,
-                            ItemDescription = "SLOB",
+                            ItemDescription = "SLAB",
                             SizeId = item.TrnProductionItem.TrnReceivingItem.SizeId,
-                            Weight = item.TrnProductionItem.ActualWeight
+                            Weight = item.TrnProductionItem.ActualWeight,
+                            Classification = item.TrnProductionItem.Classification
                         };
 
                         db.TrnReceivingItems.InsertOnSubmit(newReceivingItem);

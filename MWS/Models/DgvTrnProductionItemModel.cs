@@ -17,7 +17,9 @@ namespace MWS.Models
         public String ColumnItemDescription { get; set; }
         public Int32 ColumnSizeId { get; set; }
         public String ColumnSize { get; set; }
+        public String ColumnClassification { get; set; }
         public String ColumnReceivedWeight { get; set; }
+        public String ColumnInputWeight { get; set; }
         public String ColumnActualWeight { get; set; }
         public String ColumnDelete { get; set; }
     }

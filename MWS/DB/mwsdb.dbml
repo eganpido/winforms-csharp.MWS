@@ -18,6 +18,7 @@
       <Column Name="ItemDescription" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="SizeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Weight" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Classification" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="TrnReceivingItem_TrnProductionItem" Member="TrnProductionItems" ThisKey="Id" OtherKey="ReceivingItemId" Type="TrnProductionItem" />
       <Association Name="MstItem_TrnReceivingItem" Member="MstItem" ThisKey="ItemId" OtherKey="Id" Type="MstItem" IsForeignKey="true" />
       <Association Name="MstSize_TrnReceivingItem" Member="MstSize" ThisKey="SizeId" OtherKey="Id" Type="MstSize" IsForeignKey="true" />
@@ -80,6 +81,7 @@
       <Column Name="ReceivingItemId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ProductionBarcode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="ActualWeight" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Classification" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="TrnProductionItem_TrnPullOutItem" Member="TrnPullOutItems" ThisKey="Id" OtherKey="ProductionItemId" Type="TrnPullOutItem" />
       <Association Name="TrnProduction_TrnProductionItem" Member="TrnProduction" ThisKey="ProductionId" OtherKey="Id" Type="TrnProduction" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="TrnReceivingItem_TrnProductionItem" Member="TrnReceivingItem" ThisKey="ReceivingItemId" OtherKey="Id" Type="TrnReceivingItem" IsForeignKey="true" />

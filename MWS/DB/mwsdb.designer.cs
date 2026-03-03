@@ -374,6 +374,8 @@ namespace MWS.DB
 		
 		private decimal _Weight;
 		
+		private string _Classification;
+		
 		private EntitySet<TrnProductionItem> _TrnProductionItems;
 		
 		private EntityRef<MstItem> _MstItem;
@@ -400,6 +402,8 @@ namespace MWS.DB
     partial void OnSizeIdChanged();
     partial void OnWeightChanging(decimal value);
     partial void OnWeightChanged();
+    partial void OnClassificationChanging(string value);
+    partial void OnClassificationChanged();
     #endregion
 		
 		public TrnReceivingItem()
@@ -559,6 +563,26 @@ namespace MWS.DB
 					this._Weight = value;
 					this.SendPropertyChanged("Weight");
 					this.OnWeightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Classification", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Classification
+		{
+			get
+			{
+				return this._Classification;
+			}
+			set
+			{
+				if ((this._Classification != value))
+				{
+					this.OnClassificationChanging(value);
+					this.SendPropertyChanging();
+					this._Classification = value;
+					this.SendPropertyChanged("Classification");
+					this.OnClassificationChanged();
 				}
 			}
 		}
@@ -1675,6 +1699,8 @@ namespace MWS.DB
 		
 		private decimal _ActualWeight;
 		
+		private string _Classification;
+		
 		private EntitySet<TrnPullOutItem> _TrnPullOutItems;
 		
 		private EntityRef<TrnProduction> _TrnProduction;
@@ -1695,6 +1721,8 @@ namespace MWS.DB
     partial void OnProductionBarcodeChanged();
     partial void OnActualWeightChanging(decimal value);
     partial void OnActualWeightChanged();
+    partial void OnClassificationChanging(string value);
+    partial void OnClassificationChanged();
     #endregion
 		
 		public TrnProductionItem()
@@ -1809,6 +1837,26 @@ namespace MWS.DB
 					this._ActualWeight = value;
 					this.SendPropertyChanged("ActualWeight");
 					this.OnActualWeightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Classification", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Classification
+		{
+			get
+			{
+				return this._Classification;
+			}
+			set
+			{
+				if ((this._Classification != value))
+				{
+					this.OnClassificationChanging(value);
+					this.SendPropertyChanging();
+					this._Classification = value;
+					this.SendPropertyChanged("Classification");
+					this.OnClassificationChanged();
 				}
 			}
 		}

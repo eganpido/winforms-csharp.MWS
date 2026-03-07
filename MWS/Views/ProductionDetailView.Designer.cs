@@ -49,26 +49,6 @@
             this.buttonLast = new System.Windows.Forms.Button();
             this.textBoxPageNumber = new System.Windows.Forms.TextBox();
             this.dataGridViewProductionItem = new System.Windows.Forms.DataGridView();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBoxBarcode = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.labelProductionTitle = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.labelCurrentUser = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.labelSupport = new System.Windows.Forms.Label();
-            this.labelVersion = new System.Windows.Forms.Label();
-            this.labelDeveloper = new System.Windows.Forms.Label();
             this.ColumnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnProductionId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnReceivingItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,6 +63,27 @@
             this.ColumnInputWeight = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ColumnActualWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDelete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxBarcode = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelProductionTitle = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.labelCurrentUser = new System.Windows.Forms.Label();
+            this.labelSupport = new System.Windows.Forms.Label();
+            this.labelVersion = new System.Windows.Forms.Label();
+            this.labelDeveloper = new System.Windows.Forms.Label();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.btnAddItem = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -278,262 +279,6 @@
             this.dataGridViewProductionItem.TabIndex = 0;
             this.dataGridViewProductionItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProductionItem_CellClick);
             // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.buttonSave);
-            this.panel8.Controls.Add(this.btnAdd);
-            this.panel8.Controls.Add(this.label2);
-            this.panel8.Controls.Add(this.textBoxBarcode);
-            this.panel8.Controls.Add(this.label4);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(0, 103);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(994, 88);
-            this.panel8.TabIndex = 2;
-            // 
-            // buttonSave
-            // 
-            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSave.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.buttonSave.Image = global::MWS.Properties.Resources.diskette;
-            this.buttonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonSave.Location = new System.Drawing.Point(759, 35);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(117, 42);
-            this.buttonSave.TabIndex = 1;
-            this.buttonSave.TabStop = false;
-            this.buttonSave.Text = "    Save";
-            this.buttonSave.UseVisualStyleBackColor = false;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.btnAdd.Image = global::MWS.Properties.Resources.new_folder;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(882, 35);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(109, 42);
-            this.btnAdd.TabIndex = 2;
-            this.btnAdd.TabStop = false;
-            this.btnAdd.Text = "     New";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.label2.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.label2.Location = new System.Drawing.Point(8, 18);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 19);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Barcode";
-            // 
-            // textBoxBarcode
-            // 
-            this.textBoxBarcode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(158)))), ((int)(((byte)(11)))));
-            this.textBoxBarcode.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxBarcode.Font = new System.Drawing.Font("Open Sans SemiBold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxBarcode.Location = new System.Drawing.Point(12, 40);
-            this.textBoxBarcode.Name = "textBoxBarcode";
-            this.textBoxBarcode.Size = new System.Drawing.Size(213, 37);
-            this.textBoxBarcode.TabIndex = 0;
-            this.textBoxBarcode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxBarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxBarcode_KeyDown);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.label4.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
-            this.label4.Location = new System.Drawing.Point(229, 49);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(871, 24);
-            this.label4.TabIndex = 104;
-            this.label4.Text = "Please scan the barcode to proceed to weight entry. Transactions cannot be comple" +
-    "ted without a valid barcode.";
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Controls.Add(this.btnClose);
-            this.panel4.Controls.Add(this.labelProductionTitle);
-            this.panel4.Controls.Add(this.label5);
-            this.panel4.Controls.Add(this.panel7);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(994, 103);
-            this.panel4.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.label1.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
-            this.label1.Location = new System.Drawing.Point(90, 41);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(305, 24);
-            this.label1.TabIndex = 101;
-            this.label1.Text = "Precision Weighing for Meat Products.";
-            // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnClose.BackgroundImage = global::MWS.Properties.Resources.log_out;
-            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnClose.Location = new System.Drawing.Point(944, 7);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(49, 41);
-            this.btnClose.TabIndex = 4;
-            this.btnClose.TabStop = false;
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // labelProductionTitle
-            // 
-            this.labelProductionTitle.AutoSize = true;
-            this.labelProductionTitle.Font = new System.Drawing.Font("Open Sans SemiBold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelProductionTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.labelProductionTitle.Location = new System.Drawing.Point(88, 14);
-            this.labelProductionTitle.Name = "labelProductionTitle";
-            this.labelProductionTitle.Size = new System.Drawing.Size(407, 33);
-            this.labelProductionTitle.TabIndex = 100;
-            this.labelProductionTitle.Text = "Meat Weighing System - Production";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.label5.Font = new System.Drawing.Font("Open Sans", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
-            this.label5.Location = new System.Drawing.Point(90, 61);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(164, 22);
-            this.label5.TabIndex = 102;
-            this.label5.Text = "Weigh Right. Sell Right.";
-            // 
-            // panel7
-            // 
-            this.panel7.BackgroundImage = global::MWS.Properties.Resources.Weighing1;
-            this.panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(87, 103);
-            this.panel7.TabIndex = 2;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.panel2.Controls.Add(this.panel5);
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.labelSupport);
-            this.panel2.Controls.Add(this.labelVersion);
-            this.panel2.Controls.Add(this.labelDeveloper);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 568);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(994, 81);
-            this.panel2.TabIndex = 103;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.panel6);
-            this.panel5.Controls.Add(this.labelCurrentUser);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel5.Location = new System.Drawing.Point(482, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(512, 81);
-            this.panel5.TabIndex = 2;
-            // 
-            // panel6
-            // 
-            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel6.BackgroundImage = global::MWS.Properties.Resources.user;
-            this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel6.Location = new System.Drawing.Point(400, 25);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(44, 35);
-            this.panel6.TabIndex = 0;
-            // 
-            // labelCurrentUser
-            // 
-            this.labelCurrentUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelCurrentUser.AutoSize = true;
-            this.labelCurrentUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.labelCurrentUser.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCurrentUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.labelCurrentUser.Location = new System.Drawing.Point(442, 33);
-            this.labelCurrentUser.Name = "labelCurrentUser";
-            this.labelCurrentUser.Size = new System.Drawing.Size(47, 19);
-            this.labelCurrentUser.TabIndex = 0;
-            this.labelCurrentUser.Text = "admin";
-            // 
-            // panel3
-            // 
-            this.panel3.BackgroundImage = global::MWS.Properties.Resources.streetsmartLogo_9;
-            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(87, 81);
-            this.panel3.TabIndex = 1;
-            // 
-            // labelSupport
-            // 
-            this.labelSupport.AutoSize = true;
-            this.labelSupport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.labelSupport.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSupport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
-            this.labelSupport.Location = new System.Drawing.Point(88, 31);
-            this.labelSupport.Name = "labelSupport";
-            this.labelSupport.Size = new System.Drawing.Size(94, 19);
-            this.labelSupport.TabIndex = 0;
-            this.labelSupport.Text = "(032) 000-0000";
-            // 
-            // labelVersion
-            // 
-            this.labelVersion.AutoSize = true;
-            this.labelVersion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.labelVersion.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
-            this.labelVersion.Location = new System.Drawing.Point(88, 47);
-            this.labelVersion.Name = "labelVersion";
-            this.labelVersion.Size = new System.Drawing.Size(84, 19);
-            this.labelVersion.TabIndex = 0;
-            this.labelVersion.Text = "Version 1.0.1";
-            // 
-            // labelDeveloper
-            // 
-            this.labelDeveloper.AutoSize = true;
-            this.labelDeveloper.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.labelDeveloper.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDeveloper.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.labelDeveloper.Location = new System.Drawing.Point(88, 15);
-            this.labelDeveloper.Name = "labelDeveloper";
-            this.labelDeveloper.Size = new System.Drawing.Size(139, 19);
-            this.labelDeveloper.TabIndex = 0;
-            this.labelDeveloper.Text = "Streetsmart Solutions";
-            // 
             // ColumnId
             // 
             this.ColumnId.DataPropertyName = "ColumnId";
@@ -703,6 +448,281 @@
             this.ColumnDelete.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.ColumnDelete.Width = 130;
             // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.buttonSave);
+            this.panel8.Controls.Add(this.btnAddItem);
+            this.panel8.Controls.Add(this.btnAdd);
+            this.panel8.Controls.Add(this.label2);
+            this.panel8.Controls.Add(this.textBoxBarcode);
+            this.panel8.Controls.Add(this.label4);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(0, 103);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(994, 88);
+            this.panel8.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.label2.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.label2.Location = new System.Drawing.Point(8, 18);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(58, 19);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Barcode";
+            // 
+            // textBoxBarcode
+            // 
+            this.textBoxBarcode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(158)))), ((int)(((byte)(11)))));
+            this.textBoxBarcode.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxBarcode.Font = new System.Drawing.Font("Open Sans SemiBold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxBarcode.Location = new System.Drawing.Point(12, 40);
+            this.textBoxBarcode.Name = "textBoxBarcode";
+            this.textBoxBarcode.Size = new System.Drawing.Size(213, 37);
+            this.textBoxBarcode.TabIndex = 0;
+            this.textBoxBarcode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxBarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxBarcode_KeyDown);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.label4.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
+            this.label4.Location = new System.Drawing.Point(229, 49);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(871, 24);
+            this.label4.TabIndex = 104;
+            this.label4.Text = "Please scan the barcode to proceed to weight entry. Transactions cannot be comple" +
+    "ted without a valid barcode.";
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label1);
+            this.panel4.Controls.Add(this.btnClose);
+            this.panel4.Controls.Add(this.labelProductionTitle);
+            this.panel4.Controls.Add(this.label5);
+            this.panel4.Controls.Add(this.panel7);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(994, 103);
+            this.panel4.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.label1.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
+            this.label1.Location = new System.Drawing.Point(90, 41);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(305, 24);
+            this.label1.TabIndex = 101;
+            this.label1.Text = "Precision Weighing for Meat Products.";
+            // 
+            // labelProductionTitle
+            // 
+            this.labelProductionTitle.AutoSize = true;
+            this.labelProductionTitle.Font = new System.Drawing.Font("Open Sans SemiBold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelProductionTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.labelProductionTitle.Location = new System.Drawing.Point(88, 14);
+            this.labelProductionTitle.Name = "labelProductionTitle";
+            this.labelProductionTitle.Size = new System.Drawing.Size(407, 33);
+            this.labelProductionTitle.TabIndex = 100;
+            this.labelProductionTitle.Text = "Meat Weighing System - Production";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.label5.Font = new System.Drawing.Font("Open Sans", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
+            this.label5.Location = new System.Drawing.Point(90, 61);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(164, 22);
+            this.label5.TabIndex = 102;
+            this.label5.Text = "Weigh Right. Sell Right.";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.panel2.Controls.Add(this.panel5);
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Controls.Add(this.labelSupport);
+            this.panel2.Controls.Add(this.labelVersion);
+            this.panel2.Controls.Add(this.labelDeveloper);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 568);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(994, 81);
+            this.panel2.TabIndex = 103;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.panel6);
+            this.panel5.Controls.Add(this.labelCurrentUser);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel5.Location = new System.Drawing.Point(482, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(512, 81);
+            this.panel5.TabIndex = 2;
+            // 
+            // labelCurrentUser
+            // 
+            this.labelCurrentUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelCurrentUser.AutoSize = true;
+            this.labelCurrentUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.labelCurrentUser.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCurrentUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.labelCurrentUser.Location = new System.Drawing.Point(442, 33);
+            this.labelCurrentUser.Name = "labelCurrentUser";
+            this.labelCurrentUser.Size = new System.Drawing.Size(47, 19);
+            this.labelCurrentUser.TabIndex = 0;
+            this.labelCurrentUser.Text = "admin";
+            // 
+            // labelSupport
+            // 
+            this.labelSupport.AutoSize = true;
+            this.labelSupport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.labelSupport.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSupport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
+            this.labelSupport.Location = new System.Drawing.Point(88, 31);
+            this.labelSupport.Name = "labelSupport";
+            this.labelSupport.Size = new System.Drawing.Size(94, 19);
+            this.labelSupport.TabIndex = 0;
+            this.labelSupport.Text = "(032) 000-0000";
+            // 
+            // labelVersion
+            // 
+            this.labelVersion.AutoSize = true;
+            this.labelVersion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.labelVersion.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
+            this.labelVersion.Location = new System.Drawing.Point(88, 47);
+            this.labelVersion.Name = "labelVersion";
+            this.labelVersion.Size = new System.Drawing.Size(84, 19);
+            this.labelVersion.TabIndex = 0;
+            this.labelVersion.Text = "Version 1.0.1";
+            // 
+            // labelDeveloper
+            // 
+            this.labelDeveloper.AutoSize = true;
+            this.labelDeveloper.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.labelDeveloper.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDeveloper.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.labelDeveloper.Location = new System.Drawing.Point(88, 15);
+            this.labelDeveloper.Name = "labelDeveloper";
+            this.labelDeveloper.Size = new System.Drawing.Size(139, 19);
+            this.labelDeveloper.TabIndex = 0;
+            this.labelDeveloper.Text = "Streetsmart Solutions";
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSave.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.buttonSave.Image = global::MWS.Properties.Resources.diskette;
+            this.buttonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonSave.Location = new System.Drawing.Point(759, 35);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(117, 42);
+            this.buttonSave.TabIndex = 1;
+            this.buttonSave.TabStop = false;
+            this.buttonSave.Text = "    Save";
+            this.buttonSave.UseVisualStyleBackColor = false;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // btnAddItem
+            // 
+            this.btnAddItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.btnAddItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddItem.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.btnAddItem.Image = global::MWS.Properties.Resources.new_folder;
+            this.btnAddItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddItem.Location = new System.Drawing.Point(644, 35);
+            this.btnAddItem.Name = "btnAddItem";
+            this.btnAddItem.Size = new System.Drawing.Size(109, 42);
+            this.btnAddItem.TabIndex = 2;
+            this.btnAddItem.TabStop = false;
+            this.btnAddItem.Text = "     Add";
+            this.btnAddItem.UseVisualStyleBackColor = false;
+            this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.btnAdd.Image = global::MWS.Properties.Resources.new_folder;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(882, 35);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(109, 42);
+            this.btnAdd.TabIndex = 2;
+            this.btnAdd.TabStop = false;
+            this.btnAdd.Text = "     New";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnClose.BackgroundImage = global::MWS.Properties.Resources.log_out;
+            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnClose.Location = new System.Drawing.Point(944, 7);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(49, 41);
+            this.btnClose.TabIndex = 4;
+            this.btnClose.TabStop = false;
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // panel7
+            // 
+            this.panel7.BackgroundImage = global::MWS.Properties.Resources.Weighing1;
+            this.panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(87, 103);
+            this.panel7.TabIndex = 2;
+            // 
+            // panel6
+            // 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel6.BackgroundImage = global::MWS.Properties.Resources.user;
+            this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel6.Location = new System.Drawing.Point(400, 25);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(44, 35);
+            this.panel6.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            this.panel3.BackgroundImage = global::MWS.Properties.Resources.streetsmartLogo_9;
+            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(87, 81);
+            this.panel3.TabIndex = 1;
+            // 
             // ProductionDetailView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 19F);
@@ -780,5 +800,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn ColumnInputWeight;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnActualWeight;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnDelete;
+        private System.Windows.Forms.Button btnAddItem;
     }
 }

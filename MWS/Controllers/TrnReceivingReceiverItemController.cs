@@ -52,10 +52,10 @@ namespace MWS.Controllers
                         DB.TrnReceivingItem newReceivingItem = new DB.TrnReceivingItem
                         {
                             ReceivingId = receivingId,
-                            ItemId = 1,
+                            ItemId = item.TrnProductionItem.ItemId,
                             Barcode = item.TrnProductionItem.ProductionBarcode,
-                            ItemDescription = "SLAB",
-                            SizeId = item.TrnProductionItem.TrnReceivingItem.SizeId,
+                            ItemDescription = item.TrnProductionItem.MstItem.ItemDescription,
+                            SizeId = item.TrnProductionItem.SizeId,
                             Weight = item.TrnProductionItem.ActualWeight,
                             Classification = item.TrnProductionItem.Classification
                         };

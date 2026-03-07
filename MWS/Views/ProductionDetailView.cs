@@ -167,8 +167,8 @@ namespace MWS.Views
         {
             buttonSave.Enabled = !isLocked;
             textBoxBarcode.Enabled = !isLocked;
+            dataGridViewProductionItem.Columns[13].Visible = !isLocked;
 
-            dataGridViewProductionItem.Columns[12].Visible = !isLocked;
             textBoxBarcode.Focus();
 
             if (isLocked)
@@ -193,23 +193,28 @@ namespace MWS.Views
             if(historyView == null)
             {
                 btnAdd.Enabled = true;
+                btnAddItem.Enabled = true;
             }
             else
             {
                 btnAdd.Enabled = false;
+                btnAddItem.Enabled = false;
             }
+
+            btnAddItem.Enabled = !isLocked;
 
             var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
             if(currentBranchId == 1)
             {
                 dataGridViewProductionItem.Columns[4].Visible = true;
                 dataGridViewProductionItem.Columns[11].Visible = false;
+                btnAddItem.Visible = true;
             }
             else
             {
                 dataGridViewProductionItem.Columns[4].Visible = false;
                 dataGridViewProductionItem.Columns[11].Visible = true;
-
+                btnAddItem.Visible = false;
             }
         }
         private void textBoxBarcode_KeyDown(object sender, KeyEventArgs e)
@@ -219,7 +224,7 @@ namespace MWS.Views
                 Controllers.TrnProductionItemController trnProductionItemController = new Controllers.TrnProductionItemController();
                 if(trnProductionItemController.isAlreadyAdded(textBoxBarcode.Text) ==  false)
                 {
-                    int receivingItemId = trnProductionItemController.GetReceivingItem(textBoxBarcode.Text);
+                    int receivingItemId = trnProductionItemController.GetReceivingItem(textBoxBarcode.Text).Id;
                     if (receivingItemId > 0)
                     {
                         var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
@@ -421,6 +426,12 @@ namespace MWS.Views
                     }
                 }
             }
+        }
+
+        private void btnAddItem_Click(object sender, EventArgs e)
+        {
+            ProductionDetailAddItemView productionDetailAddItemView = new ProductionDetailAddItemView(this, trnProductionModel);
+            productionDetailAddItemView.Show();
         }
     }
 }

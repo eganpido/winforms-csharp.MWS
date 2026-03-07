@@ -142,7 +142,6 @@ namespace MWS.Views
                             {
                                 ColumnId = d.Id,
                                 ColumnPullOutId = d.PullOutId,
-                                ColumnReceivingItemId = d.ReceivingItemId,
                                 ColumnItemId = d.ItemId,
                                 ColumnBarcode = d.Barcode,
                                 ColumnItemDescription = d.ItemDescription,
@@ -163,7 +162,7 @@ namespace MWS.Views
             buttonSave.Enabled = !isLocked;
             textBoxBarcode.Enabled = !isLocked;
 
-            dataGridViewPullOutItem.Columns[8].Visible = !isLocked;
+            dataGridViewPullOutItem.Columns[7].Visible = !isLocked;
             textBoxBarcode.Focus();
 
             if (isLocked)

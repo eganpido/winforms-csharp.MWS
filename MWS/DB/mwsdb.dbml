@@ -30,6 +30,7 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ItemDescription" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Association Name="MstItem_TrnReceivingItem" Member="TrnReceivingItems" ThisKey="Id" OtherKey="ItemId" Type="TrnReceivingItem" />
+      <Association Name="MstItem_TrnProductionItem" Member="TrnProductionItems" ThisKey="Id" OtherKey="ItemId" Type="TrnProductionItem" />
     </Type>
   </Table>
   <Table Name="dbo.MstSize" Member="MstSizes">
@@ -39,6 +40,7 @@
       <Column Name="MinWeight" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
       <Column Name="MaxWeight" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
       <Association Name="MstSize_TrnReceivingItem" Member="TrnReceivingItems" ThisKey="Id" OtherKey="SizeId" Type="TrnReceivingItem" />
+      <Association Name="MstSize_TrnProductionItem" Member="TrnProductionItems" ThisKey="Id" OtherKey="SizeId" Type="TrnProductionItem" />
     </Type>
   </Table>
   <Table Name="dbo.MstSupplier" Member="MstSuppliers">
@@ -74,19 +76,6 @@
       <Association Name="MstUser_TrnProduction" Member="MstUser" ThisKey="PrepareById" OtherKey="Id" Type="MstUser" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.TrnProductionItem" Member="TrnProductionItems">
-    <Type Name="TrnProductionItem">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ProductionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ReceivingItemId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ProductionBarcode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="ActualWeight" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Column Name="Classification" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="TrnProductionItem_TrnPullOutItem" Member="TrnPullOutItems" ThisKey="Id" OtherKey="ProductionItemId" Type="TrnPullOutItem" />
-      <Association Name="TrnProduction_TrnProductionItem" Member="TrnProduction" ThisKey="ProductionId" OtherKey="Id" Type="TrnProduction" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="TrnReceivingItem_TrnProductionItem" Member="TrnReceivingItem" ThisKey="ReceivingItemId" OtherKey="Id" Type="TrnReceivingItem" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.TrnPullOut" Member="TrnPullOuts">
     <Type Name="TrnPullOut">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -106,8 +95,8 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="PullOutId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ProductionItemId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="TrnProductionItem_TrnPullOutItem" Member="TrnProductionItem" ThisKey="ProductionItemId" OtherKey="Id" Type="TrnProductionItem" IsForeignKey="true" />
       <Association Name="TrnPullOut_TrnPullOutItem" Member="TrnPullOut" ThisKey="PullOutId" OtherKey="Id" Type="TrnPullOut" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="TrnProductionItem_TrnPullOutItem" Member="TrnProductionItem" ThisKey="ProductionItemId" OtherKey="Id" Type="TrnProductionItem" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.TrnReceiving" Member="TrnReceivings">
@@ -124,6 +113,24 @@
       <Association Name="MstBranch_TrnReceiving" Member="MstBranch" ThisKey="BranchId" OtherKey="Id" Type="MstBranch" IsForeignKey="true" />
       <Association Name="MstSupplier_TrnReceiving" Member="MstSupplier" ThisKey="SupplierId" OtherKey="Id" Type="MstSupplier" IsForeignKey="true" />
       <Association Name="MstUser_TrnReceiving" Member="MstUser" ThisKey="PrepareById" OtherKey="Id" Type="MstUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrnProductionItem" Member="TrnProductionItems">
+    <Type Name="TrnProductionItem">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ReceivingItemId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ItemId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SizeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductionBarcode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ActualWeight" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Classification" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ReceivedWeight" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="TrnProductionItem_TrnPullOutItem" Member="TrnPullOutItems" ThisKey="Id" OtherKey="ProductionItemId" Type="TrnPullOutItem" />
+      <Association Name="MstItem_TrnProductionItem" Member="MstItem" ThisKey="ItemId" OtherKey="Id" Type="MstItem" IsForeignKey="true" />
+      <Association Name="MstSize_TrnProductionItem" Member="MstSize" ThisKey="SizeId" OtherKey="Id" Type="MstSize" IsForeignKey="true" />
+      <Association Name="TrnProduction_TrnProductionItem" Member="TrnProduction" ThisKey="ProductionId" OtherKey="Id" Type="TrnProduction" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="TrnReceivingItem_TrnProductionItem" Member="TrnReceivingItem" ThisKey="ReceivingItemId" OtherKey="Id" Type="TrnReceivingItem" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

@@ -16,6 +16,10 @@ namespace MWS.Controllers
         // Data Context
         public DB.mwsdbDataContext db = new DB.mwsdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
         private Bitmap barcodeBitmap;
+        public string barcodeItem;
+        public string barcodeWeight;
+        public string barcodeSize;
+        public string barcodeClassification;
         // List Receiving Item
         public List<Models.TrnReceivingItemModel> ReceivingItemList(Int32 receivingId)
         {
@@ -75,11 +79,16 @@ namespace MWS.Controllers
                     ItemDescription = "SLAB",
                     SizeId = GetSize(weight),
                     Weight = weight,
-                    Classification = "None"
+                    Classification = "NONE"
                 };
 
                 db.TrnReceivingItems.InsertOnSubmit(newReceivingItem);
                 db.SubmitChanges();
+
+                barcodeItem = newReceivingItem.ItemDescription;
+                barcodeWeight = newReceivingItem.Weight.ToString();
+                barcodeSize = newReceivingItem.MstSize.Size;
+                barcodeClassification = newReceivingItem.Classification;
 
                 GenerateAndPrintBarcode(finalBarcode);
 
@@ -137,7 +146,41 @@ namespace MWS.Controllers
         {
             if (barcodeBitmap != null)
             {
-                e.Graphics.DrawImage(barcodeBitmap, 100, 100); // 100, 100 ang position sa papel
+                // Settings para sa font ug position
+                Font fontBold = new Font("Segoe UI", 18, FontStyle.Bold);
+                Font fontRegular = new Font("Segoe UI", 13, FontStyle.Regular);
+
+                int startX = 100;
+                // Gihimo natong 180 ang startY para naay dako nga space sa taas para sa mga text
+                int startY = 180;
+                int barcodeWidth = 500;
+                int barcodeHeight = 200;
+
+                // 1. "SLAB" (Center, Pinaka babaw)
+                string topText = barcodeItem;
+                float topTextWidth = e.Graphics.MeasureString(topText, fontBold).Width;
+                float topTextX = startX + (barcodeWidth - topTextWidth) / 2;
+                // Gi-move nato sa -120 gikan sa barcode
+                e.Graphics.DrawString(topText, fontBold, Brushes.Black, topTextX, startY - 95);
+
+                // 2. "8.9" (Center, Ubos sa SLAB)
+                string sizeText = barcodeWeight;
+                float sizeTextWidth = e.Graphics.MeasureString(sizeText, fontBold).Width;
+                float sizeTextX = startX + (barcodeWidth - sizeTextWidth) / 2;
+                // Gi-move sa -85 para naay space gikan sa topText
+                e.Graphics.DrawString(sizeText, fontBold, Brushes.Black, sizeTextX, startY - 55);
+
+                // 4. (KANI IMONG GIPANGITA) "SLAB" (Left) ug "SPICY" (Right)
+                // Gi-move nato sa -45 para naay dako nga space sa tunga nila ug sa barcode
+                int textAboveBarcodeY = startY - 35;
+                e.Graphics.DrawString(barcodeSize, fontRegular, Brushes.Black, startX + 90, textAboveBarcodeY);
+
+                string rightText = barcodeClassification;
+                float rightTextWidth = e.Graphics.MeasureString(rightText, fontRegular).Width;
+                e.Graphics.DrawString(rightText, fontRegular, Brushes.Black, startX + 365, textAboveBarcodeY);
+
+                // 3. Ang Barcode (Magsugod sa startY)
+                e.Graphics.DrawImage(barcodeBitmap, startX, startY, barcodeWidth, barcodeHeight);
             }
         }
 

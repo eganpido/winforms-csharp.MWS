@@ -121,6 +121,12 @@
     <Compile Include="Views\LoginView.Designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProductionDetailAddItemView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ProductionDetailAddItemView.Designer.cs">
+      <DependentUpon>ProductionDetailAddItemView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProductionDetailView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ProductionDetailAddItemView.resx">
+      <DependentUpon>ProductionDetailAddItemView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ProductionDetailView.resx">
       <DependentUpon>ProductionDetailView.cs</DependentUpon>

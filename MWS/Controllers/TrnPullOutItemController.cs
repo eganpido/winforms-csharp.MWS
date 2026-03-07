@@ -20,12 +20,11 @@ namespace MWS.Controllers
                                {
                                    Id = d.Id,
                                    PullOutId = d.PullOutId,
-                                   ReceivingItemId = d.TrnProductionItem.TrnReceivingItem.ReceivingId,
-                                   ItemId = d.TrnProductionItem.TrnReceivingItem.ItemId,
+                                   ItemId = d.TrnProductionItem.ItemId,
                                    Barcode = d.TrnProductionItem.ProductionBarcode,
-                                   ItemDescription = d.TrnProductionItem.TrnReceivingItem.ItemDescription,
-                                   SizeId = d.TrnProductionItem.TrnReceivingItem.SizeId,
-                                   Size = d.TrnProductionItem.TrnReceivingItem.MstSize.Size,
+                                   ItemDescription = d.TrnProductionItem.MstItem.ItemDescription,
+                                   SizeId = d.TrnProductionItem.SizeId,
+                                   Size = d.TrnProductionItem.MstSize.Size,
                                };
 
             return pullOutItems.Where(d => d.PullOutId == pullOutId).OrderByDescending(e => e.Id).ToList();

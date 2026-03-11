@@ -71,7 +71,7 @@ namespace MWS.Controllers
         }
 
         // Add Production Item
-        public String[] AddProductionItem(int productionId, decimal weight)
+        public String[] AddProductionItem(int productionId, decimal weight, string barcode)
         {
             try
             {
@@ -121,18 +121,25 @@ namespace MWS.Controllers
                 }
                 else
                 {
-                    //DB.TrnProductionItem newProductionItem = new DB.TrnProductionItem
-                    //{
-                    //    ProductionId = productionId,
-                    //    ItemId = 1,
-                    //    SizeId = 1,
-                    //    ProductionBarcode = barcode,
-                    //    ActualWeight = 0,
-                    //    Classification = GetClassification(barcode)
-                    //};
+                    var receivingItem = from d in db.TrnReceivingItems
+                                        where d.TrnReceiving.IsLocked == true
+                                        && d.Barcode == barcode
+                                        && d.TrnReceiving.BranchId != 1
+                                        select d;
+                    var item = receivingItem.FirstOrDefault();
+                    DB.TrnProductionItem newProductionItem = new DB.TrnProductionItem
+                    {
+                        ProductionId = productionId,
+                        ItemId = item.ItemId,
+                        SizeId = item.SizeId,
+                        ProductionBarcode = barcode,
+                        ActualWeight = 0,
+                        ReceivedWeight = item.Weight,
+                        Classification = item.Classification
+                    };
 
-                    //db.TrnProductionItems.InsertOnSubmit(newProductionItem);
-                    //db.SubmitChanges();
+                    db.TrnProductionItems.InsertOnSubmit(newProductionItem);
+                    db.SubmitChanges();
 
                     return new String[] { "", "1" };
                 }
@@ -324,41 +331,45 @@ namespace MWS.Controllers
         {
             if (barcodeBitmap != null)
             {
-                // Settings para sa font ug position
                 Font fontBold = new Font("Segoe UI", 18, FontStyle.Bold);
                 Font fontRegular = new Font("Segoe UI", 13, FontStyle.Regular);
 
                 int startX = 30;
-                // Gihimo natong 180 ang startY para naay dako nga space sa taas para sa mga text
-                int startY = 180;
+                int baseStartY = 120; // Ang original nga Y position
+                int labelSpacing = 290; // Distansya gikan sa unang label padulong sa ikaduha
+
                 int barcodeWidth = 300;
                 int barcodeHeight = 160;
 
-                // 1. "SLAB" (Center, Pinaka babaw)
-                string topText = barcodeItem;
-                float topTextWidth = e.Graphics.MeasureString(topText, fontBold).Width;
-                float topTextX = startX + (barcodeWidth - topTextWidth) / 2;
-                // Gi-move nato sa -120 gikan sa barcode
-                e.Graphics.DrawString(topText, fontBold, Brushes.Black, topTextX, startY - 95);
+                // Mag-loop ta og kaduha (0 ug 1)
+                for (int i = 0; i < 2; i++)
+                {
+                    // Kada tuyok, madugangan ang startY base sa labelSpacing
+                    int startY = baseStartY + (i * labelSpacing);
 
-                // 2. "8.9" (Center, Ubos sa SLAB)
-                string sizeText = barcodeWeight;
-                float sizeTextWidth = e.Graphics.MeasureString(sizeText, fontBold).Width;
-                float sizeTextX = startX + (barcodeWidth - sizeTextWidth) / 2;
-                // Gi-move sa -85 para naay space gikan sa topText
-                e.Graphics.DrawString(sizeText, fontBold, Brushes.Black, sizeTextX, startY - 55);
+                    // 1. Item (Center, Pinaka babaw)
+                    string topText = barcodeItem;
+                    float topTextWidth = e.Graphics.MeasureString(topText, fontBold).Width;
+                    float topTextX = startX + (barcodeWidth - topTextWidth) / 2;
+                    e.Graphics.DrawString(topText, fontBold, Brushes.Black, topTextX, startY - 95);
 
-                // 4. (KANI IMONG GIPANGITA) "SLAB" (Left) ug "SPICY" (Right)
-                // Gi-move nato sa -45 para naay dako nga space sa tunga nila ug sa barcode
-                int textAboveBarcodeY = startY - 35;
-                e.Graphics.DrawString(barcodeSize, fontRegular, Brushes.Black, startX + 15, textAboveBarcodeY);
+                    // 2. Weight (Center, Ubos sa SLAB)
+                    string sizeText = barcodeWeight;
+                    float sizeTextWidth = e.Graphics.MeasureString(sizeText, fontBold).Width;
+                    float sizeTextX = startX + (barcodeWidth - sizeTextWidth) / 2;
+                    e.Graphics.DrawString(sizeText, fontBold, Brushes.Black, sizeTextX, startY - 55);
 
-                string rightText = barcodeClassification;
-                float rightTextWidth = e.Graphics.MeasureString(rightText, fontRegular).Width;
-                e.Graphics.DrawString(rightText, fontRegular, Brushes.Black, startX + 235, textAboveBarcodeY);
+                    // 4. Size (Left) ug Classification (Right)
+                    int textAboveBarcodeY = startY - 35;
+                    e.Graphics.DrawString(barcodeSize, fontRegular, Brushes.Black, startX + 15, textAboveBarcodeY);
 
-                // 3. Ang Barcode (Magsugod sa startY)
-                e.Graphics.DrawImage(barcodeBitmap, startX, startY, 300, 160);
+                    string rightText = barcodeClassification;
+                    float rightTextWidth = e.Graphics.MeasureString(rightText, fontRegular).Width;
+                    e.Graphics.DrawString(rightText, fontRegular, Brushes.Black, startX + 235, textAboveBarcodeY);
+
+                    // 3. Ang Barcode
+                    e.Graphics.DrawImage(barcodeBitmap, startX, startY, barcodeWidth, barcodeHeight);
+                }
             }
         }
 
@@ -409,22 +420,35 @@ namespace MWS.Controllers
             }
             return null;
         }
-        //public bool isAlreadyAdded(string barcode)
-        //{
-        //    var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
-        //    bool added = false;
-        //    var barcodeExist = from d in db.TrnProductionItems
-        //                       where d.TrnReceivingItem.Barcode == barcode
-        //                       && d.TrnProduction.IsLocked == true
-        //                       && d.TrnProduction.BranchId == currentBranchId
-        //                       select d;
-        //    if (barcodeExist.Any())
-        //    {
-        //        added = true;
-        //    }
+        public bool isAlreadyAdded(string barcode, int productionId)
+        {
+            bool added = false;
+            var barcodeExist = from d in db.TrnProductionItems
+                               where d.ProductionId == productionId
+                               && d.ProductionBarcode == barcode
+                               select d;
+            if (barcodeExist.Any())
+            {
+                added = true;
+            }
 
-        //    return added;
-        //}
+            return added;
+        }
+        public bool IsExist(string barcode)
+        {
+            bool exist = false;
+            var barcodeExist = from d in db.TrnReceivingItems
+                               where d.TrnReceiving.IsLocked == true
+                               && d.Barcode == barcode
+                               && d.TrnReceiving.BranchId != 1
+                               select d;
+            if (barcodeExist.Any())
+            {
+                exist = true;
+            }
+
+            return exist;
+        }
         public int GetSize(decimal weight)
         {
             var size = db.MstSizes

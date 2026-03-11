@@ -66,7 +66,7 @@
             this.buttonSave = new System.Windows.Forms.Button();
             this.btnAddItem = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelEntry = new System.Windows.Forms.Label();
             this.textBoxWeight = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -458,7 +458,7 @@
             this.panel8.Controls.Add(this.buttonSave);
             this.panel8.Controls.Add(this.btnAddItem);
             this.panel8.Controls.Add(this.btnAdd);
-            this.panel8.Controls.Add(this.label2);
+            this.panel8.Controls.Add(this.labelEntry);
             this.panel8.Controls.Add(this.textBoxWeight);
             this.panel8.Controls.Add(this.label4);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
@@ -521,17 +521,17 @@
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // label2
+            // labelEntry
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.label2.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.label2.Location = new System.Drawing.Point(8, 18);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 19);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Weight";
+            this.labelEntry.AutoSize = true;
+            this.labelEntry.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.labelEntry.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEntry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.labelEntry.Location = new System.Drawing.Point(8, 18);
+            this.labelEntry.Name = "labelEntry";
+            this.labelEntry.Size = new System.Drawing.Size(51, 19);
+            this.labelEntry.TabIndex = 2;
+            this.labelEntry.Text = "Weight";
             // 
             // textBoxWeight
             // 
@@ -540,7 +540,7 @@
             this.textBoxWeight.Font = new System.Drawing.Font("Open Sans SemiBold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxWeight.Location = new System.Drawing.Point(12, 40);
             this.textBoxWeight.Name = "textBoxWeight";
-            this.textBoxWeight.Size = new System.Drawing.Size(146, 37);
+            this.textBoxWeight.Size = new System.Drawing.Size(213, 37);
             this.textBoxWeight.TabIndex = 0;
             this.textBoxWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBoxWeight.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxWeight_KeyDown);
@@ -551,7 +551,7 @@
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.label4.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
-            this.label4.Location = new System.Drawing.Point(164, 51);
+            this.label4.Location = new System.Drawing.Point(228, 51);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(568, 24);
             this.label4.TabIndex = 104;
@@ -773,7 +773,7 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelEntry;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label1;

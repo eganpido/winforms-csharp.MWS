@@ -1,4 +1,5 @@
-﻿using MWS.Models;
+﻿using MWS.Controllers;
+using MWS.Models;
 using MWS.Modules;
 using PagedList;
 using System;
@@ -184,10 +185,12 @@ namespace MWS.Views
             if (IsReceiver)
             {
                 labelProductionTitle.Text = "Meat Weighing System - Production";
+                labelEntry.Text = "Barcode";
             }
             else
             {
                 labelProductionTitle.Text = "Meat Weighing System - Processing";
+                labelEntry.Text = "Weight";
             }
 
             if(historyView == null)
@@ -212,49 +215,13 @@ namespace MWS.Views
             }
             else
             {
-                dataGridViewProductionItem.Columns[9].Visible = true;
-                dataGridViewProductionItem.Columns[9].Visible = true;
+                dataGridViewProductionItem.Columns[8].Visible = true;
+                dataGridViewProductionItem.Columns[9].Visible = !isLocked;
                 btnAddItem.Visible = false;
             }
         }
         private void textBoxBarcode_KeyDown(object sender, KeyEventArgs e)
         {
-            //if (e.KeyCode == Keys.Enter)
-            //{
-            //    Controllers.TrnProductionItemController trnProductionItemController = new Controllers.TrnProductionItemController();
-            //    if(trnProductionItemController.isAlreadyAdded(textBoxBarcode.Text) ==  false)
-            //    {
-            //        int receivingItemId = trnProductionItemController.GetReceivingItem(textBoxBarcode.Text).Id;
-            //        if (receivingItemId > 0)
-            //        {
-            //            var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
-            //            if (currentBranchId == 1)
-            //            {
-            //                ProductionWeightView productionWeightView = new ProductionWeightView(this, trnProductionModel, textBoxBarcode.Text, 0);
-            //                productionWeightView.Show();
-            //            }
-            //            else
-            //            {
-            //                trnProductionItemController.AddProductionItem(trnProductionModel.Id, textBoxBarcode.Text, 0);
-            //                UpdateProductionItemListDataSource();
-            //                textBoxBarcode.Text = "";
-            //                textBoxBarcode.Focus();
-            //            }
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("Barcode doesn't exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //            textBoxBarcode.Text = "";
-            //            textBoxBarcode.Focus();
-            //        }
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Barcode already exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        textBoxBarcode.Text = "";
-            //        textBoxBarcode.Focus();
-            //    }
-            //}
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -438,14 +405,14 @@ namespace MWS.Views
         {
             if (e.KeyCode == Keys.Enter)
             {
-                DialogResult saveDialogResult = MessageBox.Show("Confirm weight?", "MWS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (saveDialogResult == DialogResult.Yes)
+                Controllers.TrnProductionItemController trnProductionItemController = new Controllers.TrnProductionItemController();
+                var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
+                if (currentBranchId == 1)
                 {
-                    var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
-                    if (currentBranchId == 1)
+                    DialogResult saveDialogResult = MessageBox.Show("Confirm weight?", "MWS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (saveDialogResult == DialogResult.Yes)
                     {
-                        Controllers.TrnProductionItemController trnProductionItemController = new Controllers.TrnProductionItemController();
-                        String[] addItem = trnProductionItemController.AddProductionItem(trnProductionModel.Id, Convert.ToDecimal(textBoxWeight.Text));
+                        String[] addItem = trnProductionItemController.AddProductionItem(trnProductionModel.Id, Convert.ToDecimal(textBoxWeight.Text), "");
                         if (addItem[1].Equals("0") == false)
                         {
                             ProductionDetailClassificationView productionDetailClassificationView = new ProductionDetailClassificationView(Convert.ToInt32(addItem[1]), this);
@@ -456,12 +423,26 @@ namespace MWS.Views
                             MessageBox.Show(addItem[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
+                }
+                else
+                {
+                    if (trnProductionItemController.isAlreadyAdded(textBoxWeight.Text, trnProductionModel.Id) == false)
+                    {
+                        if (trnProductionItemController.IsExist(textBoxWeight.Text) == true)
+                        {
+                            trnProductionItemController.AddProductionItem(trnProductionModel.Id, 0, textBoxWeight.Text);
+                            UpdateProductionItemListDataSource();
+                            textBoxWeight.Text = "";
+                            textBoxWeight.Focus();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Barcode not exist!", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
                     else
                     {
-                        //Controllers.TrnProductionItemController trnProductionItemController = new Controllers.TrnProductionItemController();
-                        //trnProductionItemController.UpdateProductionItemWeight(productionItemId, Convert.ToDecimal(textBoxWeight.Text));
-                        //Close();
-                        //productionDetailView.UpdateProductionItemListDataSource();
+                        MessageBox.Show("Barcode already exist!", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

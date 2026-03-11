@@ -45,7 +45,7 @@ namespace MWS.Views
                     if (currentBranchId == 1)
                     {
                         Controllers.TrnProductionItemController trnProductionItemController = new Controllers.TrnProductionItemController();
-                        String[] addItem = trnProductionItemController.AddProductionItem(trnProductionModel.Id, Convert.ToDecimal(textBoxWeight.Text));
+                        String[] addItem = trnProductionItemController.AddProductionItem(trnProductionModel.Id, Convert.ToDecimal(textBoxWeight.Text), "");
                         if (addItem[1].Equals("0") == false)
                         {
                             Hide();

@@ -30,8 +30,8 @@ namespace MWS.Views
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
-            productionDetailView.textBoxBarcode.Text = "";
-            productionDetailView.textBoxBarcode.Focus();
+            productionDetailView.textBoxWeight.Text = "";
+            productionDetailView.textBoxWeight.Focus();
         }
 
         private void textBoxWeight_KeyDown(object sender, KeyEventArgs e)
@@ -45,10 +45,10 @@ namespace MWS.Views
                     if (currentBranchId == 1)
                     {
                         Controllers.TrnProductionItemController trnProductionItemController = new Controllers.TrnProductionItemController();
-                        String[] addItem = trnProductionItemController.AddProductionItem(trnProductionModel.Id, barcode, Convert.ToDecimal(textBoxWeight.Text));
+                        String[] addItem = trnProductionItemController.AddProductionItem(trnProductionModel.Id, Convert.ToDecimal(textBoxWeight.Text));
                         if (addItem[1].Equals("0") == false)
                         {
-                            Close();
+                            Hide();
                             ProductionDetailClassificationView productionDetailClassificationView = new ProductionDetailClassificationView(Convert.ToInt32(addItem[1]), productionDetailView);
                             productionDetailClassificationView.Show();
                         }

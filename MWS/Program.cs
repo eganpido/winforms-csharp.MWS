@@ -27,6 +27,7 @@ namespace MWS
             else
             {
                 Application.Run(new LoginView());
+                //Application.Run(new LoadingView());
             }
         }
     }

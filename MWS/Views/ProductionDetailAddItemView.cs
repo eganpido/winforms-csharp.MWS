@@ -39,8 +39,8 @@ namespace MWS.Views
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
-            productionDetailView.textBoxBarcode.Text = "";
-            productionDetailView.textBoxBarcode.Focus();
+            productionDetailView.textBoxWeight.Text = "";
+            productionDetailView.textBoxWeight.Focus();
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -54,8 +54,8 @@ namespace MWS.Views
                 {
                     Close();
                     productionDetailView.UpdateProductionItemListDataSource();
-                    productionDetailView.textBoxBarcode.Text = "";
-                    productionDetailView.textBoxBarcode.Focus();
+                    productionDetailView.textBoxWeight.Text = "";
+                    productionDetailView.textBoxWeight.Focus();
                 }
                 else
                 {

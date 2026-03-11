@@ -147,8 +147,11 @@ namespace MWS.Views
                                 ColumnItemDescription = d.ItemDescription,
                                 ColumnSizeId = d.SizeId,
                                 ColumnSize = d.Size,
+                                ColumnClassification = d.Classification,
+                                ColumnWeight = d.Weight.ToString("#,##0.00"),
                                 ColumnDelete = "DELETE",
                             };
+                txtTotalWeight.Text = items.Sum(a => Convert.ToDecimal(a.ColumnWeight)).ToString("#,##0.00");
 
                 return Task.FromResult(items.ToList());
             }
@@ -162,7 +165,7 @@ namespace MWS.Views
             buttonSave.Enabled = !isLocked;
             textBoxBarcode.Enabled = !isLocked;
 
-            dataGridViewPullOutItem.Columns[7].Visible = !isLocked;
+            dataGridViewPullOutItem.Columns[9].Visible = !isLocked;
             textBoxBarcode.Focus();
 
             if (isLocked)

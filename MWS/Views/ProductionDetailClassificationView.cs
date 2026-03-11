@@ -42,8 +42,8 @@ namespace MWS.Views
             trnProductionItemController.UpdateProductionItemClassification(productionItemId, comboBoxClassification.SelectedValue.ToString());
             Close();
             productionDetailView.UpdateProductionItemListDataSource();
-            productionDetailView.textBoxBarcode.Text = "";
-            productionDetailView.textBoxBarcode.Focus();
+            productionDetailView.textBoxWeight.Text = "";
+            productionDetailView.textBoxWeight.Focus();
         }
     }
 }

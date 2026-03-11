@@ -10,9 +10,7 @@ namespace MWS.Models
     {
         public Int32 Id { get; set; }
         public Int32 ProductionId { get; set; }
-        public Int32? ReceivingItemId { get; set; }
         public Int32 ItemId { get; set; }
-        public String ReceivingBarcode { get; set; }
         public String Barcode { get; set; }
         public String ItemDescription { get; set; }
         public Int32 SizeId { get; set; }

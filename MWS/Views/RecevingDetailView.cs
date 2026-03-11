@@ -194,6 +194,8 @@ namespace MWS.Views
                                 ColumnDelete = "DELETE",
                             };
 
+                txtTotalWeight.Text = items.Sum(a => Convert.ToDecimal(a.ColumnWeight)).ToString("#,##0.00");
+
                 return Task.FromResult(items.ToList());
             }
             else

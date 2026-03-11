@@ -33,9 +33,6 @@ namespace MWS.DB
     partial void InsertMstBranch(MstBranch instance);
     partial void UpdateMstBranch(MstBranch instance);
     partial void DeleteMstBranch(MstBranch instance);
-    partial void InsertTrnReceivingItem(TrnReceivingItem instance);
-    partial void UpdateTrnReceivingItem(TrnReceivingItem instance);
-    partial void DeleteTrnReceivingItem(TrnReceivingItem instance);
     partial void InsertMstItem(MstItem instance);
     partial void UpdateMstItem(MstItem instance);
     partial void DeleteMstItem(MstItem instance);
@@ -63,6 +60,9 @@ namespace MWS.DB
     partial void InsertTrnProductionItem(TrnProductionItem instance);
     partial void UpdateTrnProductionItem(TrnProductionItem instance);
     partial void DeleteTrnProductionItem(TrnProductionItem instance);
+    partial void InsertTrnReceivingItem(TrnReceivingItem instance);
+    partial void UpdateTrnReceivingItem(TrnReceivingItem instance);
+    partial void DeleteTrnReceivingItem(TrnReceivingItem instance);
     #endregion
 		
 		public mwsdbDataContext() : 
@@ -100,14 +100,6 @@ namespace MWS.DB
 			get
 			{
 				return this.GetTable<MstBranch>();
-			}
-		}
-		
-		public System.Data.Linq.Table<TrnReceivingItem> TrnReceivingItems
-		{
-			get
-			{
-				return this.GetTable<TrnReceivingItem>();
 			}
 		}
 		
@@ -180,6 +172,14 @@ namespace MWS.DB
 			get
 			{
 				return this.GetTable<TrnProductionItem>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TrnReceivingItem> TrnReceivingItems
+		{
+			get
+			{
+				return this.GetTable<TrnReceivingItem>();
 			}
 		}
 	}
@@ -354,387 +354,6 @@ namespace MWS.DB
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TrnReceivingItem")]
-	public partial class TrnReceivingItem : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _ReceivingId;
-		
-		private int _ItemId;
-		
-		private string _Barcode;
-		
-		private string _ItemDescription;
-		
-		private int _SizeId;
-		
-		private decimal _Weight;
-		
-		private string _Classification;
-		
-		private EntitySet<TrnProductionItem> _TrnProductionItems;
-		
-		private EntityRef<MstItem> _MstItem;
-		
-		private EntityRef<MstSize> _MstSize;
-		
-		private EntityRef<TrnReceiving> _TrnReceiving;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnReceivingIdChanging(int value);
-    partial void OnReceivingIdChanged();
-    partial void OnItemIdChanging(int value);
-    partial void OnItemIdChanged();
-    partial void OnBarcodeChanging(string value);
-    partial void OnBarcodeChanged();
-    partial void OnItemDescriptionChanging(string value);
-    partial void OnItemDescriptionChanged();
-    partial void OnSizeIdChanging(int value);
-    partial void OnSizeIdChanged();
-    partial void OnWeightChanging(decimal value);
-    partial void OnWeightChanged();
-    partial void OnClassificationChanging(string value);
-    partial void OnClassificationChanged();
-    #endregion
-		
-		public TrnReceivingItem()
-		{
-			this._TrnProductionItems = new EntitySet<TrnProductionItem>(new Action<TrnProductionItem>(this.attach_TrnProductionItems), new Action<TrnProductionItem>(this.detach_TrnProductionItems));
-			this._MstItem = default(EntityRef<MstItem>);
-			this._MstSize = default(EntityRef<MstSize>);
-			this._TrnReceiving = default(EntityRef<TrnReceiving>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReceivingId", DbType="Int NOT NULL")]
-		public int ReceivingId
-		{
-			get
-			{
-				return this._ReceivingId;
-			}
-			set
-			{
-				if ((this._ReceivingId != value))
-				{
-					if (this._TrnReceiving.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnReceivingIdChanging(value);
-					this.SendPropertyChanging();
-					this._ReceivingId = value;
-					this.SendPropertyChanged("ReceivingId");
-					this.OnReceivingIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemId", DbType="Int NOT NULL")]
-		public int ItemId
-		{
-			get
-			{
-				return this._ItemId;
-			}
-			set
-			{
-				if ((this._ItemId != value))
-				{
-					if (this._MstItem.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnItemIdChanging(value);
-					this.SendPropertyChanging();
-					this._ItemId = value;
-					this.SendPropertyChanged("ItemId");
-					this.OnItemIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Barcode", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Barcode
-		{
-			get
-			{
-				return this._Barcode;
-			}
-			set
-			{
-				if ((this._Barcode != value))
-				{
-					this.OnBarcodeChanging(value);
-					this.SendPropertyChanging();
-					this._Barcode = value;
-					this.SendPropertyChanged("Barcode");
-					this.OnBarcodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemDescription", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string ItemDescription
-		{
-			get
-			{
-				return this._ItemDescription;
-			}
-			set
-			{
-				if ((this._ItemDescription != value))
-				{
-					this.OnItemDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._ItemDescription = value;
-					this.SendPropertyChanged("ItemDescription");
-					this.OnItemDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SizeId", DbType="Int NOT NULL")]
-		public int SizeId
-		{
-			get
-			{
-				return this._SizeId;
-			}
-			set
-			{
-				if ((this._SizeId != value))
-				{
-					if (this._MstSize.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSizeIdChanging(value);
-					this.SendPropertyChanging();
-					this._SizeId = value;
-					this.SendPropertyChanged("SizeId");
-					this.OnSizeIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weight", DbType="Decimal(18,2) NOT NULL")]
-		public decimal Weight
-		{
-			get
-			{
-				return this._Weight;
-			}
-			set
-			{
-				if ((this._Weight != value))
-				{
-					this.OnWeightChanging(value);
-					this.SendPropertyChanging();
-					this._Weight = value;
-					this.SendPropertyChanged("Weight");
-					this.OnWeightChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Classification", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Classification
-		{
-			get
-			{
-				return this._Classification;
-			}
-			set
-			{
-				if ((this._Classification != value))
-				{
-					this.OnClassificationChanging(value);
-					this.SendPropertyChanging();
-					this._Classification = value;
-					this.SendPropertyChanged("Classification");
-					this.OnClassificationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TrnReceivingItem_TrnProductionItem", Storage="_TrnProductionItems", ThisKey="Id", OtherKey="ReceivingItemId")]
-		public EntitySet<TrnProductionItem> TrnProductionItems
-		{
-			get
-			{
-				return this._TrnProductionItems;
-			}
-			set
-			{
-				this._TrnProductionItems.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MstItem_TrnReceivingItem", Storage="_MstItem", ThisKey="ItemId", OtherKey="Id", IsForeignKey=true)]
-		public MstItem MstItem
-		{
-			get
-			{
-				return this._MstItem.Entity;
-			}
-			set
-			{
-				MstItem previousValue = this._MstItem.Entity;
-				if (((previousValue != value) 
-							|| (this._MstItem.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MstItem.Entity = null;
-						previousValue.TrnReceivingItems.Remove(this);
-					}
-					this._MstItem.Entity = value;
-					if ((value != null))
-					{
-						value.TrnReceivingItems.Add(this);
-						this._ItemId = value.Id;
-					}
-					else
-					{
-						this._ItemId = default(int);
-					}
-					this.SendPropertyChanged("MstItem");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MstSize_TrnReceivingItem", Storage="_MstSize", ThisKey="SizeId", OtherKey="Id", IsForeignKey=true)]
-		public MstSize MstSize
-		{
-			get
-			{
-				return this._MstSize.Entity;
-			}
-			set
-			{
-				MstSize previousValue = this._MstSize.Entity;
-				if (((previousValue != value) 
-							|| (this._MstSize.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MstSize.Entity = null;
-						previousValue.TrnReceivingItems.Remove(this);
-					}
-					this._MstSize.Entity = value;
-					if ((value != null))
-					{
-						value.TrnReceivingItems.Add(this);
-						this._SizeId = value.Id;
-					}
-					else
-					{
-						this._SizeId = default(int);
-					}
-					this.SendPropertyChanged("MstSize");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TrnReceiving_TrnReceivingItem", Storage="_TrnReceiving", ThisKey="ReceivingId", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public TrnReceiving TrnReceiving
-		{
-			get
-			{
-				return this._TrnReceiving.Entity;
-			}
-			set
-			{
-				TrnReceiving previousValue = this._TrnReceiving.Entity;
-				if (((previousValue != value) 
-							|| (this._TrnReceiving.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TrnReceiving.Entity = null;
-						previousValue.TrnReceivingItems.Remove(this);
-					}
-					this._TrnReceiving.Entity = value;
-					if ((value != null))
-					{
-						value.TrnReceivingItems.Add(this);
-						this._ReceivingId = value.Id;
-					}
-					else
-					{
-						this._ReceivingId = default(int);
-					}
-					this.SendPropertyChanged("TrnReceiving");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_TrnProductionItems(TrnProductionItem entity)
-		{
-			this.SendPropertyChanging();
-			entity.TrnReceivingItem = this;
-		}
-		
-		private void detach_TrnProductionItems(TrnProductionItem entity)
-		{
-			this.SendPropertyChanging();
-			entity.TrnReceivingItem = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MstItem")]
 	public partial class MstItem : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -745,9 +364,9 @@ namespace MWS.DB
 		
 		private string _ItemDescription;
 		
-		private EntitySet<TrnReceivingItem> _TrnReceivingItems;
-		
 		private EntitySet<TrnProductionItem> _TrnProductionItems;
+		
+		private EntitySet<TrnReceivingItem> _TrnReceivingItems;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -761,8 +380,8 @@ namespace MWS.DB
 		
 		public MstItem()
 		{
-			this._TrnReceivingItems = new EntitySet<TrnReceivingItem>(new Action<TrnReceivingItem>(this.attach_TrnReceivingItems), new Action<TrnReceivingItem>(this.detach_TrnReceivingItems));
 			this._TrnProductionItems = new EntitySet<TrnProductionItem>(new Action<TrnProductionItem>(this.attach_TrnProductionItems), new Action<TrnProductionItem>(this.detach_TrnProductionItems));
+			this._TrnReceivingItems = new EntitySet<TrnReceivingItem>(new Action<TrnReceivingItem>(this.attach_TrnReceivingItems), new Action<TrnReceivingItem>(this.detach_TrnReceivingItems));
 			OnCreated();
 		}
 		
@@ -806,19 +425,6 @@ namespace MWS.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MstItem_TrnReceivingItem", Storage="_TrnReceivingItems", ThisKey="Id", OtherKey="ItemId")]
-		public EntitySet<TrnReceivingItem> TrnReceivingItems
-		{
-			get
-			{
-				return this._TrnReceivingItems;
-			}
-			set
-			{
-				this._TrnReceivingItems.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MstItem_TrnProductionItem", Storage="_TrnProductionItems", ThisKey="Id", OtherKey="ItemId")]
 		public EntitySet<TrnProductionItem> TrnProductionItems
 		{
@@ -829,6 +435,19 @@ namespace MWS.DB
 			set
 			{
 				this._TrnProductionItems.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MstItem_TrnReceivingItem", Storage="_TrnReceivingItems", ThisKey="Id", OtherKey="ItemId")]
+		public EntitySet<TrnReceivingItem> TrnReceivingItems
+		{
+			get
+			{
+				return this._TrnReceivingItems;
+			}
+			set
+			{
+				this._TrnReceivingItems.Assign(value);
 			}
 		}
 		
@@ -852,18 +471,6 @@ namespace MWS.DB
 			}
 		}
 		
-		private void attach_TrnReceivingItems(TrnReceivingItem entity)
-		{
-			this.SendPropertyChanging();
-			entity.MstItem = this;
-		}
-		
-		private void detach_TrnReceivingItems(TrnReceivingItem entity)
-		{
-			this.SendPropertyChanging();
-			entity.MstItem = null;
-		}
-		
 		private void attach_TrnProductionItems(TrnProductionItem entity)
 		{
 			this.SendPropertyChanging();
@@ -871,6 +478,18 @@ namespace MWS.DB
 		}
 		
 		private void detach_TrnProductionItems(TrnProductionItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.MstItem = null;
+		}
+		
+		private void attach_TrnReceivingItems(TrnReceivingItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.MstItem = this;
+		}
+		
+		private void detach_TrnReceivingItems(TrnReceivingItem entity)
 		{
 			this.SendPropertyChanging();
 			entity.MstItem = null;
@@ -891,9 +510,9 @@ namespace MWS.DB
 		
 		private decimal _MaxWeight;
 		
-		private EntitySet<TrnReceivingItem> _TrnReceivingItems;
-		
 		private EntitySet<TrnProductionItem> _TrnProductionItems;
+		
+		private EntitySet<TrnReceivingItem> _TrnReceivingItems;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -911,8 +530,8 @@ namespace MWS.DB
 		
 		public MstSize()
 		{
-			this._TrnReceivingItems = new EntitySet<TrnReceivingItem>(new Action<TrnReceivingItem>(this.attach_TrnReceivingItems), new Action<TrnReceivingItem>(this.detach_TrnReceivingItems));
 			this._TrnProductionItems = new EntitySet<TrnProductionItem>(new Action<TrnProductionItem>(this.attach_TrnProductionItems), new Action<TrnProductionItem>(this.detach_TrnProductionItems));
+			this._TrnReceivingItems = new EntitySet<TrnReceivingItem>(new Action<TrnReceivingItem>(this.attach_TrnReceivingItems), new Action<TrnReceivingItem>(this.detach_TrnReceivingItems));
 			OnCreated();
 		}
 		
@@ -996,19 +615,6 @@ namespace MWS.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MstSize_TrnReceivingItem", Storage="_TrnReceivingItems", ThisKey="Id", OtherKey="SizeId")]
-		public EntitySet<TrnReceivingItem> TrnReceivingItems
-		{
-			get
-			{
-				return this._TrnReceivingItems;
-			}
-			set
-			{
-				this._TrnReceivingItems.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MstSize_TrnProductionItem", Storage="_TrnProductionItems", ThisKey="Id", OtherKey="SizeId")]
 		public EntitySet<TrnProductionItem> TrnProductionItems
 		{
@@ -1019,6 +625,19 @@ namespace MWS.DB
 			set
 			{
 				this._TrnProductionItems.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MstSize_TrnReceivingItem", Storage="_TrnReceivingItems", ThisKey="Id", OtherKey="SizeId")]
+		public EntitySet<TrnReceivingItem> TrnReceivingItems
+		{
+			get
+			{
+				return this._TrnReceivingItems;
+			}
+			set
+			{
+				this._TrnReceivingItems.Assign(value);
 			}
 		}
 		
@@ -1042,18 +661,6 @@ namespace MWS.DB
 			}
 		}
 		
-		private void attach_TrnReceivingItems(TrnReceivingItem entity)
-		{
-			this.SendPropertyChanging();
-			entity.MstSize = this;
-		}
-		
-		private void detach_TrnReceivingItems(TrnReceivingItem entity)
-		{
-			this.SendPropertyChanging();
-			entity.MstSize = null;
-		}
-		
 		private void attach_TrnProductionItems(TrnProductionItem entity)
 		{
 			this.SendPropertyChanging();
@@ -1061,6 +668,18 @@ namespace MWS.DB
 		}
 		
 		private void detach_TrnProductionItems(TrnProductionItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.MstSize = null;
+		}
+		
+		private void attach_TrnReceivingItems(TrnReceivingItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.MstSize = this;
+		}
+		
+		private void detach_TrnReceivingItems(TrnReceivingItem entity)
 		{
 			this.SendPropertyChanging();
 			entity.MstSize = null;
@@ -2638,19 +2257,17 @@ namespace MWS.DB
 		
 		private int _ProductionId;
 		
-		private System.Nullable<int> _ReceivingItemId;
-		
 		private int _ItemId;
 		
 		private int _SizeId;
 		
 		private string _ProductionBarcode;
 		
+		private decimal _ReceivedWeight;
+		
 		private decimal _ActualWeight;
 		
 		private string _Classification;
-		
-		private decimal _ReceivedWeight;
 		
 		private EntitySet<TrnPullOutItem> _TrnPullOutItems;
 		
@@ -2660,8 +2277,6 @@ namespace MWS.DB
 		
 		private EntityRef<TrnProduction> _TrnProduction;
 		
-		private EntityRef<TrnReceivingItem> _TrnReceivingItem;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2670,20 +2285,18 @@ namespace MWS.DB
     partial void OnIdChanged();
     partial void OnProductionIdChanging(int value);
     partial void OnProductionIdChanged();
-    partial void OnReceivingItemIdChanging(System.Nullable<int> value);
-    partial void OnReceivingItemIdChanged();
     partial void OnItemIdChanging(int value);
     partial void OnItemIdChanged();
     partial void OnSizeIdChanging(int value);
     partial void OnSizeIdChanged();
     partial void OnProductionBarcodeChanging(string value);
     partial void OnProductionBarcodeChanged();
+    partial void OnReceivedWeightChanging(decimal value);
+    partial void OnReceivedWeightChanged();
     partial void OnActualWeightChanging(decimal value);
     partial void OnActualWeightChanged();
     partial void OnClassificationChanging(string value);
     partial void OnClassificationChanged();
-    partial void OnReceivedWeightChanging(decimal value);
-    partial void OnReceivedWeightChanged();
     #endregion
 		
 		public TrnProductionItem()
@@ -2692,7 +2305,6 @@ namespace MWS.DB
 			this._MstItem = default(EntityRef<MstItem>);
 			this._MstSize = default(EntityRef<MstSize>);
 			this._TrnProduction = default(EntityRef<TrnProduction>);
-			this._TrnReceivingItem = default(EntityRef<TrnReceivingItem>);
 			OnCreated();
 		}
 		
@@ -2736,30 +2348,6 @@ namespace MWS.DB
 					this._ProductionId = value;
 					this.SendPropertyChanged("ProductionId");
 					this.OnProductionIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReceivingItemId", DbType="Int")]
-		public System.Nullable<int> ReceivingItemId
-		{
-			get
-			{
-				return this._ReceivingItemId;
-			}
-			set
-			{
-				if ((this._ReceivingItemId != value))
-				{
-					if (this._TrnReceivingItem.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnReceivingItemIdChanging(value);
-					this.SendPropertyChanging();
-					this._ReceivingItemId = value;
-					this.SendPropertyChanged("ReceivingItemId");
-					this.OnReceivingItemIdChanged();
 				}
 			}
 		}
@@ -2832,6 +2420,26 @@ namespace MWS.DB
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReceivedWeight", DbType="Decimal(18,2) NOT NULL")]
+		public decimal ReceivedWeight
+		{
+			get
+			{
+				return this._ReceivedWeight;
+			}
+			set
+			{
+				if ((this._ReceivedWeight != value))
+				{
+					this.OnReceivedWeightChanging(value);
+					this.SendPropertyChanging();
+					this._ReceivedWeight = value;
+					this.SendPropertyChanged("ReceivedWeight");
+					this.OnReceivedWeightChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActualWeight", DbType="Decimal(18,2) NOT NULL")]
 		public decimal ActualWeight
 		{
@@ -2868,26 +2476,6 @@ namespace MWS.DB
 					this._Classification = value;
 					this.SendPropertyChanged("Classification");
 					this.OnClassificationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReceivedWeight", DbType="Decimal(18,2) NOT NULL")]
-		public decimal ReceivedWeight
-		{
-			get
-			{
-				return this._ReceivedWeight;
-			}
-			set
-			{
-				if ((this._ReceivedWeight != value))
-				{
-					this.OnReceivedWeightChanging(value);
-					this.SendPropertyChanging();
-					this._ReceivedWeight = value;
-					this.SendPropertyChanged("ReceivedWeight");
-					this.OnReceivedWeightChanged();
 				}
 			}
 		}
@@ -3007,40 +2595,6 @@ namespace MWS.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TrnReceivingItem_TrnProductionItem", Storage="_TrnReceivingItem", ThisKey="ReceivingItemId", OtherKey="Id", IsForeignKey=true)]
-		public TrnReceivingItem TrnReceivingItem
-		{
-			get
-			{
-				return this._TrnReceivingItem.Entity;
-			}
-			set
-			{
-				TrnReceivingItem previousValue = this._TrnReceivingItem.Entity;
-				if (((previousValue != value) 
-							|| (this._TrnReceivingItem.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TrnReceivingItem.Entity = null;
-						previousValue.TrnProductionItems.Remove(this);
-					}
-					this._TrnReceivingItem.Entity = value;
-					if ((value != null))
-					{
-						value.TrnProductionItems.Add(this);
-						this._ReceivingItemId = value.Id;
-					}
-					else
-					{
-						this._ReceivingItemId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("TrnReceivingItem");
-				}
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -3071,6 +2625,359 @@ namespace MWS.DB
 		{
 			this.SendPropertyChanging();
 			entity.TrnProductionItem = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TrnReceivingItem")]
+	public partial class TrnReceivingItem : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _ReceivingId;
+		
+		private int _ItemId;
+		
+		private string _Barcode;
+		
+		private string _ItemDescription;
+		
+		private int _SizeId;
+		
+		private decimal _Weight;
+		
+		private string _Classification;
+		
+		private EntityRef<MstItem> _MstItem;
+		
+		private EntityRef<MstSize> _MstSize;
+		
+		private EntityRef<TrnReceiving> _TrnReceiving;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnReceivingIdChanging(int value);
+    partial void OnReceivingIdChanged();
+    partial void OnItemIdChanging(int value);
+    partial void OnItemIdChanged();
+    partial void OnBarcodeChanging(string value);
+    partial void OnBarcodeChanged();
+    partial void OnItemDescriptionChanging(string value);
+    partial void OnItemDescriptionChanged();
+    partial void OnSizeIdChanging(int value);
+    partial void OnSizeIdChanged();
+    partial void OnWeightChanging(decimal value);
+    partial void OnWeightChanged();
+    partial void OnClassificationChanging(string value);
+    partial void OnClassificationChanged();
+    #endregion
+		
+		public TrnReceivingItem()
+		{
+			this._MstItem = default(EntityRef<MstItem>);
+			this._MstSize = default(EntityRef<MstSize>);
+			this._TrnReceiving = default(EntityRef<TrnReceiving>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReceivingId", DbType="Int NOT NULL")]
+		public int ReceivingId
+		{
+			get
+			{
+				return this._ReceivingId;
+			}
+			set
+			{
+				if ((this._ReceivingId != value))
+				{
+					if (this._TrnReceiving.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnReceivingIdChanging(value);
+					this.SendPropertyChanging();
+					this._ReceivingId = value;
+					this.SendPropertyChanged("ReceivingId");
+					this.OnReceivingIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemId", DbType="Int NOT NULL")]
+		public int ItemId
+		{
+			get
+			{
+				return this._ItemId;
+			}
+			set
+			{
+				if ((this._ItemId != value))
+				{
+					if (this._MstItem.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnItemIdChanging(value);
+					this.SendPropertyChanging();
+					this._ItemId = value;
+					this.SendPropertyChanged("ItemId");
+					this.OnItemIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Barcode", DbType="NVarChar(50)")]
+		public string Barcode
+		{
+			get
+			{
+				return this._Barcode;
+			}
+			set
+			{
+				if ((this._Barcode != value))
+				{
+					this.OnBarcodeChanging(value);
+					this.SendPropertyChanging();
+					this._Barcode = value;
+					this.SendPropertyChanged("Barcode");
+					this.OnBarcodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemDescription", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string ItemDescription
+		{
+			get
+			{
+				return this._ItemDescription;
+			}
+			set
+			{
+				if ((this._ItemDescription != value))
+				{
+					this.OnItemDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._ItemDescription = value;
+					this.SendPropertyChanged("ItemDescription");
+					this.OnItemDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SizeId", DbType="Int NOT NULL")]
+		public int SizeId
+		{
+			get
+			{
+				return this._SizeId;
+			}
+			set
+			{
+				if ((this._SizeId != value))
+				{
+					if (this._MstSize.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSizeIdChanging(value);
+					this.SendPropertyChanging();
+					this._SizeId = value;
+					this.SendPropertyChanged("SizeId");
+					this.OnSizeIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weight", DbType="Decimal(18,2) NOT NULL")]
+		public decimal Weight
+		{
+			get
+			{
+				return this._Weight;
+			}
+			set
+			{
+				if ((this._Weight != value))
+				{
+					this.OnWeightChanging(value);
+					this.SendPropertyChanging();
+					this._Weight = value;
+					this.SendPropertyChanged("Weight");
+					this.OnWeightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Classification", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Classification
+		{
+			get
+			{
+				return this._Classification;
+			}
+			set
+			{
+				if ((this._Classification != value))
+				{
+					this.OnClassificationChanging(value);
+					this.SendPropertyChanging();
+					this._Classification = value;
+					this.SendPropertyChanged("Classification");
+					this.OnClassificationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MstItem_TrnReceivingItem", Storage="_MstItem", ThisKey="ItemId", OtherKey="Id", IsForeignKey=true)]
+		public MstItem MstItem
+		{
+			get
+			{
+				return this._MstItem.Entity;
+			}
+			set
+			{
+				MstItem previousValue = this._MstItem.Entity;
+				if (((previousValue != value) 
+							|| (this._MstItem.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MstItem.Entity = null;
+						previousValue.TrnReceivingItems.Remove(this);
+					}
+					this._MstItem.Entity = value;
+					if ((value != null))
+					{
+						value.TrnReceivingItems.Add(this);
+						this._ItemId = value.Id;
+					}
+					else
+					{
+						this._ItemId = default(int);
+					}
+					this.SendPropertyChanged("MstItem");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MstSize_TrnReceivingItem", Storage="_MstSize", ThisKey="SizeId", OtherKey="Id", IsForeignKey=true)]
+		public MstSize MstSize
+		{
+			get
+			{
+				return this._MstSize.Entity;
+			}
+			set
+			{
+				MstSize previousValue = this._MstSize.Entity;
+				if (((previousValue != value) 
+							|| (this._MstSize.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MstSize.Entity = null;
+						previousValue.TrnReceivingItems.Remove(this);
+					}
+					this._MstSize.Entity = value;
+					if ((value != null))
+					{
+						value.TrnReceivingItems.Add(this);
+						this._SizeId = value.Id;
+					}
+					else
+					{
+						this._SizeId = default(int);
+					}
+					this.SendPropertyChanged("MstSize");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TrnReceiving_TrnReceivingItem", Storage="_TrnReceiving", ThisKey="ReceivingId", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public TrnReceiving TrnReceiving
+		{
+			get
+			{
+				return this._TrnReceiving.Entity;
+			}
+			set
+			{
+				TrnReceiving previousValue = this._TrnReceiving.Entity;
+				if (((previousValue != value) 
+							|| (this._TrnReceiving.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TrnReceiving.Entity = null;
+						previousValue.TrnReceivingItems.Remove(this);
+					}
+					this._TrnReceiving.Entity = value;
+					if ((value != null))
+					{
+						value.TrnReceivingItems.Add(this);
+						this._ReceivingId = value.Id;
+					}
+					else
+					{
+						this._ReceivingId = default(int);
+					}
+					this.SendPropertyChanged("TrnReceiving");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

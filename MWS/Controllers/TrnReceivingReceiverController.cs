@@ -281,5 +281,31 @@ namespace MWS.Controllers
                 return new String[] { e.Message, "0" };
             }
         }
+        public int GetTotalPullOutItemsCount(int pullOutId)
+        {
+            int itemCount = 0;
+            var pullOutItems = from d in db.TrnPullOutItems
+                               where d.PullOutId == pullOutId
+                               select d;
+            if (pullOutItems.Any())
+            {
+                itemCount = pullOutItems.Count();
+            }
+
+            return itemCount;
+        }
+        public int GetTotalReceivingItemsCount(int receivingId)
+        {
+            int itemCount = 0;
+            var receivingItems = from d in db.TrnReceivingItems
+                               where d.ReceivingId == receivingId
+                                 select d;
+            if (receivingItems.Any())
+            {
+                itemCount = receivingItems.Count();
+            }
+
+            return itemCount;
+        }
     }
 }

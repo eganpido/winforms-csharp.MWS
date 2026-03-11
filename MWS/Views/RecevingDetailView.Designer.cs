@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -45,16 +45,9 @@
             this.buttonLast = new System.Windows.Forms.Button();
             this.textBoxPageNumber = new System.Windows.Forms.TextBox();
             this.dataGridViewReceivingItem = new System.Windows.Forms.DataGridView();
-            this.ColumnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnReceivingId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnBarcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnItemDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnSizeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.textBoxRemarks = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.comboBoxSupplier = new System.Windows.Forms.ComboBox();
@@ -64,20 +57,29 @@
             this.label4 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.labelCurrentUser = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.labelSupport = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelDeveloper = new System.Windows.Forms.Label();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.ColumnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnReceivingId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnBarcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnItemDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSizeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDelete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.txtTotalWeight = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -118,6 +120,8 @@
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.LightGray;
+            this.panel10.Controls.Add(this.txtTotalWeight);
+            this.panel10.Controls.Add(this.label8);
             this.panel10.Controls.Add(this.buttonFirst);
             this.panel10.Controls.Add(this.buttonPrevious);
             this.panel10.Controls.Add(this.buttonNext);
@@ -188,11 +192,11 @@
             this.labelIndicator.BackColor = System.Drawing.Color.LightGray;
             this.labelIndicator.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelIndicator.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.labelIndicator.Location = new System.Drawing.Point(474, 16);
+            this.labelIndicator.Location = new System.Drawing.Point(762, 16);
             this.labelIndicator.Name = "labelIndicator";
-            this.labelIndicator.Size = new System.Drawing.Size(507, 24);
+            this.labelIndicator.Size = new System.Drawing.Size(221, 24);
             this.labelIndicator.TabIndex = 102;
-            this.labelIndicator.Text = "The current record is locked. You may close it or add a new record.";
+            this.labelIndicator.Text = "The current record is locked.";
             // 
             // buttonLast
             // 
@@ -231,10 +235,10 @@
             this.dataGridViewReceivingItem.AllowUserToDeleteRows = false;
             this.dataGridViewReceivingItem.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.dataGridViewReceivingItem.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewReceivingItem.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewReceivingItem.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
             this.dataGridViewReceivingItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewReceivingItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnId,
@@ -246,14 +250,14 @@
             this.ColumnSize,
             this.ColumnWeight,
             this.ColumnDelete});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewReceivingItem.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewReceivingItem.DefaultCellStyle = dataGridViewCellStyle28;
             this.dataGridViewReceivingItem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewReceivingItem.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewReceivingItem.Name = "dataGridViewReceivingItem";
@@ -267,110 +271,6 @@
             this.dataGridViewReceivingItem.Size = new System.Drawing.Size(994, 320);
             this.dataGridViewReceivingItem.TabIndex = 0;
             this.dataGridViewReceivingItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewReceivingItem_CellClick);
-            // 
-            // ColumnId
-            // 
-            this.ColumnId.DataPropertyName = "ColumnId";
-            this.ColumnId.HeaderText = "Id";
-            this.ColumnId.MinimumWidth = 6;
-            this.ColumnId.Name = "ColumnId";
-            this.ColumnId.ReadOnly = true;
-            this.ColumnId.Visible = false;
-            this.ColumnId.Width = 125;
-            // 
-            // ColumnReceivingId
-            // 
-            this.ColumnReceivingId.DataPropertyName = "ColumnReceivingId";
-            this.ColumnReceivingId.HeaderText = "ReceivingId";
-            this.ColumnReceivingId.MinimumWidth = 6;
-            this.ColumnReceivingId.Name = "ColumnReceivingId";
-            this.ColumnReceivingId.ReadOnly = true;
-            this.ColumnReceivingId.Visible = false;
-            this.ColumnReceivingId.Width = 125;
-            // 
-            // ColumnItemId
-            // 
-            this.ColumnItemId.DataPropertyName = "ColumnItemId";
-            this.ColumnItemId.HeaderText = "ItemId";
-            this.ColumnItemId.MinimumWidth = 6;
-            this.ColumnItemId.Name = "ColumnItemId";
-            this.ColumnItemId.ReadOnly = true;
-            this.ColumnItemId.Visible = false;
-            this.ColumnItemId.Width = 125;
-            // 
-            // ColumnBarcode
-            // 
-            this.ColumnBarcode.DataPropertyName = "ColumnBarcode";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Open Sans SemiBold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ColumnBarcode.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ColumnBarcode.HeaderText = "Barcode";
-            this.ColumnBarcode.MinimumWidth = 6;
-            this.ColumnBarcode.Name = "ColumnBarcode";
-            this.ColumnBarcode.ReadOnly = true;
-            this.ColumnBarcode.Width = 250;
-            // 
-            // ColumnItemDescription
-            // 
-            this.ColumnItemDescription.DataPropertyName = "ColumnItemDescription";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
-            this.ColumnItemDescription.DefaultCellStyle = dataGridViewCellStyle3;
-            this.ColumnItemDescription.HeaderText = "Description";
-            this.ColumnItemDescription.MinimumWidth = 6;
-            this.ColumnItemDescription.Name = "ColumnItemDescription";
-            this.ColumnItemDescription.ReadOnly = true;
-            this.ColumnItemDescription.Width = 300;
-            // 
-            // ColumnSizeId
-            // 
-            this.ColumnSizeId.DataPropertyName = "ColumnSizeId";
-            this.ColumnSizeId.HeaderText = "SizeId";
-            this.ColumnSizeId.MinimumWidth = 6;
-            this.ColumnSizeId.Name = "ColumnSizeId";
-            this.ColumnSizeId.ReadOnly = true;
-            this.ColumnSizeId.Visible = false;
-            this.ColumnSizeId.Width = 125;
-            // 
-            // ColumnSize
-            // 
-            this.ColumnSize.DataPropertyName = "ColumnSize";
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
-            this.ColumnSize.DefaultCellStyle = dataGridViewCellStyle4;
-            this.ColumnSize.HeaderText = "Size";
-            this.ColumnSize.MinimumWidth = 6;
-            this.ColumnSize.Name = "ColumnSize";
-            this.ColumnSize.ReadOnly = true;
-            this.ColumnSize.Width = 200;
-            // 
-            // ColumnWeight
-            // 
-            this.ColumnWeight.DataPropertyName = "ColumnWeight";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
-            this.ColumnWeight.DefaultCellStyle = dataGridViewCellStyle5;
-            this.ColumnWeight.HeaderText = "Weight";
-            this.ColumnWeight.MinimumWidth = 6;
-            this.ColumnWeight.Name = "ColumnWeight";
-            this.ColumnWeight.ReadOnly = true;
-            this.ColumnWeight.Width = 160;
-            // 
-            // ColumnDelete
-            // 
-            this.ColumnDelete.DataPropertyName = "ColumnDelete";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            this.ColumnDelete.DefaultCellStyle = dataGridViewCellStyle6;
-            this.ColumnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ColumnDelete.HeaderText = "";
-            this.ColumnDelete.MinimumWidth = 6;
-            this.ColumnDelete.Name = "ColumnDelete";
-            this.ColumnDelete.ReadOnly = true;
-            this.ColumnDelete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnDelete.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ColumnDelete.Width = 130;
             // 
             // panel8
             // 
@@ -388,6 +288,42 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(994, 145);
             this.panel8.TabIndex = 2;
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSave.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.buttonSave.Image = global::MWS.Properties.Resources.diskette;
+            this.buttonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonSave.Location = new System.Drawing.Point(740, 91);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(117, 42);
+            this.buttonSave.TabIndex = 1;
+            this.buttonSave.TabStop = false;
+            this.buttonSave.Text = "    Save";
+            this.buttonSave.UseVisualStyleBackColor = false;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.btnAdd.Image = global::MWS.Properties.Resources.new_folder;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(863, 91);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(120, 42);
+            this.btnAdd.TabIndex = 2;
+            this.btnAdd.TabStop = false;
+            this.btnAdd.Text = "     New";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // textBoxRemarks
             // 
@@ -497,6 +433,23 @@
             this.label1.TabIndex = 101;
             this.label1.Text = "Precision Weighing for Meat Products.";
             // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnClose.BackgroundImage = global::MWS.Properties.Resources.log_out;
+            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnClose.Location = new System.Drawing.Point(944, 7);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(49, 41);
+            this.btnClose.TabIndex = 4;
+            this.btnClose.TabStop = false;
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -519,6 +472,16 @@
             this.label5.Size = new System.Drawing.Size(164, 22);
             this.label5.TabIndex = 102;
             this.label5.Text = "Weigh Right. Sell Right.";
+            // 
+            // panel7
+            // 
+            this.panel7.BackgroundImage = global::MWS.Properties.Resources.Weighing1;
+            this.panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(87, 103);
+            this.panel7.TabIndex = 2;
             // 
             // panel2
             // 
@@ -545,6 +508,16 @@
             this.panel5.Size = new System.Drawing.Size(512, 81);
             this.panel5.TabIndex = 2;
             // 
+            // panel6
+            // 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel6.BackgroundImage = global::MWS.Properties.Resources.user;
+            this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel6.Location = new System.Drawing.Point(400, 25);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(44, 35);
+            this.panel6.TabIndex = 0;
+            // 
             // labelCurrentUser
             // 
             this.labelCurrentUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -557,6 +530,16 @@
             this.labelCurrentUser.Size = new System.Drawing.Size(47, 19);
             this.labelCurrentUser.TabIndex = 0;
             this.labelCurrentUser.Text = "admin";
+            // 
+            // panel3
+            // 
+            this.panel3.BackgroundImage = global::MWS.Properties.Resources.streetsmartLogo_9;
+            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(87, 81);
+            this.panel3.TabIndex = 1;
             // 
             // labelSupport
             // 
@@ -594,88 +577,137 @@
             this.labelDeveloper.TabIndex = 0;
             this.labelDeveloper.Text = "Streetsmart Solutions";
             // 
-            // buttonSave
+            // ColumnId
             // 
-            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
-            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSave.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.buttonSave.Image = global::MWS.Properties.Resources.diskette;
-            this.buttonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonSave.Location = new System.Drawing.Point(740, 91);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(117, 42);
-            this.buttonSave.TabIndex = 1;
-            this.buttonSave.TabStop = false;
-            this.buttonSave.Text = "    Save";
-            this.buttonSave.UseVisualStyleBackColor = false;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            this.ColumnId.DataPropertyName = "ColumnId";
+            this.ColumnId.HeaderText = "Id";
+            this.ColumnId.MinimumWidth = 6;
+            this.ColumnId.Name = "ColumnId";
+            this.ColumnId.ReadOnly = true;
+            this.ColumnId.Visible = false;
+            this.ColumnId.Width = 125;
             // 
-            // btnAdd
+            // ColumnReceivingId
             // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.btnAdd.Image = global::MWS.Properties.Resources.new_folder;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(863, 91);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(120, 42);
-            this.btnAdd.TabIndex = 2;
-            this.btnAdd.TabStop = false;
-            this.btnAdd.Text = "     New";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.ColumnReceivingId.DataPropertyName = "ColumnReceivingId";
+            this.ColumnReceivingId.HeaderText = "ReceivingId";
+            this.ColumnReceivingId.MinimumWidth = 6;
+            this.ColumnReceivingId.Name = "ColumnReceivingId";
+            this.ColumnReceivingId.ReadOnly = true;
+            this.ColumnReceivingId.Visible = false;
+            this.ColumnReceivingId.Width = 125;
             // 
-            // btnClose
+            // ColumnItemId
             // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnClose.BackgroundImage = global::MWS.Properties.Resources.log_out;
-            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnClose.Location = new System.Drawing.Point(944, 7);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(49, 41);
-            this.btnClose.TabIndex = 4;
-            this.btnClose.TabStop = false;
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.ColumnItemId.DataPropertyName = "ColumnItemId";
+            this.ColumnItemId.HeaderText = "ItemId";
+            this.ColumnItemId.MinimumWidth = 6;
+            this.ColumnItemId.Name = "ColumnItemId";
+            this.ColumnItemId.ReadOnly = true;
+            this.ColumnItemId.Visible = false;
+            this.ColumnItemId.Width = 125;
             // 
-            // panel7
+            // ColumnBarcode
             // 
-            this.panel7.BackgroundImage = global::MWS.Properties.Resources.Weighing1;
-            this.panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(87, 103);
-            this.panel7.TabIndex = 2;
+            this.ColumnBarcode.DataPropertyName = "ColumnBarcode";
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Open Sans SemiBold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ColumnBarcode.DefaultCellStyle = dataGridViewCellStyle23;
+            this.ColumnBarcode.HeaderText = "Barcode";
+            this.ColumnBarcode.MinimumWidth = 6;
+            this.ColumnBarcode.Name = "ColumnBarcode";
+            this.ColumnBarcode.ReadOnly = true;
+            this.ColumnBarcode.Visible = false;
+            this.ColumnBarcode.Width = 250;
             // 
-            // panel6
+            // ColumnItemDescription
             // 
-            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel6.BackgroundImage = global::MWS.Properties.Resources.user;
-            this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel6.Location = new System.Drawing.Point(400, 25);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(44, 35);
-            this.panel6.TabIndex = 0;
+            this.ColumnItemDescription.DataPropertyName = "ColumnItemDescription";
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
+            this.ColumnItemDescription.DefaultCellStyle = dataGridViewCellStyle24;
+            this.ColumnItemDescription.HeaderText = "Description";
+            this.ColumnItemDescription.MinimumWidth = 6;
+            this.ColumnItemDescription.Name = "ColumnItemDescription";
+            this.ColumnItemDescription.ReadOnly = true;
+            this.ColumnItemDescription.Width = 300;
             // 
-            // panel3
+            // ColumnSizeId
             // 
-            this.panel3.BackgroundImage = global::MWS.Properties.Resources.streetsmartLogo_9;
-            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(87, 81);
-            this.panel3.TabIndex = 1;
+            this.ColumnSizeId.DataPropertyName = "ColumnSizeId";
+            this.ColumnSizeId.HeaderText = "SizeId";
+            this.ColumnSizeId.MinimumWidth = 6;
+            this.ColumnSizeId.Name = "ColumnSizeId";
+            this.ColumnSizeId.ReadOnly = true;
+            this.ColumnSizeId.Visible = false;
+            this.ColumnSizeId.Width = 125;
+            // 
+            // ColumnSize
+            // 
+            this.ColumnSize.DataPropertyName = "ColumnSize";
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
+            this.ColumnSize.DefaultCellStyle = dataGridViewCellStyle25;
+            this.ColumnSize.HeaderText = "Size";
+            this.ColumnSize.MinimumWidth = 6;
+            this.ColumnSize.Name = "ColumnSize";
+            this.ColumnSize.ReadOnly = true;
+            this.ColumnSize.Width = 200;
+            // 
+            // ColumnWeight
+            // 
+            this.ColumnWeight.DataPropertyName = "ColumnWeight";
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
+            this.ColumnWeight.DefaultCellStyle = dataGridViewCellStyle26;
+            this.ColumnWeight.HeaderText = "Weight";
+            this.ColumnWeight.MinimumWidth = 6;
+            this.ColumnWeight.Name = "ColumnWeight";
+            this.ColumnWeight.ReadOnly = true;
+            this.ColumnWeight.Width = 160;
+            // 
+            // ColumnDelete
+            // 
+            this.ColumnDelete.DataPropertyName = "ColumnDelete";
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            this.ColumnDelete.DefaultCellStyle = dataGridViewCellStyle27;
+            this.ColumnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ColumnDelete.HeaderText = "";
+            this.ColumnDelete.MinimumWidth = 6;
+            this.ColumnDelete.Name = "ColumnDelete";
+            this.ColumnDelete.ReadOnly = true;
+            this.ColumnDelete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnDelete.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ColumnDelete.Width = 130;
+            // 
+            // txtTotalWeight
+            // 
+            this.txtTotalWeight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTotalWeight.BackColor = System.Drawing.Color.LightGray;
+            this.txtTotalWeight.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTotalWeight.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalWeight.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtTotalWeight.Location = new System.Drawing.Point(595, 16);
+            this.txtTotalWeight.Name = "txtTotalWeight";
+            this.txtTotalWeight.ReadOnly = true;
+            this.txtTotalWeight.Size = new System.Drawing.Size(137, 28);
+            this.txtTotalWeight.TabIndex = 103;
+            this.txtTotalWeight.TabStop = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.LightGray;
+            this.label8.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label8.Location = new System.Drawing.Point(477, 16);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(119, 24);
+            this.label8.TabIndex = 104;
+            this.label8.Text = "Total Weight : ";
             // 
             // RecevingDetailView
             // 
@@ -743,6 +775,7 @@
         private System.Windows.Forms.Button buttonLast;
         private System.Windows.Forms.TextBox textBoxPageNumber;
         private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Label labelIndicator;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnReceivingId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnItemId;
@@ -752,6 +785,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSize;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnWeight;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnDelete;
-        private System.Windows.Forms.Label labelIndicator;
+        private System.Windows.Forms.TextBox txtTotalWeight;
+        private System.Windows.Forms.Label label8;
     }
 }

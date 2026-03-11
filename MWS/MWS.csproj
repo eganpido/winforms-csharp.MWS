@@ -78,6 +78,7 @@
     <Compile Include="Models\DgvTrnPullOutItemModel.cs" />
     <Compile Include="Models\DgvTrnProductionItemModel.cs" />
     <Compile Include="Models\DgvTrnProductionModel.cs" />
+    <Compile Include="Models\DgvTrnReceivingReceiverItemModel.cs" />
     <Compile Include="Models\DgvTrnReceivingModel.cs" />
     <Compile Include="Models\DgvTrnReceivingItemModel.cs" />
     <Compile Include="Models\MstClassificationModel.cs" />

@@ -26,6 +26,7 @@ namespace MWS.Controllers
                                      ItemDescription = d.ItemDescription,
                                      SizeId = d.SizeId,
                                      Size = d.MstSize.Size,
+                                     Classification = d.Classification,
                                      Weight = d.Weight
                                  };
 
@@ -33,7 +34,7 @@ namespace MWS.Controllers
         }
 
         // Add Receiving Item
-        public String[] AddReceivingItem(int receivingId, int pullOutId)
+        public String[] AddReceivingItem(int receivingId, int pullOutId, string barcode)
         {
             try
             {
@@ -43,29 +44,34 @@ namespace MWS.Controllers
                     return new String[] { "Current login user not found.", "0" };
                 }
 
-                var pullOutItems = from d in db.TrnPullOutItems
-                               where d.PullOutId == pullOutId select d;
-                if (pullOutItems.Any())
+                var pullOutItem = from d in db.TrnPullOutItems
+                                  where d.PullOutId == pullOutId
+                                  && d.TrnProductionItem.ProductionBarcode == barcode
+                                  && d.TrnPullOut.IsLocked == true
+                                  select d;
+                var item = pullOutItem.FirstOrDefault();
+                if (pullOutItem.Any())
                 {
-                    foreach (var item in pullOutItems)
+                    DB.TrnReceivingItem newReceivingItem = new DB.TrnReceivingItem
                     {
-                        DB.TrnReceivingItem newReceivingItem = new DB.TrnReceivingItem
-                        {
-                            ReceivingId = receivingId,
-                            ItemId = item.TrnProductionItem.ItemId,
-                            Barcode = item.TrnProductionItem.ProductionBarcode,
-                            ItemDescription = item.TrnProductionItem.MstItem.ItemDescription,
-                            SizeId = item.TrnProductionItem.SizeId,
-                            Weight = item.TrnProductionItem.ActualWeight,
-                            Classification = item.TrnProductionItem.Classification
-                        };
+                        ReceivingId = receivingId,
+                        ItemId = item.TrnProductionItem.ItemId,
+                        Barcode = item.TrnProductionItem.ProductionBarcode,
+                        ItemDescription = item.TrnProductionItem.MstItem.ItemDescription,
+                        SizeId = item.TrnProductionItem.SizeId,
+                        Weight = item.TrnProductionItem.ActualWeight,
+                        Classification = item.TrnProductionItem.Classification
+                    };
 
-                        db.TrnReceivingItems.InsertOnSubmit(newReceivingItem);
-                        db.SubmitChanges();
-                    }
+                    db.TrnReceivingItems.InsertOnSubmit(newReceivingItem);
+                    db.SubmitChanges();
+
+                    return new String[] { "", newReceivingItem.Id.ToString() };
                 }
-
-                return new String[] { "", "1" };
+                else
+                {
+                    return new String[] { "", "0" };
+                }
             }
             catch (Exception e)
             {
@@ -118,8 +124,8 @@ namespace MWS.Controllers
                 }
 
                 var receivingItems = from d in db.TrnReceivingItems
-                                    where d.Id == receivingId
-                                    select d;
+                                     where d.Id == receivingId
+                                     select d;
 
                 if (receivingItems.Any())
                 {
@@ -148,6 +154,20 @@ namespace MWS.Controllers
                      .FirstOrDefault();
 
             return size;
+        }
+        public bool isAlreadyAdded(string barcode, int receivingId)
+        {
+            bool added = false;
+            var barcodeExist = from d in db.TrnReceivingItems
+                               where d.ReceivingId == receivingId
+                               && d.Barcode == barcode
+                               select d;
+            if (barcodeExist.Any())
+            {
+                added = true;
+            }
+
+            return added;
         }
     }
 }

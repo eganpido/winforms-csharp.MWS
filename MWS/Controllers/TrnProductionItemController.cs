@@ -57,9 +57,7 @@ namespace MWS.Controllers
                                   {
                                       Id = d.Id,
                                       ProductionId = d.ProductionId,
-                                      ReceivingItemId = d.ReceivingItemId,
                                       ItemId = d.ItemId,
-                                      ReceivingBarcode = d.TrnReceivingItem.Barcode,
                                       Barcode = d.ProductionBarcode,
                                       ItemDescription = d.MstItem.ItemDescription,
                                       SizeId = d.SizeId,
@@ -73,7 +71,7 @@ namespace MWS.Controllers
         }
 
         // Add Production Item
-        public String[] AddProductionItem(int productionId, string barcode, decimal weight)
+        public String[] AddProductionItem(int productionId, decimal weight)
         {
             try
             {
@@ -109,12 +107,10 @@ namespace MWS.Controllers
                     DB.TrnProductionItem newProductionItem = new DB.TrnProductionItem
                     {
                         ProductionId = productionId,
-                        ReceivingItemId = GetReceivingItem(barcode).Id,
-                        ItemId = GetReceivingItem(barcode).ItemId,
-                        SizeId = GetReceivingItem(barcode).SizeId,
+                        ItemId = 1,
+                        SizeId = GetSize(weight),
                         ProductionBarcode = finalBarcode,
                         ActualWeight = weight,
-                        ReceivedWeight = GetReceivingItem(barcode).Weight,
                         Classification = "NONE"
                     };
 
@@ -125,20 +121,18 @@ namespace MWS.Controllers
                 }
                 else
                 {
-                    DB.TrnProductionItem newProductionItem = new DB.TrnProductionItem
-                    {
-                        ProductionId = productionId,
-                        ReceivingItemId = GetReceivingItem(barcode).Id,
-                        ItemId = GetReceivingItem(barcode).ItemId,
-                        SizeId = GetReceivingItem(barcode).SizeId,
-                        ProductionBarcode = barcode,
-                        ActualWeight = 0,
-                        ReceivedWeight = GetReceivingItem(barcode).Weight,
-                        Classification = GetClassification(barcode)
-                    };
+                    //DB.TrnProductionItem newProductionItem = new DB.TrnProductionItem
+                    //{
+                    //    ProductionId = productionId,
+                    //    ItemId = 1,
+                    //    SizeId = 1,
+                    //    ProductionBarcode = barcode,
+                    //    ActualWeight = 0,
+                    //    Classification = GetClassification(barcode)
+                    //};
 
-                    db.TrnProductionItems.InsertOnSubmit(newProductionItem);
-                    db.SubmitChanges();
+                    //db.TrnProductionItems.InsertOnSubmit(newProductionItem);
+                    //db.SubmitChanges();
 
                     return new String[] { "", "1" };
                 }
@@ -187,7 +181,6 @@ namespace MWS.Controllers
                     SizeId = 7,
                     ProductionBarcode = finalBarcode,
                     ActualWeight = weight,
-                    ReceivedWeight = 0,
                     Classification = "CUT"
                 };
 
@@ -310,8 +303,8 @@ namespace MWS.Controllers
                     Options = new ZXing.Common.EncodingOptions
                     {
                         Width = 300,
-                        Height = 150,
-                        Margin = 10
+                        Height = 160,
+                        Margin = 0
                     }
                 };
 
@@ -335,11 +328,11 @@ namespace MWS.Controllers
                 Font fontBold = new Font("Segoe UI", 18, FontStyle.Bold);
                 Font fontRegular = new Font("Segoe UI", 13, FontStyle.Regular);
 
-                int startX = 100;
+                int startX = 30;
                 // Gihimo natong 180 ang startY para naay dako nga space sa taas para sa mga text
                 int startY = 180;
-                int barcodeWidth = 500;
-                int barcodeHeight = 200;
+                int barcodeWidth = 300;
+                int barcodeHeight = 160;
 
                 // 1. "SLAB" (Center, Pinaka babaw)
                 string topText = barcodeItem;
@@ -358,14 +351,14 @@ namespace MWS.Controllers
                 // 4. (KANI IMONG GIPANGITA) "SLAB" (Left) ug "SPICY" (Right)
                 // Gi-move nato sa -45 para naay dako nga space sa tunga nila ug sa barcode
                 int textAboveBarcodeY = startY - 35;
-                e.Graphics.DrawString(barcodeSize, fontRegular, Brushes.Black, startX + 90, textAboveBarcodeY);
+                e.Graphics.DrawString(barcodeSize, fontRegular, Brushes.Black, startX + 15, textAboveBarcodeY);
 
                 string rightText = barcodeClassification;
                 float rightTextWidth = e.Graphics.MeasureString(rightText, fontRegular).Width;
-                e.Graphics.DrawString(rightText, fontRegular, Brushes.Black, startX + 365, textAboveBarcodeY);
+                e.Graphics.DrawString(rightText, fontRegular, Brushes.Black, startX + 235, textAboveBarcodeY);
 
                 // 3. Ang Barcode (Magsugod sa startY)
-                e.Graphics.DrawImage(barcodeBitmap, startX, startY, barcodeWidth, barcodeHeight);
+                e.Graphics.DrawImage(barcodeBitmap, startX, startY, 300, 160);
             }
         }
 
@@ -402,31 +395,6 @@ namespace MWS.Controllers
                 return new String[] { e.Message, "0" };
             }
         }
-        public TrnReceivingItemModel GetReceivingItem(string barcode)
-        {
-            var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
-            var receivingItem = from d in db.TrnReceivingItems
-                                where d.Barcode == barcode
-                                && d.TrnReceiving.IsLocked == true
-                                && d.TrnReceiving.BranchId == currentBranchId
-                                select new TrnReceivingItemModel
-                                {
-                                    Id = d.Id,
-                                    ReceivingId = d.ReceivingId,
-                                    ItemId = d.ItemId,
-                                    Barcode = d.Barcode,
-                                    ItemDescription = d.ItemDescription,
-                                    SizeId = d.SizeId,
-                                    Size = d.MstSize.Size,
-                                    Weight = d.Weight
-                                };
-            if (receivingItem.Any())
-            {
-                return receivingItem.FirstOrDefault();
-            }
-            return null;
-        }
-
         public string GetClassification(string barcode)
         {
             var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
@@ -441,21 +409,31 @@ namespace MWS.Controllers
             }
             return null;
         }
-        public bool isAlreadyAdded(string barcode)
-        {
-            var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
-            bool added = false;
-            var barcodeExist = from d in db.TrnProductionItems
-                               where d.TrnReceivingItem.Barcode == barcode
-                               && d.TrnProduction.IsLocked == true
-                               && d.TrnProduction.BranchId == currentBranchId
-                               select d;
-            if (barcodeExist.Any())
-            {
-                added = true;
-            }
+        //public bool isAlreadyAdded(string barcode)
+        //{
+        //    var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
+        //    bool added = false;
+        //    var barcodeExist = from d in db.TrnProductionItems
+        //                       where d.TrnReceivingItem.Barcode == barcode
+        //                       && d.TrnProduction.IsLocked == true
+        //                       && d.TrnProduction.BranchId == currentBranchId
+        //                       select d;
+        //    if (barcodeExist.Any())
+        //    {
+        //        added = true;
+        //    }
 
-            return added;
+        //    return added;
+        //}
+        public int GetSize(decimal weight)
+        {
+            var size = db.MstSizes
+                     .Where(s => weight >= s.MinWeight && weight <= s.MaxWeight)
+                     .OrderBy(s => s.Id)
+                     .Select(s => s.Id)
+                     .FirstOrDefault();
+
+            return size;
         }
     }
 }

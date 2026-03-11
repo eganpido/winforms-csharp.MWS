@@ -1,4 +1,6 @@
-﻿using MWS.Modules;
+﻿using MWS.Controllers;
+using MWS.Models;
+using MWS.Modules;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -16,10 +18,10 @@ namespace MWS.Views
     {
         public Models.TrnReceivingModel trnReceivingModel;
         public HistoryView historyView;
-        public static List<Models.DgvTrnReceivingItemModel> receivingItemData = new List<Models.DgvTrnReceivingItemModel>();
+        public static List<Models.DgvTrnReceivingReceiverItemModel> receivingItemData = new List<Models.DgvTrnReceivingReceiverItemModel>();
         public static Int32 receivingItemPageNumber = 1;
         public static Int32 receivingItemPageSize = 20;
-        public PagedList<Models.DgvTrnReceivingItemModel> receivingItemPageList = new PagedList<Models.DgvTrnReceivingItemModel>(receivingItemData, receivingItemPageNumber, receivingItemPageSize);
+        public PagedList<Models.DgvTrnReceivingReceiverItemModel> receivingItemPageList = new PagedList<Models.DgvTrnReceivingReceiverItemModel>(receivingItemData, receivingItemPageNumber, receivingItemPageSize);
         public BindingSource receivingItemDataSource = new BindingSource();
         public ReceivingDetailReceiverView(Models.TrnReceivingModel receivingModel, HistoryView _historyView)
         {
@@ -97,9 +99,9 @@ namespace MWS.Views
             comboBoxSupplier.Enabled = !isLocked;
             textBoxRemarks.Enabled = !isLocked;
             comboBoxPullOutNumber.Enabled = !isLocked;
-            buttonDownload.Enabled = !isLocked;
+            textBoxBarcode.Enabled = !isLocked;
 
-            dataGridViewReceivingItem.Columns[8].Visible = !isLocked;
+            dataGridViewReceivingItem.Columns[9].Visible = !isLocked;
             comboBoxPullOutNumber.Focus();
 
             if (isLocked)
@@ -132,11 +134,11 @@ namespace MWS.Views
         }
         public async void SetReceivingItemListDataSourceAsync()
         {
-            List<Models.DgvTrnReceivingItemModel> getReceivingItemListData = await GetReceivingItemListDataTask();
+            List<Models.DgvTrnReceivingReceiverItemModel> getReceivingItemListData = await GetReceivingItemListDataTask();
             if (getReceivingItemListData.Any())
             {
                 receivingItemData = getReceivingItemListData;
-                receivingItemPageList = new PagedList<Models.DgvTrnReceivingItemModel>(receivingItemData, receivingItemPageNumber, receivingItemPageSize);
+                receivingItemPageList = new PagedList<Models.DgvTrnReceivingReceiverItemModel>(receivingItemData, receivingItemPageNumber, receivingItemPageSize);
 
                 if (receivingItemPageList.PageCount == 1)
                 {
@@ -179,12 +181,12 @@ namespace MWS.Views
 
                 receivingItemPageNumber = 1;
 
-                receivingItemData = new List<Models.DgvTrnReceivingItemModel>();
+                receivingItemData = new List<Models.DgvTrnReceivingReceiverItemModel>();
                 receivingItemDataSource.Clear();
                 textBoxPageNumber.Text = "1 / 1";
             }
         }
-        public Task<List<Models.DgvTrnReceivingItemModel>> GetReceivingItemListDataTask()
+        public Task<List<Models.DgvTrnReceivingReceiverItemModel>> GetReceivingItemListDataTask()
         {
             Controllers.TrnReceivingItemController trnReceivingItemController = new Controllers.TrnReceivingItemController();
 
@@ -192,7 +194,7 @@ namespace MWS.Views
             if (listReceivingItem.Any())
             {
                 var items = from d in listReceivingItem
-                            select new Models.DgvTrnReceivingItemModel
+                            select new Models.DgvTrnReceivingReceiverItemModel
                             {
                                 ColumnId = d.Id,
                                 ColumnReceivingId = d.ReceivingId,
@@ -201,15 +203,18 @@ namespace MWS.Views
                                 ColumnItemDescription = d.ItemDescription,
                                 ColumnSizeId = d.SizeId,
                                 ColumnSize = d.Size,
+                                ColumnClassification = d.Classification,
                                 ColumnWeight = d.Weight.ToString("#,##0.00"),
                                 ColumnDelete = "DELETE",
                             };
+
+                txtTotalWeight.Text = items.Sum(a => Convert.ToDecimal(a.ColumnWeight)).ToString("#,##0.00");
 
                 return Task.FromResult(items.ToList());
             }
             else
             {
-                return Task.FromResult(new List<Models.DgvTrnReceivingItemModel>());
+                return Task.FromResult(new List<Models.DgvTrnReceivingReceiverItemModel>());
             }
         }
 
@@ -230,7 +235,7 @@ namespace MWS.Views
 
         private void buttonFirst_Click(object sender, EventArgs e)
         {
-            receivingItemPageList = new PagedList<Models.DgvTrnReceivingItemModel>(receivingItemData, 1, receivingItemPageSize);
+            receivingItemPageList = new PagedList<Models.DgvTrnReceivingReceiverItemModel>(receivingItemData, 1, receivingItemPageSize);
             receivingItemDataSource.DataSource = receivingItemPageList;
 
             buttonFirst.Enabled = false;
@@ -246,7 +251,7 @@ namespace MWS.Views
         {
             if (receivingItemPageList.HasPreviousPage == true)
             {
-                receivingItemPageList = new PagedList<Models.DgvTrnReceivingItemModel>(receivingItemData, --receivingItemPageNumber, receivingItemPageSize);
+                receivingItemPageList = new PagedList<Models.DgvTrnReceivingReceiverItemModel>(receivingItemData, --receivingItemPageNumber, receivingItemPageSize);
                 receivingItemDataSource.DataSource = receivingItemPageList;
             }
 
@@ -266,7 +271,7 @@ namespace MWS.Views
         {
             if (receivingItemPageList.HasNextPage == true)
             {
-                receivingItemPageList = new PagedList<Models.DgvTrnReceivingItemModel>(receivingItemData, ++receivingItemPageNumber, receivingItemPageSize);
+                receivingItemPageList = new PagedList<Models.DgvTrnReceivingReceiverItemModel>(receivingItemData, ++receivingItemPageNumber, receivingItemPageSize);
                 receivingItemDataSource.DataSource = receivingItemPageList;
             }
 
@@ -284,7 +289,7 @@ namespace MWS.Views
 
         private void buttonLast_Click(object sender, EventArgs e)
         {
-            receivingItemPageList = new PagedList<Models.DgvTrnReceivingItemModel>(receivingItemData, receivingItemPageList.PageCount, receivingItemPageSize);
+            receivingItemPageList = new PagedList<Models.DgvTrnReceivingReceiverItemModel>(receivingItemData, receivingItemPageList.PageCount, receivingItemPageSize);
             receivingItemDataSource.DataSource = receivingItemPageList;
 
             buttonFirst.Enabled = true;
@@ -298,7 +303,7 @@ namespace MWS.Views
 
         private void comboBoxPullOutNumber_SelectedValueChanged(object sender, EventArgs e)
         {
-           
+            textBoxBarcode.Focus();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -353,36 +358,74 @@ namespace MWS.Views
             if (saveDialogResult == DialogResult.Yes)
             {
                 Controllers.TrnReceivingReceiverController trnReceivingController = new Controllers.TrnReceivingReceiverController();
-
-                Models.TrnReceivingModel newReceivingModel = new Models.TrnReceivingModel()
+                int pullOutItemsCount = trnReceivingController.GetTotalPullOutItemsCount(Convert.ToInt32(comboBoxPullOutNumber.SelectedValue));
+                int receivingItemsCount = trnReceivingController.GetTotalReceivingItemsCount(trnReceivingModel.Id);
+                if(pullOutItemsCount == receivingItemsCount)
                 {
-                    SupplierId = Convert.ToInt32(comboBoxSupplier.SelectedValue),
-                    Remarks = textBoxRemarks.Text.Trim(),
-                };
+                    Models.TrnReceivingModel newReceivingModel = new Models.TrnReceivingModel()
+                    {
+                        SupplierId = Convert.ToInt32(comboBoxSupplier.SelectedValue),
+                        Remarks = textBoxRemarks.Text.Trim(),
+                    };
 
-                String[] saveReceiving = trnReceivingController.LockReceiving(trnReceivingModel.Id, newReceivingModel);
-                if (saveReceiving[1].Equals("0") == false)
-                {
-                    UpdateComponents(true);
+                    String[] saveReceiving = trnReceivingController.LockReceiving(trnReceivingModel.Id, newReceivingModel);
+                    if (saveReceiving[1].Equals("0") == false)
+                    {
+                        UpdateComponents(true);
+                    }
+                    else
+                    {
+                        MessageBox.Show(saveReceiving[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show(saveReceiving[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Validation Error: Please ensure the item count meets the required specifications before saving.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private void buttonDownload_Click(object sender, EventArgs e)
         {
-            DialogResult downloadDialogResult = MessageBox.Show("Confirm download? This will delete the existing item records.", "MWS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (downloadDialogResult == DialogResult.Yes)
+            //DialogResult downloadDialogResult = MessageBox.Show("Confirm download? This will delete the existing item records.", "MWS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //if (downloadDialogResult == DialogResult.Yes)
+            //{
+            //    Controllers.TrnReceivingReceiverItemController trnReceivingItemController = new Controllers.TrnReceivingReceiverItemController();
+            //    trnReceivingItemController.DeleteAllReceivingItem(trnReceivingModel.Id);
+            //    trnReceivingItemController.AddReceivingItem(trnReceivingModel.Id, Convert.ToInt32(comboBoxPullOutNumber.SelectedValue));
+            //    UpdateReceivingItemListDataSource();
+            //    comboBoxPullOutNumber.Text = "";
+            //    comboBoxPullOutNumber.Focus();
+            //}
+        }
+
+        private void textBoxBarcode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
             {
-                Controllers.TrnReceivingReceiverItemController trnReceivingItemController = new Controllers.TrnReceivingReceiverItemController();
-                trnReceivingItemController.DeleteAllReceivingItem(trnReceivingModel.Id);
-                trnReceivingItemController.AddReceivingItem(trnReceivingModel.Id, Convert.ToInt32(comboBoxPullOutNumber.SelectedValue));
-                UpdateReceivingItemListDataSource();
-                comboBoxPullOutNumber.Text = "";
-                comboBoxPullOutNumber.Focus();
+                Controllers.TrnReceivingReceiverItemController trnReceivingReceiverItemController = new Controllers.TrnReceivingReceiverItemController();
+                if (trnReceivingReceiverItemController.isAlreadyAdded(textBoxBarcode.Text, trnReceivingModel.Id) == false)
+                {
+                    String[] addReceiving = trnReceivingReceiverItemController.AddReceivingItem(trnReceivingModel.Id, Convert.ToInt32(comboBoxPullOutNumber.SelectedValue), textBoxBarcode.Text);
+                    if (addReceiving[1].Equals("0") == false)
+                    {
+                        UpdateReceivingItemListDataSource();
+                        textBoxBarcode.Text = "";
+                        textBoxBarcode.Focus();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Barcode doesn't exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        textBoxBarcode.Text = "";
+                        textBoxBarcode.Focus();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Barcode already exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    textBoxBarcode.Text = "";
+                    textBoxBarcode.Focus();
+                }
             }
         }
     }

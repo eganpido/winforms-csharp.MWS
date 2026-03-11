@@ -15,5 +15,7 @@ namespace MWS.Models
         public String ItemDescription { get; set; }
         public Int32 SizeId { get; set; }
         public String Size { get; set; }
+        public String Classification { get; set; }
+        public decimal Weight { get; set; }
     }
 }

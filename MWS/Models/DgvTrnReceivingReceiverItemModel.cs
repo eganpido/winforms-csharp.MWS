@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace MWS.Models 
 {
-    public class DgvTrnPullOutItemModel
+    public class DgvTrnReceivingReceiverItemModel
     {
         public Int32 ColumnId { get; set; }
-        public Int32 ColumnPullOutId { get; set; }
+        public Int32 ColumnReceivingId { get; set; }
         public Int32 ColumnItemId { get; set; }
         public String ColumnBarcode { get; set; }
         public String ColumnItemDescription { get; set; }

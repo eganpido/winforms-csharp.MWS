@@ -12,6 +12,7 @@ namespace MWS.Models
         public Int32 BranchId { get; set; }
         public String ProductionDate { get; set; }
         public String ProductionNo { get; set; }
+        public Int32 SupplierId { get; set; }
         public String Remarks { get; set; }
         public Int32 PreparedById { get; set; }
         public String PreparedBy { get; set; }

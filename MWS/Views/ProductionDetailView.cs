@@ -35,7 +35,19 @@ namespace MWS.Views
             Controllers.TrnProductionController trnProductionController = new Controllers.TrnProductionController();
             var detail = trnProductionController.ProductionDetail(id);
 
-            SetFooter();
+            GetSupplierList();
+        }
+        public void GetSupplierList()
+        {
+            Controllers.TrnProductionController trnProductionController = new Controllers.TrnProductionController();
+            if (trnProductionController.SupplierList().Any())
+            {
+                comboBoxSupplier.DataSource = trnProductionController.SupplierList();
+                comboBoxSupplier.ValueMember = "Id";
+                comboBoxSupplier.DisplayMember = "Supplier";
+
+                SetFooter();
+            }
         }
         public void SetFooter()
         {
@@ -168,6 +180,7 @@ namespace MWS.Views
         {
             buttonSave.Enabled = !isLocked;
             textBoxWeight.Enabled = !isLocked;
+            comboBoxSupplier.Enabled = !isLocked;
             dataGridViewProductionItem.Columns[11].Visible = !isLocked;
 
             textBoxWeight.Focus();
@@ -212,12 +225,14 @@ namespace MWS.Views
                 dataGridViewProductionItem.Columns[8].Visible = false;
                 dataGridViewProductionItem.Columns[9].Visible = false;
                 btnAddItem.Visible = true;
+                comboBoxSupplier.Visible = true;
             }
             else
             {
                 dataGridViewProductionItem.Columns[8].Visible = true;
                 dataGridViewProductionItem.Columns[9].Visible = !isLocked;
                 btnAddItem.Visible = false;
+                comboBoxSupplier.Visible = false;
             }
         }
         private void textBoxBarcode_KeyDown(object sender, KeyEventArgs e)
@@ -314,7 +329,12 @@ namespace MWS.Views
             {
                 Controllers.TrnProductionController trnProductionController = new Controllers.TrnProductionController();
 
-                String[] saveProduction = trnProductionController.LockProduction(trnProductionModel.Id);
+                Models.TrnProductionModel newProductionModel = new Models.TrnProductionModel()
+                {
+                    SupplierId = Convert.ToInt32(comboBoxSupplier.SelectedValue),
+                };
+
+                String[] saveProduction = trnProductionController.LockProduction(trnProductionModel.Id, newProductionModel);
                 if (saveProduction[1].Equals("0") == false)
                 {
                     UpdateComponents(true);

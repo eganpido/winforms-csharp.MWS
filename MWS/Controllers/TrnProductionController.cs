@@ -45,6 +45,7 @@ namespace MWS.Controllers
                                Id = d.Id,
                                ProductionDate = d.ProductionDate.ToShortDateString(),
                                ProductionNo = d.ProductionNo,
+                               SupplierId = d.SupplierId,
                                Remarks = d.Remarks,
                                PreparedById = d.PrepareById,
                                PreparedBy = d.MstUser.FullName,
@@ -65,6 +66,7 @@ namespace MWS.Controllers
                               Id = d.Id,
                               ProductionDate = d.ProductionDate.ToShortDateString(),
                               ProductionNo = d.ProductionNo,
+                              SupplierId = d.SupplierId,
                               Remarks = d.Remarks,
                               PreparedById = d.PrepareById,
                               PreparedBy = d.MstUser.FullName,
@@ -73,6 +75,20 @@ namespace MWS.Controllers
 
             return production.FirstOrDefault();
         }
+
+        // Supplier List
+        public List<Models.MstSupplierModel> SupplierList()
+        {
+            var suppliers = from d in db.MstSuppliers
+                            select new Models.MstSupplierModel
+                            {
+                                Id = d.Id,
+                                Supplier = d.Supplier
+                            };
+
+            return suppliers.OrderBy(d => d.Supplier).ToList();
+        }
+
         // Add Production
         public String[] AddProduction()
         {
@@ -83,6 +99,12 @@ namespace MWS.Controllers
                 if (currentUserLogin.Any() == false)
                 {
                     return new String[] { "Current login user not found.", "0" };
+                }
+
+                var supplier = from d in db.MstSuppliers select d;
+                if (supplier.Any() == false)
+                {
+                    return new String[] { "Supplier not found.", "0" };
                 }
 
                 String productionNumber = "0000000001";
@@ -98,6 +120,7 @@ namespace MWS.Controllers
                     BranchId = currentBranchId,
                     ProductionDate = DateTime.Today,
                     ProductionNo = productionNumber,
+                    SupplierId = supplier.FirstOrDefault().Id,
                     Remarks = "NA",
                     PrepareById = currentUserLogin.FirstOrDefault().Id,
                     IsLocked = false
@@ -115,7 +138,7 @@ namespace MWS.Controllers
         }
 
         // Lock Production
-        public String[] LockProduction(Int32 id)
+        public String[] LockProduction(Int32 id, Models.TrnProductionModel objProduction)
         {
             try
             {
@@ -138,6 +161,7 @@ namespace MWS.Controllers
 
                     var lockProduction = production.FirstOrDefault();
                     lockProduction.ProductionDate = DateTime.Today;
+                    lockProduction.SupplierId = objProduction.SupplierId;
                     lockProduction.IsLocked = true;
                     db.SubmitChanges();
 

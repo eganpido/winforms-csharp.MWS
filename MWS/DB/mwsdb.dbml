@@ -4,9 +4,9 @@
     <Type Name="MstBranch">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Branch" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="MstBranch_TrnProduction" Member="TrnProductions" ThisKey="Id" OtherKey="BranchId" Type="TrnProduction" />
       <Association Name="MstBranch_TrnPullOut" Member="TrnPullOuts" ThisKey="Id" OtherKey="BranchId" Type="TrnPullOut" />
       <Association Name="MstBranch_TrnReceiving" Member="TrnReceivings" ThisKey="Id" OtherKey="BranchId" Type="TrnReceiving" />
+      <Association Name="MstBranch_TrnProduction" Member="TrnProductions" ThisKey="Id" OtherKey="BranchId" Type="TrnProduction" />
     </Type>
   </Table>
   <Table Name="dbo.MstItem" Member="MstItems">
@@ -32,6 +32,7 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Supplier" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Association Name="MstSupplier_TrnReceiving" Member="TrnReceivings" ThisKey="Id" OtherKey="SupplierId" Type="TrnReceiving" />
+      <Association Name="MstSupplier_TrnProduction" Member="TrnProductions" ThisKey="Id" OtherKey="SupplierId" Type="TrnProduction" />
     </Type>
   </Table>
   <Table Name="dbo.MstUser" Member="MstUsers">
@@ -41,23 +42,9 @@
       <Column Name="Password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="FullName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="IsLocked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="MstUser_TrnProduction" Member="TrnProductions" ThisKey="Id" OtherKey="PrepareById" Type="TrnProduction" />
       <Association Name="MstUser_TrnPullOut" Member="TrnPullOuts" ThisKey="Id" OtherKey="PrepareById" Type="TrnPullOut" />
       <Association Name="MstUser_TrnReceiving" Member="TrnReceivings" ThisKey="Id" OtherKey="PrepareById" Type="TrnReceiving" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TrnProduction" Member="TrnProductions">
-    <Type Name="TrnProduction">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="BranchId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ProductionNo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="ProductionDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Remarks" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="IsLocked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="PrepareById" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="TrnProduction_TrnProductionItem" Member="TrnProductionItems" ThisKey="Id" OtherKey="ProductionId" Type="TrnProductionItem" />
-      <Association Name="MstBranch_TrnProduction" Member="MstBranch" ThisKey="BranchId" OtherKey="Id" Type="MstBranch" IsForeignKey="true" />
-      <Association Name="MstUser_TrnProduction" Member="MstUser" ThisKey="PrepareById" OtherKey="Id" Type="MstUser" IsForeignKey="true" />
+      <Association Name="MstUser_TrnProduction" Member="TrnProductions" ThisKey="Id" OtherKey="PrepareById" Type="TrnProduction" />
     </Type>
   </Table>
   <Table Name="dbo.TrnPullOut" Member="TrnPullOuts">
@@ -128,6 +115,22 @@
       <Association Name="MstItem_TrnReceivingItem" Member="MstItem" ThisKey="ItemId" OtherKey="Id" Type="MstItem" IsForeignKey="true" />
       <Association Name="MstSize_TrnReceivingItem" Member="MstSize" ThisKey="SizeId" OtherKey="Id" Type="MstSize" IsForeignKey="true" />
       <Association Name="TrnReceiving_TrnReceivingItem" Member="TrnReceiving" ThisKey="ReceivingId" OtherKey="Id" Type="TrnReceiving" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrnProduction" Member="TrnProductions">
+    <Type Name="TrnProduction">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BranchId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductionNo" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ProductionDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SupplierId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Remarks" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="IsLocked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PrepareById" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TrnProduction_TrnProductionItem" Member="TrnProductionItems" ThisKey="Id" OtherKey="ProductionId" Type="TrnProductionItem" />
+      <Association Name="MstBranch_TrnProduction" Member="MstBranch" ThisKey="BranchId" OtherKey="Id" Type="MstBranch" IsForeignKey="true" />
+      <Association Name="MstSupplier_TrnProduction" Member="MstSupplier" ThisKey="SupplierId" OtherKey="Id" Type="MstSupplier" IsForeignKey="true" />
+      <Association Name="MstUser_TrnProduction" Member="MstUser" ThisKey="PrepareById" OtherKey="Id" Type="MstUser" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

@@ -260,5 +260,11 @@ namespace MWS.Views
             SystemTableView systemTableView = new SystemTableView();
             systemTableView.Show();
         }
+
+        private void buttonReports_Click(object sender, EventArgs e)
+        {
+            RepInventoryView repInventoryView = new RepInventoryView();
+            repInventoryView.Show();
+        }
     }
 }

@@ -135,4 +135,11 @@
       <Association Name="MstUser_TrnReceiving" Member="MstUser" ThisKey="PrepareById" OtherKey="Id" Type="MstUser" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.RepInventory" Member="RepInventories">
+    <Type Name="RepInventory">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Report" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IsVisible" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

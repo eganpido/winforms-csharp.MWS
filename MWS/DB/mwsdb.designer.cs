@@ -63,6 +63,9 @@ namespace MWS.DB
     partial void InsertTrnReceiving(TrnReceiving instance);
     partial void UpdateTrnReceiving(TrnReceiving instance);
     partial void DeleteTrnReceiving(TrnReceiving instance);
+    partial void InsertRepInventory(RepInventory instance);
+    partial void UpdateRepInventory(RepInventory instance);
+    partial void DeleteRepInventory(RepInventory instance);
     #endregion
 		
 		public mwsdbDataContext() : 
@@ -180,6 +183,14 @@ namespace MWS.DB
 			get
 			{
 				return this.GetTable<TrnReceiving>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RepInventory> RepInventories
+		{
+			get
+			{
+				return this.GetTable<RepInventory>();
 			}
 		}
 	}
@@ -3119,6 +3130,116 @@ namespace MWS.DB
 		{
 			this.SendPropertyChanging();
 			entity.TrnReceiving = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RepInventory")]
+	public partial class RepInventory : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Report;
+		
+		private bool _IsVisible;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnReportChanging(string value);
+    partial void OnReportChanged();
+    partial void OnIsVisibleChanging(bool value);
+    partial void OnIsVisibleChanged();
+    #endregion
+		
+		public RepInventory()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Report", DbType="NVarChar(MAX)")]
+		public string Report
+		{
+			get
+			{
+				return this._Report;
+			}
+			set
+			{
+				if ((this._Report != value))
+				{
+					this.OnReportChanging(value);
+					this.SendPropertyChanging();
+					this._Report = value;
+					this.SendPropertyChanged("Report");
+					this.OnReportChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsVisible", DbType="Bit NOT NULL")]
+		public bool IsVisible
+		{
+			get
+			{
+				return this._IsVisible;
+			}
+			set
+			{
+				if ((this._IsVisible != value))
+				{
+					this.OnIsVisibleChanging(value);
+					this.SendPropertyChanging();
+					this._IsVisible = value;
+					this.SendPropertyChanged("IsVisible");
+					this.OnIsVisibleChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

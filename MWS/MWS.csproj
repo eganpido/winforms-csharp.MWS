@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.6.2\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.5, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.5\lib\net461\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
     </Reference>
@@ -59,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RepInventoryController.cs" />
     <Compile Include="Controllers\MstSupplierController.cs" />
     <Compile Include="Controllers\MstItemController.cs" />
     <Compile Include="Controllers\TrnPullOutItemController.cs" />
@@ -86,6 +93,10 @@
     <Compile Include="Models\MstClassificationModel.cs" />
     <Compile Include="Models\DgvMstItemModel.cs" />
     <Compile Include="Models\DgvMstSupplierModel.cs" />
+    <Compile Include="Models\MstBranchModel.cs" />
+    <Compile Include="Models\RepInventoryReportCutModel.cs" />
+    <Compile Include="Models\RepInventoryReportSlabModel.cs" />
+    <Compile Include="Models\RepInventoryModel.cs" />
     <Compile Include="Models\MstSupplierModel.cs" />
     <Compile Include="Models\MstSizeModel.cs" />
     <Compile Include="Models\MstItemModel.cs" />
@@ -102,6 +113,12 @@
     <Compile Include="Modules\SysCurrentModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\RepInventoryPDFView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\RepInventoryPDFView.Designer.cs">
+      <DependentUpon>RepInventoryPDFView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\DashboardView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +191,12 @@
     <Compile Include="Views\ProductionDetailClassificationView.Designer.cs">
       <DependentUpon>ProductionDetailClassificationView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\RepInventoryView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\RepInventoryView.Designer.cs">
+      <DependentUpon>RepInventoryView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\SupplierDetailView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,6 +219,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reports\RepInventoryPDFView.resx">
+      <DependentUpon>RepInventoryPDFView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\DashboardView.resx">
       <DependentUpon>DashboardView.cs</DependentUpon>
     </EmbeddedResource>
@@ -231,6 +257,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ProductionDetailClassificationView.resx">
       <DependentUpon>ProductionDetailClassificationView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RepInventoryView.resx">
+      <DependentUpon>RepInventoryView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SupplierDetailView.resx">
       <DependentUpon>SupplierDetailView.cs</DependentUpon>
@@ -312,6 +341,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\table-cells.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\business-report.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

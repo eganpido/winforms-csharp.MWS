@@ -286,6 +286,7 @@ namespace MWS.Controllers
             int itemCount = 0;
             var pullOutItems = from d in db.TrnPullOutItems
                                where d.PullOutId == pullOutId
+                               && d.TrnProductionItem.ItemId != 2
                                select d;
             if (pullOutItems.Any())
             {

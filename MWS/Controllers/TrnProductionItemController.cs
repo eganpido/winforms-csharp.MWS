@@ -28,8 +28,6 @@ namespace MWS.Controllers
         {
             List<MstClassificationModel> classifications = new List<MstClassificationModel>();
 
-            classifications.Add(new MstClassificationModel { Classification = "NONE" });
-            classifications.Add(new MstClassificationModel { Classification = "CUT" });
             classifications.Add(new MstClassificationModel { Classification = "CLASSIC" });
             classifications.Add(new MstClassificationModel { Classification = "SPICY" });
 
@@ -111,7 +109,7 @@ namespace MWS.Controllers
                         SizeId = GetSize(weight),
                         ProductionBarcode = finalBarcode,
                         ActualWeight = weight,
-                        Classification = "NONE"
+                        Classification = "CLASSIC"
                     };
 
                     db.TrnProductionItems.InsertOnSubmit(newProductionItem);

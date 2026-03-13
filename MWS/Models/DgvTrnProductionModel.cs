@@ -11,6 +11,7 @@ namespace MWS.Models
         public Int32 ColumnProcessingId { get; set; }
         public String ColumnProcessingDate { get; set; }
         public String ColumnProcessingNo { get; set; }
+        public String ColumnProcessingSupplier { get; set; }
         public String ColumnProcessingRemarks { get; set; }
         public Int32 ColumnProcessingPreparedById { get; set; }
         public String ColumnProcessingPreparedBy { get; set; }

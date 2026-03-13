@@ -12,14 +12,16 @@ namespace MWS.Controllers
         public DB.mwsdbDataContext db = new DB.mwsdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
 
         // Get Cut Quantity Per Sizes
-        public int GetQuantity(int sizeId)
+        public int GetQuantity(int sizeId, int branchId)
         {
-            var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
             int totalSlabs = 0;
+
             var receivingItem = from d in db.TrnReceivingItems
                                 where d.TrnReceiving.IsLocked == true
                                 && d.SizeId == sizeId
+                                && d.TrnReceiving.BranchId == branchId
                                 select d;
+
             if (receivingItem.Any())
             {
                 totalSlabs = receivingItem.Count();

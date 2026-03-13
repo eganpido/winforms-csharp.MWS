@@ -31,20 +31,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -53,6 +49,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.tabControlHistory = new System.Windows.Forms.TabControl();
@@ -106,29 +107,22 @@
             this.label12 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.panel7 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.labelCurrentUser = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.labelSupport = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelDeveloper = new System.Windows.Forms.Label();
-            this.ColumnPullOutId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPullOutNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPullOutDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPullOutRemarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPullOutPreparedById = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPullOutPreparedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPullOutIsLocked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ColumnPullOutView = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.ColumnProcessingId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnProcessingNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnProcessingDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnProcessingSupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnProcessingRemarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnProcessingPreparedById = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnProcessingTotalWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -147,6 +141,14 @@
             this.ColumnReceivingPreparedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnReceivingIsLocked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ColumnReceivingView = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ColumnPullOutId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPullOutNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPullOutDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPullOutRemarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPullOutPreparedById = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPullOutPreparedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPullOutIsLocked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ColumnPullOutView = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             this.panel9.SuspendLayout();
             this.tabControlHistory.SuspendLayout();
@@ -491,20 +493,21 @@
             this.ColumnProcessingId,
             this.ColumnProcessingNo,
             this.ColumnProcessingDate,
+            this.ColumnProcessingSupplier,
             this.ColumnProcessingRemarks,
             this.ColumnProcessingPreparedById,
             this.ColumnProcessingTotalWeight,
             this.ColumnProcessingPreparedBy,
             this.ColumnProcessingIsLocked,
             this.ColumnProcessingView});
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewProcessing.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewProcessing.DefaultCellStyle = dataGridViewCellStyle19;
             this.dataGridViewProcessing.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewProcessing.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewProcessing.Name = "dataGridViewProcessing";
@@ -724,10 +727,10 @@
             this.dataGridViewPullOut.AllowUserToDeleteRows = false;
             this.dataGridViewPullOut.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.dataGridViewPullOut.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewPullOut.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewPullOut.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.dataGridViewPullOut.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPullOut.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnPullOutId,
@@ -738,14 +741,14 @@
             this.ColumnPullOutPreparedBy,
             this.ColumnPullOutIsLocked,
             this.ColumnPullOutView});
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewPullOut.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewPullOut.DefaultCellStyle = dataGridViewCellStyle26;
             this.dataGridViewPullOut.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewPullOut.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewPullOut.Name = "dataGridViewPullOut";
@@ -964,23 +967,6 @@
             this.label1.TabIndex = 101;
             this.label1.Text = "Precision Weighing for Meat Products.";
             // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnClose.BackgroundImage = global::MWS.Properties.Resources.log_out;
-            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnClose.Location = new System.Drawing.Point(944, 7);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(49, 41);
-            this.btnClose.TabIndex = 4;
-            this.btnClose.TabStop = false;
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -1003,16 +989,6 @@
             this.label5.Size = new System.Drawing.Size(164, 22);
             this.label5.TabIndex = 102;
             this.label5.Text = "Weigh Right. Sell Right.";
-            // 
-            // panel7
-            // 
-            this.panel7.BackgroundImage = global::MWS.Properties.Resources.Weighing1;
-            this.panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(87, 103);
-            this.panel7.TabIndex = 2;
             // 
             // panel2
             // 
@@ -1039,16 +1015,6 @@
             this.panel5.Size = new System.Drawing.Size(512, 81);
             this.panel5.TabIndex = 2;
             // 
-            // panel6
-            // 
-            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel6.BackgroundImage = global::MWS.Properties.Resources.user;
-            this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel6.Location = new System.Drawing.Point(400, 25);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(44, 35);
-            this.panel6.TabIndex = 0;
-            // 
             // labelCurrentUser
             // 
             this.labelCurrentUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -1061,16 +1027,6 @@
             this.labelCurrentUser.Size = new System.Drawing.Size(47, 19);
             this.labelCurrentUser.TabIndex = 0;
             this.labelCurrentUser.Text = "admin";
-            // 
-            // panel3
-            // 
-            this.panel3.BackgroundImage = global::MWS.Properties.Resources.streetsmartLogo_9;
-            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(87, 81);
-            this.panel3.TabIndex = 1;
             // 
             // labelSupport
             // 
@@ -1108,101 +1064,52 @@
             this.labelDeveloper.TabIndex = 0;
             this.labelDeveloper.Text = "Streetsmart Solutions";
             // 
-            // ColumnPullOutId
+            // btnClose
             // 
-            this.ColumnPullOutId.DataPropertyName = "ColumnPullOutId";
-            this.ColumnPullOutId.HeaderText = "Id";
-            this.ColumnPullOutId.MinimumWidth = 6;
-            this.ColumnPullOutId.Name = "ColumnPullOutId";
-            this.ColumnPullOutId.ReadOnly = true;
-            this.ColumnPullOutId.Visible = false;
-            this.ColumnPullOutId.Width = 125;
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnClose.BackgroundImage = global::MWS.Properties.Resources.log_out;
+            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnClose.Location = new System.Drawing.Point(944, 7);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(49, 41);
+            this.btnClose.TabIndex = 4;
+            this.btnClose.TabStop = false;
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // ColumnPullOutNo
+            // panel7
             // 
-            this.ColumnPullOutNo.DataPropertyName = "ColumnPullOutNo";
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Open Sans SemiBold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ColumnPullOutNo.DefaultCellStyle = dataGridViewCellStyle20;
-            this.ColumnPullOutNo.HeaderText = "No.";
-            this.ColumnPullOutNo.MinimumWidth = 6;
-            this.ColumnPullOutNo.Name = "ColumnPullOutNo";
-            this.ColumnPullOutNo.ReadOnly = true;
-            this.ColumnPullOutNo.Width = 150;
+            this.panel7.BackgroundImage = global::MWS.Properties.Resources.Weighing1;
+            this.panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(87, 103);
+            this.panel7.TabIndex = 2;
             // 
-            // ColumnPullOutDate
+            // panel6
             // 
-            this.ColumnPullOutDate.DataPropertyName = "ColumnPullOutDate";
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
-            this.ColumnPullOutDate.DefaultCellStyle = dataGridViewCellStyle21;
-            this.ColumnPullOutDate.HeaderText = "Date";
-            this.ColumnPullOutDate.MinimumWidth = 6;
-            this.ColumnPullOutDate.Name = "ColumnPullOutDate";
-            this.ColumnPullOutDate.ReadOnly = true;
-            this.ColumnPullOutDate.Width = 150;
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel6.BackgroundImage = global::MWS.Properties.Resources.user;
+            this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel6.Location = new System.Drawing.Point(400, 25);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(44, 35);
+            this.panel6.TabIndex = 0;
             // 
-            // ColumnPullOutRemarks
+            // panel3
             // 
-            this.ColumnPullOutRemarks.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnPullOutRemarks.DataPropertyName = "ColumnPullOutRemarks";
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
-            this.ColumnPullOutRemarks.DefaultCellStyle = dataGridViewCellStyle22;
-            this.ColumnPullOutRemarks.HeaderText = "Remarks";
-            this.ColumnPullOutRemarks.MinimumWidth = 6;
-            this.ColumnPullOutRemarks.Name = "ColumnPullOutRemarks";
-            this.ColumnPullOutRemarks.ReadOnly = true;
-            // 
-            // ColumnPullOutPreparedById
-            // 
-            this.ColumnPullOutPreparedById.DataPropertyName = "ColumnPullOutPreparedById";
-            this.ColumnPullOutPreparedById.HeaderText = "PreparedById";
-            this.ColumnPullOutPreparedById.MinimumWidth = 6;
-            this.ColumnPullOutPreparedById.Name = "ColumnPullOutPreparedById";
-            this.ColumnPullOutPreparedById.ReadOnly = true;
-            this.ColumnPullOutPreparedById.Visible = false;
-            this.ColumnPullOutPreparedById.Width = 125;
-            // 
-            // ColumnPullOutPreparedBy
-            // 
-            this.ColumnPullOutPreparedBy.DataPropertyName = "ColumnPullOutPreparedBy";
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
-            this.ColumnPullOutPreparedBy.DefaultCellStyle = dataGridViewCellStyle23;
-            this.ColumnPullOutPreparedBy.HeaderText = "Prepared by";
-            this.ColumnPullOutPreparedBy.MinimumWidth = 6;
-            this.ColumnPullOutPreparedBy.Name = "ColumnPullOutPreparedBy";
-            this.ColumnPullOutPreparedBy.ReadOnly = true;
-            this.ColumnPullOutPreparedBy.Width = 150;
-            // 
-            // ColumnPullOutIsLocked
-            // 
-            this.ColumnPullOutIsLocked.DataPropertyName = "ColumnPullOutIsLocked";
-            this.ColumnPullOutIsLocked.HeaderText = "L";
-            this.ColumnPullOutIsLocked.MinimumWidth = 6;
-            this.ColumnPullOutIsLocked.Name = "ColumnPullOutIsLocked";
-            this.ColumnPullOutIsLocked.ReadOnly = true;
-            this.ColumnPullOutIsLocked.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnPullOutIsLocked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ColumnPullOutIsLocked.Width = 125;
-            // 
-            // ColumnPullOutView
-            // 
-            this.ColumnPullOutView.DataPropertyName = "ColumnPullOutView";
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            this.ColumnPullOutView.DefaultCellStyle = dataGridViewCellStyle24;
-            this.ColumnPullOutView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ColumnPullOutView.HeaderText = "";
-            this.ColumnPullOutView.MinimumWidth = 6;
-            this.ColumnPullOutView.Name = "ColumnPullOutView";
-            this.ColumnPullOutView.ReadOnly = true;
-            this.ColumnPullOutView.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnPullOutView.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ColumnPullOutView.Width = 130;
+            this.panel3.BackgroundImage = global::MWS.Properties.Resources.streetsmartLogo_9;
+            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(87, 81);
+            this.panel3.TabIndex = 1;
             // 
             // ColumnProcessingId
             // 
@@ -1236,13 +1143,25 @@
             this.ColumnProcessingDate.ReadOnly = true;
             this.ColumnProcessingDate.Width = 150;
             // 
+            // ColumnProcessingSupplier
+            // 
+            this.ColumnProcessingSupplier.DataPropertyName = "ColumnProcessingSupplier";
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
+            this.ColumnProcessingSupplier.DefaultCellStyle = dataGridViewCellStyle14;
+            this.ColumnProcessingSupplier.HeaderText = "Supplier";
+            this.ColumnProcessingSupplier.MinimumWidth = 6;
+            this.ColumnProcessingSupplier.Name = "ColumnProcessingSupplier";
+            this.ColumnProcessingSupplier.ReadOnly = true;
+            this.ColumnProcessingSupplier.Width = 220;
+            // 
             // ColumnProcessingRemarks
             // 
             this.ColumnProcessingRemarks.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ColumnProcessingRemarks.DataPropertyName = "ColumnProcessingRemarks";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
-            this.ColumnProcessingRemarks.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
+            this.ColumnProcessingRemarks.DefaultCellStyle = dataGridViewCellStyle15;
             this.ColumnProcessingRemarks.HeaderText = "Remarks";
             this.ColumnProcessingRemarks.MinimumWidth = 6;
             this.ColumnProcessingRemarks.Name = "ColumnProcessingRemarks";
@@ -1261,9 +1180,9 @@
             // ColumnProcessingTotalWeight
             // 
             this.ColumnProcessingTotalWeight.DataPropertyName = "ColumnProcessingTotalWeight";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
-            this.ColumnProcessingTotalWeight.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
+            this.ColumnProcessingTotalWeight.DefaultCellStyle = dataGridViewCellStyle16;
             this.ColumnProcessingTotalWeight.HeaderText = "Weight";
             this.ColumnProcessingTotalWeight.MinimumWidth = 6;
             this.ColumnProcessingTotalWeight.Name = "ColumnProcessingTotalWeight";
@@ -1273,9 +1192,9 @@
             // ColumnProcessingPreparedBy
             // 
             this.ColumnProcessingPreparedBy.DataPropertyName = "ColumnProcessingPreparedBy";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
-            this.ColumnProcessingPreparedBy.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
+            this.ColumnProcessingPreparedBy.DefaultCellStyle = dataGridViewCellStyle17;
             this.ColumnProcessingPreparedBy.HeaderText = "Prepared by";
             this.ColumnProcessingPreparedBy.MinimumWidth = 6;
             this.ColumnProcessingPreparedBy.Name = "ColumnProcessingPreparedBy";
@@ -1291,18 +1210,19 @@
             this.ColumnProcessingIsLocked.ReadOnly = true;
             this.ColumnProcessingIsLocked.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnProcessingIsLocked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ColumnProcessingIsLocked.Visible = false;
             this.ColumnProcessingIsLocked.Width = 125;
             // 
             // ColumnProcessingView
             // 
             this.ColumnProcessingView.DataPropertyName = "ColumnProcessingView";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            this.ColumnProcessingView.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            this.ColumnProcessingView.DefaultCellStyle = dataGridViewCellStyle18;
             this.ColumnProcessingView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ColumnProcessingView.HeaderText = "";
             this.ColumnProcessingView.MinimumWidth = 6;
@@ -1433,6 +1353,7 @@
             this.ColumnReceivingIsLocked.ReadOnly = true;
             this.ColumnReceivingIsLocked.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnReceivingIsLocked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ColumnReceivingIsLocked.Visible = false;
             this.ColumnReceivingIsLocked.Width = 125;
             // 
             // ColumnReceivingView
@@ -1453,6 +1374,103 @@
             this.ColumnReceivingView.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnReceivingView.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.ColumnReceivingView.Width = 130;
+            // 
+            // ColumnPullOutId
+            // 
+            this.ColumnPullOutId.DataPropertyName = "ColumnPullOutId";
+            this.ColumnPullOutId.HeaderText = "Id";
+            this.ColumnPullOutId.MinimumWidth = 6;
+            this.ColumnPullOutId.Name = "ColumnPullOutId";
+            this.ColumnPullOutId.ReadOnly = true;
+            this.ColumnPullOutId.Visible = false;
+            this.ColumnPullOutId.Width = 125;
+            // 
+            // ColumnPullOutNo
+            // 
+            this.ColumnPullOutNo.DataPropertyName = "ColumnPullOutNo";
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Open Sans SemiBold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ColumnPullOutNo.DefaultCellStyle = dataGridViewCellStyle21;
+            this.ColumnPullOutNo.HeaderText = "No.";
+            this.ColumnPullOutNo.MinimumWidth = 6;
+            this.ColumnPullOutNo.Name = "ColumnPullOutNo";
+            this.ColumnPullOutNo.ReadOnly = true;
+            this.ColumnPullOutNo.Width = 150;
+            // 
+            // ColumnPullOutDate
+            // 
+            this.ColumnPullOutDate.DataPropertyName = "ColumnPullOutDate";
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
+            this.ColumnPullOutDate.DefaultCellStyle = dataGridViewCellStyle22;
+            this.ColumnPullOutDate.HeaderText = "Date";
+            this.ColumnPullOutDate.MinimumWidth = 6;
+            this.ColumnPullOutDate.Name = "ColumnPullOutDate";
+            this.ColumnPullOutDate.ReadOnly = true;
+            this.ColumnPullOutDate.Width = 150;
+            // 
+            // ColumnPullOutRemarks
+            // 
+            this.ColumnPullOutRemarks.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnPullOutRemarks.DataPropertyName = "ColumnPullOutRemarks";
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
+            this.ColumnPullOutRemarks.DefaultCellStyle = dataGridViewCellStyle23;
+            this.ColumnPullOutRemarks.HeaderText = "Remarks";
+            this.ColumnPullOutRemarks.MinimumWidth = 6;
+            this.ColumnPullOutRemarks.Name = "ColumnPullOutRemarks";
+            this.ColumnPullOutRemarks.ReadOnly = true;
+            // 
+            // ColumnPullOutPreparedById
+            // 
+            this.ColumnPullOutPreparedById.DataPropertyName = "ColumnPullOutPreparedById";
+            this.ColumnPullOutPreparedById.HeaderText = "PreparedById";
+            this.ColumnPullOutPreparedById.MinimumWidth = 6;
+            this.ColumnPullOutPreparedById.Name = "ColumnPullOutPreparedById";
+            this.ColumnPullOutPreparedById.ReadOnly = true;
+            this.ColumnPullOutPreparedById.Visible = false;
+            this.ColumnPullOutPreparedById.Width = 125;
+            // 
+            // ColumnPullOutPreparedBy
+            // 
+            this.ColumnPullOutPreparedBy.DataPropertyName = "ColumnPullOutPreparedBy";
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
+            this.ColumnPullOutPreparedBy.DefaultCellStyle = dataGridViewCellStyle24;
+            this.ColumnPullOutPreparedBy.HeaderText = "Prepared by";
+            this.ColumnPullOutPreparedBy.MinimumWidth = 6;
+            this.ColumnPullOutPreparedBy.Name = "ColumnPullOutPreparedBy";
+            this.ColumnPullOutPreparedBy.ReadOnly = true;
+            this.ColumnPullOutPreparedBy.Width = 150;
+            // 
+            // ColumnPullOutIsLocked
+            // 
+            this.ColumnPullOutIsLocked.DataPropertyName = "ColumnPullOutIsLocked";
+            this.ColumnPullOutIsLocked.HeaderText = "L";
+            this.ColumnPullOutIsLocked.MinimumWidth = 6;
+            this.ColumnPullOutIsLocked.Name = "ColumnPullOutIsLocked";
+            this.ColumnPullOutIsLocked.ReadOnly = true;
+            this.ColumnPullOutIsLocked.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnPullOutIsLocked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ColumnPullOutIsLocked.Visible = false;
+            this.ColumnPullOutIsLocked.Width = 125;
+            // 
+            // ColumnPullOutView
+            // 
+            this.ColumnPullOutView.DataPropertyName = "ColumnPullOutView";
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle25.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            this.ColumnPullOutView.DefaultCellStyle = dataGridViewCellStyle25;
+            this.ColumnPullOutView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ColumnPullOutView.HeaderText = "";
+            this.ColumnPullOutView.MinimumWidth = 6;
+            this.ColumnPullOutView.Name = "ColumnPullOutView";
+            this.ColumnPullOutView.ReadOnly = true;
+            this.ColumnPullOutView.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnPullOutView.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ColumnPullOutView.Width = 130;
             // 
             // HistoryView
             // 
@@ -1569,14 +1587,6 @@
         private System.Windows.Forms.Button buttonPullOutNext;
         private System.Windows.Forms.Button buttonPullOutLast;
         private System.Windows.Forms.TextBox textBoxPullOutPageNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPullOutId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPullOutNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPullOutDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPullOutRemarks;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPullOutPreparedById;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPullOutPreparedBy;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnPullOutIsLocked;
-        private System.Windows.Forms.DataGridViewButtonColumn ColumnPullOutView;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnReceivingBranchId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnReceivingNo;
@@ -1592,11 +1602,20 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProcessingId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProcessingNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProcessingDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProcessingSupplier;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProcessingRemarks;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProcessingPreparedById;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProcessingTotalWeight;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnProcessingPreparedBy;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnProcessingIsLocked;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnProcessingView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPullOutId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPullOutNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPullOutDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPullOutRemarks;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPullOutPreparedById;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPullOutPreparedBy;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnPullOutIsLocked;
+        private System.Windows.Forms.DataGridViewButtonColumn ColumnPullOutView;
     }
 }

@@ -225,6 +225,7 @@ namespace MWS.Views
                 dataGridViewProductionItem.Columns[8].Visible = false;
                 dataGridViewProductionItem.Columns[9].Visible = false;
                 btnAddItem.Visible = true;
+                labelSupplier.Visible = true;
                 comboBoxSupplier.Visible = true;
             }
             else
@@ -232,6 +233,7 @@ namespace MWS.Views
                 dataGridViewProductionItem.Columns[8].Visible = true;
                 dataGridViewProductionItem.Columns[9].Visible = !isLocked;
                 btnAddItem.Visible = false;
+                labelSupplier.Visible = false;
                 comboBoxSupplier.Visible = false;
             }
         }

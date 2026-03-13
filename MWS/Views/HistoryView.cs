@@ -42,13 +42,23 @@ namespace MWS.Views
             CreatePullOutListDataGridView();
 
             var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
-            if(currentBranchId == 1)
+            if (currentBranchId == 1)
             {
                 tabPageProcessing.Text = "Processing";
+
+                if (!tabControlHistory.TabPages.Contains(tabPagePullOut))
+                {
+                    tabControlHistory.TabPages.Add(tabPagePullOut);
+                }
             }
             else
             {
                 tabPageProcessing.Text = "Production";
+
+                if (tabControlHistory.TabPages.Contains(tabPagePullOut))
+                {
+                    tabControlHistory.TabPages.Remove(tabPagePullOut);
+                }
             }
         }
 
@@ -306,6 +316,7 @@ namespace MWS.Views
                                 ColumnProcessingId = d.Id,
                                 ColumnProcessingDate = d.ProductionDate,
                                 ColumnProcessingNo = d.ProductionNo,
+                                ColumnProcessingSupplier = d.Supplier,
                                 ColumnProcessingRemarks = d.Remarks,
                                 ColumnProcessingPreparedById = d.PreparedById,
                                 ColumnProcessingPreparedBy = d.PreparedBy.ToString(),

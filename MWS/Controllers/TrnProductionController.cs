@@ -46,6 +46,7 @@ namespace MWS.Controllers
                                ProductionDate = d.ProductionDate.ToShortDateString(),
                                ProductionNo = d.ProductionNo,
                                SupplierId = d.SupplierId,
+                               Supplier = d.MstSupplier.Supplier,
                                Remarks = d.Remarks,
                                PreparedById = d.PrepareById,
                                PreparedBy = d.MstUser.FullName,

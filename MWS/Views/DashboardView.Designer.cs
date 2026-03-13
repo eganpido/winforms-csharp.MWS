@@ -34,6 +34,7 @@
             this.labelTotal = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.buttonReports = new System.Windows.Forms.Button();
             this.buttonSystemTables = new System.Windows.Forms.Button();
             this.buttonHistory = new System.Windows.Forms.Button();
             this.btnProceed = new System.Windows.Forms.Button();
@@ -53,7 +54,6 @@
             this.labelSupport = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelDeveloper = new System.Windows.Forms.Label();
-            this.buttonReports = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -86,7 +86,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 367F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 369F));
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 161);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -113,7 +113,7 @@
             this.labelTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
             this.labelTotal.Font = new System.Drawing.Font("Open Sans SemiBold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.labelTotal.Location = new System.Drawing.Point(610, 18);
+            this.labelTotal.Location = new System.Drawing.Point(462, 18);
             this.labelTotal.Name = "labelTotal";
             this.labelTotal.Size = new System.Drawing.Size(115, 26);
             this.labelTotal.TabIndex = 1;
@@ -144,6 +144,24 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(994, 75);
             this.panel8.TabIndex = 2;
+            // 
+            // buttonReports
+            // 
+            this.buttonReports.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonReports.BackColor = System.Drawing.Color.LightSlateGray;
+            this.buttonReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonReports.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonReports.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.buttonReports.Image = global::MWS.Properties.Resources.business_report;
+            this.buttonReports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonReports.Location = new System.Drawing.Point(193, 6);
+            this.buttonReports.Name = "buttonReports";
+            this.buttonReports.Size = new System.Drawing.Size(126, 63);
+            this.buttonReports.TabIndex = 5;
+            this.buttonReports.Text = "      Reports";
+            this.buttonReports.UseVisualStyleBackColor = false;
+            this.buttonReports.Click += new System.EventHandler(this.buttonReports_Click);
             // 
             // buttonSystemTables
             // 
@@ -404,24 +422,6 @@
             this.labelDeveloper.Size = new System.Drawing.Size(139, 19);
             this.labelDeveloper.TabIndex = 0;
             this.labelDeveloper.Text = "Streetsmart Solutions";
-            // 
-            // buttonReports
-            // 
-            this.buttonReports.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonReports.BackColor = System.Drawing.Color.LightSlateGray;
-            this.buttonReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonReports.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonReports.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.buttonReports.Image = global::MWS.Properties.Resources.business_report;
-            this.buttonReports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonReports.Location = new System.Drawing.Point(193, 6);
-            this.buttonReports.Name = "buttonReports";
-            this.buttonReports.Size = new System.Drawing.Size(126, 63);
-            this.buttonReports.TabIndex = 5;
-            this.buttonReports.Text = "      Reports";
-            this.buttonReports.UseVisualStyleBackColor = false;
-            this.buttonReports.Click += new System.EventHandler(this.buttonReports_Click);
             // 
             // DashboardView
             // 

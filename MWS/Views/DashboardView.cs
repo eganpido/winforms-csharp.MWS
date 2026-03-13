@@ -59,7 +59,7 @@ namespace MWS.Views
             int grandTotalB1 = m1 + xs1 + s1 + med1 + l1 + xl1;
             int grandTotalB2 = m2 + xs2 + s2 + med2 + l2 + xl2;
 
-            labelTotal.Text = $"TOTAL Commissary 1: {grandTotalB1:N0}  |  TOTAL Commissary 2: {grandTotalB2:N0}";
+            labelTotal.Text = $"TOTAL Commissary 1:  {grandTotalB1:N0}  |  TOTAL Commissary 2:  {grandTotalB2:N0}";
 
             bool IsReceiver = Convert.ToBoolean(Modules.SysCurrentModule.GetCurrentSettings().IsReceiver);
             if (IsReceiver)

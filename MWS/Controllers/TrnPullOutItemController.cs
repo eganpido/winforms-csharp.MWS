@@ -108,14 +108,14 @@ namespace MWS.Controllers
             }
             return productionItemId;
         }
-        public bool isAlreadyAdded(string barcode)
+        public bool isAlreadyAdded(string barcode, int pullOutId)
         {
             var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
             bool added = false;
 
             var barcodeExist = from d in db.TrnPullOutItems
                                where d.TrnProductionItem.ProductionBarcode == barcode
-                               && d.TrnPullOut.IsLocked == true
+                               && d.PullOutId == pullOutId
                                && d.TrnPullOut.BranchId == currentBranchId
                                select d;
             if (barcodeExist.Any())

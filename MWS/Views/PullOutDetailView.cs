@@ -148,10 +148,11 @@ namespace MWS.Views
                                 ColumnSizeId = d.SizeId,
                                 ColumnSize = d.Size,
                                 ColumnClassification = d.Classification,
-                                ColumnWeight = d.Weight.ToString("#,##0.00"),
+                                ColumnWeight = d.Weight.ToString("#,##0.000"),
                                 ColumnDelete = "DELETE",
                             };
-                txtTotalWeight.Text = items.Sum(a => Convert.ToDecimal(a.ColumnWeight)).ToString("#,##0.00");
+                txtTotalWeight.Text = items.Sum(a => Convert.ToDecimal(a.ColumnWeight)).ToString("#,##0.000");
+                txtTotalCount.Text = items.Count().ToString();
 
                 return Task.FromResult(items.ToList());
             }
@@ -345,7 +346,7 @@ namespace MWS.Views
             if (e.KeyCode == Keys.Enter)
             {
                 Controllers.TrnPullOutItemController trnPullOutItemController = new Controllers.TrnPullOutItemController();
-                if (trnPullOutItemController.isAlreadyAdded(textBoxBarcode.Text) == false)
+                if (trnPullOutItemController.isAlreadyAdded(textBoxBarcode.Text, trnPullOutModel.Id) == false)
                 {
 
                     int receivingItemId = trnPullOutItemController.GetProductionItem(textBoxBarcode.Text);

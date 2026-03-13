@@ -161,13 +161,14 @@ namespace MWS.Views
                                 ColumnSizeId = d.SizeId,
                                 ColumnSize = d.Size,
                                 ColumnClassification = d.Classification,
-                                ColumnReceivedWeight = d.ReceivedWeight.ToString("#,##0.00"),
+                                ColumnReceivedWeight = d.ReceivedWeight.ToString("#,##0.000"),
                                 ColumnInputWeight = "WEIGHT",
-                                ColumnActualWeight = d.ActualWeight.ToString("#,##0.00"),
+                                ColumnActualWeight = d.ActualWeight.ToString("#,##0.000"),
                                 ColumnDelete = "DELETE",
                             };
 
-                txtTotalWeight.Text = items.Sum(a => Convert.ToDecimal(a.ColumnActualWeight)).ToString("#,##0.00");
+                txtTotalWeight.Text = items.Sum(a => Convert.ToDecimal(a.ColumnActualWeight)).ToString("#,##0.000");
+                txtTotalCount.Text = items.Count().ToString();
 
                 return Task.FromResult(items.ToList());
             }

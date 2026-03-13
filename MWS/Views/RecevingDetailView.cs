@@ -190,11 +190,12 @@ namespace MWS.Views
                                 ColumnItemDescription = d.ItemDescription,
                                 ColumnSizeId = d.SizeId,
                                 ColumnSize = d.Size,
-                                ColumnWeight = d.Weight.ToString("#,##0.00"),
+                                ColumnWeight = d.Weight.ToString("#,##0.000"),
                                 ColumnDelete = "DELETE",
                             };
 
-                txtTotalWeight.Text = items.Sum(a => Convert.ToDecimal(a.ColumnWeight)).ToString("#,##0.00");
+                txtTotalWeight.Text = items.Sum(a => Convert.ToDecimal(a.ColumnWeight)).ToString("#,##0.000");
+                txtTotalCount.Text = items.Count().ToString();
 
                 return Task.FromResult(items.ToList());
             }

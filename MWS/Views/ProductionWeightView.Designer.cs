@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnClose = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxWeight = new System.Windows.Forms.TextBox();
+            this.btnClose = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,27 +43,10 @@
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.textBoxWeight);
-            this.panel1.Location = new System.Drawing.Point(25, 25);
+            this.panel1.Location = new System.Drawing.Point(25, 24);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(321, 121);
             this.panel1.TabIndex = 0;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnClose.BackgroundImage = global::MWS.Properties.Resources.log_out;
-            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnClose.Location = new System.Drawing.Point(277, 5);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(42, 32);
-            this.btnClose.TabIndex = 104;
-            this.btnClose.TabStop = false;
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // label5
             // 
@@ -100,6 +83,23 @@
             this.textBoxWeight.TabIndex = 0;
             this.textBoxWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBoxWeight.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxWeight_KeyDown);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnClose.BackgroundImage = global::MWS.Properties.Resources.log_out;
+            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnClose.Location = new System.Drawing.Point(277, 5);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(42, 32);
+            this.btnClose.TabIndex = 104;
+            this.btnClose.TabStop = false;
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // ProductionWeightView
             // 

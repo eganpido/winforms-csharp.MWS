@@ -11,6 +11,7 @@ namespace MWS.Controllers
     {
         // Data Context
         public DB.mwsdbDataContext db = new DB.mwsdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
+        public DB.mwsdbDataContext db2 = new DB.mwsdbDataContext(Modules.SysConnectionString2Module.GetConnectionString());
 
         // List Receiving Item
         public List<Models.TrnReceivingItemModel> ReceivingItemList(Int32 receivingId)
@@ -44,7 +45,7 @@ namespace MWS.Controllers
                     return new String[] { "Current login user not found.", "0" };
                 }
 
-                var pullOutItem = from d in db.TrnPullOutItems
+                var pullOutItem = from d in db2.TrnPullOutItems
                                   where d.PullOutId == pullOutId
                                   && d.TrnProductionItem.ProductionBarcode == barcode
                                   && d.TrnPullOut.IsLocked == true

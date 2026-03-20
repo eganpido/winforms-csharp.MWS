@@ -162,8 +162,10 @@ namespace MWS.Views
                                 ColumnSize = d.Size,
                                 ColumnClassification = d.Classification,
                                 ColumnReceivedWeight = d.ReceivedWeight.ToString("#,##0.000"),
-                                ColumnInputWeight = "WEIGHT",
+                                ColumnInputWeight = "W",
                                 ColumnActualWeight = d.ActualWeight.ToString("#,##0.000"),
+                                ColumnInputRemarks = "R",
+                                ColumnRemarks = d.Remarks,
                                 ColumnDelete = "DELETE",
                             };
 
@@ -180,9 +182,10 @@ namespace MWS.Views
         public void UpdateComponents(Boolean isLocked)
         {
             buttonSave.Enabled = !isLocked;
+            buttonEdit.Enabled = isLocked;
             textBoxWeight.Enabled = !isLocked;
             comboBoxSupplier.Enabled = !isLocked;
-            dataGridViewProductionItem.Columns[11].Visible = !isLocked;
+            dataGridViewProductionItem.Columns[13].Visible = !isLocked;
 
             textBoxWeight.Focus();
 
@@ -225,6 +228,8 @@ namespace MWS.Views
             {
                 dataGridViewProductionItem.Columns[8].Visible = false;
                 dataGridViewProductionItem.Columns[9].Visible = false;
+                dataGridViewProductionItem.Columns[11].Visible = false;
+                dataGridViewProductionItem.Columns[12].Visible = false;
                 btnAddItem.Visible = true;
                 labelSupplier.Visible = true;
                 comboBoxSupplier.Visible = true;
@@ -232,7 +237,9 @@ namespace MWS.Views
             else
             {
                 dataGridViewProductionItem.Columns[8].Visible = true;
-                dataGridViewProductionItem.Columns[9].Visible = !isLocked;
+                dataGridViewProductionItem.Columns[9].Visible = true;
+                dataGridViewProductionItem.Columns[11].Visible = true;
+                dataGridViewProductionItem.Columns[12].Visible = true;
                 btnAddItem.Visible = false;
                 labelSupplier.Visible = false;
                 comboBoxSupplier.Visible = false;
@@ -253,7 +260,7 @@ namespace MWS.Views
             else
             {
                 Close();
-
+                historyView.UpdateProductionListDataSource();
             }
         }
 
@@ -415,6 +422,18 @@ namespace MWS.Views
                         productionWeightView.Show();
                     }
                 }
+
+                else if (grid.Columns["ColumnInputRemarks"] != null && e.ColumnIndex == grid.Columns["ColumnInputRemarks"].Index)
+                {
+                    var cellValue = grid.Rows[e.RowIndex].Cells["ColumnId"].Value;
+
+                    if (cellValue != null)
+                    {
+                        int id = Convert.ToInt32(cellValue);
+                        ProductionRemarksView productionRemarksView = new ProductionRemarksView(id, this);
+                        productionRemarksView.Show();
+                    }
+                }
             }
         }
 
@@ -461,13 +480,36 @@ namespace MWS.Views
                         else
                         {
                             MessageBox.Show("Barcode not exist!", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            textBoxWeight.Text = "";
+                            textBoxWeight.Focus();
                         }
                     }
                     else
                     {
                         MessageBox.Show("Barcode already exist!", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        textBoxWeight.Text = "";
+                        textBoxWeight.Focus();
                     }
                 }
+            }
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            Controllers.TrnProductionController trnProductionController = new Controllers.TrnProductionController();
+
+            String[] unlockProduction = trnProductionController.UnlockProduction(trnProductionModel.Id);
+            if (unlockProduction[1].Equals("0") == false)
+            {
+                UpdateComponents(false);
+                if (historyView != null)
+                {
+                    historyView.UpdateReceivingListDataSource();
+                }
+            }
+            else
+            {
+                MessageBox.Show(unlockProduction[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

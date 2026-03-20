@@ -34,25 +34,25 @@ namespace MWS.Controllers
         {
             var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
             var production = from d in db.TrnProductions
-                           where d.ProductionDate >= startDateFilter
-                           && d.ProductionDate <= endDateFilter
-                           && d.BranchId == currentBranchId
-                           && d.IsLocked == true
-                           && (d.ProductionNo.Contains(filter)
-                           || d.Remarks.Contains(filter))
-                           select new Models.TrnProductionModel
-                           {
-                               Id = d.Id,
-                               ProductionDate = d.ProductionDate.ToShortDateString(),
-                               ProductionNo = d.ProductionNo,
-                               SupplierId = d.SupplierId,
-                               Supplier = d.MstSupplier.Supplier,
-                               Remarks = d.Remarks,
-                               PreparedById = d.PrepareById,
-                               PreparedBy = d.MstUser.FullName,
-                               TotalWeight = d.TrnProductionItems.Sum(a => a.ActualWeight),
-                               IsLocked = d.IsLocked
-                           };
+                             where d.ProductionDate >= startDateFilter
+                             && d.ProductionDate <= endDateFilter
+                             && d.BranchId == currentBranchId
+                             && (d.ProductionNo.Contains(filter)
+                             || d.Remarks.Contains(filter))
+                             select new Models.TrnProductionModel
+                             {
+                                 Id = d.Id,
+                                 ProductionDate = d.ProductionDate.ToShortDateString(),
+                                 ProductionNo = d.ProductionNo,
+                                 SupplierId = d.SupplierId,
+                                 Supplier = d.MstSupplier.Supplier,
+                                 Remarks = d.Remarks,
+                                 PreparedById = d.PrepareById,
+                                 PreparedBy = d.MstUser.FullName,
+                                 // The Fix: Cast to nullable decimal, then coalesce to 0
+                                 TotalWeight = d.TrnProductionItems.Sum(a => (decimal?)a.ActualWeight) ?? 0,
+                                 IsLocked = d.IsLocked
+                             };
 
             return production.OrderByDescending(d => d.Id).ToList();
         }

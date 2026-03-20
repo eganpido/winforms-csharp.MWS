@@ -37,7 +37,6 @@ namespace MWS.Controllers
                            where d.PullOutDate >= startDateFilter
                            && d.PullOutDate <= endDateFilter
                            && d.BranchId == currentBranchId
-                           && d.IsLocked == true
                            && (d.PullOutNo.Contains(filter)
                            || d.Remarks.Contains(filter))
                            select new Models.TrnPullOutModel

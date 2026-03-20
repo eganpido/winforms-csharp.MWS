@@ -19,5 +19,7 @@ namespace MWS.Models
         public String PreparedBy { get; set; }
         public Decimal TotalWeight { get; set; }
         public Boolean IsLocked { get; set; }
+        public Int32? PullOutId { get; set; }
+
     }
 }

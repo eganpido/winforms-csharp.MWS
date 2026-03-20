@@ -84,6 +84,7 @@ namespace MWS.Views
         public void UpdateComponents(Boolean isLocked)
         {
             buttonSave.Enabled = !isLocked;
+            buttonEdit.Enabled = isLocked;
             comboBoxSupplier.Enabled = !isLocked;
             textBoxRemarks.Enabled = !isLocked;
             textBoxWeight.Enabled = !isLocked;
@@ -216,7 +217,7 @@ namespace MWS.Views
             else
             {
                 Close();
-
+                historyView.UpdateReceivingListDataSource();
             }
         }
 
@@ -368,6 +369,25 @@ namespace MWS.Views
                 {
                     MessageBox.Show(addReceiving[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            Controllers.TrnReceivingController trnReceivingController = new Controllers.TrnReceivingController();
+
+            String[] unlockReceiving = trnReceivingController.UnlockReceving(trnReceivingModel.Id);
+            if (unlockReceiving[1].Equals("0") == false)
+            {
+                UpdateComponents(false);
+                if(historyView != null)
+                {
+                    historyView.UpdateReceivingListDataSource();
+                }
+            }
+            else
+            {
+                MessageBox.Show(unlockReceiving[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

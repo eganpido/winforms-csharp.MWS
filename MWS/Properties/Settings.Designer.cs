@@ -33,5 +33,15 @@ namespace MWS.Properties {
                 return ((string)(this["mws_ctlConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=mws_ctl2;User ID=sa;Encrypt=False")]
+        public string mws_ctl2ConnectionString {
+            get {
+                return ((string)(this["mws_ctl2ConnectionString"]));
+            }
+        }
     }
 }

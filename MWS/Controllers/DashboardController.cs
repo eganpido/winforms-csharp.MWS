@@ -14,55 +14,116 @@ namespace MWS.Controllers
         // Get Cut Quantity Per Sizes
         public int GetQuantity(int sizeId, int branchId)
         {
+            var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
+
             int totalSlabs = 0;
 
             if(branchId == 1)
             {
-                var receivingItem = from d in db.TrnReceivingItems
-                                    where d.TrnReceiving.IsLocked == true
-                                    && d.SizeId == sizeId
-                                    && d.TrnReceiving.BranchId == branchId
-                                    && d.ItemId == 1
-                                    select d;
-                if (receivingItem.Any())
+                if(currentBranchId == 1)
                 {
-                    totalSlabs = receivingItem.Count();
+                    db = new DB.mwsdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
 
-                    var pullOutItem = from d in db.TrnPullOutItems
-                                        where d.TrnPullOut.IsLocked == true
-                                        && d.TrnProductionItem.SizeId == sizeId
-                                        && d.TrnPullOut.BranchId == branchId
-                                        && d.TrnProductionItem.ItemId == 1
+                    var receivingItem = from d in db.TrnReceivingItems
+                                        where d.TrnReceiving.IsLocked == true
+                                        && d.SizeId == sizeId
+                                        && d.ItemId == 1
                                         select d;
-                    if (pullOutItem.Any())
+                    if (receivingItem.Any())
                     {
-                        totalSlabs = receivingItem.Count() - pullOutItem.Count();
+                        totalSlabs = receivingItem.Count();
+
+                        var pullOutItem = from d in db.TrnPullOutItems
+                                          where d.TrnPullOut.IsLocked == true
+                                          && d.TrnProductionItem.SizeId == sizeId
+                                          && d.TrnProductionItem.ItemId == 1
+                                          select d;
+                        if (pullOutItem.Any())
+                        {
+                            totalSlabs = receivingItem.Count() - pullOutItem.Count();
+                        }
                     }
                 }
+                else
+                {
+                    db = new DB.mwsdbDataContext(Modules.SysConnectionString2Module.GetConnectionString());
+
+                    var receivingItem = from d in db.TrnReceivingItems
+                                        where d.TrnReceiving.IsLocked == true
+                                        && d.SizeId == sizeId
+                                        && d.ItemId == 1
+                                        select d;
+                    if (receivingItem.Any())
+                    {
+                        totalSlabs = receivingItem.Count();
+
+                        var pullOutItem = from d in db.TrnPullOutItems
+                                          where d.TrnPullOut.IsLocked == true
+                                          && d.TrnProductionItem.SizeId == sizeId
+                                          && d.TrnProductionItem.ItemId == 1
+                                          select d;
+                        if (pullOutItem.Any())
+                        {
+                            totalSlabs = receivingItem.Count() - pullOutItem.Count();
+                        }
+                    }
+                }
+               
             }
             else
             {
-                var receivingItem = from d in db.TrnReceivingItems
-                                    where d.TrnReceiving.IsLocked == true
-                                    && d.SizeId == sizeId
-                                    && d.TrnReceiving.BranchId == branchId
-                                    && d.ItemId == 1
-                                    select d;
-                if (receivingItem.Any())
+                if (currentBranchId == 1)
                 {
-                    totalSlabs = receivingItem.Count();
+                    db = new DB.mwsdbDataContext(Modules.SysConnectionString2Module.GetConnectionString());
 
-                    var productionItems = from d in db.TrnProductionItems
-                                      where d.TrnProduction.IsLocked == true
-                                      && d.SizeId == sizeId
-                                      && d.TrnProduction.BranchId == branchId
-                                      && d.ItemId == 1
-                                      select d;
-                    if (productionItems.Any())
+                    var receivingItem = from d in db.TrnReceivingItems
+                                        where d.TrnReceiving.IsLocked == true
+                                        && d.SizeId == sizeId
+                                        && d.TrnReceiving.BranchId == branchId
+                                        && d.ItemId == 1
+                                        select d;
+                    if (receivingItem.Any())
                     {
-                        totalSlabs = receivingItem.Count() - productionItems.Count();
+                        totalSlabs = receivingItem.Count();
+
+                        var productionItems = from d in db.TrnProductionItems
+                                              where d.TrnProduction.IsLocked == true
+                                              && d.SizeId == sizeId
+                                              && d.TrnProduction.BranchId == branchId
+                                              && d.ItemId == 1
+                                              select d;
+                        if (productionItems.Any())
+                        {
+                            totalSlabs = receivingItem.Count() - productionItems.Count();
+                        }
                     }
                 }
+                else
+                {
+                    db = new DB.mwsdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
+
+                    var receivingItem = from d in db.TrnReceivingItems
+                                        where d.TrnReceiving.IsLocked == true
+                                        && d.SizeId == sizeId
+                                        && d.TrnReceiving.BranchId == branchId
+                                        && d.ItemId == 1
+                                        select d;
+                    if (receivingItem.Any())
+                    {
+                        totalSlabs = receivingItem.Count();
+
+                        var productionItems = from d in db.TrnProductionItems
+                                              where d.TrnProduction.IsLocked == true
+                                              && d.SizeId == sizeId
+                                              && d.TrnProduction.BranchId == branchId
+                                              && d.ItemId == 1
+                                              select d;
+                        if (productionItems.Any())
+                        {
+                            totalSlabs = receivingItem.Count() - productionItems.Count();
+                        }
+                    }
+                }  
             }
 
             return totalSlabs < 0 ? 0 : totalSlabs;

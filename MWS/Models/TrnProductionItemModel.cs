@@ -18,5 +18,7 @@ namespace MWS.Models
         public String Classification { get; set; }
         public Decimal ReceivedWeight { get; set; }
         public Decimal ActualWeight { get; set; }
+        public String Remarks { get; set; }
+
     }
 }

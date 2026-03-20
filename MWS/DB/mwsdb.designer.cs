@@ -1995,6 +1995,8 @@ namespace MWS.DB
 		
 		private string _Classification;
 		
+		private string _Remarks;
+		
 		private EntitySet<TrnPullOutItem> _TrnPullOutItems;
 		
 		private EntityRef<MstItem> _MstItem;
@@ -2023,6 +2025,8 @@ namespace MWS.DB
     partial void OnActualWeightChanged();
     partial void OnClassificationChanging(string value);
     partial void OnClassificationChanged();
+    partial void OnRemarksChanging(string value);
+    partial void OnRemarksChanged();
     #endregion
 		
 		public TrnProductionItem()
@@ -2202,6 +2206,26 @@ namespace MWS.DB
 					this._Classification = value;
 					this.SendPropertyChanged("Classification");
 					this.OnClassificationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remarks", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Remarks
+		{
+			get
+			{
+				return this._Remarks;
+			}
+			set
+			{
+				if ((this._Remarks != value))
+				{
+					this.OnRemarksChanging(value);
+					this.SendPropertyChanging();
+					this._Remarks = value;
+					this.SendPropertyChanged("Remarks");
+					this.OnRemarksChanged();
 				}
 			}
 		}
@@ -2884,6 +2908,8 @@ namespace MWS.DB
 		
 		private int _PrepareById;
 		
+		private System.Nullable<int> _PullOutId;
+		
 		private EntitySet<TrnReceivingItem> _TrnReceivingItems;
 		
 		private EntityRef<MstBranch> _MstBranch;
@@ -2912,6 +2938,8 @@ namespace MWS.DB
     partial void OnIsLockedChanged();
     partial void OnPrepareByIdChanging(int value);
     partial void OnPrepareByIdChanged();
+    partial void OnPullOutIdChanging(System.Nullable<int> value);
+    partial void OnPullOutIdChanged();
     #endregion
 		
 		public TrnReceiving()
@@ -3091,6 +3119,26 @@ namespace MWS.DB
 					this._PrepareById = value;
 					this.SendPropertyChanged("PrepareById");
 					this.OnPrepareByIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PullOutId", DbType="Int")]
+		public System.Nullable<int> PullOutId
+		{
+			get
+			{
+				return this._PullOutId;
+			}
+			set
+			{
+				if ((this._PullOutId != value))
+				{
+					this.OnPullOutIdChanging(value);
+					this.SendPropertyChanging();
+					this._PullOutId = value;
+					this.SendPropertyChanged("PullOutId");
+					this.OnPullOutIdChanged();
 				}
 			}
 		}

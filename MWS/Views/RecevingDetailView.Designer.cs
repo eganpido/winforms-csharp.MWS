@@ -38,6 +38,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.txtTotalCount = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.txtTotalWeight = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.buttonFirst = new System.Windows.Forms.Button();
@@ -57,8 +59,6 @@
             this.ColumnWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.textBoxRemarks = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.comboBoxSupplier = new System.Windows.Forms.ComboBox();
@@ -68,20 +68,21 @@
             this.label4 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.panel7 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.labelCurrentUser = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.labelSupport = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelDeveloper = new System.Windows.Forms.Label();
-            this.txtTotalCount = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.buttonEdit = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -138,6 +139,35 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(994, 52);
             this.panel10.TabIndex = 27;
+            // 
+            // txtTotalCount
+            // 
+            this.txtTotalCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtTotalCount.BackColor = System.Drawing.Color.LightGray;
+            this.txtTotalCount.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTotalCount.Enabled = false;
+            this.txtTotalCount.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalCount.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtTotalCount.Location = new System.Drawing.Point(815, 13);
+            this.txtTotalCount.Name = "txtTotalCount";
+            this.txtTotalCount.ReadOnly = true;
+            this.txtTotalCount.Size = new System.Drawing.Size(103, 28);
+            this.txtTotalCount.TabIndex = 111;
+            this.txtTotalCount.TabStop = false;
+            this.txtTotalCount.Text = "0";
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.LightGray;
+            this.label9.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label9.Location = new System.Drawing.Point(698, 15);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(111, 24);
+            this.label9.TabIndex = 112;
+            this.label9.Text = "Total Count : ";
             // 
             // txtTotalWeight
             // 
@@ -412,6 +442,7 @@
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.buttonEdit);
             this.panel8.Controls.Add(this.buttonSave);
             this.panel8.Controls.Add(this.btnAdd);
             this.panel8.Controls.Add(this.textBoxRemarks);
@@ -426,42 +457,6 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(994, 145);
             this.panel8.TabIndex = 2;
-            // 
-            // buttonSave
-            // 
-            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
-            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSave.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.buttonSave.Image = global::MWS.Properties.Resources.diskette;
-            this.buttonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonSave.Location = new System.Drawing.Point(740, 91);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(117, 42);
-            this.buttonSave.TabIndex = 1;
-            this.buttonSave.TabStop = false;
-            this.buttonSave.Text = "    Save";
-            this.buttonSave.UseVisualStyleBackColor = false;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.btnAdd.Image = global::MWS.Properties.Resources.new_folder;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(863, 91);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(120, 42);
-            this.btnAdd.TabIndex = 2;
-            this.btnAdd.TabStop = false;
-            this.btnAdd.Text = "     New";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // textBoxRemarks
             // 
@@ -571,23 +566,6 @@
             this.label1.TabIndex = 101;
             this.label1.Text = "Precision Weighing for Meat Products.";
             // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnClose.BackgroundImage = global::MWS.Properties.Resources.log_out;
-            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnClose.Location = new System.Drawing.Point(944, 7);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(49, 41);
-            this.btnClose.TabIndex = 4;
-            this.btnClose.TabStop = false;
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -610,16 +588,6 @@
             this.label5.Size = new System.Drawing.Size(164, 22);
             this.label5.TabIndex = 102;
             this.label5.Text = "Weigh Right. Sell Right.";
-            // 
-            // panel7
-            // 
-            this.panel7.BackgroundImage = global::MWS.Properties.Resources.Weighing1;
-            this.panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(87, 103);
-            this.panel7.TabIndex = 2;
             // 
             // panel2
             // 
@@ -646,16 +614,6 @@
             this.panel5.Size = new System.Drawing.Size(512, 81);
             this.panel5.TabIndex = 2;
             // 
-            // panel6
-            // 
-            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel6.BackgroundImage = global::MWS.Properties.Resources.user;
-            this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel6.Location = new System.Drawing.Point(400, 25);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(44, 35);
-            this.panel6.TabIndex = 0;
-            // 
             // labelCurrentUser
             // 
             this.labelCurrentUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -668,16 +626,6 @@
             this.labelCurrentUser.Size = new System.Drawing.Size(47, 19);
             this.labelCurrentUser.TabIndex = 0;
             this.labelCurrentUser.Text = "admin";
-            // 
-            // panel3
-            // 
-            this.panel3.BackgroundImage = global::MWS.Properties.Resources.streetsmartLogo_9;
-            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(87, 81);
-            this.panel3.TabIndex = 1;
             // 
             // labelSupport
             // 
@@ -715,34 +663,106 @@
             this.labelDeveloper.TabIndex = 0;
             this.labelDeveloper.Text = "Streetsmart Solutions";
             // 
-            // txtTotalCount
+            // buttonEdit
             // 
-            this.txtTotalCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtTotalCount.BackColor = System.Drawing.Color.LightGray;
-            this.txtTotalCount.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTotalCount.Enabled = false;
-            this.txtTotalCount.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalCount.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtTotalCount.Location = new System.Drawing.Point(815, 13);
-            this.txtTotalCount.Name = "txtTotalCount";
-            this.txtTotalCount.ReadOnly = true;
-            this.txtTotalCount.Size = new System.Drawing.Size(103, 28);
-            this.txtTotalCount.TabIndex = 111;
-            this.txtTotalCount.TabStop = false;
-            this.txtTotalCount.Text = "0";
+            this.buttonEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            this.buttonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonEdit.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.buttonEdit.Image = global::MWS.Properties.Resources.edit;
+            this.buttonEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonEdit.Location = new System.Drawing.Point(617, 91);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Size = new System.Drawing.Size(117, 42);
+            this.buttonEdit.TabIndex = 1;
+            this.buttonEdit.TabStop = false;
+            this.buttonEdit.Text = "    Edit";
+            this.buttonEdit.UseVisualStyleBackColor = false;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
-            // label9
+            // buttonSave
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.LightGray;
-            this.label9.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label9.Location = new System.Drawing.Point(698, 15);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(111, 24);
-            this.label9.TabIndex = 112;
-            this.label9.Text = "Total Count : ";
+            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSave.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.buttonSave.Image = global::MWS.Properties.Resources.diskette;
+            this.buttonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonSave.Location = new System.Drawing.Point(740, 91);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(117, 42);
+            this.buttonSave.TabIndex = 1;
+            this.buttonSave.TabStop = false;
+            this.buttonSave.Text = "    Save";
+            this.buttonSave.UseVisualStyleBackColor = false;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.btnAdd.Image = global::MWS.Properties.Resources.new_folder;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(863, 91);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(120, 42);
+            this.btnAdd.TabIndex = 2;
+            this.btnAdd.TabStop = false;
+            this.btnAdd.Text = "     New";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnClose.BackgroundImage = global::MWS.Properties.Resources.log_out;
+            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnClose.Location = new System.Drawing.Point(944, 7);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(49, 41);
+            this.btnClose.TabIndex = 4;
+            this.btnClose.TabStop = false;
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // panel7
+            // 
+            this.panel7.BackgroundImage = global::MWS.Properties.Resources.Weighing1;
+            this.panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(87, 103);
+            this.panel7.TabIndex = 2;
+            // 
+            // panel6
+            // 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel6.BackgroundImage = global::MWS.Properties.Resources.user;
+            this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel6.Location = new System.Drawing.Point(400, 25);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(44, 35);
+            this.panel6.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            this.panel3.BackgroundImage = global::MWS.Properties.Resources.streetsmartLogo_9;
+            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(87, 81);
+            this.panel3.TabIndex = 1;
             // 
             // RecevingDetailView
             // 
@@ -824,5 +844,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtTotalCount;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button buttonEdit;
     }
 }

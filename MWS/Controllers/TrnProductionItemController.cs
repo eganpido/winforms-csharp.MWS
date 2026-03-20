@@ -62,7 +62,8 @@ namespace MWS.Controllers
                                       Size = d.MstSize.Size,
                                       Classification = d.Classification,
                                       ReceivedWeight = d.ReceivedWeight,
-                                      ActualWeight = d.ActualWeight
+                                      ActualWeight = d.ActualWeight,
+                                      Remarks = d.Remarks
                                   };
 
             return productionItems.Where(d => d.ProductionId == productionId).OrderByDescending(e => e.Id).ToList();
@@ -109,7 +110,8 @@ namespace MWS.Controllers
                         SizeId = GetSize(weight),
                         ProductionBarcode = finalBarcode,
                         ActualWeight = weight,
-                        Classification = "CLASSIC"
+                        Classification = "CLASSIC",
+                        Remarks = "NA"
                     };
 
                     db.TrnProductionItems.InsertOnSubmit(newProductionItem);
@@ -133,7 +135,8 @@ namespace MWS.Controllers
                         ProductionBarcode = barcode,
                         ActualWeight = 0,
                         ReceivedWeight = item.Weight,
-                        Classification = item.Classification
+                        Classification = item.Classification,
+                        Remarks = "NA"
                     };
 
                     db.TrnProductionItems.InsertOnSubmit(newProductionItem);
@@ -186,7 +189,8 @@ namespace MWS.Controllers
                     SizeId = 7,
                     ProductionBarcode = finalBarcode,
                     ActualWeight = weight,
-                    Classification = "CUT"
+                    Classification = "CUT",
+                    Remarks = "NA"
                 };
 
                 db.TrnProductionItems.InsertOnSubmit(newProductionItem);
@@ -269,6 +273,39 @@ namespace MWS.Controllers
                     barcodeClassification = updateProductionItem.Classification;
 
                     GenerateAndPrintBarcode(updateProductionItem.ProductionBarcode);
+
+                    return new String[] { "", "1" };
+                }
+                else
+                {
+                    return new String[] { "Production item not found.", "0" };
+                }
+            }
+            catch (Exception e)
+            {
+                return new String[] { e.Message, "0" };
+            }
+        }
+        // Update Production Item Remarks
+        public String[] UpdateProductionItemRemarks(int id, string remarks)
+        {
+            try
+            {
+                var currentUserLogin = from d in db.MstUsers where d.Id == Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId) select d;
+                if (currentUserLogin.Any() == false)
+                {
+                    return new String[] { "Current login user not found.", "0" };
+                }
+
+                var productionItem = from d in db.TrnProductionItems
+                                     where d.Id == id
+                                     select d;
+
+                if (productionItem.Any())
+                {
+                    var updateProductionItem = productionItem.FirstOrDefault();
+                    updateProductionItem.Remarks = remarks;
+                    db.SubmitChanges();
 
                     return new String[] { "", "1" };
                 }

@@ -51,35 +51,99 @@ namespace MWS.Controllers
         {
             List<Models.RepInventoryReportSlabModel> repInventoryCommissary1 = new List<RepInventoryReportSlabModel>();
 
-            var receivings = from d in db.TrnReceivingItems
-                             where d.ItemId == 1
-                             && d.TrnReceiving.BranchId == 1
-                             && d.TrnReceiving.ReceivingDate >= startDate
-                             && d.TrnReceiving.ReceivingDate <= endDate
-                             && d.TrnReceiving.IsLocked == true
-                             select d;
-            if (receivings.Any())
+            var branchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
+            if (branchId == 1)
             {
-                var pullOuts = from d in db.TrnPullOutItems
-                               where d.TrnProductionItem.ItemId == 1
-                               && d.TrnPullOut.BranchId == 1
-                               && d.TrnPullOut.PullOutDate >= startDate
-                               && d.TrnPullOut.PullOutDate <= endDate
-                               && d.TrnPullOut.IsLocked == true
-                               select d;
-                if (pullOuts.Any())
+                db = new DB.mwsdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
+                var receivings = from d in db.TrnReceivingItems
+                                 where d.ItemId == 1
+                                 && d.TrnReceiving.ReceivingDate >= startDate
+                                 && d.TrnReceiving.ReceivingDate <= endDate
+                                 && d.TrnReceiving.IsLocked == true
+                                 select d;
+                if (receivings.Any())
                 {
-                    repInventoryCommissary1.Add(new Models.RepInventoryReportSlabModel
+                    var pullOuts = from d in db.TrnPullOutItems
+                                   where d.TrnProductionItem.ItemId == 1
+                                   && d.TrnPullOut.PullOutDate >= startDate
+                                   && d.TrnPullOut.PullOutDate <= endDate
+                                   && d.TrnPullOut.IsLocked == true
+                                   select d;
+                    if (pullOuts.Any())
                     {
-                        ItemId = 1,
-                        ItemDescription = "SLAB",
-                        Minis = receivings.Where(a => a.SizeId == 1).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 1).Count(),
-                        ExtraSmall = receivings.Where(a => a.SizeId == 2).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 2).Count(),
-                        Small = receivings.Where(a => a.SizeId == 3).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 3).Count(),
-                        Medium = receivings.Where(a => a.SizeId == 4).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 4).Count(),
-                        Large = receivings.Where(a => a.SizeId == 5).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 5).Count(),
-                        ExtraLarge = receivings.Where(a => a.SizeId == 6).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 6).Count()
-                    });
+                        repInventoryCommissary1.Add(new Models.RepInventoryReportSlabModel
+                        {
+                            ItemId = 1,
+                            ItemDescription = "SLAB",
+                            Minis = receivings.Where(a => a.SizeId == 1).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 1).Count(),
+                            ExtraSmall = receivings.Where(a => a.SizeId == 2).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 2).Count(),
+                            Small = receivings.Where(a => a.SizeId == 3).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 3).Count(),
+                            Medium = receivings.Where(a => a.SizeId == 4).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 4).Count(),
+                            Large = receivings.Where(a => a.SizeId == 5).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 5).Count(),
+                            ExtraLarge = receivings.Where(a => a.SizeId == 6).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 6).Count()
+                        });
+                    }
+                    else
+                    {
+                        repInventoryCommissary1.Add(new Models.RepInventoryReportSlabModel
+                        {
+                            ItemId = 1,
+                            ItemDescription = "SLAB",
+                            Minis = receivings.Where(a => a.SizeId == 1).Count(),
+                            ExtraSmall = receivings.Where(a => a.SizeId == 2).Count(),
+                            Small = receivings.Where(a => a.SizeId == 3).Count(),
+                            Medium = receivings.Where(a => a.SizeId == 4).Count(),
+                            Large = receivings.Where(a => a.SizeId == 5).Count(),
+                            ExtraLarge = receivings.Where(a => a.SizeId == 6).Count()
+                        });
+                    }
+                }
+            }
+            else
+            {
+                db = new DB.mwsdbDataContext(Modules.SysConnectionString2Module.GetConnectionString());
+                var receivings = from d in db.TrnReceivingItems
+                                 where d.ItemId == 1
+                                 && d.TrnReceiving.ReceivingDate >= startDate
+                                 && d.TrnReceiving.ReceivingDate <= endDate
+                                 && d.TrnReceiving.IsLocked == true
+                                 select d;
+                if (receivings.Any())
+                {
+                    var pullOuts = from d in db.TrnPullOutItems
+                                   where d.TrnProductionItem.ItemId == 1
+                                   && d.TrnPullOut.PullOutDate >= startDate
+                                   && d.TrnPullOut.PullOutDate <= endDate
+                                   && d.TrnPullOut.IsLocked == true
+                                   select d;
+                    if (pullOuts.Any())
+                    {
+                        repInventoryCommissary1.Add(new Models.RepInventoryReportSlabModel
+                        {
+                            ItemId = 1,
+                            ItemDescription = "SLAB",
+                            Minis = receivings.Where(a => a.SizeId == 1).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 1).Count(),
+                            ExtraSmall = receivings.Where(a => a.SizeId == 2).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 2).Count(),
+                            Small = receivings.Where(a => a.SizeId == 3).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 3).Count(),
+                            Medium = receivings.Where(a => a.SizeId == 4).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 4).Count(),
+                            Large = receivings.Where(a => a.SizeId == 5).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 5).Count(),
+                            ExtraLarge = receivings.Where(a => a.SizeId == 6).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 6).Count()
+                        });
+                    }
+                    else
+                    {
+                        repInventoryCommissary1.Add(new Models.RepInventoryReportSlabModel
+                        {
+                            ItemId = 1,
+                            ItemDescription = "SLAB",
+                            Minis = receivings.Where(a => a.SizeId == 1).Count(),
+                            ExtraSmall = receivings.Where(a => a.SizeId == 2).Count(),
+                            Small = receivings.Where(a => a.SizeId == 3).Count(),
+                            Medium = receivings.Where(a => a.SizeId == 4).Count(),
+                            Large = receivings.Where(a => a.SizeId == 5).Count(),
+                            ExtraLarge = receivings.Where(a => a.SizeId == 6).Count()
+                        });
+                    }
                 }
             }
 
@@ -89,32 +153,84 @@ namespace MWS.Controllers
         {
             List<Models.RepInventoryReportCutModel> repInventoryCommissary1Cut = new List<RepInventoryReportCutModel>();
 
-            var processings = from d in db.TrnProductionItems
-                             where d.ItemId == 2
-                             && d.TrnProduction.BranchId == 1
-                             && d.TrnProduction.ProductionDate >= startDate
-                             && d.TrnProduction.ProductionDate <= endDate
-                             && d.TrnProduction.IsLocked == true
-                             select d;
-            if (processings.Any())
+            var branchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
+            if (branchId == 1)
             {
-                var pullOuts = from d in db.TrnPullOutItems
-                               where d.TrnProductionItem.ItemId == 2
-                               && d.TrnPullOut.BranchId == 1
-                               && d.TrnPullOut.PullOutDate >= startDate
-                               && d.TrnPullOut.PullOutDate <= endDate
-                               && d.TrnPullOut.IsLocked == true
-                               select d;
-                if (pullOuts.Any())
+                db = new DB.mwsdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
+
+                var processings = from d in db.TrnProductionItems
+                                  where d.ItemId == 2
+                                  && d.TrnProduction.ProductionDate >= startDate
+                                  && d.TrnProduction.ProductionDate <= endDate
+                                  && d.TrnProduction.IsLocked == true
+                                  select d;
+                if (processings.Any())
                 {
-                    repInventoryCommissary1Cut.Add(new Models.RepInventoryReportCutModel
+                    var pullOuts = from d in db.TrnPullOutItems
+                                   where d.TrnProductionItem.ItemId == 2
+                                   && d.TrnPullOut.PullOutDate >= startDate
+                                   && d.TrnPullOut.PullOutDate <= endDate
+                                   && d.TrnPullOut.IsLocked == true
+                                   select d;
+                    if (pullOuts.Any())
                     {
-                        ItemId = 2,
-                        ItemDescription = "CUT",
-                        Weight = processings.Where(a => a.ItemId == 2).Sum( a => a.ActualWeight) - pullOuts.Where(a => a.TrnProductionItem.ItemId == 2).Sum(a => a.TrnProductionItem.ActualWeight),
-                    });
+                        repInventoryCommissary1Cut.Add(new Models.RepInventoryReportCutModel
+                        {
+                            ItemId = 2,
+                            ItemDescription = "CUT",
+                            Weight = processings.Where(a => a.ItemId == 2).Sum(a => a.ActualWeight) - pullOuts.Where(a => a.TrnProductionItem.ItemId == 2).Sum(a => a.TrnProductionItem.ActualWeight)
+                        });
+                    }
+                    else
+                    {
+                        repInventoryCommissary1Cut.Add(new Models.RepInventoryReportCutModel
+                        {
+                            ItemId = 2,
+                            ItemDescription = "CUT",
+                            Weight = processings.Where(a => a.ItemId == 2).Sum(a => a.ActualWeight)
+                        });
+                    }
                 }
             }
+            else
+            {
+                db = new DB.mwsdbDataContext(Modules.SysConnectionString2Module.GetConnectionString());
+
+                var processings = from d in db.TrnProductionItems
+                                  where d.ItemId == 2
+                                  && d.TrnProduction.ProductionDate >= startDate
+                                  && d.TrnProduction.ProductionDate <= endDate
+                                  && d.TrnProduction.IsLocked == true
+                                  select d;
+                if (processings.Any())
+                {
+                    var pullOuts = from d in db.TrnPullOutItems
+                                   where d.TrnProductionItem.ItemId == 2
+                                   && d.TrnPullOut.PullOutDate >= startDate
+                                   && d.TrnPullOut.PullOutDate <= endDate
+                                   && d.TrnPullOut.IsLocked == true
+                                   select d;
+                    if (pullOuts.Any())
+                    {
+                        repInventoryCommissary1Cut.Add(new Models.RepInventoryReportCutModel
+                        {
+                            ItemId = 2,
+                            ItemDescription = "CUT",
+                            Weight = processings.Where(a => a.ItemId == 2).Sum(a => a.ActualWeight) - pullOuts.Where(a => a.TrnProductionItem.ItemId == 2).Sum(a => a.TrnProductionItem.ActualWeight),
+                        });
+                    }
+                    else
+                    {
+                        repInventoryCommissary1Cut.Add(new Models.RepInventoryReportCutModel
+                        {
+                            ItemId = 2,
+                            ItemDescription = "CUT",
+                            Weight = processings.Where(a => a.ItemId == 2).Sum(a => a.ActualWeight)
+                        });
+                    }
+                }
+            }
+           
 
             return repInventoryCommissary1Cut.ToList();
         }
@@ -122,35 +238,99 @@ namespace MWS.Controllers
         {
             List<Models.RepInventoryReportSlabModel> repInventoryCommissary2 = new List<RepInventoryReportSlabModel>();
 
-            var receivings = from d in db.TrnReceivingItems
-                             where d.ItemId == 1
-                             && d.TrnReceiving.BranchId == 2
-                             && d.TrnReceiving.ReceivingDate >= startDate
-                             && d.TrnReceiving.ReceivingDate <= endDate
-                             && d.TrnReceiving.IsLocked == true
-                             select d;
-            if (receivings.Any())
+            var branchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
+            if (branchId == 1)
             {
-                var productions = from d in db.TrnProductionItems
-                               where d.ItemId == 1
-                               && d.TrnProduction.BranchId == 2
-                               && d.TrnProduction.ProductionDate >= startDate
-                               && d.TrnProduction.ProductionDate <= endDate
-                               && d.TrnProduction.IsLocked == true
-                               select d;
-                if (productions.Any())
+                db = new DB.mwsdbDataContext(Modules.SysConnectionString2Module.GetConnectionString());
+                var receivings = from d in db.TrnReceivingItems
+                                 where d.ItemId == 1
+                                 && d.TrnReceiving.ReceivingDate >= startDate
+                                 && d.TrnReceiving.ReceivingDate <= endDate
+                                 && d.TrnReceiving.IsLocked == true
+                                 select d;
+                if (receivings.Any())
                 {
-                    repInventoryCommissary2.Add(new Models.RepInventoryReportSlabModel
+                    var productions = from d in db.TrnProductionItems
+                                      where d.ItemId == 1
+                                      && d.TrnProduction.ProductionDate >= startDate
+                                      && d.TrnProduction.ProductionDate <= endDate
+                                      && d.TrnProduction.IsLocked == true
+                                      select d;
+                    if (productions.Any())
                     {
-                        ItemId = 1,
-                        ItemDescription = "SLAB",
-                        Minis = receivings.Where(a => a.SizeId == 1).Count() - productions.Where(a => a.SizeId == 1).Count(),
-                        ExtraSmall = receivings.Where(a => a.SizeId == 2).Count() - productions.Where(a => a.SizeId == 2).Count(),
-                        Small = receivings.Where(a => a.SizeId == 3).Count() - productions.Where(a => a.SizeId == 3).Count(),
-                        Medium = receivings.Where(a => a.SizeId == 4).Count() - productions.Where(a => a.SizeId == 4).Count(),
-                        Large = receivings.Where(a => a.SizeId == 5).Count() - productions.Where(a => a.SizeId == 5).Count(),
-                        ExtraLarge = receivings.Where(a => a.SizeId == 6).Count() - productions.Where(a => a.SizeId == 6).Count()
-                    });
+                        repInventoryCommissary2.Add(new Models.RepInventoryReportSlabModel
+                        {
+                            ItemId = 1,
+                            ItemDescription = "SLAB",
+                            Minis = receivings.Where(a => a.SizeId == 1).Count() - productions.Where(a => a.SizeId == 1).Count(),
+                            ExtraSmall = receivings.Where(a => a.SizeId == 2).Count() - productions.Where(a => a.SizeId == 2).Count(),
+                            Small = receivings.Where(a => a.SizeId == 3).Count() - productions.Where(a => a.SizeId == 3).Count(),
+                            Medium = receivings.Where(a => a.SizeId == 4).Count() - productions.Where(a => a.SizeId == 4).Count(),
+                            Large = receivings.Where(a => a.SizeId == 5).Count() - productions.Where(a => a.SizeId == 5).Count(),
+                            ExtraLarge = receivings.Where(a => a.SizeId == 6).Count() - productions.Where(a => a.SizeId == 6).Count()
+                        });
+                    }
+                    else
+                    {
+                        repInventoryCommissary2.Add(new Models.RepInventoryReportSlabModel
+                        {
+                            ItemId = 1,
+                            ItemDescription = "SLAB",
+                            Minis = receivings.Where(a => a.SizeId == 1).Count(),
+                            ExtraSmall = receivings.Where(a => a.SizeId == 2).Count(),
+                            Small = receivings.Where(a => a.SizeId == 3).Count(),
+                            Medium = receivings.Where(a => a.SizeId == 4).Count(),
+                            Large = receivings.Where(a => a.SizeId == 5).Count(),
+                            ExtraLarge = receivings.Where(a => a.SizeId == 6).Count()
+                        });
+                    }
+                }
+            }
+            else
+            {
+                db = new DB.mwsdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
+                var receivings = from d in db.TrnReceivingItems
+                                 where d.ItemId == 1
+                                 && d.TrnReceiving.ReceivingDate >= startDate
+                                 && d.TrnReceiving.ReceivingDate <= endDate
+                                 && d.TrnReceiving.IsLocked == true
+                                 select d;
+                if (receivings.Any())
+                {
+                    var productions = from d in db.TrnProductionItems
+                                      where d.ItemId == 1
+                                      && d.TrnProduction.ProductionDate >= startDate
+                                      && d.TrnProduction.ProductionDate <= endDate
+                                      && d.TrnProduction.IsLocked == true
+                                      select d;
+                    if (productions.Any())
+                    {
+                        repInventoryCommissary2.Add(new Models.RepInventoryReportSlabModel
+                        {
+                            ItemId = 1,
+                            ItemDescription = "SLAB",
+                            Minis = receivings.Where(a => a.SizeId == 1).Count() - productions.Where(a => a.SizeId == 1).Count(),
+                            ExtraSmall = receivings.Where(a => a.SizeId == 2).Count() - productions.Where(a => a.SizeId == 2).Count(),
+                            Small = receivings.Where(a => a.SizeId == 3).Count() - productions.Where(a => a.SizeId == 3).Count(),
+                            Medium = receivings.Where(a => a.SizeId == 4).Count() - productions.Where(a => a.SizeId == 4).Count(),
+                            Large = receivings.Where(a => a.SizeId == 5).Count() - productions.Where(a => a.SizeId == 5).Count(),
+                            ExtraLarge = receivings.Where(a => a.SizeId == 6).Count() - productions.Where(a => a.SizeId == 6).Count()
+                        });
+                    }
+                    else
+                    {
+                        repInventoryCommissary2.Add(new Models.RepInventoryReportSlabModel
+                        {
+                            ItemId = 1,
+                            ItemDescription = "SLAB",
+                            Minis = receivings.Where(a => a.SizeId == 1).Count(),
+                            ExtraSmall = receivings.Where(a => a.SizeId == 2).Count(),
+                            Small = receivings.Where(a => a.SizeId == 3).Count(),
+                            Medium = receivings.Where(a => a.SizeId == 4).Count(),
+                            Large = receivings.Where(a => a.SizeId == 5).Count(),
+                            ExtraLarge = receivings.Where(a => a.SizeId == 6).Count()
+                        });
+                    }
                 }
             }
 

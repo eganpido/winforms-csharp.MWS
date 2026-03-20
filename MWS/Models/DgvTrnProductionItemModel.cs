@@ -19,6 +19,8 @@ namespace MWS.Models
         public String ColumnReceivedWeight { get; set; }
         public String ColumnInputWeight { get; set; }
         public String ColumnActualWeight { get; set; }
+        public String ColumnInputRemarks { get; set; }
+        public String ColumnRemarks { get; set; }
         public String ColumnDelete { get; set; }
     }
 }

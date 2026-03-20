@@ -39,6 +39,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.labelIndicator = new System.Windows.Forms.Label();
+            this.txtTotalCount = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.txtTotalWeight = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.buttonFirst = new System.Windows.Forms.Button();
@@ -77,9 +80,7 @@
             this.labelSupport = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelDeveloper = new System.Windows.Forms.Label();
-            this.txtTotalCount = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.labelIndicator = new System.Windows.Forms.Label();
+            this.buttonEdit = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -136,6 +137,48 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(994, 52);
             this.panel10.TabIndex = 27;
+            // 
+            // labelIndicator
+            // 
+            this.labelIndicator.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelIndicator.AutoSize = true;
+            this.labelIndicator.BackColor = System.Drawing.Color.LightGray;
+            this.labelIndicator.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelIndicator.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.labelIndicator.Location = new System.Drawing.Point(770, 16);
+            this.labelIndicator.Name = "labelIndicator";
+            this.labelIndicator.Size = new System.Drawing.Size(221, 24);
+            this.labelIndicator.TabIndex = 111;
+            this.labelIndicator.Text = "The current record is locked.";
+            // 
+            // txtTotalCount
+            // 
+            this.txtTotalCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTotalCount.BackColor = System.Drawing.Color.LightGray;
+            this.txtTotalCount.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTotalCount.Enabled = false;
+            this.txtTotalCount.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalCount.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtTotalCount.Location = new System.Drawing.Point(797, 12);
+            this.txtTotalCount.Name = "txtTotalCount";
+            this.txtTotalCount.ReadOnly = true;
+            this.txtTotalCount.Size = new System.Drawing.Size(103, 28);
+            this.txtTotalCount.TabIndex = 109;
+            this.txtTotalCount.TabStop = false;
+            this.txtTotalCount.Text = "0";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.LightGray;
+            this.label6.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label6.Location = new System.Drawing.Point(680, 14);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(111, 24);
+            this.label6.TabIndex = 110;
+            this.label6.Text = "Total Count : ";
             // 
             // txtTotalWeight
             // 
@@ -408,6 +451,7 @@
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.buttonEdit);
             this.panel8.Controls.Add(this.buttonSave);
             this.panel8.Controls.Add(this.btnAdd);
             this.panel8.Controls.Add(this.label2);
@@ -663,47 +707,23 @@
             this.labelDeveloper.TabIndex = 0;
             this.labelDeveloper.Text = "Streetsmart Solutions";
             // 
-            // txtTotalCount
+            // buttonEdit
             // 
-            this.txtTotalCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTotalCount.BackColor = System.Drawing.Color.LightGray;
-            this.txtTotalCount.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTotalCount.Enabled = false;
-            this.txtTotalCount.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalCount.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtTotalCount.Location = new System.Drawing.Point(797, 12);
-            this.txtTotalCount.Name = "txtTotalCount";
-            this.txtTotalCount.ReadOnly = true;
-            this.txtTotalCount.Size = new System.Drawing.Size(103, 28);
-            this.txtTotalCount.TabIndex = 109;
-            this.txtTotalCount.TabStop = false;
-            this.txtTotalCount.Text = "0";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.LightGray;
-            this.label6.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label6.Location = new System.Drawing.Point(680, 14);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(111, 24);
-            this.label6.TabIndex = 110;
-            this.label6.Text = "Total Count : ";
-            // 
-            // labelIndicator
-            // 
-            this.labelIndicator.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelIndicator.AutoSize = true;
-            this.labelIndicator.BackColor = System.Drawing.Color.LightGray;
-            this.labelIndicator.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelIndicator.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.labelIndicator.Location = new System.Drawing.Point(770, 16);
-            this.labelIndicator.Name = "labelIndicator";
-            this.labelIndicator.Size = new System.Drawing.Size(221, 24);
-            this.labelIndicator.TabIndex = 111;
-            this.labelIndicator.Text = "The current record is locked.";
+            this.buttonEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
+            this.buttonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonEdit.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.buttonEdit.Image = global::MWS.Properties.Resources.edit;
+            this.buttonEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonEdit.Location = new System.Drawing.Point(636, 35);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Size = new System.Drawing.Size(117, 42);
+            this.buttonEdit.TabIndex = 1;
+            this.buttonEdit.TabStop = false;
+            this.buttonEdit.Text = "    Edit";
+            this.buttonEdit.UseVisualStyleBackColor = false;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
             // PullOutDetailView
             // 
@@ -782,5 +802,6 @@
         private System.Windows.Forms.TextBox txtTotalCount;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label labelIndicator;
+        private System.Windows.Forms.Button buttonEdit;
     }
 }

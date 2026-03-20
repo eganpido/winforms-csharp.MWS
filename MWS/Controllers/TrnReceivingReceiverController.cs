@@ -12,6 +12,7 @@ namespace MWS.Controllers
         // Data Context
         // ============
         public DB.mwsdbDataContext db = new DB.mwsdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
+        public DB.mwsdbDataContext db2 = new DB.mwsdbDataContext(Modules.SysConnectionString2Module.GetConnectionString());
 
         // ===================
         // Fill Leading Zeroes
@@ -33,46 +34,50 @@ namespace MWS.Controllers
         public List<Models.TrnReceivingModel> ReceivingList(DateTime dateFilter, String filter)
         {
             var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
-            var receiving = from d in db.TrnReceivings
-                           where d.ReceivingDate == dateFilter
-                           && d.BranchId == currentBranchId
-                           && d.IsLocked == true
-                           && (d.ReceivingNo.Contains(filter)
-                           || d.MstSupplier.Supplier.Contains(filter))
-                           || d.Remarks.Contains(filter)
-                            select new Models.TrnReceivingModel
-                           {
-                               Id = d.Id,
-                               ReceivingDate = d.ReceivingDate.ToShortDateString(),
-                               ReceivingNo = d.ReceivingNo,
-                               SupplierId = d.SupplierId,
-                               Supplier = d.MstSupplier.Supplier,
-                               Remarks = d.Remarks,
-                               PreparedById = d.PrepareById,
-                               PreparedBy = d.MstUser.FullName,
-                               IsLocked = d.IsLocked
-                           };
 
-            return receiving.OrderByDescending(d => d.Id).ToList();
+            var receiving = db.TrnReceivings.Where(d =>
+                                d.ReceivingDate == dateFilter &&
+                                d.BranchId == currentBranchId &&
+                                d.IsLocked == true &&
+                                (d.ReceivingNo.Contains(filter) ||
+                                 d.MstSupplier.Supplier.Contains(filter) ||
+                                 d.Remarks.Contains(filter))
+                            );
+
+            return receiving.AsEnumerable().Select(d => new Models.TrnReceivingModel
+            {
+                Id = d.Id,
+                ReceivingDate = d.ReceivingDate.ToShortDateString(),
+                ReceivingNo = d.ReceivingNo,
+                SupplierId = d.SupplierId,
+                Supplier = d.MstSupplier.Supplier,
+                Remarks = d.Remarks,
+                PreparedById = d.PrepareById,
+                PreparedBy = d.MstUser.FullName,
+                IsLocked = d.IsLocked
+            })
+            .OrderByDescending(d => d.Id)
+            .ToList();
         }
 
         // Receiving Detail
         public Models.TrnReceivingModel ReceivingDetail(Int32 id)
         {
             var receiving = from d in db.TrnReceivings
-                          where d.Id == id
-                          select new Models.TrnReceivingModel
-                          {
-                              Id = d.Id,
-                              ReceivingDate = d.ReceivingDate.ToShortDateString(),
-                              ReceivingNo = d.ReceivingNo,
-                              SupplierId = d.SupplierId,
-                              Supplier = d.MstSupplier.Supplier,
-                              Remarks = d.Remarks,
-                              PreparedById = d.PrepareById,
-                              PreparedBy = d.MstUser.FullName,
-                              IsLocked = d.IsLocked
-                          };
+                            where d.Id == id
+                            select new Models.TrnReceivingModel
+                            {
+                                Id = d.Id,
+                                ReceivingDate = d.ReceivingDate.ToShortDateString(),
+                                ReceivingNo = d.ReceivingNo,
+                                SupplierId = d.SupplierId,
+                                Supplier = d.MstSupplier.Supplier,
+                                Remarks = d.Remarks,
+                                PreparedById = d.PrepareById,
+                                PreparedBy = d.MstUser.FullName,
+                                IsLocked = d.IsLocked,
+                                PullOutId = d.PullOutId
+                            };
 
             return receiving.FirstOrDefault();
         }
@@ -93,14 +98,13 @@ namespace MWS.Controllers
         public List<Models.TrnPullOutModel> PullOutList()
         {
             var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
-            var pullOuts = from d in db.TrnPullOuts
+            var pullOuts = from d in db2.TrnPullOuts
                            where d.IsLocked == true
-                           && d.BranchId != currentBranchId
-                            select new Models.TrnPullOutModel
-                            {
-                                Id = d.Id,
-                                PullOutNo = d.PullOutNo
-                            };
+                           select new Models.TrnPullOutModel
+                           {
+                               Id = d.Id,
+                               PullOutNo = d.PullOutNo
+                           };
 
             return pullOuts.OrderByDescending(d => d.Id).ToList();
         }
@@ -174,8 +178,8 @@ namespace MWS.Controllers
                 }
 
                 var receiving = from d in db.TrnReceivings
-                              where d.Id == id
-                              select d;
+                                where d.Id == id
+                                select d;
 
                 if (receiving.Any())
                 {
@@ -189,6 +193,7 @@ namespace MWS.Controllers
                     lockReceiving.SupplierId = objReceiving.SupplierId;
                     lockReceiving.Remarks = objReceiving.Remarks;
                     lockReceiving.IsLocked = true;
+                    lockReceiving.PullOutId = objReceiving.PullOutId;
                     db.SubmitChanges();
 
                     return new String[] { "", "1" };
@@ -216,8 +221,8 @@ namespace MWS.Controllers
                 }
 
                 var receiving = from d in db.TrnReceivings
-                              where d.Id == id
-                              select d;
+                                where d.Id == id
+                                select d;
 
                 if (receiving.Any())
                 {
@@ -255,8 +260,8 @@ namespace MWS.Controllers
                 }
 
                 var receiving = from d in db.TrnReceivings
-                              where d.Id == id
-                              select d;
+                                where d.Id == id
+                                select d;
 
                 if (receiving.Any())
                 {
@@ -284,7 +289,7 @@ namespace MWS.Controllers
         public int GetTotalPullOutItemsCount(int pullOutId)
         {
             int itemCount = 0;
-            var pullOutItems = from d in db.TrnPullOutItems
+            var pullOutItems = from d in db2.TrnPullOutItems
                                where d.PullOutId == pullOutId
                                && d.TrnProductionItem.ItemId != 2
                                select d;
@@ -299,7 +304,7 @@ namespace MWS.Controllers
         {
             int itemCount = 0;
             var receivingItems = from d in db.TrnReceivingItems
-                               where d.ReceivingId == receivingId
+                                 where d.ReceivingId == receivingId
                                  select d;
             if (receivingItems.Any())
             {

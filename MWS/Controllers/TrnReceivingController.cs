@@ -37,7 +37,6 @@ namespace MWS.Controllers
                            where d.ReceivingDate >= startDate
                            && d.ReceivingDate <= endDate
                            && d.BranchId == currentBranchId
-                           && d.IsLocked == true
                            && (d.ReceivingNo.Contains(filter)
                            || d.MstSupplier.Supplier.Contains(filter)
                            || d.Remarks.Contains(filter))
@@ -52,7 +51,7 @@ namespace MWS.Controllers
                                Remarks = d.Remarks,
                                PreparedById = d.PrepareById,
                                PreparedBy = d.MstUser.FullName,
-                               TotalWeight = d.TrnReceivingItems.Sum(a => a.Weight),
+                               TotalWeight = d.TrnReceivingItems.Sum(a => (decimal?)a.Weight) ?? 0,
                                IsLocked = d.IsLocked
                            };
 
@@ -74,7 +73,7 @@ namespace MWS.Controllers
                               Remarks = d.Remarks,
                               PreparedById = d.PrepareById,
                               PreparedBy = d.MstUser.FullName,
-                              IsLocked = d.IsLocked
+                              IsLocked = d.IsLocked,
                           };
 
             return receiving.FirstOrDefault();

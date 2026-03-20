@@ -164,6 +164,7 @@ namespace MWS.Views
         public void UpdateComponents(Boolean isLocked)
         {
             buttonSave.Enabled = !isLocked;
+            buttonEdit.Enabled = isLocked;
             textBoxBarcode.Enabled = !isLocked;
 
             dataGridViewPullOutItem.Columns[9].Visible = !isLocked;
@@ -199,7 +200,7 @@ namespace MWS.Views
             else
             {
                 Close();
-
+                historyView.UpdatePullOutListDataSource();
             }
         }
 
@@ -370,6 +371,25 @@ namespace MWS.Views
                     textBoxBarcode.Text = "";
                     textBoxBarcode.Focus();
                 }
+            }
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            Controllers.TrnPullOutController trnPullOutController = new Controllers.TrnPullOutController();
+
+            String[] unlockPullOut = trnPullOutController.UnlockPullOut(trnPullOutModel.Id);
+            if (unlockPullOut[1].Equals("0") == false)
+            {
+                UpdateComponents(false);
+                if (historyView != null)
+                {
+                    historyView.UpdateReceivingListDataSource();
+                }
+            }
+            else
+            {
+                MessageBox.Show(unlockPullOut[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

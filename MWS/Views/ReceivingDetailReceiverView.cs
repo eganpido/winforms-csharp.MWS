@@ -30,7 +30,7 @@ namespace MWS.Views
             trnReceivingModel = receivingModel;
             historyView = _historyView;
             var id = trnReceivingModel.Id;
-            Controllers.TrnReceivingController trnReceivingController = new Controllers.TrnReceivingController();
+            Controllers.TrnReceivingReceiverController trnReceivingController = new Controllers.TrnReceivingReceiverController();
             var detail = trnReceivingController.ReceivingDetail(id);
 
             GetSupplierList();
@@ -89,6 +89,14 @@ namespace MWS.Views
 
             comboBoxSupplier.SelectedValue = trnReceivingModel.SupplierId;
             textBoxRemarks.Text = trnReceivingModel.Remarks;
+            if (trnReceivingModel != null && trnReceivingModel.PullOutId != null)
+            {
+                comboBoxPullOutNumber.SelectedValue = trnReceivingModel.PullOutId;
+            }
+            else
+            {
+                comboBoxPullOutNumber.SelectedIndex = -1;
+            }
             comboBoxPullOutNumber.Focus();
 
             CreateReceivingItemListDataGridView();
@@ -342,8 +350,8 @@ namespace MWS.Views
                     {
                         receivingItemPageNumber = 1;
                         UpdateReceivingItemListDataSource();
-                        comboBoxPullOutNumber.Text = "";
-                        comboBoxPullOutNumber.Focus();
+                        //comboBoxPullOutNumber.Text = "";
+                        //comboBoxPullOutNumber.Focus();
                     }
                     else
                     {
@@ -366,6 +374,7 @@ namespace MWS.Views
                     Models.TrnReceivingModel newReceivingModel = new Models.TrnReceivingModel()
                     {
                         SupplierId = Convert.ToInt32(comboBoxSupplier.SelectedValue),
+                        PullOutId = Convert.ToInt32(comboBoxPullOutNumber.SelectedValue),
                         Remarks = textBoxRemarks.Text.Trim(),
                     };
 
@@ -427,6 +436,25 @@ namespace MWS.Views
                     textBoxBarcode.Text = "";
                     textBoxBarcode.Focus();
                 }
+            }
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            Controllers.TrnReceivingReceiverController trnReceivingController = new Controllers.TrnReceivingReceiverController();
+
+            String[] unlockReceiving = trnReceivingController.UnlockReceving(trnReceivingModel.Id);
+            if (unlockReceiving[1].Equals("0") == false)
+            {
+                UpdateComponents(false);
+                if (historyView != null)
+                {
+                    historyView.UpdateReceivingListDataSource();
+                }
+            }
+            else
+            {
+                MessageBox.Show(unlockReceiving[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

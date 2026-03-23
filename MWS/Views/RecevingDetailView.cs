@@ -63,7 +63,7 @@ namespace MWS.Views
             dataGridViewReceivingItem.ColumnHeadersDefaultCellStyle.Font =
                 new Font("Open Sans", 11F, FontStyle.Regular);
             dataGridViewReceivingItem.ScrollBars = ScrollBars.Vertical;
-            dataGridViewReceivingItem.Dock = DockStyle.Fill;
+            dataGridViewReceivingItem.Dock = DockStyle.None;
             dataGridViewReceivingItem.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             dataGridViewReceivingItem.AllowUserToResizeRows = false;
             dataGridViewReceivingItem.RowTemplate.Height = 32;

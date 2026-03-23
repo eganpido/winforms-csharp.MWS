@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -65,7 +66,7 @@ namespace MWS.Views
             dataGridViewProductionItem.ColumnHeadersDefaultCellStyle.Font =
                          new Font("Open Sans", 11F, FontStyle.Regular);
             dataGridViewProductionItem.ScrollBars = ScrollBars.Vertical;
-            dataGridViewProductionItem.Dock = DockStyle.Fill;
+            dataGridViewProductionItem.Dock = DockStyle.None;
             dataGridViewProductionItem.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             dataGridViewProductionItem.AllowUserToResizeRows = false;
             dataGridViewProductionItem.RowTemplate.Height = 32;
@@ -228,8 +229,8 @@ namespace MWS.Views
             {
                 dataGridViewProductionItem.Columns[8].Visible = false;
                 dataGridViewProductionItem.Columns[9].Visible = false;
-                dataGridViewProductionItem.Columns[11].Visible = false;
-                dataGridViewProductionItem.Columns[12].Visible = false;
+                dataGridViewProductionItem.Columns[11].Visible = true;
+                dataGridViewProductionItem.Columns[12].Visible = true;
                 btnAddItem.Visible = true;
                 labelSupplier.Visible = true;
                 comboBoxSupplier.Visible = true;
@@ -238,8 +239,8 @@ namespace MWS.Views
             {
                 dataGridViewProductionItem.Columns[8].Visible = true;
                 dataGridViewProductionItem.Columns[9].Visible = true;
-                dataGridViewProductionItem.Columns[11].Visible = true;
-                dataGridViewProductionItem.Columns[12].Visible = true;
+                dataGridViewProductionItem.Columns[11].Visible = false;
+                dataGridViewProductionItem.Columns[12].Visible = false;
                 btnAddItem.Visible = false;
                 labelSupplier.Visible = false;
                 comboBoxSupplier.Visible = false;

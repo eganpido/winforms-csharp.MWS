@@ -7,10 +7,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZXing;
 
 namespace MWS.Views
 {
@@ -52,7 +54,7 @@ namespace MWS.Views
             dataGridViewPullOutItem.ColumnHeadersDefaultCellStyle.Font =
                          new Font("Open Sans", 11F, FontStyle.Regular);
             dataGridViewPullOutItem.ScrollBars = ScrollBars.Vertical;
-            dataGridViewPullOutItem.Dock = DockStyle.Fill;
+            dataGridViewPullOutItem.Dock = DockStyle.None;
             dataGridViewPullOutItem.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             dataGridViewPullOutItem.AllowUserToResizeRows = false;
             dataGridViewPullOutItem.RowTemplate.Height = 32;
@@ -165,6 +167,7 @@ namespace MWS.Views
         {
             buttonSave.Enabled = !isLocked;
             buttonEdit.Enabled = isLocked;
+            buttonPrint.Enabled = isLocked;
             textBoxBarcode.Enabled = !isLocked;
 
             dataGridViewPullOutItem.Columns[9].Visible = !isLocked;
@@ -390,6 +393,60 @@ namespace MWS.Views
             else
             {
                 MessageBox.Show(unlockPullOut[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonPrint_Click(object sender, EventArgs e)
+        {
+            DialogResult printDialogResult = MessageBox.Show("Confirm print?", "MWS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (printDialogResult == DialogResult.Yes)
+            {
+                GenerateAndPrint();
+            }
+        }
+        private void GenerateAndPrint()
+        {
+            try
+            {
+                PrintDocument pd = new PrintDocument();
+                pd.PrintPage += new PrintPageEventHandler(PrintBarcodeHandler);
+
+                pd.Print();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void PrintBarcodeHandler(object sender, PrintPageEventArgs e)
+        {
+            Font fontBold = new Font("Segoe UI", 18, FontStyle.Bold);
+            Font fontRegular = new Font("Segoe UI", 13, FontStyle.Regular);
+
+            int startX = 30;
+            int baseStartY = 120; 
+            int labelSpacing = 290;
+
+            int barcodeWidth = 300;
+
+            for (int i = 0; i < 1; i++)
+            {
+                int startY = baseStartY + (i * labelSpacing);
+
+                string topText = "Pull Out No. : " + trnPullOutModel.PullOutNo;
+                float topTextWidth = e.Graphics.MeasureString(topText, fontBold).Width;
+                float topTextX = startX + (barcodeWidth - topTextWidth) / 2;
+                e.Graphics.DrawString(topText, fontBold, Brushes.Black, topTextX, startY - 95);
+
+                string countText = "Total Count : " + txtTotalCount.Text;
+                float countTextWidth = e.Graphics.MeasureString(countText, fontBold).Width;
+                float countTextX = startX + (barcodeWidth - countTextWidth) / 2;
+                e.Graphics.DrawString(countText, fontBold, Brushes.Black, countTextX, 80);
+
+                string weightText = "Total Weight : " + txtTotalWeight.Text;
+                float weightTextWidth = e.Graphics.MeasureString(weightText, fontBold).Width;
+                float weightTextX = startX + (barcodeWidth - weightTextWidth) / 2;
+                e.Graphics.DrawString(weightText, fontBold, Brushes.Black, weightTextX, 135);
             }
         }
     }

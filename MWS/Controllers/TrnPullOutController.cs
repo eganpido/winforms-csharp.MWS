@@ -135,7 +135,6 @@ namespace MWS.Controllers
                     }
 
                     var lockPullOut = pullOut.FirstOrDefault();
-                    lockPullOut.PullOutDate = DateTime.Today;
                     lockPullOut.IsLocked = true;
                     db.SubmitChanges();
 

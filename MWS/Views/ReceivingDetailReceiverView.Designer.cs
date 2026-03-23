@@ -63,6 +63,7 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.textBoxBarcode = new System.Windows.Forms.TextBox();
+            this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.textBoxRemarks = new System.Windows.Forms.TextBox();
@@ -86,7 +87,6 @@
             this.labelSupport = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelDeveloper = new System.Windows.Forms.Label();
-            this.buttonEdit = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -300,6 +300,9 @@
             // 
             this.dataGridViewReceivingItem.AllowUserToAddRows = false;
             this.dataGridViewReceivingItem.AllowUserToDeleteRows = false;
+            this.dataGridViewReceivingItem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewReceivingItem.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.dataGridViewReceivingItem.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -326,7 +329,6 @@
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewReceivingItem.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dataGridViewReceivingItem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewReceivingItem.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewReceivingItem.Name = "dataGridViewReceivingItem";
             this.dataGridViewReceivingItem.ReadOnly = true;
@@ -336,7 +338,7 @@
             this.dataGridViewReceivingItem.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewReceivingItem.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewReceivingItem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewReceivingItem.Size = new System.Drawing.Size(994, 320);
+            this.dataGridViewReceivingItem.Size = new System.Drawing.Size(994, 274);
             this.dataGridViewReceivingItem.TabIndex = 0;
             this.dataGridViewReceivingItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewReceivingItem_CellClick);
             // 
@@ -499,6 +501,24 @@
             this.textBoxBarcode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBoxBarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxBarcode_KeyDown);
             // 
+            // buttonEdit
+            // 
+            this.buttonEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            this.buttonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonEdit.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.buttonEdit.Image = global::MWS.Properties.Resources.edit;
+            this.buttonEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonEdit.Location = new System.Drawing.Point(625, 91);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Size = new System.Drawing.Size(117, 42);
+            this.buttonEdit.TabIndex = 1;
+            this.buttonEdit.TabStop = false;
+            this.buttonEdit.Text = "    Edit";
+            this.buttonEdit.UseVisualStyleBackColor = false;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
+            // 
             // buttonSave
             // 
             this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -607,11 +627,11 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.label4.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Open Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
             this.label4.Location = new System.Drawing.Point(450, 109);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(642, 24);
+            this.label4.Size = new System.Drawing.Size(571, 22);
             this.label4.TabIndex = 104;
             this.label4.Text = "Please select supplier first and next is the pull out number and weight to procee" +
     "d.";
@@ -785,24 +805,6 @@
             this.labelDeveloper.Size = new System.Drawing.Size(139, 19);
             this.labelDeveloper.TabIndex = 0;
             this.labelDeveloper.Text = "Streetsmart Solutions";
-            // 
-            // buttonEdit
-            // 
-            this.buttonEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
-            this.buttonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonEdit.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.buttonEdit.Image = global::MWS.Properties.Resources.edit;
-            this.buttonEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonEdit.Location = new System.Drawing.Point(625, 91);
-            this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(117, 42);
-            this.buttonEdit.TabIndex = 1;
-            this.buttonEdit.TabStop = false;
-            this.buttonEdit.Text = "    Edit";
-            this.buttonEdit.UseVisualStyleBackColor = false;
-            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
             // ReceivingDetailReceiverView
             // 

@@ -95,13 +95,13 @@ namespace MWS.Reports
 
                         foreach (var item in commissary1)
                         {
-                            tableCommissary1.AddCell(new PdfPCell(new Phrase(item.ItemDescription, fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                            tableCommissary1.AddCell(new PdfPCell(new Phrase(item.Minis.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                            tableCommissary1.AddCell(new PdfPCell(new Phrase(item.ExtraSmall.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                            tableCommissary1.AddCell(new PdfPCell(new Phrase(item.Small.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                            tableCommissary1.AddCell(new PdfPCell(new Phrase(item.Medium.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                            tableCommissary1.AddCell(new PdfPCell(new Phrase(item.Large.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                            tableCommissary1.AddCell(new PdfPCell(new Phrase(item.ExtraLarge.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                            tableCommissary1.AddCell(new PdfPCell(new Phrase(item.ItemDescription, fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                            tableCommissary1.AddCell(new PdfPCell(new Phrase(item.Minis.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                            tableCommissary1.AddCell(new PdfPCell(new Phrase(item.ExtraSmall.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                            tableCommissary1.AddCell(new PdfPCell(new Phrase(item.Small.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                            tableCommissary1.AddCell(new PdfPCell(new Phrase(item.Medium.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                            tableCommissary1.AddCell(new PdfPCell(new Phrase(item.Large.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                            tableCommissary1.AddCell(new PdfPCell(new Phrase(item.ExtraLarge.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
                         }
                         document.Add(tableCommissary1);
                     }
@@ -116,9 +116,9 @@ namespace MWS.Reports
 
                         foreach (var item in commissary1Cut)
                         {
-                            tableCommissary1Cut.AddCell(new PdfPCell(new Phrase(item.ItemDescription, fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                            tableCommissary1Cut.AddCell(new PdfPCell(new Phrase(item.Weight.ToString("#,##0.00"), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                            tableCommissary1Cut.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman12Bold)) { Border = 0, Colspan = 5, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                            tableCommissary1Cut.AddCell(new PdfPCell(new Phrase(item.ItemDescription, fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                            tableCommissary1Cut.AddCell(new PdfPCell(new Phrase(item.Weight.ToString("#,##0.00"), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                            tableCommissary1Cut.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman12Bold)) { Border = 0, Colspan = 5, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
                         }
                         document.Add(tableCommissary1Cut);
                     }
@@ -137,13 +137,13 @@ namespace MWS.Reports
 
                         foreach (var item in commissary2)
                         {
-                            tableCommissary2.AddCell(new PdfPCell(new Phrase(item.ItemDescription, fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                            tableCommissary2.AddCell(new PdfPCell(new Phrase(item.Minis.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                            tableCommissary2.AddCell(new PdfPCell(new Phrase(item.ExtraSmall.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                            tableCommissary2.AddCell(new PdfPCell(new Phrase(item.Small.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                            tableCommissary2.AddCell(new PdfPCell(new Phrase(item.Medium.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                            tableCommissary2.AddCell(new PdfPCell(new Phrase(item.Large.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                            tableCommissary2.AddCell(new PdfPCell(new Phrase(item.ExtraLarge.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                            tableCommissary2.AddCell(new PdfPCell(new Phrase(item.ItemDescription, fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                            tableCommissary2.AddCell(new PdfPCell(new Phrase(item.Minis.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                            tableCommissary2.AddCell(new PdfPCell(new Phrase(item.ExtraSmall.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                            tableCommissary2.AddCell(new PdfPCell(new Phrase(item.Small.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                            tableCommissary2.AddCell(new PdfPCell(new Phrase(item.Medium.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                            tableCommissary2.AddCell(new PdfPCell(new Phrase(item.Large.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                            tableCommissary2.AddCell(new PdfPCell(new Phrase(item.ExtraLarge.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
                         }
                         document.Add(tableCommissary2);
                     }
@@ -166,13 +166,13 @@ namespace MWS.Reports
 
                             foreach (var item in commissary1)
                             {
-                                tableCommissary1.AddCell(new PdfPCell(new Phrase(item.ItemDescription, fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableCommissary1.AddCell(new PdfPCell(new Phrase(item.Minis.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableCommissary1.AddCell(new PdfPCell(new Phrase(item.ExtraSmall.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableCommissary1.AddCell(new PdfPCell(new Phrase(item.Small.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableCommissary1.AddCell(new PdfPCell(new Phrase(item.Medium.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableCommissary1.AddCell(new PdfPCell(new Phrase(item.Large.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableCommissary1.AddCell(new PdfPCell(new Phrase(item.ExtraLarge.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                tableCommissary1.AddCell(new PdfPCell(new Phrase(item.ItemDescription, fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                                tableCommissary1.AddCell(new PdfPCell(new Phrase(item.Minis.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                                tableCommissary1.AddCell(new PdfPCell(new Phrase(item.ExtraSmall.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                                tableCommissary1.AddCell(new PdfPCell(new Phrase(item.Small.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                                tableCommissary1.AddCell(new PdfPCell(new Phrase(item.Medium.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                                tableCommissary1.AddCell(new PdfPCell(new Phrase(item.Large.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                                tableCommissary1.AddCell(new PdfPCell(new Phrase(item.ExtraLarge.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
                             }
                             document.Add(tableCommissary1);
                         }
@@ -186,9 +186,9 @@ namespace MWS.Reports
 
                             foreach (var item in commissary1Cut)
                             {
-                                tableCommissary1Cut.AddCell(new PdfPCell(new Phrase(item.ItemDescription, fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableCommissary1Cut.AddCell(new PdfPCell(new Phrase(item.Weight.ToString("#,##0.00"), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableCommissary1Cut.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman12Bold)) { Border = 0, Colspan = 5, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                tableCommissary1Cut.AddCell(new PdfPCell(new Phrase(item.ItemDescription, fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                                tableCommissary1Cut.AddCell(new PdfPCell(new Phrase(item.Weight.ToString("#,##0.00"), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                                tableCommissary1Cut.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman12Bold)) { Border = 0, Colspan = 5, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
                             }
                             document.Add(tableCommissary1Cut);
                         }
@@ -209,13 +209,13 @@ namespace MWS.Reports
 
                             foreach (var item in commissary2)
                             {
-                                tableCommissary2.AddCell(new PdfPCell(new Phrase(item.ItemDescription, fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableCommissary2.AddCell(new PdfPCell(new Phrase(item.Minis.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableCommissary2.AddCell(new PdfPCell(new Phrase(item.ExtraSmall.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableCommissary2.AddCell(new PdfPCell(new Phrase(item.Small.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableCommissary2.AddCell(new PdfPCell(new Phrase(item.Medium.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableCommissary2.AddCell(new PdfPCell(new Phrase(item.Large.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableCommissary2.AddCell(new PdfPCell(new Phrase(item.ExtraLarge.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                tableCommissary2.AddCell(new PdfPCell(new Phrase(item.ItemDescription, fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                                tableCommissary2.AddCell(new PdfPCell(new Phrase(item.Minis.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                                tableCommissary2.AddCell(new PdfPCell(new Phrase(item.ExtraSmall.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                                tableCommissary2.AddCell(new PdfPCell(new Phrase(item.Small.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                                tableCommissary2.AddCell(new PdfPCell(new Phrase(item.Medium.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                                tableCommissary2.AddCell(new PdfPCell(new Phrase(item.Large.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
+                                tableCommissary2.AddCell(new PdfPCell(new Phrase(item.ExtraLarge.ToString(), fontTimesNewRoman12Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 1 });
                             }
                             document.Add(tableCommissary2);
                         }

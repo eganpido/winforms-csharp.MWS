@@ -55,13 +55,13 @@ namespace MWS.Controllers
             if (branchId == 1)
             {
                 db = new DB.mwsdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
-                var receivings = from d in db.TrnReceivingItems
+                var processings = from d in db.TrnProductionItems
                                  where d.ItemId == 1
-                                 && d.TrnReceiving.ReceivingDate >= startDate
-                                 && d.TrnReceiving.ReceivingDate <= endDate
-                                 && d.TrnReceiving.IsLocked == true
+                                 && d.TrnProduction.ProductionDate >= startDate
+                                 && d.TrnProduction.ProductionDate <= endDate
+                                 && d.TrnProduction.IsLocked == true
                                  select d;
-                if (receivings.Any())
+                if (processings.Any())
                 {
                     var pullOuts = from d in db.TrnPullOutItems
                                    where d.TrnProductionItem.ItemId == 1
@@ -75,12 +75,12 @@ namespace MWS.Controllers
                         {
                             ItemId = 1,
                             ItemDescription = "SLAB",
-                            Minis = receivings.Where(a => a.SizeId == 1).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 1).Count(),
-                            ExtraSmall = receivings.Where(a => a.SizeId == 2).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 2).Count(),
-                            Small = receivings.Where(a => a.SizeId == 3).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 3).Count(),
-                            Medium = receivings.Where(a => a.SizeId == 4).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 4).Count(),
-                            Large = receivings.Where(a => a.SizeId == 5).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 5).Count(),
-                            ExtraLarge = receivings.Where(a => a.SizeId == 6).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 6).Count()
+                            Minis = processings.Where(a => a.SizeId == 1).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 1).Count(),
+                            ExtraSmall = processings.Where(a => a.SizeId == 2).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 2).Count(),
+                            Small = processings.Where(a => a.SizeId == 3).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 3).Count(),
+                            Medium = processings.Where(a => a.SizeId == 4).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 4).Count(),
+                            Large = processings.Where(a => a.SizeId == 5).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 5).Count(),
+                            ExtraLarge = processings.Where(a => a.SizeId == 6).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 6).Count()
                         });
                     }
                     else
@@ -89,12 +89,12 @@ namespace MWS.Controllers
                         {
                             ItemId = 1,
                             ItemDescription = "SLAB",
-                            Minis = receivings.Where(a => a.SizeId == 1).Count(),
-                            ExtraSmall = receivings.Where(a => a.SizeId == 2).Count(),
-                            Small = receivings.Where(a => a.SizeId == 3).Count(),
-                            Medium = receivings.Where(a => a.SizeId == 4).Count(),
-                            Large = receivings.Where(a => a.SizeId == 5).Count(),
-                            ExtraLarge = receivings.Where(a => a.SizeId == 6).Count()
+                            Minis = processings.Where(a => a.SizeId == 1).Count(),
+                            ExtraSmall = processings.Where(a => a.SizeId == 2).Count(),
+                            Small = processings.Where(a => a.SizeId == 3).Count(),
+                            Medium = processings.Where(a => a.SizeId == 4).Count(),
+                            Large = processings.Where(a => a.SizeId == 5).Count(),
+                            ExtraLarge = processings.Where(a => a.SizeId == 6).Count()
                         });
                     }
                 }
@@ -102,13 +102,13 @@ namespace MWS.Controllers
             else
             {
                 db = new DB.mwsdbDataContext(Modules.SysConnectionString2Module.GetConnectionString());
-                var receivings = from d in db.TrnReceivingItems
+                var processings = from d in db.TrnProductionItems
                                  where d.ItemId == 1
-                                 && d.TrnReceiving.ReceivingDate >= startDate
-                                 && d.TrnReceiving.ReceivingDate <= endDate
-                                 && d.TrnReceiving.IsLocked == true
+                                 && d.TrnProduction.ProductionDate >= startDate
+                                 && d.TrnProduction.ProductionDate <= endDate
+                                 && d.TrnProduction.IsLocked == true
                                  select d;
-                if (receivings.Any())
+                if (processings.Any())
                 {
                     var pullOuts = from d in db.TrnPullOutItems
                                    where d.TrnProductionItem.ItemId == 1
@@ -122,12 +122,12 @@ namespace MWS.Controllers
                         {
                             ItemId = 1,
                             ItemDescription = "SLAB",
-                            Minis = receivings.Where(a => a.SizeId == 1).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 1).Count(),
-                            ExtraSmall = receivings.Where(a => a.SizeId == 2).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 2).Count(),
-                            Small = receivings.Where(a => a.SizeId == 3).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 3).Count(),
-                            Medium = receivings.Where(a => a.SizeId == 4).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 4).Count(),
-                            Large = receivings.Where(a => a.SizeId == 5).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 5).Count(),
-                            ExtraLarge = receivings.Where(a => a.SizeId == 6).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 6).Count()
+                            Minis = processings.Where(a => a.SizeId == 1).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 1).Count(),
+                            ExtraSmall = processings.Where(a => a.SizeId == 2).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 2).Count(),
+                            Small = processings.Where(a => a.SizeId == 3).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 3).Count(),
+                            Medium = processings.Where(a => a.SizeId == 4).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 4).Count(),
+                            Large = processings.Where(a => a.SizeId == 5).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 5).Count(),
+                            ExtraLarge = processings.Where(a => a.SizeId == 6).Count() - pullOuts.Where(a => a.TrnProductionItem.SizeId == 6).Count()
                         });
                     }
                     else
@@ -136,12 +136,12 @@ namespace MWS.Controllers
                         {
                             ItemId = 1,
                             ItemDescription = "SLAB",
-                            Minis = receivings.Where(a => a.SizeId == 1).Count(),
-                            ExtraSmall = receivings.Where(a => a.SizeId == 2).Count(),
-                            Small = receivings.Where(a => a.SizeId == 3).Count(),
-                            Medium = receivings.Where(a => a.SizeId == 4).Count(),
-                            Large = receivings.Where(a => a.SizeId == 5).Count(),
-                            ExtraLarge = receivings.Where(a => a.SizeId == 6).Count()
+                            Minis = processings.Where(a => a.SizeId == 1).Count(),
+                            ExtraSmall = processings.Where(a => a.SizeId == 2).Count(),
+                            Small = processings.Where(a => a.SizeId == 3).Count(),
+                            Medium = processings.Where(a => a.SizeId == 4).Count(),
+                            Large = processings.Where(a => a.SizeId == 5).Count(),
+                            ExtraLarge = processings.Where(a => a.SizeId == 6).Count()
                         });
                     }
                 }

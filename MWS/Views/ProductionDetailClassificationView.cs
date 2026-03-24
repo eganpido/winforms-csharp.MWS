@@ -34,12 +34,13 @@ namespace MWS.Views
                 comboBoxClassification.ValueMember = "Classification";
                 comboBoxClassification.DisplayMember = "Classification";
             }
+            textBoxRemarks.Text = "NA";
         }
 
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
             Controllers.TrnProductionItemController trnProductionItemController = new Controllers.TrnProductionItemController();
-            trnProductionItemController.UpdateProductionItemClassification(productionItemId, comboBoxClassification.SelectedValue.ToString());
+            trnProductionItemController.UpdateProductionItemClassification(productionItemId, comboBoxClassification.SelectedValue.ToString(), textBoxRemarks.Text);
             Close();
             productionDetailView.UpdateProductionItemListDataSource();
             productionDetailView.textBoxWeight.Text = "";

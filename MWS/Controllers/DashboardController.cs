@@ -18,20 +18,20 @@ namespace MWS.Controllers
 
             int totalSlabs = 0;
 
-            if(branchId == 1)
+            if (branchId == 1)
             {
-                if(currentBranchId == 1)
+                if (currentBranchId == 1)
                 {
                     db = new DB.mwsdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
 
-                    var receivingItem = from d in db.TrnReceivingItems
-                                        where d.TrnReceiving.IsLocked == true
-                                        && d.SizeId == sizeId
-                                        && d.ItemId == 1
-                                        select d;
-                    if (receivingItem.Any())
+                    var processingItem = from d in db.TrnProductionItems
+                                         where d.TrnProduction.IsLocked == true
+                                         && d.SizeId == sizeId
+                                         && d.ItemId == 1
+                                         select d;
+                    if (processingItem.Any())
                     {
-                        totalSlabs = receivingItem.Count();
+                        totalSlabs = processingItem.Count();
 
                         var pullOutItem = from d in db.TrnPullOutItems
                                           where d.TrnPullOut.IsLocked == true
@@ -40,7 +40,7 @@ namespace MWS.Controllers
                                           select d;
                         if (pullOutItem.Any())
                         {
-                            totalSlabs = receivingItem.Count() - pullOutItem.Count();
+                            totalSlabs = processingItem.Count() - pullOutItem.Count();
                         }
                     }
                 }
@@ -48,14 +48,14 @@ namespace MWS.Controllers
                 {
                     db = new DB.mwsdbDataContext(Modules.SysConnectionString2Module.GetConnectionString());
 
-                    var receivingItem = from d in db.TrnReceivingItems
-                                        where d.TrnReceiving.IsLocked == true
+                    var processingItem = from d in db.TrnProductionItems
+                                         where d.TrnProduction.IsLocked == true
                                         && d.SizeId == sizeId
                                         && d.ItemId == 1
-                                        select d;
-                    if (receivingItem.Any())
+                                         select d;
+                    if (processingItem.Any())
                     {
-                        totalSlabs = receivingItem.Count();
+                        totalSlabs = processingItem.Count();
 
                         var pullOutItem = from d in db.TrnPullOutItems
                                           where d.TrnPullOut.IsLocked == true
@@ -64,11 +64,11 @@ namespace MWS.Controllers
                                           select d;
                         if (pullOutItem.Any())
                         {
-                            totalSlabs = receivingItem.Count() - pullOutItem.Count();
+                            totalSlabs = processingItem.Count() - pullOutItem.Count();
                         }
                     }
                 }
-               
+
             }
             else
             {
@@ -123,7 +123,7 @@ namespace MWS.Controllers
                             totalSlabs = receivingItem.Count() - productionItems.Count();
                         }
                     }
-                }  
+                }
             }
 
             return totalSlabs < 0 ? 0 : totalSlabs;

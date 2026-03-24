@@ -17,5 +17,7 @@ namespace MWS.Models
         public String Size { get; set; }
         public String Classification { get; set; }
         public decimal Weight { get; set; }
+        public String Remarks { get; set; }
+
     }
 }

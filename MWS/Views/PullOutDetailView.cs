@@ -155,7 +155,9 @@ namespace MWS.Views
                             };
                 txtTotalWeight.Text = items.Sum(a => Convert.ToDecimal(a.ColumnWeight)).ToString("#,##0.000");
                 txtTotalCount.Text = items.Count().ToString();
-
+                txtClassic.Text = items.Where(a => a.ColumnClassification == "CLASSIC").Count().ToString();
+                txtSpicy.Text = items.Where(a => a.ColumnClassification == "SPICY").Count().ToString();
+                txtAdvance.Text = listPullOutItem.Count(x => x.Remarks.Contains("AO")).ToString();
                 return Task.FromResult(items.ToList());
             }
             else
@@ -447,6 +449,21 @@ namespace MWS.Views
                 float weightTextWidth = e.Graphics.MeasureString(weightText, fontBold).Width;
                 float weightTextX = startX + (barcodeWidth - weightTextWidth) / 2;
                 e.Graphics.DrawString(weightText, fontBold, Brushes.Black, weightTextX, 135);
+
+                string advanceText = "AO : " + txtAdvance.Text;
+                float advanceTextWidth = e.Graphics.MeasureString(advanceText, fontBold).Width;
+                float advanceTextX = startX + (barcodeWidth - advanceTextWidth) / 2;
+                e.Graphics.DrawString(advanceText, fontBold, Brushes.Black, advanceTextX, 190);
+
+                string classicText = "Classic : " + txtClassic.Text;
+                float classicTextWidth = e.Graphics.MeasureString(classicText, fontBold).Width;
+                float classicTextX = startX + (barcodeWidth - classicTextWidth) / 2;
+                e.Graphics.DrawString(classicText, fontBold, Brushes.Black, classicTextX, 245);
+
+                string spicyText = "Spicy : " + txtSpicy.Text;
+                float spicyTextWidth = e.Graphics.MeasureString(spicyText, fontBold).Width;
+                float spicyTextX = startX + (barcodeWidth - spicyTextWidth) / 2;
+                e.Graphics.DrawString(spicyText, fontBold, Brushes.Black, spicyTextX, 300);
             }
         }
     }

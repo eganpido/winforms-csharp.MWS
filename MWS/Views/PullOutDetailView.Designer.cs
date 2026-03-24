@@ -40,6 +40,10 @@
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.labelIndicator = new System.Windows.Forms.Label();
+            this.txtClassic = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtSpicy = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtTotalCount = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtTotalWeight = new System.Windows.Forms.TextBox();
@@ -61,27 +65,29 @@
             this.ColumnWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.buttonPrint = new System.Windows.Forms.Button();
+            this.buttonEdit = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxBarcode = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.labelCurrentUser = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.labelSupport = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelDeveloper = new System.Windows.Forms.Label();
-            this.buttonPrint = new System.Windows.Forms.Button();
-            this.buttonEdit = new System.Windows.Forms.Button();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtAdvance = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -106,7 +112,7 @@
             this.panel1.Location = new System.Drawing.Point(35, 34);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(996, 651);
+            this.panel1.Size = new System.Drawing.Size(1310, 651);
             this.panel1.TabIndex = 4;
             // 
             // panel9
@@ -116,13 +122,19 @@
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel9.Location = new System.Drawing.Point(0, 191);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(994, 377);
+            this.panel9.Size = new System.Drawing.Size(1308, 377);
             this.panel9.TabIndex = 3;
             // 
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.LightGray;
             this.panel10.Controls.Add(this.labelIndicator);
+            this.panel10.Controls.Add(this.txtAdvance);
+            this.panel10.Controls.Add(this.label10);
+            this.panel10.Controls.Add(this.txtClassic);
+            this.panel10.Controls.Add(this.label9);
+            this.panel10.Controls.Add(this.txtSpicy);
+            this.panel10.Controls.Add(this.label7);
             this.panel10.Controls.Add(this.txtTotalCount);
             this.panel10.Controls.Add(this.label6);
             this.panel10.Controls.Add(this.txtTotalWeight);
@@ -136,7 +148,7 @@
             this.panel10.Location = new System.Drawing.Point(0, 325);
             this.panel10.Margin = new System.Windows.Forms.Padding(2);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(994, 52);
+            this.panel10.Size = new System.Drawing.Size(1308, 52);
             this.panel10.TabIndex = 27;
             // 
             // labelIndicator
@@ -146,11 +158,69 @@
             this.labelIndicator.BackColor = System.Drawing.Color.LightGray;
             this.labelIndicator.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelIndicator.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.labelIndicator.Location = new System.Drawing.Point(770, 16);
+            this.labelIndicator.Location = new System.Drawing.Point(1084, 16);
             this.labelIndicator.Name = "labelIndicator";
             this.labelIndicator.Size = new System.Drawing.Size(221, 24);
             this.labelIndicator.TabIndex = 111;
             this.labelIndicator.Text = "The current record is locked.";
+            // 
+            // txtClassic
+            // 
+            this.txtClassic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtClassic.BackColor = System.Drawing.Color.LightGray;
+            this.txtClassic.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtClassic.Enabled = false;
+            this.txtClassic.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClassic.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtClassic.Location = new System.Drawing.Point(932, 11);
+            this.txtClassic.Name = "txtClassic";
+            this.txtClassic.ReadOnly = true;
+            this.txtClassic.Size = new System.Drawing.Size(50, 28);
+            this.txtClassic.TabIndex = 109;
+            this.txtClassic.TabStop = false;
+            this.txtClassic.Text = "0";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.LightGray;
+            this.label9.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label9.Location = new System.Drawing.Point(900, 13);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(29, 24);
+            this.label9.TabIndex = 110;
+            this.label9.Text = "C :";
+            // 
+            // txtSpicy
+            // 
+            this.txtSpicy.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSpicy.BackColor = System.Drawing.Color.LightGray;
+            this.txtSpicy.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSpicy.Enabled = false;
+            this.txtSpicy.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSpicy.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtSpicy.Location = new System.Drawing.Point(851, 12);
+            this.txtSpicy.Name = "txtSpicy";
+            this.txtSpicy.ReadOnly = true;
+            this.txtSpicy.Size = new System.Drawing.Size(51, 28);
+            this.txtSpicy.TabIndex = 109;
+            this.txtSpicy.TabStop = false;
+            this.txtSpicy.Text = "0";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.LightGray;
+            this.label7.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label7.Location = new System.Drawing.Point(819, 14);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(31, 24);
+            this.label7.TabIndex = 110;
+            this.label7.Text = "S : ";
             // 
             // txtTotalCount
             // 
@@ -161,10 +231,10 @@
             this.txtTotalCount.Enabled = false;
             this.txtTotalCount.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalCount.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtTotalCount.Location = new System.Drawing.Point(797, 12);
+            this.txtTotalCount.Location = new System.Drawing.Point(773, 12);
             this.txtTotalCount.Name = "txtTotalCount";
             this.txtTotalCount.ReadOnly = true;
-            this.txtTotalCount.Size = new System.Drawing.Size(103, 28);
+            this.txtTotalCount.Size = new System.Drawing.Size(63, 28);
             this.txtTotalCount.TabIndex = 109;
             this.txtTotalCount.TabStop = false;
             this.txtTotalCount.Text = "0";
@@ -175,7 +245,7 @@
             this.label6.BackColor = System.Drawing.Color.LightGray;
             this.label6.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label6.Location = new System.Drawing.Point(680, 14);
+            this.label6.Location = new System.Drawing.Point(656, 14);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(111, 24);
             this.label6.TabIndex = 110;
@@ -193,7 +263,7 @@
             this.txtTotalWeight.Location = new System.Drawing.Point(578, 14);
             this.txtTotalWeight.Name = "txtTotalWeight";
             this.txtTotalWeight.ReadOnly = true;
-            this.txtTotalWeight.Size = new System.Drawing.Size(93, 28);
+            this.txtTotalWeight.Size = new System.Drawing.Size(394, 28);
             this.txtTotalWeight.TabIndex = 107;
             this.txtTotalWeight.TabStop = false;
             this.txtTotalWeight.Text = "0.000";
@@ -333,7 +403,7 @@
             this.dataGridViewPullOutItem.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewPullOutItem.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewPullOutItem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPullOutItem.Size = new System.Drawing.Size(994, 331);
+            this.dataGridViewPullOutItem.Size = new System.Drawing.Size(1308, 331);
             this.dataGridViewPullOutItem.TabIndex = 0;
             this.dataGridViewPullOutItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPullOutItem_CellClick);
             // 
@@ -464,8 +534,80 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel8.Location = new System.Drawing.Point(0, 103);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(994, 88);
+            this.panel8.Size = new System.Drawing.Size(1308, 88);
             this.panel8.TabIndex = 2;
+            // 
+            // buttonPrint
+            // 
+            this.buttonPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
+            this.buttonPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPrint.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPrint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.buttonPrint.Image = global::MWS.Properties.Resources.print;
+            this.buttonPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonPrint.Location = new System.Drawing.Point(827, 35);
+            this.buttonPrint.Name = "buttonPrint";
+            this.buttonPrint.Size = new System.Drawing.Size(117, 42);
+            this.buttonPrint.TabIndex = 1;
+            this.buttonPrint.TabStop = false;
+            this.buttonPrint.Text = "     Print";
+            this.buttonPrint.UseVisualStyleBackColor = false;
+            this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
+            // 
+            // buttonEdit
+            // 
+            this.buttonEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
+            this.buttonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonEdit.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.buttonEdit.Image = global::MWS.Properties.Resources.edit;
+            this.buttonEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonEdit.Location = new System.Drawing.Point(950, 35);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Size = new System.Drawing.Size(117, 42);
+            this.buttonEdit.TabIndex = 1;
+            this.buttonEdit.TabStop = false;
+            this.buttonEdit.Text = "    Edit";
+            this.buttonEdit.UseVisualStyleBackColor = false;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
+            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSave.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.buttonSave.Image = global::MWS.Properties.Resources.diskette;
+            this.buttonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonSave.Location = new System.Drawing.Point(1073, 35);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(117, 42);
+            this.buttonSave.TabIndex = 1;
+            this.buttonSave.TabStop = false;
+            this.buttonSave.Text = "    Save";
+            this.buttonSave.UseVisualStyleBackColor = false;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.btnAdd.Image = global::MWS.Properties.Resources.new_folder;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(1196, 35);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(109, 42);
+            this.btnAdd.TabIndex = 2;
+            this.btnAdd.TabStop = false;
+            this.btnAdd.Text = "     New";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // label2
             // 
@@ -515,7 +657,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(994, 103);
+            this.panel4.Size = new System.Drawing.Size(1308, 103);
             this.panel4.TabIndex = 1;
             // 
             // label1
@@ -530,6 +672,23 @@
             this.label1.Size = new System.Drawing.Size(305, 24);
             this.label1.TabIndex = 101;
             this.label1.Text = "Precision Weighing for Meat Products.";
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnClose.BackgroundImage = global::MWS.Properties.Resources.log_out;
+            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.btnClose.Location = new System.Drawing.Point(1258, 7);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(49, 41);
+            this.btnClose.TabIndex = 4;
+            this.btnClose.TabStop = false;
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // label3
             // 
@@ -554,6 +713,16 @@
             this.label5.TabIndex = 102;
             this.label5.Text = "Weigh Right. Sell Right.";
             // 
+            // panel7
+            // 
+            this.panel7.BackgroundImage = global::MWS.Properties.Resources.Weighing1;
+            this.panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(87, 103);
+            this.panel7.TabIndex = 2;
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
@@ -566,7 +735,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 568);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(994, 81);
+            this.panel2.Size = new System.Drawing.Size(1308, 81);
             this.panel2.TabIndex = 103;
             // 
             // panel5
@@ -574,10 +743,20 @@
             this.panel5.Controls.Add(this.panel6);
             this.panel5.Controls.Add(this.labelCurrentUser);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel5.Location = new System.Drawing.Point(482, 0);
+            this.panel5.Location = new System.Drawing.Point(796, 0);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(512, 81);
             this.panel5.TabIndex = 2;
+            // 
+            // panel6
+            // 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel6.BackgroundImage = global::MWS.Properties.Resources.user;
+            this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel6.Location = new System.Drawing.Point(400, 25);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(44, 35);
+            this.panel6.TabIndex = 0;
             // 
             // labelCurrentUser
             // 
@@ -591,6 +770,16 @@
             this.labelCurrentUser.Size = new System.Drawing.Size(47, 19);
             this.labelCurrentUser.TabIndex = 0;
             this.labelCurrentUser.Text = "admin";
+            // 
+            // panel3
+            // 
+            this.panel3.BackgroundImage = global::MWS.Properties.Resources.streetsmartLogo_9;
+            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(87, 81);
+            this.panel3.TabIndex = 1;
             // 
             // labelSupport
             // 
@@ -628,131 +817,41 @@
             this.labelDeveloper.TabIndex = 0;
             this.labelDeveloper.Text = "Streetsmart Solutions";
             // 
-            // buttonPrint
+            // label10
             // 
-            this.buttonPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
-            this.buttonPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPrint.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPrint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.buttonPrint.Image = global::MWS.Properties.Resources.print;
-            this.buttonPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonPrint.Location = new System.Drawing.Point(513, 35);
-            this.buttonPrint.Name = "buttonPrint";
-            this.buttonPrint.Size = new System.Drawing.Size(117, 42);
-            this.buttonPrint.TabIndex = 1;
-            this.buttonPrint.TabStop = false;
-            this.buttonPrint.Text = "     Print";
-            this.buttonPrint.UseVisualStyleBackColor = false;
-            this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.LightGray;
+            this.label10.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label10.Location = new System.Drawing.Point(985, 14);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(42, 24);
+            this.label10.TabIndex = 110;
+            this.label10.Text = "AO :";
             // 
-            // buttonEdit
+            // txtAdvance
             // 
-            this.buttonEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
-            this.buttonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonEdit.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.buttonEdit.Image = global::MWS.Properties.Resources.edit;
-            this.buttonEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonEdit.Location = new System.Drawing.Point(636, 35);
-            this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(117, 42);
-            this.buttonEdit.TabIndex = 1;
-            this.buttonEdit.TabStop = false;
-            this.buttonEdit.Text = "    Edit";
-            this.buttonEdit.UseVisualStyleBackColor = false;
-            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
-            // 
-            // buttonSave
-            // 
-            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
-            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSave.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.buttonSave.Image = global::MWS.Properties.Resources.diskette;
-            this.buttonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonSave.Location = new System.Drawing.Point(759, 35);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(117, 42);
-            this.buttonSave.TabIndex = 1;
-            this.buttonSave.TabStop = false;
-            this.buttonSave.Text = "    Save";
-            this.buttonSave.UseVisualStyleBackColor = false;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(163)))), ((int)(((byte)(184)))));
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.btnAdd.Image = global::MWS.Properties.Resources.new_folder;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(882, 35);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(109, 42);
-            this.btnAdd.TabIndex = 2;
-            this.btnAdd.TabStop = false;
-            this.btnAdd.Text = "     New";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnClose.BackgroundImage = global::MWS.Properties.Resources.log_out;
-            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.btnClose.Location = new System.Drawing.Point(944, 7);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(49, 41);
-            this.btnClose.TabIndex = 4;
-            this.btnClose.TabStop = false;
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // panel7
-            // 
-            this.panel7.BackgroundImage = global::MWS.Properties.Resources.Weighing1;
-            this.panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(87, 103);
-            this.panel7.TabIndex = 2;
-            // 
-            // panel6
-            // 
-            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel6.BackgroundImage = global::MWS.Properties.Resources.user;
-            this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel6.Location = new System.Drawing.Point(400, 25);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(44, 35);
-            this.panel6.TabIndex = 0;
-            // 
-            // panel3
-            // 
-            this.panel3.BackgroundImage = global::MWS.Properties.Resources.streetsmartLogo_9;
-            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(87, 81);
-            this.panel3.TabIndex = 1;
+            this.txtAdvance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAdvance.BackColor = System.Drawing.Color.LightGray;
+            this.txtAdvance.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAdvance.Enabled = false;
+            this.txtAdvance.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAdvance.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtAdvance.Location = new System.Drawing.Point(1029, 12);
+            this.txtAdvance.Name = "txtAdvance";
+            this.txtAdvance.ReadOnly = true;
+            this.txtAdvance.Size = new System.Drawing.Size(50, 28);
+            this.txtAdvance.TabIndex = 109;
+            this.txtAdvance.TabStop = false;
+            this.txtAdvance.Text = "0";
             // 
             // PullOutDetailView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(23)))), ((int)(((byte)(42)))));
-            this.ClientSize = new System.Drawing.Size(1066, 719);
+            this.ClientSize = new System.Drawing.Size(1380, 719);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Open Sans", 7.8F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -826,5 +925,11 @@
         private System.Windows.Forms.Label labelIndicator;
         private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.Button buttonPrint;
+        private System.Windows.Forms.TextBox txtClassic;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtSpicy;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtAdvance;
+        private System.Windows.Forms.Label label10;
     }
 }

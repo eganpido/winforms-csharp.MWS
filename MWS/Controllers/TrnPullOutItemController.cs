@@ -26,7 +26,8 @@ namespace MWS.Controllers
                                    SizeId = d.TrnProductionItem.SizeId,
                                    Size = d.TrnProductionItem.MstSize.Size,
                                    Classification = d.TrnProductionItem.Classification,
-                                   Weight = d.TrnProductionItem.ActualWeight
+                                   Weight = d.TrnProductionItem.ActualWeight,
+                                   Remarks = d.TrnProductionItem.Remarks
                                };
 
             return pullOutItems.Where(d => d.PullOutId == pullOutId).OrderByDescending(e => e.Id).ToList();

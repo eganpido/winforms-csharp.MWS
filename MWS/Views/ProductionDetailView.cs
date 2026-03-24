@@ -229,7 +229,7 @@ namespace MWS.Views
             {
                 dataGridViewProductionItem.Columns[8].Visible = false;
                 dataGridViewProductionItem.Columns[9].Visible = false;
-                dataGridViewProductionItem.Columns[11].Visible = true;
+                dataGridViewProductionItem.Columns[11].Visible = false;
                 dataGridViewProductionItem.Columns[12].Visible = true;
                 btnAddItem.Visible = true;
                 labelSupplier.Visible = true;

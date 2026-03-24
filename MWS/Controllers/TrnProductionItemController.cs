@@ -22,6 +22,7 @@ namespace MWS.Controllers
         public string barcodeWeight;
         public string barcodeSize;
         public string barcodeClassification;
+        public string barcodeRemarks;
 
         // Classification - List
         public List<MstClassificationModel> DropDownClassification()
@@ -200,6 +201,7 @@ namespace MWS.Controllers
                 barcodeWeight = newProductionItem.ActualWeight.ToString();
                 barcodeSize = newProductionItem.MstSize.Size;
                 barcodeClassification = newProductionItem.Classification;
+                barcodeRemarks = newProductionItem.Remarks;
 
                 GenerateAndPrintBarcode(finalBarcode);
 
@@ -247,7 +249,7 @@ namespace MWS.Controllers
         }
 
         // Update Production Item Classification
-        public String[] UpdateProductionItemClassification(int id, string classification)
+        public String[] UpdateProductionItemClassification(int id, string classification, string remarks)
         {
             try
             {
@@ -265,12 +267,14 @@ namespace MWS.Controllers
                 {
                     var updateProductionItem = productionItem.FirstOrDefault();
                     updateProductionItem.Classification = classification;
+                    updateProductionItem.Remarks = remarks;
                     db.SubmitChanges();
 
                     barcodeItem = updateProductionItem.MstItem.ItemDescription;
                     barcodeWeight = updateProductionItem.ActualWeight.ToString();
                     barcodeSize = updateProductionItem.MstSize.Size;
                     barcodeClassification = updateProductionItem.Classification;
+                    barcodeRemarks = updateProductionItem.Remarks;
 
                     GenerateAndPrintBarcode(updateProductionItem.ProductionBarcode);
 
@@ -345,7 +349,7 @@ namespace MWS.Controllers
                     Options = new ZXing.Common.EncodingOptions
                     {
                         Width = 300,
-                        Height = 160,
+                        Height = 110,
                         Margin = 0
                     }
                 };
@@ -374,7 +378,7 @@ namespace MWS.Controllers
                 int labelSpacing = 290; // Distansya gikan sa unang label padulong sa ikaduha
 
                 int barcodeWidth = 300;
-                int barcodeHeight = 160;
+                int barcodeHeight = 110;
 
                 // Mag-loop ta og kaduha (0 ug 1)
                 for (int i = 0; i < 2; i++)
@@ -402,8 +406,13 @@ namespace MWS.Controllers
                     float rightTextWidth = e.Graphics.MeasureString(rightText, fontRegular).Width;
                     e.Graphics.DrawString(rightText, fontRegular, Brushes.Black, startX + 235, textAboveBarcodeY);
 
+                    string remarksText = barcodeRemarks;
+                    float remarksTextWidth = e.Graphics.MeasureString(remarksText, fontRegular).Width;
+                    float remarksTextX = startX + (barcodeWidth - remarksTextWidth) / 2;
+                    e.Graphics.DrawString(remarksText, fontRegular, Brushes.Black, remarksTextX, startY);
+
                     // 3. Ang Barcode
-                    e.Graphics.DrawImage(barcodeBitmap, startX, startY, barcodeWidth, barcodeHeight);
+                    e.Graphics.DrawImage(barcodeBitmap, startX, startY + 30, barcodeWidth, barcodeHeight);
                 }
             }
         }

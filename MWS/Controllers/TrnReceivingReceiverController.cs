@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MWS.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -98,15 +99,49 @@ namespace MWS.Controllers
         public List<Models.TrnPullOutModel> PullOutList()
         {
             var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
-            var pullOuts = from d in db2.TrnPullOuts
-                           where d.IsLocked == true
-                           select new Models.TrnPullOutModel
-                           {
-                               Id = d.Id,
-                               PullOutNo = d.PullOutNo
-                           };
 
-            return pullOuts.OrderByDescending(d => d.Id).ToList();
+            var pullOutsData = from d in db2.TrnPullOuts
+                               where d.IsLocked == true
+                               && d.BranchId != currentBranchId
+                               select d;
+
+            var result = pullOutsData
+                         .OrderByDescending(d => d.Id)
+                         .AsEnumerable() 
+                         .Select(d => new Models.TrnPullOutModel
+                         {
+                             Id = d.Id,
+                             PullOutNo = $"{d.PullOutNo} | {d.TrnPullOutItems.Count} | {d.PullOutDate.ToShortDateString()}",
+                             IsClear = d.IsClear
+                         })
+                         .ToList();
+
+            return result;
+        }
+
+        // Pull Out List IsClear = false
+        public List<Models.TrnPullOutModel> PullOutListNotCleared()
+        {
+            var currentBranchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
+
+            var pullOutsData = from d in db2.TrnPullOuts
+                               where d.IsLocked == true
+                               && d.IsClear == false
+                               && d.BranchId != currentBranchId
+                               select d;
+
+            var result = pullOutsData
+                         .OrderByDescending(d => d.Id)
+                         .AsEnumerable()
+                         .Select(d => new Models.TrnPullOutModel
+                         {
+                             Id = d.Id,
+                             PullOutNo = $"{d.PullOutNo} | {d.TrnPullOutItems.Count} | {d.PullOutDate.ToShortDateString()}",
+                             IsClear = d.IsClear
+                         })
+                         .ToList();
+
+            return result;
         }
 
         // Add Receiving
@@ -196,6 +231,17 @@ namespace MWS.Controllers
                     lockReceiving.PullOutId = objReceiving.PullOutId;
                     db.SubmitChanges();
 
+                    var pullOuts = from d in db2.TrnPullOuts
+                                  where d.Id == objReceiving.PullOutId
+                                  select d;
+                    if (pullOuts.Any())
+                    {
+                        var pullOut = pullOuts.FirstOrDefault();
+                        pullOut.IsClear = true;
+                        db2.SubmitChanges();
+                    }
+
+
                     return new String[] { "", "1" };
                 }
                 else
@@ -234,6 +280,16 @@ namespace MWS.Controllers
                     var unlockReceiving = receiving.FirstOrDefault();
                     unlockReceiving.IsLocked = false;
                     db.SubmitChanges();
+
+                    var pullOuts = from d in db2.TrnPullOuts
+                                   where d.Id == unlockReceiving.PullOutId
+                                   select d;
+                    if (pullOuts.Any())
+                    {
+                        var pullOut = pullOuts.FirstOrDefault();
+                        pullOut.IsClear = false;
+                        db2.SubmitChanges();
+                    }
 
                     return new String[] { "", "1" };
                 }
@@ -312,6 +368,34 @@ namespace MWS.Controllers
             }
 
             return itemCount;
+        }
+
+        public List<TrnReceivingReceiverLackingBarcodes> LackingBarcodes(int pullOutId, int receivingId)
+        {
+            List<TrnReceivingReceiverLackingBarcodes> lacking = new List<TrnReceivingReceiverLackingBarcodes>();
+
+            var pullOutItems = from d in db2.TrnPullOutItems
+                           where d.PullOutId == pullOutId
+                           select d;
+            if (pullOutItems.Any())
+            {
+                foreach (var item in pullOutItems)
+                {
+                    var receiving = from d in db.TrnReceivingItems
+                                    where d.ReceivingId == receivingId
+                                    && d.Barcode == item.TrnProductionItem.ProductionBarcode
+                                    select d;
+                    if(!receiving.Any())
+                    {
+                        lacking.Add(new TrnReceivingReceiverLackingBarcodes
+                        {
+                            Barcode = item.TrnProductionItem.ProductionBarcode
+                        });
+                    }
+                }
+            }
+
+            return lacking;
         }
     }
 }

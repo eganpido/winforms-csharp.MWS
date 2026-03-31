@@ -172,7 +172,9 @@ namespace MWS.Views
 
                 txtTotalWeight.Text = items.Sum(a => Convert.ToDecimal(a.ColumnActualWeight)).ToString("#,##0.000");
                 txtTotalCount.Text = items.Count().ToString();
-
+                txtClassic.Text = items.Where(a => a.ColumnClassification == "CLASSIC").Count().ToString();
+                txtSpicy.Text = items.Where(a => a.ColumnClassification == "SPICY").Count().ToString();
+                txtAdvance.Text = listProductionItem.Count(x => x.Remarks.Contains("AO")).ToString();
                 return Task.FromResult(items.ToList());
             }
             else

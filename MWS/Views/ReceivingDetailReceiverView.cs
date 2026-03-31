@@ -60,6 +60,18 @@ namespace MWS.Views
                 SetFooter();
             }
         }
+
+        public void LoadPullOutList()
+        {
+            Controllers.TrnReceivingReceiverController trnReceivingController = new Controllers.TrnReceivingReceiverController();
+            if (trnReceivingController.PullOutListNotCleared().Any())
+            {
+                comboBoxPullOutNumber.DataSource = trnReceivingController.PullOutListNotCleared();
+                comboBoxPullOutNumber.ValueMember = "Id";
+                comboBoxPullOutNumber.DisplayMember = "PullOutNo";
+                comboBoxPullOutNumber.SelectedValue = 0;
+            }
+        }
         public void SetFooter()
         {
             var settings = SysCurrentModule.GetCurrentSettings();
@@ -218,7 +230,8 @@ namespace MWS.Views
 
                 txtTotalWeight.Text = items.Sum(a => Convert.ToDecimal(a.ColumnWeight)).ToString("#,##0.000");
                 txtTotalCount.Text = items.Count().ToString();
-
+                txtClassic.Text = items.Where(a => a.ColumnClassification == "CLASSIC").Count().ToString();
+                txtSpicy.Text = items.Where(a => a.ColumnClassification == "SPICY").Count().ToString();
                 return Task.FromResult(items.ToList());
             }
             else
@@ -238,7 +251,7 @@ namespace MWS.Views
             else
             {
                 Close();
-
+                historyView.UpdateReceivingListDataSource();
             }
         }
 
@@ -391,6 +404,8 @@ namespace MWS.Views
                 else
                 {
                     MessageBox.Show("Validation Error: Please ensure the item count meets the required specifications before saving.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ReceivingDetailReceiverLackingBarcodesView receivingDetailReceiverLacking = new ReceivingDetailReceiverLackingBarcodesView(Convert.ToInt32(comboBoxPullOutNumber.SelectedValue), trnReceivingModel.Id);
+                    receivingDetailReceiverLacking.Show();
                 }
             }
         }
@@ -456,6 +471,16 @@ namespace MWS.Views
             {
                 MessageBox.Show(unlockReceiving[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void comboBoxPullOutNumber_DropDown(object sender, EventArgs e)
+        {
+            LoadPullOutList();
+        }
+
+        private void comboBoxPullOutNumber_DropDownClosed(object sender, EventArgs e)
+        {
+
         }
     }
 }

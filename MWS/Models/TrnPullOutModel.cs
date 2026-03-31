@@ -16,5 +16,6 @@ namespace MWS.Models
         public Int32 PreparedById { get; set; }
         public String PreparedBy { get; set; }
         public Boolean IsLocked { get; set; }
+        public Boolean IsClear { get; set; }
     }
 }

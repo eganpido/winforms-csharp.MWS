@@ -440,30 +440,35 @@ namespace MWS.Views
                 float topTextX = startX + (barcodeWidth - topTextWidth) / 2;
                 e.Graphics.DrawString(topText, fontBold, Brushes.Black, topTextX, startY - 95);
 
+                string dateText = "Pull Out Date. : " + trnPullOutModel.PullOutDate;
+                float dateTextWidth = e.Graphics.MeasureString(topText, fontBold).Width;
+                float dateTextX = startX + (barcodeWidth - dateTextWidth) / 2;
+                e.Graphics.DrawString(dateText, fontBold, Brushes.Black, dateTextX, 80);
+
                 string countText = "Total Count : " + txtTotalCount.Text;
                 float countTextWidth = e.Graphics.MeasureString(countText, fontBold).Width;
                 float countTextX = startX + (barcodeWidth - countTextWidth) / 2;
-                e.Graphics.DrawString(countText, fontBold, Brushes.Black, countTextX, 80);
+                e.Graphics.DrawString(countText, fontBold, Brushes.Black, countTextX, 135);
 
                 string weightText = "Total Weight : " + txtTotalWeight.Text;
                 float weightTextWidth = e.Graphics.MeasureString(weightText, fontBold).Width;
                 float weightTextX = startX + (barcodeWidth - weightTextWidth) / 2;
-                e.Graphics.DrawString(weightText, fontBold, Brushes.Black, weightTextX, 135);
+                e.Graphics.DrawString(weightText, fontBold, Brushes.Black, weightTextX, 190);
 
                 string advanceText = "AO : " + txtAdvance.Text;
                 float advanceTextWidth = e.Graphics.MeasureString(advanceText, fontBold).Width;
                 float advanceTextX = startX + (barcodeWidth - advanceTextWidth) / 2;
-                e.Graphics.DrawString(advanceText, fontBold, Brushes.Black, advanceTextX, 190);
+                e.Graphics.DrawString(advanceText, fontBold, Brushes.Black, advanceTextX, 245);
 
                 string classicText = "Classic : " + txtClassic.Text;
                 float classicTextWidth = e.Graphics.MeasureString(classicText, fontBold).Width;
                 float classicTextX = startX + (barcodeWidth - classicTextWidth) / 2;
-                e.Graphics.DrawString(classicText, fontBold, Brushes.Black, classicTextX, 245);
+                e.Graphics.DrawString(classicText, fontBold, Brushes.Black, classicTextX, 300);
 
                 string spicyText = "Spicy : " + txtSpicy.Text;
                 float spicyTextWidth = e.Graphics.MeasureString(spicyText, fontBold).Width;
                 float spicyTextX = startX + (barcodeWidth - spicyTextWidth) / 2;
-                e.Graphics.DrawString(spicyText, fontBold, Brushes.Black, spicyTextX, 300);
+                e.Graphics.DrawString(spicyText, fontBold, Brushes.Black, spicyTextX, 355);
             }
         }
     }

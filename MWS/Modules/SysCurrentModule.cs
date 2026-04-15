@@ -49,7 +49,8 @@ namespace MWS.Modules
                 CurrentDeveloper = currentSettings.CurrentDeveloper,
                 CurrentSupport = currentSettings.CurrentSupport,
                 BranchId = currentSettings.BranchId,
-                IsReceiver = currentSettings.IsReceiver
+                IsReceiver = currentSettings.IsReceiver,
+                ByPass = currentSettings.ByPass
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newCurrent);
@@ -72,7 +73,8 @@ namespace MWS.Modules
                 CurrentDeveloper = objSysCurrentModel.CurrentDeveloper,
                 CurrentSupport = objSysCurrentModel.CurrentSupport,
                 BranchId = objSysCurrentModel.BranchId,
-                IsReceiver = objSysCurrentModel.IsReceiver
+                IsReceiver = objSysCurrentModel.IsReceiver,
+                ByPass = objSysCurrentModel.ByPass
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newSysCurrents);

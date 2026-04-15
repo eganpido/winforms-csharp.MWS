@@ -471,7 +471,7 @@ namespace MWS.Views
                 }
                 else
                 {
-                    if (trnProductionItemController.isAlreadyAdded(textBoxWeight.Text, trnProductionModel.Id) == false)
+                    if (trnProductionItemController.isAlreadyAdded(textBoxWeight.Text) == false)
                     {
                         if (trnProductionItemController.IsExist(textBoxWeight.Text) == true)
                         {

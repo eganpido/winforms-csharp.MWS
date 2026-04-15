@@ -4,9 +4,10 @@
   "ContactNo": "(032) 000-0000",
   "CurrentUserId": 1,
   "CurrentUserName": "admin",
-  "CurrentVersion": "v1.1.2",
+  "CurrentVersion": "v1.1.4",
   "CurrentDeveloper": "Streetsmart Solutions",
   "CurrentSupport": "(032) 000-0000",
   "BranchId": 1,
-  "IsReceiver": false
+  "IsReceiver": false,
+  "ByPass":  false
 }

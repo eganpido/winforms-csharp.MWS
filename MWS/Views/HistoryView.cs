@@ -289,9 +289,11 @@ namespace MWS.Views
                                 ColumnReceivingPreparedById = d.PreparedById,
                                 ColumnReceivingPreparedBy = d.PreparedBy.ToString(),
                                 ColumnReceivingTotalWeight = d.TotalWeight.ToString(),
+                                ColumnReceivingTotalCount = d.TotalCount.ToString(),
                                 ColumnReceivingIsLocked = d.IsLocked,
                                 ColumnReceivingView = "View",
                             };
+                txtTotalCount.Text = listReceiving.Sum(a => a.TotalCount).ToString();
 
                 return Task.FromResult(items.ToList());
             }
@@ -324,6 +326,7 @@ namespace MWS.Views
                                 ColumnProcessingIsLocked = d.IsLocked,
                                 ColumnProcessingView = "View",
                             };
+                txtProcessingTotalCount.Text = listProcessing.Sum(a => a.TotalWeight).ToString();
 
                 return Task.FromResult(items.ToList());
             }
@@ -351,9 +354,11 @@ namespace MWS.Views
                                 ColumnPullOutRemarks = d.Remarks,
                                 ColumnPullOutPreparedById = d.PreparedById,
                                 ColumnPullOutPreparedBy = d.PreparedBy.ToString(),
+                                ColumnPullOutTotalCount = d.TotalCount.ToString(),
                                 ColumnPullOutIsLocked = d.IsLocked,
                                 ColumnPullOutView = "View",
                             };
+                txtPullOutTotalCount.Text = listPullOut.Sum(a => a.TotalCount).ToString();
 
                 return Task.FromResult(items.ToList());
             }

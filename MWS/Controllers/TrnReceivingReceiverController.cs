@@ -224,7 +224,6 @@ namespace MWS.Controllers
                     }
 
                     var lockReceiving = receiving.FirstOrDefault();
-                    lockReceiving.ReceivingDate = DateTime.Today;
                     lockReceiving.SupplierId = objReceiving.SupplierId;
                     lockReceiving.Remarks = objReceiving.Remarks;
                     lockReceiving.IsLocked = true;

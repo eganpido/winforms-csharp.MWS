@@ -68,6 +68,7 @@ namespace MWS.Controllers
                                    && d.TrnPullOut.PullOutDate >= startDate
                                    && d.TrnPullOut.PullOutDate <= endDate
                                    && d.TrnPullOut.IsLocked == true
+                                   && d.TrnProductionItem.TrnProduction.IsLocked == true
                                    select d;
                     if (pullOuts.Any())
                     {
@@ -115,6 +116,7 @@ namespace MWS.Controllers
                                    && d.TrnPullOut.PullOutDate >= startDate
                                    && d.TrnPullOut.PullOutDate <= endDate
                                    && d.TrnPullOut.IsLocked == true
+                                   && d.TrnProductionItem.TrnProduction.IsLocked == true
                                    select d;
                     if (pullOuts.Any())
                     {
@@ -171,6 +173,7 @@ namespace MWS.Controllers
                                    && d.TrnPullOut.PullOutDate >= startDate
                                    && d.TrnPullOut.PullOutDate <= endDate
                                    && d.TrnPullOut.IsLocked == true
+                                   && d.TrnProductionItem.TrnProduction.IsLocked == true
                                    select d;
                     if (pullOuts.Any())
                     {
@@ -209,6 +212,7 @@ namespace MWS.Controllers
                                    && d.TrnPullOut.PullOutDate >= startDate
                                    && d.TrnPullOut.PullOutDate <= endDate
                                    && d.TrnPullOut.IsLocked == true
+                                   && d.TrnProductionItem.TrnProduction.IsLocked == true
                                    select d;
                     if (pullOuts.Any())
                     {

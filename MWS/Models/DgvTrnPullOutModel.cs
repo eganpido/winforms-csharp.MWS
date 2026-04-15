@@ -14,6 +14,7 @@ namespace MWS.Models
         public String ColumnPullOutRemarks { get; set; }
         public Int32 ColumnPullOutPreparedById { get; set; }
         public String ColumnPullOutPreparedBy { get; set; }
+        public String ColumnPullOutTotalCount { get; set; }
         public Boolean ColumnPullOutIsLocked { get; set; }
         public String ColumnPullOutView { get; set; }
     }

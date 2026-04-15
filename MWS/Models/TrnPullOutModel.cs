@@ -15,6 +15,7 @@ namespace MWS.Models
         public String Remarks { get; set; }
         public Int32 PreparedById { get; set; }
         public String PreparedBy { get; set; }
+        public int TotalCount { get; set; }
         public Boolean IsLocked { get; set; }
         public Boolean IsClear { get; set; }
     }

@@ -37,6 +37,7 @@ namespace MWS.Controllers
                                           where d.TrnPullOut.IsLocked == true
                                           && d.TrnProductionItem.SizeId == sizeId
                                           && d.TrnProductionItem.ItemId == 1
+                                          && d.TrnProductionItem.TrnProduction.IsLocked == true
                                           select d;
                         if (pullOutItem.Any())
                         {
@@ -61,6 +62,7 @@ namespace MWS.Controllers
                                           where d.TrnPullOut.IsLocked == true
                                           && d.TrnProductionItem.SizeId == sizeId
                                           && d.TrnProductionItem.ItemId == 1
+                                          && d.TrnProductionItem.TrnProduction.IsLocked == true
                                           select d;
                         if (pullOutItem.Any())
                         {
@@ -126,7 +128,7 @@ namespace MWS.Controllers
                 }
             }
 
-            return totalSlabs < 0 ? 0 : totalSlabs;
+            return totalSlabs;
         }
     }
 }

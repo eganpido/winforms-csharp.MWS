@@ -464,12 +464,12 @@ namespace MWS.Controllers
             }
             return null;
         }
-        public bool isAlreadyAdded(string barcode, int productionId)
+        public bool isAlreadyAdded(string barcode)
         {
             bool added = false;
             var barcodeExist = from d in db.TrnProductionItems
-                               where d.ProductionId == productionId
-                               && d.ProductionBarcode == barcode
+                               where d.ProductionBarcode == barcode
+                               && d.TrnProduction.IsLocked == true
                                select d;
             if (barcodeExist.Any())
             {

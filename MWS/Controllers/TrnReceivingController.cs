@@ -52,6 +52,7 @@ namespace MWS.Controllers
                                PreparedById = d.PrepareById,
                                PreparedBy = d.MstUser.FullName,
                                TotalWeight = d.TrnReceivingItems.Sum(a => (decimal?)a.Weight) ?? 0,
+                               TotalCount = d.TrnReceivingItems.Count(),
                                IsLocked = d.IsLocked
                            };
 
@@ -172,7 +173,6 @@ namespace MWS.Controllers
                     }
 
                     var lockReceiving = receiving.FirstOrDefault();
-                    lockReceiving.ReceivingDate = DateTime.Today;
                     lockReceiving.SupplierId = objReceiving.SupplierId;
                     lockReceiving.Remarks = objReceiving.Remarks;
                     lockReceiving.IsLocked = true;

@@ -79,6 +79,50 @@ namespace MWS.Controllers
                 return new String[] { e.Message, "0" };
             }
         }
+        // Add Receiving Item ByPass
+        public String[] AddReceivingItemByPass(int receivingId, string barcode)
+        {
+            try
+            {
+                var currentUserLogin = from d in db.MstUsers where d.Id == Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId) select d;
+                if (currentUserLogin.Any() == false)
+                {
+                    return new String[] { "Current login user not found.", "0" };
+                }
+
+                var pullOutItem = from d in db2.TrnPullOutItems
+                                  where d.TrnProductionItem.ProductionBarcode == barcode
+                                  && d.TrnPullOut.IsLocked == true
+                                  select d;
+                var item = pullOutItem.FirstOrDefault();
+                if (pullOutItem.Any())
+                {
+                    DB.TrnReceivingItem newReceivingItem = new DB.TrnReceivingItem
+                    {
+                        ReceivingId = receivingId,
+                        ItemId = item.TrnProductionItem.ItemId,
+                        Barcode = item.TrnProductionItem.ProductionBarcode,
+                        ItemDescription = item.TrnProductionItem.MstItem.ItemDescription,
+                        SizeId = item.TrnProductionItem.SizeId,
+                        Weight = item.TrnProductionItem.ActualWeight,
+                        Classification = item.TrnProductionItem.Classification
+                    };
+
+                    db.TrnReceivingItems.InsertOnSubmit(newReceivingItem);
+                    db.SubmitChanges();
+
+                    return new String[] { "", newReceivingItem.Id.ToString() };
+                }
+                else
+                {
+                    return new String[] { "", "0" };
+                }
+            }
+            catch (Exception e)
+            {
+                return new String[] { e.Message, "0" };
+            }
+        }
 
         // Delete Receiving Item
         public String[] DeleteReceivingItem(Int32 id)
@@ -156,12 +200,12 @@ namespace MWS.Controllers
 
             return size;
         }
-        public bool isAlreadyAdded(string barcode, int receivingId)
+        public bool isAlreadyAdded(string barcode)
         {
             bool added = false;
             var barcodeExist = from d in db.TrnReceivingItems
-                               where d.ReceivingId == receivingId
-                               && d.Barcode == barcode
+                               where d.Barcode == barcode
+                               && d.TrnReceiving.IsLocked == true
                                select d;
             if (barcodeExist.Any())
             {

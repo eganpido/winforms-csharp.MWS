@@ -18,6 +18,7 @@ namespace MWS.Models
         public Int32 ColumnReceivingPreparedById { get; set; }
         public String ColumnReceivingPreparedBy { get; set; }
         public String ColumnReceivingTotalWeight { get; set; }
+        public String ColumnReceivingTotalCount { get; set; }
         public Boolean ColumnReceivingIsLocked { get; set; }
         public String ColumnReceivingView { get; set; }
     }

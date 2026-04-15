@@ -49,8 +49,7 @@ namespace MWS.Controllers
                                  Remarks = d.Remarks,
                                  PreparedById = d.PrepareById,
                                  PreparedBy = d.MstUser.FullName,
-                                 // The Fix: Cast to nullable decimal, then coalesce to 0
-                                 TotalWeight = d.TrnProductionItems.Sum(a => (decimal?)a.ActualWeight) ?? 0,
+                                 TotalWeight = d.TrnProductionItems.Count(),
                                  IsLocked = d.IsLocked
                              };
 
@@ -161,7 +160,6 @@ namespace MWS.Controllers
                     }
 
                     var lockProduction = production.FirstOrDefault();
-                    lockProduction.ProductionDate = DateTime.Today;
                     lockProduction.SupplierId = objProduction.SupplierId;
                     lockProduction.IsLocked = true;
                     db.SubmitChanges();

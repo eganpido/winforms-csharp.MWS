@@ -47,6 +47,7 @@ namespace MWS.Controllers
                                Remarks = d.Remarks,
                                PreparedById = d.PrepareById,
                                PreparedBy = d.MstUser.FullName,
+                               TotalCount = d.TrnPullOutItems.Count(),
                                IsLocked = d.IsLocked
                            };
 

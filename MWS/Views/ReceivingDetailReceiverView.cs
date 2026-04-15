@@ -382,12 +382,40 @@ namespace MWS.Views
                 Controllers.TrnReceivingReceiverController trnReceivingController = new Controllers.TrnReceivingReceiverController();
                 int pullOutItemsCount = trnReceivingController.GetTotalPullOutItemsCount(Convert.ToInt32(comboBoxPullOutNumber.SelectedValue));
                 int receivingItemsCount = trnReceivingController.GetTotalReceivingItemsCount(trnReceivingModel.Id);
-                if(pullOutItemsCount == receivingItemsCount)
+                if (Modules.SysCurrentModule.GetCurrentSettings().ByPass == false)
+                {
+                    if (pullOutItemsCount == receivingItemsCount)
+                    {
+                        Models.TrnReceivingModel newReceivingModel = new Models.TrnReceivingModel()
+                        {
+                            SupplierId = Convert.ToInt32(comboBoxSupplier.SelectedValue),
+                            PullOutId = Convert.ToInt32(comboBoxPullOutNumber.SelectedValue),
+                            Remarks = textBoxRemarks.Text.Trim(),
+                        };
+
+                        String[] saveReceiving = trnReceivingController.LockReceiving(trnReceivingModel.Id, newReceivingModel);
+                        if (saveReceiving[1].Equals("0") == false)
+                        {
+                            UpdateComponents(true);
+                        }
+                        else
+                        {
+                            MessageBox.Show(saveReceiving[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Validation Error: Please ensure the item count meets the required specifications before saving.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        ReceivingDetailReceiverLackingBarcodesView receivingDetailReceiverLacking = new ReceivingDetailReceiverLackingBarcodesView(Convert.ToInt32(comboBoxPullOutNumber.SelectedValue), trnReceivingModel.Id);
+                        receivingDetailReceiverLacking.Show();
+                    }
+                }
+                else
                 {
                     Models.TrnReceivingModel newReceivingModel = new Models.TrnReceivingModel()
                     {
                         SupplierId = Convert.ToInt32(comboBoxSupplier.SelectedValue),
-                        PullOutId = Convert.ToInt32(comboBoxPullOutNumber.SelectedValue),
+                        PullOutId = null,
                         Remarks = textBoxRemarks.Text.Trim(),
                     };
 
@@ -400,12 +428,6 @@ namespace MWS.Views
                     {
                         MessageBox.Show(saveReceiving[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Validation Error: Please ensure the item count meets the required specifications before saving.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    ReceivingDetailReceiverLackingBarcodesView receivingDetailReceiverLacking = new ReceivingDetailReceiverLackingBarcodesView(Convert.ToInt32(comboBoxPullOutNumber.SelectedValue), trnReceivingModel.Id);
-                    receivingDetailReceiverLacking.Show();
                 }
             }
         }
@@ -429,27 +451,55 @@ namespace MWS.Views
             if (e.KeyCode == Keys.Enter)
             {
                 Controllers.TrnReceivingReceiverItemController trnReceivingReceiverItemController = new Controllers.TrnReceivingReceiverItemController();
-                if (trnReceivingReceiverItemController.isAlreadyAdded(textBoxBarcode.Text, trnReceivingModel.Id) == false)
+                if (Modules.SysCurrentModule.GetCurrentSettings().ByPass == false)
                 {
-                    String[] addReceiving = trnReceivingReceiverItemController.AddReceivingItem(trnReceivingModel.Id, Convert.ToInt32(comboBoxPullOutNumber.SelectedValue), textBoxBarcode.Text);
-                    if (addReceiving[1].Equals("0") == false)
+                    if (trnReceivingReceiverItemController.isAlreadyAdded(textBoxBarcode.Text) == false)
                     {
-                        UpdateReceivingItemListDataSource();
-                        textBoxBarcode.Text = "";
-                        textBoxBarcode.Focus();
+                        String[] addReceiving = trnReceivingReceiverItemController.AddReceivingItem(trnReceivingModel.Id, Convert.ToInt32(comboBoxPullOutNumber.SelectedValue), textBoxBarcode.Text);
+                        if (addReceiving[1].Equals("0") == false)
+                        {
+                            UpdateReceivingItemListDataSource();
+                            textBoxBarcode.Text = "";
+                            textBoxBarcode.Focus();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Barcode doesn't exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            textBoxBarcode.Text = "";
+                            textBoxBarcode.Focus();
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Barcode doesn't exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Barcode already exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         textBoxBarcode.Text = "";
                         textBoxBarcode.Focus();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Barcode already exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    textBoxBarcode.Text = "";
-                    textBoxBarcode.Focus();
+                    if (trnReceivingReceiverItemController.isAlreadyAdded(textBoxBarcode.Text) == false)
+                    {
+                        String[] addReceiving = trnReceivingReceiverItemController.AddReceivingItemByPass(trnReceivingModel.Id, textBoxBarcode.Text);
+                        if (addReceiving[1].Equals("0") == false)
+                        {
+                            UpdateReceivingItemListDataSource();
+                            textBoxBarcode.Text = "";
+                            textBoxBarcode.Focus();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Barcode doesn't exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            textBoxBarcode.Text = "";
+                            textBoxBarcode.Focus();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Barcode already exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        textBoxBarcode.Text = "";
+                        textBoxBarcode.Focus();
+                    }
                 }
             }
         }

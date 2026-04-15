@@ -18,5 +18,6 @@ namespace MWS.Models
         public String CurrentSupport { get; set; }
         public int BranchId { get; set; }
         public bool IsReceiver { get; set; }
+        public bool ByPass { get; set; }
     }
 }

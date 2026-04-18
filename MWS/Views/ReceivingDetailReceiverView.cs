@@ -208,9 +208,9 @@ namespace MWS.Views
         }
         public Task<List<Models.DgvTrnReceivingReceiverItemModel>> GetReceivingItemListDataTask()
         {
-            Controllers.TrnReceivingItemController trnReceivingItemController = new Controllers.TrnReceivingItemController();
-
-            List<Models.TrnReceivingItemModel> listReceivingItem = trnReceivingItemController.ReceivingItemList(trnReceivingModel.Id);
+            Controllers.TrnReceivingReceiverItemController trnReceivingItemController = new Controllers.TrnReceivingReceiverItemController();
+            string filter = textBoxSearchBarcode.Text;
+            List<Models.TrnReceivingItemModel> listReceivingItem = trnReceivingItemController.ReceivingItemList(trnReceivingModel.Id, filter);
             if (listReceivingItem.Any())
             {
                 var items = from d in listReceivingItem
@@ -453,50 +453,81 @@ namespace MWS.Views
                 Controllers.TrnReceivingReceiverItemController trnReceivingReceiverItemController = new Controllers.TrnReceivingReceiverItemController();
                 if (Modules.SysCurrentModule.GetCurrentSettings().ByPass == false)
                 {
-                    if (trnReceivingReceiverItemController.isAlreadyAdded(textBoxBarcode.Text) == false)
+                    var info = trnReceivingReceiverItemController.GetExistingItemDetails(textBoxBarcode.Text);
+                    if (info.IsAdded == false)
                     {
-                        String[] addReceiving = trnReceivingReceiverItemController.AddReceivingItem(trnReceivingModel.Id, Convert.ToInt32(comboBoxPullOutNumber.SelectedValue), textBoxBarcode.Text);
-                        if (addReceiving[1].Equals("0") == false)
+
+                        if (trnReceivingReceiverItemController.isAlreadyAddedInHere(textBoxBarcode.Text, trnReceivingModel.Id) == false)
                         {
-                            UpdateReceivingItemListDataSource();
-                            textBoxBarcode.Text = "";
-                            textBoxBarcode.Focus();
+                            String[] addReceiving = trnReceivingReceiverItemController.AddReceivingItem(trnReceivingModel.Id, Convert.ToInt32(comboBoxPullOutNumber.SelectedValue), textBoxBarcode.Text);
+                            if (addReceiving[1].Equals("0") == false)
+                            {
+                                UpdateReceivingItemListDataSource();
+                                textBoxBarcode.Text = "";
+                                textBoxBarcode.Focus();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Barcode doesn't exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                textBoxBarcode.Text = "";
+                                textBoxBarcode.Focus();
+                            }
                         }
                         else
                         {
-                            MessageBox.Show("Barcode doesn't exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Barcode already exist in this record.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             textBoxBarcode.Text = "";
                             textBoxBarcode.Focus();
-                        }
+                        }  
                     }
                     else
                     {
-                        MessageBox.Show("Barcode already exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        string msg = $"Barcode already exist!\n\n" +
+                                     $"Barcode: {info.Barcode}\n" +
+                                     $"Receiving No: {info.ReceivingNo}\n" +
+                                     $"Date: {info.ReceivingDate:MM/dd/yyyy}";
+
+                        MessageBox.Show(msg, "MWS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         textBoxBarcode.Text = "";
                         textBoxBarcode.Focus();
                     }
                 }
                 else
                 {
-                    if (trnReceivingReceiverItemController.isAlreadyAdded(textBoxBarcode.Text) == false)
+                    var info = trnReceivingReceiverItemController.GetExistingItemDetails(textBoxBarcode.Text);
+                    if (info.IsAdded == false)
                     {
-                        String[] addReceiving = trnReceivingReceiverItemController.AddReceivingItemByPass(trnReceivingModel.Id, textBoxBarcode.Text);
-                        if (addReceiving[1].Equals("0") == false)
+                        if (trnReceivingReceiverItemController.isAlreadyAddedInHere(textBoxBarcode.Text, trnReceivingModel.Id) == false)
                         {
-                            UpdateReceivingItemListDataSource();
-                            textBoxBarcode.Text = "";
-                            textBoxBarcode.Focus();
+                            String[] addReceiving = trnReceivingReceiverItemController.AddReceivingItemByPass(trnReceivingModel.Id, textBoxBarcode.Text);
+                            if (addReceiving[1].Equals("0") == false)
+                            {
+                                UpdateReceivingItemListDataSource();
+                                textBoxBarcode.Text = "";
+                                textBoxBarcode.Focus();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Barcode doesn't exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                textBoxBarcode.Text = "";
+                                textBoxBarcode.Focus();
+                            }
                         }
                         else
                         {
-                            MessageBox.Show("Barcode doesn't exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Barcode already exist in this record.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             textBoxBarcode.Text = "";
                             textBoxBarcode.Focus();
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Barcode already exist.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        string msg = $"Barcode already exist!\n\n" +
+                                    $"Barcode: {info.Barcode}\n" +
+                                    $"Receiving No: {info.ReceivingNo}\n" +
+                                    $"Date: {info.ReceivingDate:MM/dd/yyyy}";
+
+                        MessageBox.Show(msg, "MWS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         textBoxBarcode.Text = "";
                         textBoxBarcode.Focus();
                     }
@@ -507,19 +538,26 @@ namespace MWS.Views
         private void buttonEdit_Click(object sender, EventArgs e)
         {
             Controllers.TrnReceivingReceiverController trnReceivingController = new Controllers.TrnReceivingReceiverController();
-
-            String[] unlockReceiving = trnReceivingController.UnlockReceving(trnReceivingModel.Id);
-            if (unlockReceiving[1].Equals("0") == false)
+            bool hasProduction = trnReceivingController.hasProduction(trnReceivingModel.Id);
+            if(hasProduction == false)
             {
-                UpdateComponents(false);
-                if (historyView != null)
+                String[] unlockReceiving = trnReceivingController.UnlockReceving(trnReceivingModel.Id);
+                if (unlockReceiving[1].Equals("0") == false)
                 {
-                    historyView.UpdateReceivingListDataSource();
+                    UpdateComponents(false);
+                    if (historyView != null)
+                    {
+                        historyView.UpdateReceivingListDataSource();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(unlockReceiving[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show(unlockReceiving[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Editing disabled for items with existing production records.", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -531,6 +569,14 @@ namespace MWS.Views
         private void comboBoxPullOutNumber_DropDownClosed(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBoxSearchBarcode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                UpdateReceivingItemListDataSource();
+            }
         }
     }
 }

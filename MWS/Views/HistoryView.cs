@@ -1,4 +1,5 @@
 ﻿using MWS.Models;
+using MWS.Modules;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -60,6 +61,12 @@ namespace MWS.Views
                     tabControlHistory.TabPages.Remove(tabPagePullOut);
                 }
             }
+
+            var settings = SysCurrentModule.GetCurrentSettings();
+            labelDeveloper.Text = settings.CurrentDeveloper;
+            labelSupport.Text = settings.CurrentSupport;
+            labelVersion.Text = settings.CurrentVersion;
+            labelCurrentUser.Text = settings.CurrentUserName;
         }
 
         private void btnClose_Click(object sender, EventArgs e)

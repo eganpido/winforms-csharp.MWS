@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -90,6 +90,8 @@
             this.labelSupport = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelDeveloper = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBoxSearchBarcode = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -122,9 +124,9 @@
             this.panel9.Controls.Add(this.panel10);
             this.panel9.Controls.Add(this.dataGridViewReceivingItem);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(0, 248);
+            this.panel9.Location = new System.Drawing.Point(0, 306);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1308, 320);
+            this.panel9.Size = new System.Drawing.Size(1308, 262);
             this.panel9.TabIndex = 3;
             // 
             // panel10
@@ -145,7 +147,7 @@
             this.panel10.Controls.Add(this.buttonLast);
             this.panel10.Controls.Add(this.textBoxPageNumber);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel10.Location = new System.Drawing.Point(0, 268);
+            this.panel10.Location = new System.Drawing.Point(0, 210);
             this.panel10.Margin = new System.Windows.Forms.Padding(2);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(1308, 52);
@@ -370,10 +372,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewReceivingItem.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.dataGridViewReceivingItem.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Open Sans", 7.8F);
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewReceivingItem.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Open Sans", 7.8F);
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewReceivingItem.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
             this.dataGridViewReceivingItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewReceivingItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnId,
@@ -386,14 +388,14 @@
             this.ColumnClassification,
             this.ColumnWeight,
             this.ColumnDelete});
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Open Sans", 7.8F);
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewReceivingItem.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle32.Font = new System.Drawing.Font("Open Sans", 7.8F);
+            dataGridViewCellStyle32.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewReceivingItem.DefaultCellStyle = dataGridViewCellStyle32;
             this.dataGridViewReceivingItem.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewReceivingItem.Name = "dataGridViewReceivingItem";
             this.dataGridViewReceivingItem.ReadOnly = true;
@@ -403,7 +405,7 @@
             this.dataGridViewReceivingItem.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewReceivingItem.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewReceivingItem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewReceivingItem.Size = new System.Drawing.Size(1308, 274);
+            this.dataGridViewReceivingItem.Size = new System.Drawing.Size(1308, 216);
             this.dataGridViewReceivingItem.TabIndex = 0;
             this.dataGridViewReceivingItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewReceivingItem_CellClick);
             // 
@@ -440,8 +442,8 @@
             // ColumnBarcode
             // 
             this.ColumnBarcode.DataPropertyName = "ColumnBarcode";
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Open Sans SemiBold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ColumnBarcode.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Open Sans SemiBold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ColumnBarcode.DefaultCellStyle = dataGridViewCellStyle26;
             this.ColumnBarcode.HeaderText = "Barcode";
             this.ColumnBarcode.MinimumWidth = 6;
             this.ColumnBarcode.Name = "ColumnBarcode";
@@ -451,8 +453,8 @@
             // ColumnItemDescription
             // 
             this.ColumnItemDescription.DataPropertyName = "ColumnItemDescription";
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
-            this.ColumnItemDescription.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
+            this.ColumnItemDescription.DefaultCellStyle = dataGridViewCellStyle27;
             this.ColumnItemDescription.HeaderText = "Description";
             this.ColumnItemDescription.MinimumWidth = 6;
             this.ColumnItemDescription.Name = "ColumnItemDescription";
@@ -472,8 +474,8 @@
             // ColumnSize
             // 
             this.ColumnSize.DataPropertyName = "ColumnSize";
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
-            this.ColumnSize.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
+            this.ColumnSize.DefaultCellStyle = dataGridViewCellStyle28;
             this.ColumnSize.HeaderText = "Size";
             this.ColumnSize.MinimumWidth = 6;
             this.ColumnSize.Name = "ColumnSize";
@@ -483,8 +485,8 @@
             // ColumnClassification
             // 
             this.ColumnClassification.DataPropertyName = "ColumnClassification";
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
-            this.ColumnClassification.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
+            this.ColumnClassification.DefaultCellStyle = dataGridViewCellStyle29;
             this.ColumnClassification.HeaderText = "Classification";
             this.ColumnClassification.MinimumWidth = 6;
             this.ColumnClassification.Name = "ColumnClassification";
@@ -494,9 +496,9 @@
             // ColumnWeight
             // 
             this.ColumnWeight.DataPropertyName = "ColumnWeight";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
-            this.ColumnWeight.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
+            this.ColumnWeight.DefaultCellStyle = dataGridViewCellStyle30;
             this.ColumnWeight.HeaderText = "Weight";
             this.ColumnWeight.MinimumWidth = 6;
             this.ColumnWeight.Name = "ColumnWeight";
@@ -506,13 +508,13 @@
             // ColumnDelete
             // 
             this.ColumnDelete.DataPropertyName = "ColumnDelete";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            this.ColumnDelete.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle31.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            this.ColumnDelete.DefaultCellStyle = dataGridViewCellStyle31;
             this.ColumnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ColumnDelete.HeaderText = "";
             this.ColumnDelete.MinimumWidth = 6;
@@ -524,6 +526,8 @@
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.label4);
+            this.panel8.Controls.Add(this.textBoxSearchBarcode);
             this.panel8.Controls.Add(this.label9);
             this.panel8.Controls.Add(this.textBoxBarcode);
             this.panel8.Controls.Add(this.buttonEdit);
@@ -538,7 +542,7 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel8.Location = new System.Drawing.Point(0, 103);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1308, 145);
+            this.panel8.Size = new System.Drawing.Size(1308, 203);
             this.panel8.TabIndex = 2;
             // 
             // label9
@@ -561,7 +565,7 @@
             this.textBoxBarcode.Location = new System.Drawing.Point(366, 95);
             this.textBoxBarcode.Name = "textBoxBarcode";
             this.textBoxBarcode.Size = new System.Drawing.Size(213, 37);
-            this.textBoxBarcode.TabIndex = 1;
+            this.textBoxBarcode.TabIndex = 0;
             this.textBoxBarcode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBoxBarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxBarcode_KeyDown);
             // 
@@ -650,7 +654,7 @@
             this.comboBoxPullOutNumber.Location = new System.Drawing.Point(15, 92);
             this.comboBoxPullOutNumber.Name = "comboBoxPullOutNumber";
             this.comboBoxPullOutNumber.Size = new System.Drawing.Size(339, 41);
-            this.comboBoxPullOutNumber.TabIndex = 0;
+            this.comboBoxPullOutNumber.TabIndex = 100;
             this.comboBoxPullOutNumber.DropDown += new System.EventHandler(this.comboBoxPullOutNumber_DropDown);
             this.comboBoxPullOutNumber.DropDownClosed += new System.EventHandler(this.comboBoxPullOutNumber_DropDownClosed);
             this.comboBoxPullOutNumber.SelectedValueChanged += new System.EventHandler(this.comboBoxPullOutNumber_SelectedValueChanged);
@@ -859,6 +863,30 @@
             this.labelDeveloper.TabIndex = 0;
             this.labelDeveloper.Text = "Streetsmart Solutions";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.label4.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.label4.Location = new System.Drawing.Point(12, 138);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(101, 19);
+            this.label4.TabIndex = 110;
+            this.label4.Text = "Search Barcode";
+            // 
+            // textBoxSearchBarcode
+            // 
+            this.textBoxSearchBarcode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxSearchBarcode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(158)))), ((int)(((byte)(11)))));
+            this.textBoxSearchBarcode.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxSearchBarcode.Font = new System.Drawing.Font("Open Sans SemiBold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxSearchBarcode.Location = new System.Drawing.Point(12, 160);
+            this.textBoxSearchBarcode.Name = "textBoxSearchBarcode";
+            this.textBoxSearchBarcode.Size = new System.Drawing.Size(1284, 37);
+            this.textBoxSearchBarcode.TabIndex = 109;
+            this.textBoxSearchBarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSearchBarcode_KeyDown);
+            // 
             // ReceivingDetailReceiverView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 19F);
@@ -946,5 +974,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtSpicy;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label4;
+        public System.Windows.Forms.TextBox textBoxSearchBarcode;
     }
 }

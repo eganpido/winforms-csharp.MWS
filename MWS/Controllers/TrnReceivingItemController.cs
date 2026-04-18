@@ -20,7 +20,6 @@ namespace MWS.Controllers
         public List<Models.TrnReceivingItemModel> ReceivingItemList(Int32 receivingId)
         {
             var receivingItems = from d in db.TrnReceivingItems
-
                                  select new Models.TrnReceivingItemModel
                                  {
                                      Id = d.Id,

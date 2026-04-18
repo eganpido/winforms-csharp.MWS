@@ -39,12 +39,18 @@ namespace MWS.Views
 
             Controllers.DashboardController db = new Controllers.DashboardController();
 
-            int m1 = db.GetQuantity(1, 1); int m2 = db.GetQuantity(1, 2); // Minis
-            int xs1 = db.GetQuantity(2, 1); int xs2 = db.GetQuantity(2, 2); // XS
-            int s1 = db.GetQuantity(3, 1); int s2 = db.GetQuantity(3, 2); // Small
-            int med1 = db.GetQuantity(4, 1); int med2 = db.GetQuantity(4, 2); // Medium
-            int l1 = db.GetQuantity(5, 1); int l2 = db.GetQuantity(5, 2); // Large
-            int xl1 = db.GetQuantity(6, 1); int xl2 = db.GetQuantity(6, 2); // XL
+            int m1 = db.GetQuantity(1, 1); 
+            int m2 = db.GetQuantity(1, 2); // Minis
+            int xs1 = db.GetQuantity(2, 1); 
+            int xs2 = db.GetQuantity(2, 2); // XS
+            int s1 = db.GetQuantity(3, 1); 
+            int s2 = db.GetQuantity(3, 2); // Small
+            int med1 = db.GetQuantity(4, 1); 
+            int med2 = db.GetQuantity(4, 2); // Medium
+            int l1 = db.GetQuantity(5, 1); 
+            int l2 = db.GetQuantity(5, 2); // Large
+            int xl1 = db.GetQuantity(6, 1); 
+            int xl2 = db.GetQuantity(6, 2); // XL
 
             tableLayoutPanel1.Controls.Clear();
 
@@ -265,6 +271,27 @@ namespace MWS.Views
         {
             RepInventoryView repInventoryView = new RepInventoryView();
             repInventoryView.Show();
+        }
+
+        private void buttonShowBarcodes_Click(object sender, EventArgs e)
+        {
+            var controller = new DashboardController();
+            var barcodeList = controller.GetProductionBarcodes(2, 2);
+
+            if (barcodeList.Any())
+            {
+                // I-combine ang barcodes nga naay newline matag usa
+                string contentToCopy = string.Join(Environment.NewLine, barcodeList);
+
+                // KINI ANG CODE PARA MA-COPY SA CLIPBOARD
+                Clipboard.SetText(contentToCopy);
+
+                MessageBox.Show("Barcodes copied to clipboard!\n\nPwede na nimo ma-paste (Ctrl+V) sa Notepad o bisan asa.", "Copied");
+            }
+            else
+            {
+                MessageBox.Show("Walay barcodes nga nakit-an.", "Empty");
+            }
         }
     }
 }

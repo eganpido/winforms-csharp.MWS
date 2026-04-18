@@ -130,5 +130,20 @@ namespace MWS.Controllers
 
             return totalSlabs;
         }
+        public List<string> GetProductionBarcodes(int sizeId, int branchId)
+        {
+            using (var db = new DB.mwsdbDataContext(Modules.SysConnectionStringModule.GetConnectionString())) // Siguraduha ang imong DB context
+            {
+                var barcodes = (from d in db.TrnProductionItems
+                                orderby d.ProductionBarcode
+                                where d.TrnProduction.IsLocked == true
+                                && d.SizeId == sizeId
+                                && d.TrnProduction.BranchId == branchId
+                                && d.ItemId == 1
+                                select d.ProductionBarcode).ToList();
+
+                return barcodes;
+            }
+        }
     }
 }

@@ -54,6 +54,7 @@
             this.labelSupport = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelDeveloper = new System.Windows.Forms.Label();
+            this.buttonShowBarcodes = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -86,7 +87,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 369F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 371F));
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 161);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -257,6 +258,7 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.buttonShowBarcodes);
             this.panel4.Controls.Add(this.btnLogOut);
             this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.label5);
@@ -423,6 +425,25 @@
             this.labelDeveloper.TabIndex = 0;
             this.labelDeveloper.Text = "Streetsmart Solutions";
             // 
+            // buttonShowBarcodes
+            // 
+            this.buttonShowBarcodes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonShowBarcodes.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.buttonShowBarcodes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonShowBarcodes.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonShowBarcodes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.buttonShowBarcodes.Image = global::MWS.Properties.Resources.table_cells;
+            this.buttonShowBarcodes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonShowBarcodes.Location = new System.Drawing.Point(652, 18);
+            this.buttonShowBarcodes.Name = "buttonShowBarcodes";
+            this.buttonShowBarcodes.Size = new System.Drawing.Size(184, 63);
+            this.buttonShowBarcodes.TabIndex = 5;
+            this.buttonShowBarcodes.Text = "      Show Barcodes";
+            this.buttonShowBarcodes.UseVisualStyleBackColor = false;
+            this.buttonShowBarcodes.Visible = false;
+            this.buttonShowBarcodes.Click += new System.EventHandler(this.buttonShowBarcodes_Click);
+            // 
             // DashboardView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 19F);
@@ -480,5 +501,6 @@
         private System.Windows.Forms.Button buttonHistory;
         private System.Windows.Forms.Button buttonSystemTables;
         private System.Windows.Forms.Button buttonReports;
+        private System.Windows.Forms.Button buttonShowBarcodes;
     }
 }

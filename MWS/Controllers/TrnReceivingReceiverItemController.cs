@@ -14,10 +14,10 @@ namespace MWS.Controllers
         public DB.mwsdbDataContext db2 = new DB.mwsdbDataContext(Modules.SysConnectionString2Module.GetConnectionString());
 
         // List Receiving Item
-        public List<Models.TrnReceivingItemModel> ReceivingItemList(Int32 receivingId)
+        public List<Models.TrnReceivingItemModel> ReceivingItemList(Int32 receivingId, string filter)
         {
             var receivingItems = from d in db.TrnReceivingItems
-
+                                 where d.Barcode.Contains(filter)
                                  select new Models.TrnReceivingItemModel
                                  {
                                      Id = d.Id,
@@ -200,12 +200,33 @@ namespace MWS.Controllers
 
             return size;
         }
-        public bool isAlreadyAdded(string barcode)
+        public ExistingItemInfo GetExistingItemDetails(string barcode)
+        {
+            var item = (from d in db.TrnReceivingItems
+                        where d.Barcode == barcode
+                        select new ExistingItemInfo
+                        {
+                            IsAdded = true,
+                            Barcode = d.Barcode,
+                            ReceivingNo = d.TrnReceiving.ReceivingNo,
+                            ReceivingDate = d.TrnReceiving.ReceivingDate
+                        }).FirstOrDefault();
+
+            return item ?? new ExistingItemInfo { IsAdded = false };
+        }
+        public class ExistingItemInfo
+        {
+            public bool IsAdded { get; set; }
+            public string Barcode { get; set; }
+            public string ReceivingNo { get; set; }
+            public DateTime ReceivingDate { get; set; }
+        }
+        public bool isAlreadyAddedInHere(string barcode, int receivingId)
         {
             bool added = false;
             var barcodeExist = from d in db.TrnReceivingItems
                                where d.Barcode == barcode
-                               && d.TrnReceiving.IsLocked == true
+                               && d.ReceivingId == receivingId
                                select d;
             if (barcodeExist.Any())
             {

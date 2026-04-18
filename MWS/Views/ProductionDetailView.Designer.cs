@@ -28,21 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.txtAdvance = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtClassic = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtSpicy = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtTotalCount = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtTotalWeight = new System.Windows.Forms.TextBox();
@@ -92,12 +98,8 @@
             this.labelSupport = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelDeveloper = new System.Windows.Forms.Label();
-            this.txtAdvance = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtClassic = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtSpicy = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxSearchBarcode = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -130,9 +132,9 @@
             this.panel9.Controls.Add(this.panel10);
             this.panel9.Controls.Add(this.dataGridViewProductionItem);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(0, 242);
+            this.panel9.Location = new System.Drawing.Point(0, 312);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1308, 326);
+            this.panel9.Size = new System.Drawing.Size(1308, 256);
             this.panel9.TabIndex = 3;
             // 
             // panel10
@@ -155,11 +157,98 @@
             this.panel10.Controls.Add(this.buttonLast);
             this.panel10.Controls.Add(this.textBoxPageNumber);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel10.Location = new System.Drawing.Point(0, 274);
+            this.panel10.Location = new System.Drawing.Point(0, 204);
             this.panel10.Margin = new System.Windows.Forms.Padding(2);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(1308, 52);
             this.panel10.TabIndex = 27;
+            // 
+            // txtAdvance
+            // 
+            this.txtAdvance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAdvance.BackColor = System.Drawing.Color.LightGray;
+            this.txtAdvance.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAdvance.Enabled = false;
+            this.txtAdvance.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAdvance.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtAdvance.Location = new System.Drawing.Point(1031, 12);
+            this.txtAdvance.Name = "txtAdvance";
+            this.txtAdvance.ReadOnly = true;
+            this.txtAdvance.Size = new System.Drawing.Size(28, 28);
+            this.txtAdvance.TabIndex = 115;
+            this.txtAdvance.TabStop = false;
+            this.txtAdvance.Text = "0";
+            // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.LightGray;
+            this.label10.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label10.Location = new System.Drawing.Point(987, 14);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(42, 24);
+            this.label10.TabIndex = 118;
+            this.label10.Text = "AO :";
+            // 
+            // txtClassic
+            // 
+            this.txtClassic.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtClassic.BackColor = System.Drawing.Color.LightGray;
+            this.txtClassic.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtClassic.Enabled = false;
+            this.txtClassic.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClassic.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtClassic.Location = new System.Drawing.Point(955, 12);
+            this.txtClassic.Name = "txtClassic";
+            this.txtClassic.ReadOnly = true;
+            this.txtClassic.Size = new System.Drawing.Size(30, 28);
+            this.txtClassic.TabIndex = 116;
+            this.txtClassic.TabStop = false;
+            this.txtClassic.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.LightGray;
+            this.label2.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label2.Location = new System.Drawing.Point(923, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 24);
+            this.label2.TabIndex = 119;
+            this.label2.Text = "C :";
+            // 
+            // txtSpicy
+            // 
+            this.txtSpicy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSpicy.BackColor = System.Drawing.Color.LightGray;
+            this.txtSpicy.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSpicy.Enabled = false;
+            this.txtSpicy.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSpicy.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtSpicy.Location = new System.Drawing.Point(887, 12);
+            this.txtSpicy.Name = "txtSpicy";
+            this.txtSpicy.ReadOnly = true;
+            this.txtSpicy.Size = new System.Drawing.Size(35, 28);
+            this.txtSpicy.TabIndex = 117;
+            this.txtSpicy.TabStop = false;
+            this.txtSpicy.Text = "0";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.LightGray;
+            this.label7.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label7.Location = new System.Drawing.Point(855, 14);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(31, 24);
+            this.label7.TabIndex = 120;
+            this.label7.Text = "S : ";
             // 
             // txtTotalCount
             // 
@@ -322,10 +411,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewProductionItem.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(116)))), ((int)(((byte)(139)))));
             this.dataGridViewProductionItem.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Open Sans", 7.8F);
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewProductionItem.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle37.Font = new System.Drawing.Font("Open Sans", 7.8F);
+            dataGridViewCellStyle37.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewProductionItem.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle37;
             this.dataGridViewProductionItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewProductionItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnId,
@@ -342,14 +431,14 @@
             this.ColumnInputRemarks,
             this.ColumnRemarks,
             this.ColumnDelete});
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Open Sans", 7.8F);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewProductionItem.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle48.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle48.Font = new System.Drawing.Font("Open Sans", 7.8F);
+            dataGridViewCellStyle48.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle48.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle48.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle48.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewProductionItem.DefaultCellStyle = dataGridViewCellStyle48;
             this.dataGridViewProductionItem.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewProductionItem.Name = "dataGridViewProductionItem";
             this.dataGridViewProductionItem.ReadOnly = true;
@@ -359,7 +448,7 @@
             this.dataGridViewProductionItem.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewProductionItem.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewProductionItem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewProductionItem.Size = new System.Drawing.Size(1308, 280);
+            this.dataGridViewProductionItem.Size = new System.Drawing.Size(1308, 210);
             this.dataGridViewProductionItem.TabIndex = 0;
             this.dataGridViewProductionItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProductionItem_CellClick);
             // 
@@ -396,8 +485,8 @@
             // ColumnBarcode
             // 
             this.ColumnBarcode.DataPropertyName = "ColumnBarcode";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Open Sans SemiBold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ColumnBarcode.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle38.Font = new System.Drawing.Font("Open Sans SemiBold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ColumnBarcode.DefaultCellStyle = dataGridViewCellStyle38;
             this.ColumnBarcode.HeaderText = "Barcode";
             this.ColumnBarcode.MinimumWidth = 6;
             this.ColumnBarcode.Name = "ColumnBarcode";
@@ -407,8 +496,8 @@
             // ColumnItemDescription
             // 
             this.ColumnItemDescription.DataPropertyName = "ColumnItemDescription";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
-            this.ColumnItemDescription.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle39.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
+            this.ColumnItemDescription.DefaultCellStyle = dataGridViewCellStyle39;
             this.ColumnItemDescription.HeaderText = "Description";
             this.ColumnItemDescription.MinimumWidth = 6;
             this.ColumnItemDescription.Name = "ColumnItemDescription";
@@ -428,9 +517,9 @@
             // ColumnSize
             // 
             this.ColumnSize.DataPropertyName = "ColumnSize";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
-            this.ColumnSize.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle40.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
+            this.ColumnSize.DefaultCellStyle = dataGridViewCellStyle40;
             this.ColumnSize.HeaderText = "Size";
             this.ColumnSize.MinimumWidth = 6;
             this.ColumnSize.Name = "ColumnSize";
@@ -440,9 +529,9 @@
             // ColumnClassification
             // 
             this.ColumnClassification.DataPropertyName = "ColumnClassification";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
-            this.ColumnClassification.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle41.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
+            this.ColumnClassification.DefaultCellStyle = dataGridViewCellStyle41;
             this.ColumnClassification.HeaderText = "Classification";
             this.ColumnClassification.MinimumWidth = 6;
             this.ColumnClassification.Name = "ColumnClassification";
@@ -452,9 +541,9 @@
             // ColumnReceivedWeight
             // 
             this.ColumnReceivedWeight.DataPropertyName = "ColumnReceivedWeight";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
-            this.ColumnReceivedWeight.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle42.Font = new System.Drawing.Font("Open Sans SemiBold", 11F, System.Drawing.FontStyle.Bold);
+            this.ColumnReceivedWeight.DefaultCellStyle = dataGridViewCellStyle42;
             this.ColumnReceivedWeight.HeaderText = "R.W.";
             this.ColumnReceivedWeight.MinimumWidth = 6;
             this.ColumnReceivedWeight.Name = "ColumnReceivedWeight";
@@ -464,13 +553,13 @@
             // ColumnInputWeight
             // 
             this.ColumnInputWeight.DataPropertyName = "ColumnInputWeight";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            this.ColumnInputWeight.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle43.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle43.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle43.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.Color.White;
+            this.ColumnInputWeight.DefaultCellStyle = dataGridViewCellStyle43;
             this.ColumnInputWeight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ColumnInputWeight.HeaderText = "";
             this.ColumnInputWeight.MinimumWidth = 6;
@@ -483,9 +572,9 @@
             // ColumnActualWeight
             // 
             this.ColumnActualWeight.DataPropertyName = "ColumnActualWeight";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Open Sans SemiBold", 10.8F, System.Drawing.FontStyle.Bold);
-            this.ColumnActualWeight.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle44.Font = new System.Drawing.Font("Open Sans SemiBold", 10.8F, System.Drawing.FontStyle.Bold);
+            this.ColumnActualWeight.DefaultCellStyle = dataGridViewCellStyle44;
             this.ColumnActualWeight.HeaderText = "E.W.";
             this.ColumnActualWeight.MinimumWidth = 6;
             this.ColumnActualWeight.Name = "ColumnActualWeight";
@@ -495,13 +584,13 @@
             // ColumnInputRemarks
             // 
             this.ColumnInputRemarks.DataPropertyName = "ColumnInputRemarks";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
-            this.ColumnInputRemarks.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle45.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle45.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle45.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle45.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle45.SelectionForeColor = System.Drawing.Color.White;
+            this.ColumnInputRemarks.DefaultCellStyle = dataGridViewCellStyle45;
             this.ColumnInputRemarks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ColumnInputRemarks.HeaderText = "";
             this.ColumnInputRemarks.MinimumWidth = 6;
@@ -515,8 +604,8 @@
             // 
             this.ColumnRemarks.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ColumnRemarks.DataPropertyName = "ColumnRemarks";
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Open Sans SemiBold", 10.8F, System.Drawing.FontStyle.Bold);
-            this.ColumnRemarks.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle46.Font = new System.Drawing.Font("Open Sans SemiBold", 10.8F, System.Drawing.FontStyle.Bold);
+            this.ColumnRemarks.DefaultCellStyle = dataGridViewCellStyle46;
             this.ColumnRemarks.HeaderText = "Remarks";
             this.ColumnRemarks.MinimumWidth = 6;
             this.ColumnRemarks.Name = "ColumnRemarks";
@@ -525,13 +614,13 @@
             // ColumnDelete
             // 
             this.ColumnDelete.DataPropertyName = "ColumnDelete";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            this.ColumnDelete.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle47.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            dataGridViewCellStyle47.Font = new System.Drawing.Font("Open Sans SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle47.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle47.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            dataGridViewCellStyle47.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            this.ColumnDelete.DefaultCellStyle = dataGridViewCellStyle47;
             this.ColumnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ColumnDelete.HeaderText = "";
             this.ColumnDelete.MinimumWidth = 6;
@@ -543,6 +632,8 @@
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.label3);
+            this.panel8.Controls.Add(this.textBoxSearchBarcode);
             this.panel8.Controls.Add(this.comboBoxSupplier);
             this.panel8.Controls.Add(this.labelSupplier);
             this.panel8.Controls.Add(this.buttonEdit);
@@ -555,7 +646,7 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel8.Location = new System.Drawing.Point(0, 103);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1308, 139);
+            this.panel8.Size = new System.Drawing.Size(1308, 209);
             this.panel8.TabIndex = 2;
             // 
             // comboBoxSupplier
@@ -858,92 +949,29 @@
             this.labelDeveloper.TabIndex = 0;
             this.labelDeveloper.Text = "Streetsmart Solutions";
             // 
-            // txtAdvance
+            // label3
             // 
-            this.txtAdvance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAdvance.BackColor = System.Drawing.Color.LightGray;
-            this.txtAdvance.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtAdvance.Enabled = false;
-            this.txtAdvance.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAdvance.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtAdvance.Location = new System.Drawing.Point(1031, 12);
-            this.txtAdvance.Name = "txtAdvance";
-            this.txtAdvance.ReadOnly = true;
-            this.txtAdvance.Size = new System.Drawing.Size(28, 28);
-            this.txtAdvance.TabIndex = 115;
-            this.txtAdvance.TabStop = false;
-            this.txtAdvance.Text = "0";
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.label3.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.label3.Location = new System.Drawing.Point(12, 137);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(101, 19);
+            this.label3.TabIndex = 112;
+            this.label3.Text = "Search Barcode";
             // 
-            // label10
+            // textBoxSearchBarcode
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.LightGray;
-            this.label10.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label10.Location = new System.Drawing.Point(987, 14);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(42, 24);
-            this.label10.TabIndex = 118;
-            this.label10.Text = "AO :";
-            // 
-            // txtClassic
-            // 
-            this.txtClassic.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtClassic.BackColor = System.Drawing.Color.LightGray;
-            this.txtClassic.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtClassic.Enabled = false;
-            this.txtClassic.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClassic.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtClassic.Location = new System.Drawing.Point(955, 12);
-            this.txtClassic.Name = "txtClassic";
-            this.txtClassic.ReadOnly = true;
-            this.txtClassic.Size = new System.Drawing.Size(30, 28);
-            this.txtClassic.TabIndex = 116;
-            this.txtClassic.TabStop = false;
-            this.txtClassic.Text = "0";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.LightGray;
-            this.label2.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(923, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 24);
-            this.label2.TabIndex = 119;
-            this.label2.Text = "C :";
-            // 
-            // txtSpicy
-            // 
-            this.txtSpicy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSpicy.BackColor = System.Drawing.Color.LightGray;
-            this.txtSpicy.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSpicy.Enabled = false;
-            this.txtSpicy.Font = new System.Drawing.Font("Open Sans SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSpicy.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtSpicy.Location = new System.Drawing.Point(887, 12);
-            this.txtSpicy.Name = "txtSpicy";
-            this.txtSpicy.ReadOnly = true;
-            this.txtSpicy.Size = new System.Drawing.Size(35, 28);
-            this.txtSpicy.TabIndex = 117;
-            this.txtSpicy.TabStop = false;
-            this.txtSpicy.Text = "0";
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.LightGray;
-            this.label7.Font = new System.Drawing.Font("Open Sans", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label7.Location = new System.Drawing.Point(855, 14);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(31, 24);
-            this.label7.TabIndex = 120;
-            this.label7.Text = "S : ";
+            this.textBoxSearchBarcode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxSearchBarcode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(158)))), ((int)(((byte)(11)))));
+            this.textBoxSearchBarcode.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxSearchBarcode.Font = new System.Drawing.Font("Open Sans SemiBold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxSearchBarcode.Location = new System.Drawing.Point(12, 163);
+            this.textBoxSearchBarcode.Name = "textBoxSearchBarcode";
+            this.textBoxSearchBarcode.Size = new System.Drawing.Size(1284, 37);
+            this.textBoxSearchBarcode.TabIndex = 111;
+            this.textBoxSearchBarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSearchBarcode_KeyDown);
             // 
             // ProductionDetailView
             // 
@@ -1036,5 +1064,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtSpicy;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.TextBox textBoxSearchBarcode;
     }
 }

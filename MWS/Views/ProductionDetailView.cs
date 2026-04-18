@@ -147,8 +147,8 @@ namespace MWS.Views
         public Task<List<Models.DgvTrnProductionItemModel>> GetProductionItemListDataTask()
         {
             Controllers.TrnProductionItemController trnProductionItemController = new Controllers.TrnProductionItemController();
-
-            List<Models.TrnProductionItemModel> listProductionItem = trnProductionItemController.ProductionItemList(trnProductionModel.Id);
+            string filter = textBoxSearchBarcode.Text;
+            List<Models.TrnProductionItemModel> listProductionItem = trnProductionItemController.ProductionItemList(trnProductionModel.Id, filter);
             if (listProductionItem.Any())
             {
                 var items = from d in listProductionItem
@@ -471,25 +471,40 @@ namespace MWS.Views
                 }
                 else
                 {
-                    if (trnProductionItemController.isAlreadyAdded(textBoxWeight.Text) == false)
+                    var info = trnProductionItemController.GetExistingItemDetails(textBoxWeight.Text);
+                    if (info.IsAdded == false)
                     {
-                        if (trnProductionItemController.IsExist(textBoxWeight.Text) == true)
+                        if (trnProductionItemController.isAlreadyAddedInHere(textBoxWeight.Text, trnProductionModel.Id) == false)
                         {
-                            trnProductionItemController.AddProductionItem(trnProductionModel.Id, 0, textBoxWeight.Text);
-                            UpdateProductionItemListDataSource();
-                            textBoxWeight.Text = "";
-                            textBoxWeight.Focus();
+                            if (trnProductionItemController.IsExist(textBoxWeight.Text) == true)
+                            {
+                                trnProductionItemController.AddProductionItem(trnProductionModel.Id, 0, textBoxWeight.Text);
+                                UpdateProductionItemListDataSource();
+                                textBoxWeight.Text = "";
+                                textBoxWeight.Focus();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Barcode not exist!", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                textBoxWeight.Text = "";
+                                textBoxWeight.Focus();
+                            }
                         }
                         else
                         {
-                            MessageBox.Show("Barcode not exist!", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Barcode already exist in this transaction!", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             textBoxWeight.Text = "";
                             textBoxWeight.Focus();
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Barcode already exist!", "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        string msg = $"Barcode already exist!\n\n" +
+                                    $"Barcode: {info.Barcode}\n" +
+                                    $"Production No: {info.ProductionNo}\n" +
+                                    $"Date: {info.ProductionDate:MM/dd/yyyy}";
+
+                        MessageBox.Show(msg, "MWS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         textBoxWeight.Text = "";
                         textBoxWeight.Focus();
                     }
@@ -513,6 +528,14 @@ namespace MWS.Views
             else
             {
                 MessageBox.Show(unlockProduction[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void textBoxSearchBarcode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                UpdateProductionItemListDataSource();
             }
         }
     }

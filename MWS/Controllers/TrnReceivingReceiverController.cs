@@ -396,5 +396,30 @@ namespace MWS.Controllers
 
             return lacking;
         }
+
+        public bool hasProduction(int receivingId)
+        {
+            bool isProduced = false;
+
+            var receiving = from d in db.TrnReceivingItems
+                            where d.ReceivingId == receivingId
+                            select d;
+            if (receiving.Any())
+            {
+                foreach(var barcode in receiving)
+                {
+                    var production = from d in db.TrnProductionItems
+                                     where d.ProductionBarcode == barcode.Barcode
+                                     && d.TrnProduction.IsLocked == true
+                                     select d;
+                    if (production.Any())
+                    {
+                        isProduced = true;
+                    }
+                }
+            }
+
+            return isProduced;
+        }
     }
 }

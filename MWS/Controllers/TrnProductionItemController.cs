@@ -48,10 +48,10 @@ namespace MWS.Controllers
             return items.OrderBy(d => d.Item).ToList();
         }
         // List Production Item
-        public List<Models.TrnProductionItemModel> ProductionItemList(Int32 productionId)
+        public List<Models.TrnProductionItemModel> ProductionItemList(Int32 productionId, string filter)
         {
             var productionItems = from d in db.TrnProductionItems
-
+                                  where d.ProductionBarcode.Contains(filter)
                                   select new Models.TrnProductionItemModel
                                   {
                                       Id = d.Id,
@@ -464,12 +464,33 @@ namespace MWS.Controllers
             }
             return null;
         }
-        public bool isAlreadyAdded(string barcode)
+        public ExistingItemInfo GetExistingItemDetails(string barcode)
+        {
+            var item = (from d in db.TrnProductionItems
+                        where d.ProductionBarcode == barcode
+                        select new ExistingItemInfo
+                        {
+                            IsAdded = true,
+                            Barcode = d.ProductionBarcode,
+                            ProductionNo = d.TrnProduction.ProductionNo,
+                            ProductionDate = d.TrnProduction.ProductionDate
+                        }).FirstOrDefault();
+
+            return item ?? new ExistingItemInfo { IsAdded = false };
+        }
+        public class ExistingItemInfo
+        {
+            public bool IsAdded { get; set; }
+            public string Barcode { get; set; }
+            public string ProductionNo { get; set; }
+            public DateTime ProductionDate { get; set; }
+        }
+        public bool isAlreadyAddedInHere(string barcode, int productionId)
         {
             bool added = false;
             var barcodeExist = from d in db.TrnProductionItems
                                where d.ProductionBarcode == barcode
-                               && d.TrnProduction.IsLocked == true
+                               && d.ProductionId == productionId
                                select d;
             if (barcodeExist.Any())
             {

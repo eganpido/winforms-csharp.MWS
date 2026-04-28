@@ -90,6 +90,9 @@
     <Compile Include="Models\DgvTrnReceivingReceiverItemModel.cs" />
     <Compile Include="Models\DgvTrnReceivingModel.cs" />
     <Compile Include="Models\DgvTrnReceivingItemModel.cs" />
+    <Compile Include="Models\RepProductionModel.cs" />
+    <Compile Include="Models\RepAdhocReceivingModel.cs" />
+    <Compile Include="Models\RepReceivingModel.cs" />
     <Compile Include="Models\TrnReceivingReceiverLackingBarcodes.cs" />
     <Compile Include="Models\MstClassificationModel.cs" />
     <Compile Include="Models\DgvMstItemModel.cs" />
@@ -116,11 +119,29 @@
     <Compile Include="Modules\SysCurrentModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\RepAdhocReceivingPDFView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\RepAdhocReceivingPDFView.Designer.cs">
+      <DependentUpon>RepAdhocReceivingPDFView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\RepInventoryPDFView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reports\RepInventoryPDFView.Designer.cs">
       <DependentUpon>RepInventoryPDFView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepProductionPDFView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\RepProductionPDFView.Designer.cs">
+      <DependentUpon>RepProductionPDFView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepReceivingPDFView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\RepReceivingPDFView.Designer.cs">
+      <DependentUpon>RepReceivingPDFView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\DashboardView.cs">
       <SubType>Form</SubType>
@@ -234,8 +255,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reports\RepAdhocReceivingPDFView.resx">
+      <DependentUpon>RepAdhocReceivingPDFView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepInventoryPDFView.resx">
       <DependentUpon>RepInventoryPDFView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepProductionPDFView.resx">
+      <DependentUpon>RepProductionPDFView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepReceivingPDFView.resx">
+      <DependentUpon>RepReceivingPDFView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\DashboardView.resx">
       <DependentUpon>DashboardView.cs</DependentUpon>

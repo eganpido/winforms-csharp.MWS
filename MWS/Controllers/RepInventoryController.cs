@@ -340,5 +340,94 @@ namespace MWS.Controllers
 
             return repInventoryCommissary2.ToList();
         }
+
+        public List<Models.RepReceivingModel> ReceivingReport(DateTime startDate, DateTime endDate, int branchId)
+        {
+            db = new DB.mwsdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
+            var receiving = from d in db.TrnReceivingItems
+                            where d.TrnReceiving.BranchId == branchId
+                            && d.TrnReceiving.ReceivingDate >= startDate
+                            && d.TrnReceiving.ReceivingDate <= endDate
+                            && d.TrnReceiving.IsLocked == true
+                            orderby d.TrnReceiving.ReceivingDate
+                            select new RepReceivingModel
+                            {
+                                ReceivingId = d.ReceivingId,
+                                SupplierId = d.TrnReceiving.SupplierId,
+                                Supplier = d.TrnReceiving.MstSupplier.Supplier,
+                                ReceivingNo = d.TrnReceiving.ReceivingNo,
+                                ReceivingDate = d.TrnReceiving.ReceivingDate,
+                                Remarks = d.TrnReceiving.Remarks,
+                                ItemId = d.ItemId,
+                                Item = d.MstItem.ItemDescription,
+                                SizeId = d.SizeId,
+                                Size = d.MstSize.Size,
+                                Weight = d.Weight
+                            };
+            return receiving.ToList();
+        }
+        public List<Models.RepAdhocReceivingModel> AdhocReceivingReport(DateTime startDate, DateTime endDate, int branchId)
+        {
+            db = new DB.mwsdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
+            List<Models.RepAdhocReceivingModel> repAdhocReceivingModels = new List<RepAdhocReceivingModel>();
+
+            var receivingItems = from d in db.TrnReceivingItems
+                            where d.TrnReceiving.IsLocked == true
+                            && d.TrnReceiving.ReceivingDate >= startDate
+                            && d.TrnReceiving.ReceivingDate <= endDate
+                            && d.TrnReceiving.BranchId == branchId
+                            select d;
+            if(receivingItems.Any())
+            {
+                foreach(var item in receivingItems)
+                {
+                    var production = from d in db.TrnProductionItems
+                                     where d.TrnProduction.IsLocked == true
+                                     && d.ProductionBarcode == item.Barcode
+                                     select d;
+                    if (!production.Any())
+                    {
+                        repAdhocReceivingModels.Add(new Models.RepAdhocReceivingModel
+                        {
+                            ReceivingBarcode = item.Barcode,
+                            ItemId = item.ItemId,
+                            Item = item.MstItem.ItemDescription,
+                            SizeId = item.SizeId,
+                            Size = item.MstSize.Size,
+                            Classification = item.Classification
+                        });
+                    }
+                }
+            }
+            return repAdhocReceivingModels.OrderBy(a => a.ReceivingBarcode).ToList();
+        }
+        public List<Models.RepProductionModel> ProductionReport(DateTime startDate, DateTime endDate, int branchId)
+        {
+            db = new DB.mwsdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
+            List<Models.RepProductionModel> repProductionModels = new List<RepProductionModel>();
+
+            var productionItems = from d in db.TrnProductionItems
+                                 where d.TrnProduction.IsLocked == true
+                                 && d.TrnProduction.ProductionDate >= startDate
+                                 && d.TrnProduction.ProductionDate <= endDate
+                                 && d.TrnProduction.BranchId == branchId
+                                 select d;
+            if (productionItems.Any())
+            {
+                foreach (var item in productionItems)
+                {
+                    repProductionModels.Add(new Models.RepProductionModel
+                    {
+                        ProductionBarcode = item.ProductionBarcode,
+                        ItemId = item.ItemId,
+                        Item = item.MstItem.ItemDescription,
+                        SizeId = item.SizeId,
+                        Size = item.MstSize.Size,
+                        Classification = item.Classification
+                    });
+                }
+            }
+            return repProductionModels.OrderBy(a => a.ProductionBarcode).ToList();
+        }
     }
 }

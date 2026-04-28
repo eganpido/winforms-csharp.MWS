@@ -48,7 +48,49 @@ namespace MWS.Views
 
         private void buttonView_Click(object sender, EventArgs e)
         {
-            new RepInventoryPDFView(dtStartDate.Value.Date, dtEndDate.Value.Date, Convert.ToInt32(comboBoxBranch.SelectedValue));
+            int reportId = Convert.ToInt32(comboBoxReport.SelectedValue);
+            if(reportId == 1)
+            {
+                new RepInventoryPDFView(dtStartDate.Value.Date, dtEndDate.Value.Date, Convert.ToInt32(comboBoxBranch.SelectedValue));
+            }
+
+            if (reportId == 4)
+            {
+                new RepReceivingPDFView(dtStartDate.Value.Date, dtEndDate.Value.Date, Convert.ToInt32(comboBoxBranch.SelectedValue));
+            }
+
+            if (reportId == 5)
+            {
+                new RepAdhocReceivingPDFView(dtStartDate.Value.Date, dtEndDate.Value.Date, Convert.ToInt32(comboBoxBranch.SelectedValue));
+            }
+
+            if (reportId == 6)
+            {
+                new RepProductionPDFView(dtStartDate.Value.Date, dtEndDate.Value.Date, Convert.ToInt32(comboBoxBranch.SelectedValue));
+            }
+        }
+
+        private void comboBoxReport_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var selectedReport = comboBoxReport.SelectedItem as MWS.Models.RepInventoryModel;
+
+            if (selectedReport != null)
+            {
+                int reportId = selectedReport.Id;
+
+                if (reportId == 4)
+                {
+                    comboBoxBranch.SelectedValue = 1;
+                }
+                else if (reportId > 1)
+                {
+                    comboBoxBranch.SelectedValue = 2;
+                }
+                else
+                {
+                    comboBoxBranch.SelectedValue = 0;
+                }
+            }
         }
     }
 }

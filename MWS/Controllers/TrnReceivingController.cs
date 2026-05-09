@@ -75,6 +75,7 @@ namespace MWS.Controllers
                               PreparedById = d.PrepareById,
                               PreparedBy = d.MstUser.FullName,
                               IsLocked = d.IsLocked,
+                              TotalExpectedWeight = d.TotalExpectedWeight
                           };
 
             return receiving.FirstOrDefault();
@@ -175,6 +176,7 @@ namespace MWS.Controllers
                     var lockReceiving = receiving.FirstOrDefault();
                     lockReceiving.SupplierId = objReceiving.SupplierId;
                     lockReceiving.Remarks = objReceiving.Remarks;
+                    lockReceiving.TotalExpectedWeight = objReceiving.TotalExpectedWeight;
                     lockReceiving.IsLocked = true;
                     db.SubmitChanges();
 

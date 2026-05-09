@@ -47,6 +47,26 @@ namespace MWS.Controllers
 
             return branches;
         }
+        // Supplier List 
+        public List<Models.MstSupplierModel> SupplierList()
+        {
+            var suppliers = (from d in db.MstSuppliers
+                            select new Models.MstSupplierModel
+                            {
+                                Id = d.Id,
+                                Supplier = d.Supplier
+                            })
+                            .OrderBy(d => d.Id)
+                            .ToList();
+
+            suppliers.Insert(0, new Models.MstSupplierModel
+            {
+                Id = 0,
+                Supplier = "All"
+            });
+
+            return suppliers;
+        }
         public List<Models.RepInventoryReportSlabModel> Commissary1List(DateTime startDate, DateTime endDate)
         {
             List<Models.RepInventoryReportSlabModel> repInventoryCommissary1 = new List<RepInventoryReportSlabModel>();
@@ -56,11 +76,11 @@ namespace MWS.Controllers
             {
                 db = new DB.mwsdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
                 var processings = from d in db.TrnProductionItems
-                                 where d.ItemId == 1
-                                 && d.TrnProduction.ProductionDate >= startDate
-                                 && d.TrnProduction.ProductionDate <= endDate
-                                 && d.TrnProduction.IsLocked == true
-                                 select d;
+                                  where d.ItemId == 1
+                                  && d.TrnProduction.ProductionDate >= startDate
+                                  && d.TrnProduction.ProductionDate <= endDate
+                                  && d.TrnProduction.IsLocked == true
+                                  select d;
                 if (processings.Any())
                 {
                     var pullOuts = from d in db.TrnPullOutItems
@@ -104,11 +124,11 @@ namespace MWS.Controllers
             {
                 db = new DB.mwsdbDataContext(Modules.SysConnectionString2Module.GetConnectionString());
                 var processings = from d in db.TrnProductionItems
-                                 where d.ItemId == 1
-                                 && d.TrnProduction.ProductionDate >= startDate
-                                 && d.TrnProduction.ProductionDate <= endDate
-                                 && d.TrnProduction.IsLocked == true
-                                 select d;
+                                  where d.ItemId == 1
+                                  && d.TrnProduction.ProductionDate >= startDate
+                                  && d.TrnProduction.ProductionDate <= endDate
+                                  && d.TrnProduction.IsLocked == true
+                                  select d;
                 if (processings.Any())
                 {
                     var pullOuts = from d in db.TrnPullOutItems
@@ -150,6 +170,329 @@ namespace MWS.Controllers
             }
 
             return repInventoryCommissary1.ToList();
+        }
+        public List<Models.RepInventoryDetailReportSlabModel> Commissary1DetailList(DateTime startDate, DateTime endDate)
+        {
+            List<Models.RepInventoryDetailReportSlabModel> repInventoryDetailCommissary1 = new List<RepInventoryDetailReportSlabModel>();
+            int pundo = 0;
+            var branchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
+            if (branchId == 1)
+            {
+                db = new DB.mwsdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
+                var processingPundo = from d in db.TrnProductionItems
+                                  where d.ItemId == 1
+                                  && d.TrnProduction.ProductionDate < startDate
+                                  && d.TrnProduction.IsLocked == true
+                                  select d;
+                if (processingPundo.Any())
+                {
+                    pundo = processingPundo.Count();
+
+                    var pullOutPundo = from d in db.TrnPullOutItems
+                                   where d.TrnProductionItem.ItemId == 1
+                                   && d.TrnPullOut.PullOutDate < startDate
+                                   && d.TrnPullOut.IsLocked == true
+                                   && d.TrnProductionItem.TrnProduction.IsLocked == true
+                                   select d;
+                    if (pullOutPundo.Any())
+                    {
+                        pundo = processingPundo.Count() - pullOutPundo.Count();
+                    }
+                }
+
+                var processings = from d in db.TrnProductionItems
+                                  where d.ItemId == 1
+                                  && d.TrnProduction.ProductionDate >= startDate
+                                  && d.TrnProduction.ProductionDate <= endDate
+                                  && d.TrnProduction.IsLocked == true
+                                  select d;
+                if (processings.Any())
+                {
+                    foreach (var item in processings)
+                    {
+                        repInventoryDetailCommissary1.Add(new Models.RepInventoryDetailReportSlabModel
+                        {
+                            BranchId = branchId,
+                            ItemId = 1,
+                            ItemDescription = "SLAB",
+                            Classification = item.Classification,
+                            Barcode = item.ProductionBarcode,
+                            Pundo = pundo,
+                            Processing = 1,
+                            PullOut = 0,
+                            Receiving = 0,
+                            Production = 0,
+                            Balance = 1
+                        });
+                    }
+                }
+
+                var pullOuts = from d in db.TrnPullOutItems
+                               where d.TrnProductionItem.ItemId == 1
+                               && d.TrnPullOut.PullOutDate >= startDate
+                               && d.TrnPullOut.PullOutDate <= endDate
+                               && d.TrnPullOut.IsLocked == true
+                               && d.TrnProductionItem.TrnProduction.IsLocked == true
+                               select d;
+                if (pullOuts.Any())
+                {
+                    foreach (var item in pullOuts)
+                    {
+                        repInventoryDetailCommissary1.Add(new Models.RepInventoryDetailReportSlabModel
+                        {
+                            BranchId = branchId,
+                            ItemId = 1,
+                            ItemDescription = "SLAB",
+                            Classification = item.TrnProductionItem.Classification,
+                            Barcode = item.TrnProductionItem.ProductionBarcode,
+                            Pundo = pundo,
+                            Processing = 0,
+                            PullOut = 1,
+                            Receiving = 0,
+                            Production = 0,
+                            Balance = -1
+                        });
+                    }
+                }
+            }
+            else
+            {
+                db = new DB.mwsdbDataContext(Modules.SysConnectionString2Module.GetConnectionString());
+                var processingPundo = from d in db.TrnProductionItems
+                                      where d.ItemId == 1
+                                      && d.TrnProduction.ProductionDate < startDate
+                                      && d.TrnProduction.IsLocked == true
+                                      select d;
+                if (processingPundo.Any())
+                {
+                    pundo = processingPundo.Count();
+                    var pullOutPundo = from d in db.TrnPullOutItems
+                                       where d.TrnProductionItem.ItemId == 1
+                                       && d.TrnPullOut.PullOutDate < startDate
+                                       && d.TrnPullOut.IsLocked == true
+                                       && d.TrnProductionItem.TrnProduction.IsLocked == true
+                                       select d;
+                    if (pullOutPundo.Any())
+                    {
+                        pundo = processingPundo.Count() - pullOutPundo.Count();
+                    }
+                }
+
+                var processings = from d in db.TrnProductionItems
+                                  where d.ItemId == 1
+                                  && d.TrnProduction.ProductionDate >= startDate
+                                  && d.TrnProduction.ProductionDate <= endDate
+                                  && d.TrnProduction.IsLocked == true
+                                  select d;
+                if (processings.Any())
+                {
+                    foreach (var item in processings)
+                    {
+                        repInventoryDetailCommissary1.Add(new Models.RepInventoryDetailReportSlabModel
+                        {
+                            BranchId = branchId,
+                            ItemId = 1,
+                            ItemDescription = "SLAB",
+                            Classification = item.Classification,
+                            Barcode = item.ProductionBarcode,
+                            Pundo = pundo,
+                            Processing = 1,
+                            PullOut = 0,
+                            Receiving = 0,
+                            Production = 0,
+                            Balance = 1
+                        });
+                    }
+                }
+
+                var pullOuts = from d in db.TrnPullOutItems
+                               where d.TrnProductionItem.ItemId == 1
+                               && d.TrnPullOut.PullOutDate >= startDate
+                               && d.TrnPullOut.PullOutDate <= endDate
+                               && d.TrnPullOut.IsLocked == true
+                               && d.TrnProductionItem.TrnProduction.IsLocked == true
+                               select d;
+                if (pullOuts.Any())
+                {
+                    foreach (var item in pullOuts)
+                    {
+                        repInventoryDetailCommissary1.Add(new Models.RepInventoryDetailReportSlabModel
+                        {
+                            BranchId = branchId,
+                            ItemId = 1,
+                            ItemDescription = "SLAB",
+                            Classification = item.TrnProductionItem.Classification,
+                            Barcode = item.TrnProductionItem.ProductionBarcode,
+                            Pundo = pundo,
+                            Processing = 0,
+                            PullOut = 1,
+                            Receiving = 0,
+                            Production = 0,
+                            Balance = -1
+                        });
+                    }
+                }
+            }
+
+            return repInventoryDetailCommissary1.ToList();
+        }
+        public List<Models.RepInventoryDetailReportSlabModel> Commissary2DetailList(DateTime startDate, DateTime endDate)
+        {
+            List<Models.RepInventoryDetailReportSlabModel> repInventoryDetailCommissary2 = new List<RepInventoryDetailReportSlabModel>();
+            int pundo = 0;
+            var branchId = Modules.SysCurrentModule.GetCurrentSettings().BranchId;
+            if (branchId == 1)
+            {
+                db = new DB.mwsdbDataContext(Modules.SysConnectionString2Module.GetConnectionString());
+                var receivingPundo = from d in db.TrnReceivingItems
+                                     where d.ItemId == 1
+                                     && d.TrnReceiving.ReceivingDate < startDate
+                                     && d.TrnReceiving.IsLocked == true
+                                     select d;
+                if (receivingPundo.Any())
+                {
+                    pundo = receivingPundo.Count();
+                    var productionPundo = from d in db.TrnProductionItems
+                                          where d.ItemId == 1
+                                          && d.TrnProduction.ProductionDate < startDate
+                                          && d.TrnProduction.IsLocked == true
+                                          select d;
+                    if (productionPundo.Any())
+                    {
+                        pundo = receivingPundo.Count() - productionPundo.Count();
+                    }
+                }
+                var receivings = from d in db.TrnReceivingItems
+                                 where d.ItemId == 1
+                                 && d.TrnReceiving.ReceivingDate >= startDate
+                                 && d.TrnReceiving.ReceivingDate <= endDate
+                                 && d.TrnReceiving.IsLocked == true
+                                 select d;
+                if (receivings.Any())
+                {
+                    foreach (var item in receivings)
+                    {
+                        repInventoryDetailCommissary2.Add(new Models.RepInventoryDetailReportSlabModel
+                        {
+                            BranchId = branchId,
+                            ItemId = 1,
+                            ItemDescription = "SLAB",
+                            Classification = item.Classification,
+                            Barcode = item.Barcode,
+                            Pundo = pundo,
+                            Processing = 0,
+                            PullOut = 0,
+                            Receiving = 1,
+                            Production = 0,
+                            Balance = 1
+                        });
+                    }
+                }
+
+                var productions = from d in db.TrnProductionItems
+                                  where d.ItemId == 1
+                                  && d.TrnProduction.ProductionDate >= startDate
+                                  && d.TrnProduction.ProductionDate <= endDate
+                                  && d.TrnProduction.IsLocked == true
+                                  select d;
+                if (productions.Any())
+                {
+                    foreach (var item in productions)
+                    {
+                        repInventoryDetailCommissary2.Add(new Models.RepInventoryDetailReportSlabModel
+                        {
+                            BranchId = branchId,
+                            ItemId = 1,
+                            ItemDescription = "SLAB",
+                            Classification = item.Classification,
+                            Barcode = item.ProductionBarcode,
+                            Pundo = pundo,
+                            Processing = 0,
+                            PullOut = 0,
+                            Receiving = 0,
+                            Production = 1,
+                            Balance = -1
+                        });
+                    }
+                }
+            }
+            else
+            {
+                db = new DB.mwsdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
+                var receivingPundo = from d in db.TrnReceivingItems
+                                     where d.ItemId == 1
+                                     && d.TrnReceiving.ReceivingDate < startDate
+                                     && d.TrnReceiving.IsLocked == true
+                                     select d;
+                if (receivingPundo.Any())
+                {
+                    pundo = receivingPundo.Count();
+                    var productionPundo = from d in db.TrnProductionItems
+                                          where d.ItemId == 1
+                                          && d.TrnProduction.ProductionDate < startDate
+                                          && d.TrnProduction.IsLocked == true
+                                          select d;
+                    if (productionPundo.Any())
+                    {
+                        pundo = receivingPundo.Count() - productionPundo.Count();
+                    }
+                }
+                var receivings = from d in db.TrnReceivingItems
+                                 where d.ItemId == 1
+                                 && d.TrnReceiving.ReceivingDate >= startDate
+                                 && d.TrnReceiving.ReceivingDate <= endDate
+                                 && d.TrnReceiving.IsLocked == true
+                                 select d;
+                if (receivings.Any())
+                {
+                    foreach (var item in receivings)
+                    {
+                        repInventoryDetailCommissary2.Add(new Models.RepInventoryDetailReportSlabModel
+                        {
+                            BranchId = branchId,
+                            ItemId = 1,
+                            ItemDescription = "SLAB",
+                            Classification = item.Classification,
+                            Barcode = item.Barcode,
+                            Pundo = pundo,
+                            Processing = 0,
+                            PullOut = 0,
+                            Receiving = 1,
+                            Production = 0,
+                            Balance = 1
+                        });
+                    }
+                }
+
+                var productions = from d in db.TrnProductionItems
+                                  where d.ItemId == 1
+                                  && d.TrnProduction.ProductionDate >= startDate
+                                  && d.TrnProduction.ProductionDate <= endDate
+                                  && d.TrnProduction.IsLocked == true
+                                  select d;
+                if (productions.Any())
+                {
+                    foreach (var item in productions)
+                    {
+                        repInventoryDetailCommissary2.Add(new Models.RepInventoryDetailReportSlabModel
+                        {
+                            BranchId = branchId,
+                            ItemId = 1,
+                            ItemDescription = "SLAB",
+                            Classification = item.Classification,
+                            Barcode = item.ProductionBarcode,
+                            Pundo = pundo,
+                            Processing = 0,
+                            PullOut = 0,
+                            Receiving = 0,
+                            Production = 1,
+                            Balance = -1
+                        });
+                    }
+                }
+            }
+
+            return repInventoryDetailCommissary2.ToList();
         }
         public List<Models.RepInventoryReportCutModel> Commissary1CutList(DateTime startDate, DateTime endDate)
         {
@@ -341,14 +684,16 @@ namespace MWS.Controllers
             return repInventoryCommissary2.ToList();
         }
 
-        public List<Models.RepReceivingModel> ReceivingReport(DateTime startDate, DateTime endDate, int branchId)
+        public List<Models.RepReceivingModel> ReceivingReport(DateTime startDate, DateTime endDate, int branchId, int supplierId)
         {
             db = new DB.mwsdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
+
             var receiving = from d in db.TrnReceivingItems
                             where d.TrnReceiving.BranchId == branchId
                             && d.TrnReceiving.ReceivingDate >= startDate
                             && d.TrnReceiving.ReceivingDate <= endDate
                             && d.TrnReceiving.IsLocked == true
+                            && (supplierId == 0 || d.TrnReceiving.SupplierId == supplierId)
                             orderby d.TrnReceiving.ReceivingDate
                             select new RepReceivingModel
                             {
@@ -362,8 +707,10 @@ namespace MWS.Controllers
                                 Item = d.MstItem.ItemDescription,
                                 SizeId = d.SizeId,
                                 Size = d.MstSize.Size,
-                                Weight = d.Weight
+                                Weight = d.Weight,
+                                ExpectedWeight = d.TrnReceiving.TotalExpectedWeight
                             };
+
             return receiving.ToList();
         }
         public List<Models.RepAdhocReceivingModel> AdhocReceivingReport(DateTime startDate, DateTime endDate, int branchId)

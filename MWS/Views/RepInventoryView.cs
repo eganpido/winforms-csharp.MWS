@@ -28,6 +28,18 @@ namespace MWS.Views
                 comboBoxReport.ValueMember = "Id";
                 comboBoxReport.DisplayMember = "Report";
 
+                GetSupplierList();
+            }
+        }
+        public void GetSupplierList()
+        {
+            Controllers.RepInventoryController repInventoryController = new Controllers.RepInventoryController();
+            if (repInventoryController.SupplierList().Any())
+            {
+                comboBoxSupplier.DataSource = repInventoryController.SupplierList();
+                comboBoxSupplier.ValueMember = "Id";
+                comboBoxSupplier.DisplayMember = "Supplier";
+
                 GetBranchList();
             }
         }
@@ -40,6 +52,9 @@ namespace MWS.Views
                 comboBoxBranch.ValueMember = "Id";
                 comboBoxBranch.DisplayMember = "Branch";
             }
+
+            comboBoxSupplier.Visible = false;
+            labelSupplier.Visible = false;
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -56,15 +71,20 @@ namespace MWS.Views
 
             if (reportId == 4)
             {
-                new RepReceivingPDFView(dtStartDate.Value.Date, dtEndDate.Value.Date, Convert.ToInt32(comboBoxBranch.SelectedValue));
+                new RepInventoryDetailPDFView(dtStartDate.Value.Date, dtEndDate.Value.Date, Convert.ToInt32(comboBoxBranch.SelectedValue));
             }
 
             if (reportId == 5)
             {
-                new RepAdhocReceivingPDFView(dtStartDate.Value.Date, dtEndDate.Value.Date, Convert.ToInt32(comboBoxBranch.SelectedValue));
+                new RepReceivingPDFView(dtStartDate.Value.Date, dtEndDate.Value.Date, Convert.ToInt32(comboBoxBranch.SelectedValue), Convert.ToInt32(comboBoxSupplier.SelectedValue));
             }
 
             if (reportId == 6)
+            {
+                new RepAdhocReceivingPDFView(dtStartDate.Value.Date, dtEndDate.Value.Date, Convert.ToInt32(comboBoxBranch.SelectedValue));
+            }
+
+            if (reportId == 1004)
             {
                 new RepProductionPDFView(dtStartDate.Value.Date, dtEndDate.Value.Date, Convert.ToInt32(comboBoxBranch.SelectedValue));
             }
@@ -78,17 +98,23 @@ namespace MWS.Views
             {
                 int reportId = selectedReport.Id;
 
-                if (reportId == 4)
+                if (reportId == 5)
                 {
                     comboBoxBranch.SelectedValue = 1;
+                    comboBoxSupplier.Visible = true;
+                    labelSupplier.Visible = true;
                 }
-                else if (reportId > 1)
+                else if (reportId > 4)
                 {
                     comboBoxBranch.SelectedValue = 2;
+                    comboBoxSupplier.Visible = false;
+                    labelSupplier.Visible = false;
                 }
                 else
                 {
                     comboBoxBranch.SelectedValue = 0;
+                    comboBoxSupplier.Visible = false;
+                    labelSupplier.Visible = false;
                 }
             }
         }

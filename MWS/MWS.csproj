@@ -90,6 +90,7 @@
     <Compile Include="Models\DgvTrnReceivingReceiverItemModel.cs" />
     <Compile Include="Models\DgvTrnReceivingModel.cs" />
     <Compile Include="Models\DgvTrnReceivingItemModel.cs" />
+    <Compile Include="Models\RepInventoryDetailReportSlabModel.cs" />
     <Compile Include="Models\RepProductionModel.cs" />
     <Compile Include="Models\RepAdhocReceivingModel.cs" />
     <Compile Include="Models\RepReceivingModel.cs" />
@@ -124,6 +125,12 @@
     </Compile>
     <Compile Include="Reports\RepAdhocReceivingPDFView.Designer.cs">
       <DependentUpon>RepAdhocReceivingPDFView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepInventoryDetailPDFView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\RepInventoryDetailPDFView.Designer.cs">
+      <DependentUpon>RepInventoryDetailPDFView.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\RepInventoryPDFView.cs">
       <SubType>Form</SubType>
@@ -257,6 +264,9 @@
     </Compile>
     <EmbeddedResource Include="Reports\RepAdhocReceivingPDFView.resx">
       <DependentUpon>RepAdhocReceivingPDFView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepInventoryDetailPDFView.resx">
+      <DependentUpon>RepInventoryDetailPDFView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepInventoryPDFView.resx">
       <DependentUpon>RepInventoryPDFView.cs</DependentUpon>

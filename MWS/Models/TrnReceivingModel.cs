@@ -21,6 +21,7 @@ namespace MWS.Models
         public int TotalCount { get; set; }
         public Boolean IsLocked { get; set; }
         public Int32? PullOutId { get; set; }
+        public Decimal TotalExpectedWeight { get; set; }
 
     }
 }

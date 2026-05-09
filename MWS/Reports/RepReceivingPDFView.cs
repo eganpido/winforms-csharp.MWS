@@ -19,14 +19,16 @@ namespace MWS.Reports
         public DateTime dateStart;
         public DateTime dateEnd;
         public int branchId;
+        public int supplierId;
         public string branchName;
-        public RepReceivingPDFView(DateTime startDate, DateTime endDate, int _branchId)
+        public RepReceivingPDFView(DateTime startDate, DateTime endDate, int _branchId, int _supplierId)
         {
             InitializeComponent();
 
             dateStart = startDate;
             dateEnd = endDate;
             branchId = _branchId;
+            supplierId = _supplierId;
 
             PrintReport();
         }
@@ -67,7 +69,7 @@ namespace MWS.Reports
                 document.Open();
 
                 Controllers.RepInventoryController repInventoryController = new Controllers.RepInventoryController();
-                var receiving = repInventoryController.ReceivingReport(dateStart, dateEnd, branchId);
+                var receiving = repInventoryController.ReceivingReport(dateStart, dateEnd, branchId, supplierId);
 
                 PdfPTable tableReceiving = new PdfPTable(3);
                 tableReceiving.SetWidths(new float[] { 100f, 100f, 100f });
@@ -99,7 +101,8 @@ namespace MWS.Reports
                                                    d.ReceivingId,
                                                    d.ReceivingNo,
                                                    d.ReceivingDate,
-                                                   d.Remarks
+                                                   d.Remarks,
+                                                   d.ExpectedWeight
                                                }
                                                into g
                                                select new
@@ -107,7 +110,8 @@ namespace MWS.Reports
                                                   ReceivingId = g.Key.ReceivingId,
                                                   ReceivingNo = g.Key.ReceivingNo,
                                                   ReceivingDate = g.Key.ReceivingDate,
-                                                  Remarks = g.Key.Remarks
+                                                  Remarks = g.Key.Remarks,
+                                                  ExpectedWeight = g.Key.ExpectedWeight
                                                };
                         if (groupReceivingNo.Any())
                         {
@@ -127,16 +131,17 @@ namespace MWS.Reports
                                     tableReceiving.AddCell(new PdfPCell(new Phrase("SIZE", fontTimesNewRoman10Bold)) { PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 1 });
                                     tableReceiving.AddCell(new PdfPCell(new Phrase("WEIGHT", fontTimesNewRoman10Bold)) { PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 1 });
 
+                                    int count = 0;
                                     foreach(var item in receivingItems)
                                     {
                                         tableReceiving.AddCell(new PdfPCell(new Phrase(item.Item, fontTimesNewRoman10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 1 });
                                         tableReceiving.AddCell(new PdfPCell(new Phrase(item.Size, fontTimesNewRoman10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 1 });
                                         tableReceiving.AddCell(new PdfPCell(new Phrase(item.Weight.ToString("#,##0.00"), fontTimesNewRoman10)) {Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 1 });
                                         subTotal += item.Weight;
+                                        count++;
                                     }
-                                    tableReceiving.AddCell(new PdfPCell(new Phrase("Remarks: " + receivingNo.Remarks, fontTimesNewRoman10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 0 });
-                                    tableReceiving.AddCell(new PdfPCell(new Phrase("Sub-Total", fontTimesNewRoman10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 2 });
-                                    tableReceiving.AddCell(new PdfPCell(new Phrase(subTotal.ToString("#,##0.00"), fontTimesNewRoman10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 1 });
+                                    tableReceiving.AddCell(new PdfPCell(new Phrase("Total Count : " + count + "      Remarks : " + receivingNo.Remarks + "      Expected Weight : " + receivingNo.ExpectedWeight, fontTimesNewRoman10Bold)) { Colspan = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 0 });
+                                    tableReceiving.AddCell(new PdfPCell(new Phrase("Sub-Total : " + subTotal.ToString("#,##0.00") + "       Variance : " + (receivingNo.ExpectedWeight - subTotal).ToString("#,##0.00"), fontTimesNewRoman10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 0 });
 
                                     tableReceiving.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, Colspan = 3, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 10f, HorizontalAlignment = 0 });
                                 }

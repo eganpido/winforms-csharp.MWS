@@ -40,12 +40,16 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.comboBoxSupplier = new System.Windows.Forms.ComboBox();
+            this.labelSupplier = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.panel1.Controls.Add(this.comboBoxSupplier);
+            this.panel1.Controls.Add(this.labelSupplier);
             this.panel1.Controls.Add(this.dtEndDate);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.dtStartDate);
@@ -59,7 +63,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(25, 23);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(321, 431);
+            this.panel1.Size = new System.Drawing.Size(321, 491);
             this.panel1.TabIndex = 3;
             // 
             // dtEndDate
@@ -134,7 +138,7 @@
             this.buttonView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
             this.buttonView.Image = global::MWS.Properties.Resources.business_report;
             this.buttonView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonView.Location = new System.Drawing.Point(98, 362);
+            this.buttonView.Location = new System.Drawing.Point(98, 419);
             this.buttonView.Name = "buttonView";
             this.buttonView.Size = new System.Drawing.Size(108, 42);
             this.buttonView.TabIndex = 107;
@@ -202,12 +206,35 @@
             this.label2.TabIndex = 105;
             this.label2.Text = "Report";
             // 
+            // comboBoxSupplier
+            // 
+            this.comboBoxSupplier.BackColor = System.Drawing.SystemColors.Window;
+            this.comboBoxSupplier.Font = new System.Drawing.Font("Open Sans SemiBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxSupplier.FormattingEnabled = true;
+            this.comboBoxSupplier.Location = new System.Drawing.Point(21, 343);
+            this.comboBoxSupplier.Name = "comboBoxSupplier";
+            this.comboBoxSupplier.Size = new System.Drawing.Size(282, 32);
+            this.comboBoxSupplier.TabIndex = 116;
+            this.comboBoxSupplier.TabStop = false;
+            // 
+            // labelSupplier
+            // 
+            this.labelSupplier.AutoSize = true;
+            this.labelSupplier.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
+            this.labelSupplier.Font = new System.Drawing.Font("Open Sans", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSupplier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.labelSupplier.Location = new System.Drawing.Point(17, 321);
+            this.labelSupplier.Name = "labelSupplier";
+            this.labelSupplier.Size = new System.Drawing.Size(58, 19);
+            this.labelSupplier.TabIndex = 115;
+            this.labelSupplier.Text = "Supplier";
+            // 
             // RepInventoryView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(23)))), ((int)(((byte)(42)))));
-            this.ClientSize = new System.Drawing.Size(370, 486);
+            this.ClientSize = new System.Drawing.Size(370, 541);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Open Sans", 7.8F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -235,5 +262,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxBranch;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBoxSupplier;
+        private System.Windows.Forms.Label labelSupplier;
     }
 }

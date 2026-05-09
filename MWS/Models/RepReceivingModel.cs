@@ -19,5 +19,6 @@ namespace MWS.Models
         public int SizeId { get; set; }
         public string Size { get; set; }
         public decimal Weight { get; set; }
+        public decimal ExpectedWeight { get; set; }
     }
 }

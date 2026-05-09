@@ -1,6 +1,6 @@
 ﻿{
   "DataSource": "localhost",
-  "InitialCatalog": "mws_ctl2",
+  "InitialCatalog": "mws_ctl",
   "UserId": "sa",
   "Password": "easyfis"
 }

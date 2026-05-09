@@ -76,6 +76,7 @@ namespace MWS.Views
 
             comboBoxSupplier.SelectedValue = trnReceivingModel.SupplierId;
             textBoxRemarks.Text = trnReceivingModel.Remarks;
+            textBoxExpectedWeight.Text = trnReceivingModel.TotalExpectedWeight.ToString("#,##0.000");
             textBoxWeight.Focus();
 
             CreateReceivingItemListDataGridView();
@@ -88,6 +89,7 @@ namespace MWS.Views
             comboBoxSupplier.Enabled = !isLocked;
             textBoxRemarks.Enabled = !isLocked;
             textBoxWeight.Enabled = !isLocked;
+            textBoxExpectedWeight.Enabled = !isLocked;
 
             dataGridViewReceivingItem.Columns[8].Visible = !isLocked;
             textBoxWeight.Focus();
@@ -338,6 +340,7 @@ namespace MWS.Views
                 {
                     SupplierId = Convert.ToInt32(comboBoxSupplier.SelectedValue),
                     Remarks = textBoxRemarks.Text.Trim(),
+                    TotalExpectedWeight = Convert.ToDecimal(textBoxExpectedWeight.Text)
                 };
 
                 String[] saveReceiving = trnReceivingController.LockReceiving(trnReceivingModel.Id, newReceivingModel);

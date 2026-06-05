@@ -1,4 +1,5 @@
-﻿using MWS.Modules;
+﻿using MWS.Models;
+using MWS.Modules;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -392,6 +393,12 @@ namespace MWS.Views
             {
                 MessageBox.Show(unlockReceiving[0], "MWS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnAddItem_Click(object sender, EventArgs e)
+        {
+            ReceivingDetailAddItemView receivingDetailAddItemView = new ReceivingDetailAddItemView(this, trnReceivingModel);
+            receivingDetailAddItemView.Show();
         }
     }
 }

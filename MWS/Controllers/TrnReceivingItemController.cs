@@ -16,6 +16,19 @@ namespace MWS.Controllers
         // Data Context
         public DB.mwsdbDataContext db = new DB.mwsdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
         private Bitmap barcodeBitmap;
+
+        public List<Models.MstItemModel> DropDownItem()
+        {
+            var items = from d in db.MstItems
+                        where d.ItemDescription != "SLAB"
+                        select new Models.MstItemModel
+                        {
+                            Id = d.Id,
+                            Item = d.ItemDescription
+                        };
+
+            return items.OrderBy(d => d.Item).ToList();
+        }
         // List Receiving Item
         public List<Models.TrnReceivingItemModel> ReceivingItemList(Int32 receivingId)
         {
@@ -52,6 +65,38 @@ namespace MWS.Controllers
                     ReceivingId = receivingId,
                     ItemId = 1,
                     ItemDescription = "SLAB",
+                    SizeId = GetSize(weight),
+                    Weight = weight,
+                    Classification = "NONE"
+                };
+
+                db.TrnReceivingItems.InsertOnSubmit(newReceivingItem);
+                db.SubmitChanges();
+
+                return new String[] { "", "1" };
+            }
+            catch (Exception e)
+            {
+                return new String[] { e.Message, "0" };
+            }
+        }
+
+        // Add Receiving Item except SLAB
+        public String[] AddReceivingItemOthers(int receivingId, int itemId, decimal weight)
+        {
+            try
+            {
+                var currentUserLogin = from d in db.MstUsers where d.Id == Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId) select d;
+                if (currentUserLogin.Any() == false)
+                {
+                    return new String[] { "Current login user not found.", "0" };
+                }
+
+                DB.TrnReceivingItem newReceivingItem = new DB.TrnReceivingItem
+                {
+                    ReceivingId = receivingId,
+                    ItemId = itemId,
+                    ItemDescription = "CUT",
                     SizeId = GetSize(weight),
                     Weight = weight,
                     Classification = "NONE"

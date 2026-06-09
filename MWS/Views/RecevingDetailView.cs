@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,10 @@ namespace MWS.Views
         public static Int32 receivingItemPageSize = 20;
         public PagedList<Models.DgvTrnReceivingItemModel> receivingItemPageList = new PagedList<Models.DgvTrnReceivingItemModel>(receivingItemData, receivingItemPageNumber, receivingItemPageSize);
         public BindingSource receivingItemDataSource = new BindingSource();
+
+        private SerialPort serialPort;
+        private string diagnosticBuffer = "";
+
         public RecevingDetailView(Models.TrnReceivingModel receivingModel, HistoryView _historyView)
         {
             InitializeComponent();
@@ -213,12 +218,14 @@ namespace MWS.Views
         {
             if(historyView == null)
             {
+                DisconnectPort();
                 Close();
                 DashboardView dashboardView = new DashboardView();
                 dashboardView.Show();
             }
             else
             {
+                DisconnectPort();
                 Close();
                 historyView.UpdateReceivingListDataSource();
             }
@@ -347,6 +354,7 @@ namespace MWS.Views
                 String[] saveReceiving = trnReceivingController.LockReceiving(trnReceivingModel.Id, newReceivingModel);
                 if (saveReceiving[1].Equals("0") == false)
                 {
+                    DisconnectPort();
                     UpdateComponents(true);
                 }
                 else
@@ -383,6 +391,7 @@ namespace MWS.Views
             String[] unlockReceiving = trnReceivingController.UnlockReceving(trnReceivingModel.Id);
             if (unlockReceiving[1].Equals("0") == false)
             {
+                ConnectToPort1("COM1");
                 UpdateComponents(false);
                 if(historyView != null)
                 {
@@ -397,8 +406,112 @@ namespace MWS.Views
 
         private void btnAddItem_Click(object sender, EventArgs e)
         {
+            DisconnectPort();
             ReceivingDetailAddItemView receivingDetailAddItemView = new ReceivingDetailAddItemView(this, trnReceivingModel);
             receivingDetailAddItemView.Show();
+        }
+
+        public bool ConnectToPort1(string portName)
+        {
+            try
+            {
+                DisconnectPort();
+
+                serialPort = new SerialPort(portName);
+                serialPort.BaudRate = 19200;
+                serialPort.Parity = Parity.None;
+                serialPort.DataBits = 8;
+                serialPort.StopBits = StopBits.One;
+                serialPort.ReadTimeout = 1500;
+                serialPort.Handshake = Handshake.None;
+
+                serialPort.RtsEnable = true;
+                serialPort.DtrEnable = true;
+
+                serialPort.DataReceived += DataReceivedHandler;
+                serialPort.Open();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+                return false;
+            }
+        }
+        private void DisconnectPort()
+        {
+            try
+            {
+                if (serialPort != null)
+                {
+                    serialPort.DataReceived -= DataReceivedHandler;
+
+                    if (serialPort.IsOpen)
+                    {
+                        serialPort.DiscardInBuffer();
+                        serialPort.DiscardOutBuffer();
+                        serialPort.Close();
+                    }
+                    serialPort.Dispose();
+                    serialPort = null;
+                }
+            }
+            catch { }
+        }
+        private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort sp = (sender as SerialPort);
+            try
+            {
+                if (sp != null && sp.IsOpen)
+                {
+                    string incoming = sp.ReadExisting();
+                    diagnosticBuffer += incoming;
+
+                    while (diagnosticBuffer.Contains("\r"))
+                    {
+                        int index = diagnosticBuffer.IndexOf("\r");
+                        string completeLine = diagnosticBuffer.Substring(0, index).Trim();
+                        diagnosticBuffer = diagnosticBuffer.Substring(index + 1);
+
+                        if (!string.IsNullOrWhiteSpace(completeLine))
+                        {
+                            if (completeLine.StartsWith("T", StringComparison.OrdinalIgnoreCase))
+                            {
+                                continue;
+                            }
+
+                            string digitsOnly = "";
+                            foreach (char c in completeLine)
+                            {
+                                if (char.IsDigit(c)) digitsOnly += c;
+                            }
+
+                            if (!string.IsNullOrEmpty(digitsOnly) && double.TryParse(digitsOnly, out double rawNumber))
+                            {
+                                double finalWeight = rawNumber / 1000.0;
+
+                                this.BeginInvoke(new MethodInvoker(delegate {
+                                    textBoxWeight.Text = finalWeight.ToString("0.000");
+                                }));
+                            }
+                            else
+                            {
+                                this.BeginInvoke(new MethodInvoker(delegate {
+                                    textBoxWeight.Text = $"RAW: {completeLine}";
+                                }));
+                            }
+                        }
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void RecevingDetailView_Load(object sender, EventArgs e)
+        {
+            ConnectToPort1("COM1");
         }
     }
 }

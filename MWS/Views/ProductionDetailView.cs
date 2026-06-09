@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -25,6 +26,10 @@ namespace MWS.Views
         public static Int32 productionItemPageSize = 20;
         public PagedList<Models.DgvTrnProductionItemModel> productionItemPageList = new PagedList<Models.DgvTrnProductionItemModel>(productionItemData, productionItemPageNumber, productionItemPageSize);
         public BindingSource productionItemDataSource = new BindingSource();
+
+        private SerialPort serialPort;
+        private string diagnosticBuffer = "";
+
         public ProductionDetailView(Models.TrnProductionModel productionModel, HistoryView _historyView)
         {
             InitializeComponent();
@@ -256,12 +261,14 @@ namespace MWS.Views
         {
             if (historyView == null)
             {
+                DisconnectPort();
                 Close();
                 DashboardView dashboardView = new DashboardView();
                 dashboardView.Show();
             }
             else
             {
+                DisconnectPort();
                 Close();
                 historyView.UpdateProductionListDataSource();
             }
@@ -350,6 +357,7 @@ namespace MWS.Views
                 String[] saveProduction = trnProductionController.LockProduction(trnProductionModel.Id, newProductionModel);
                 if (saveProduction[1].Equals("0") == false)
                 {
+                    DisconnectPort();
                     UpdateComponents(true);
                 }
                 else
@@ -442,6 +450,7 @@ namespace MWS.Views
 
         private void btnAddItem_Click(object sender, EventArgs e)
         {
+            DisconnectPort();
             ProductionDetailAddItemView productionDetailAddItemView = new ProductionDetailAddItemView(this, trnProductionModel);
             productionDetailAddItemView.Show();
         }
@@ -519,6 +528,7 @@ namespace MWS.Views
             String[] unlockProduction = trnProductionController.UnlockProduction(trnProductionModel.Id);
             if (unlockProduction[1].Equals("0") == false)
             {
+                ConnectToPort1("COM1");
                 UpdateComponents(false);
                 if (historyView != null)
                 {
@@ -537,6 +547,107 @@ namespace MWS.Views
             {
                 UpdateProductionItemListDataSource();
             }
+        }
+        public bool ConnectToPort1(string portName)
+        {
+            try
+            {
+                DisconnectPort();
+
+                serialPort = new SerialPort(portName);
+                serialPort.BaudRate = 19200;
+                serialPort.Parity = Parity.None;
+                serialPort.DataBits = 8;
+                serialPort.StopBits = StopBits.One;
+                serialPort.ReadTimeout = 1500;
+                serialPort.Handshake = Handshake.None;
+
+                serialPort.RtsEnable = true;
+                serialPort.DtrEnable = true;
+
+                serialPort.DataReceived += DataReceivedHandler;
+                serialPort.Open();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+                return false;
+            }
+        }
+        private void DisconnectPort()
+        {
+            try
+            {
+                if (serialPort != null)
+                {
+                    serialPort.DataReceived -= DataReceivedHandler;
+
+                    if (serialPort.IsOpen)
+                    {
+                        serialPort.DiscardInBuffer();
+                        serialPort.DiscardOutBuffer();
+                        serialPort.Close();
+                    }
+                    serialPort.Dispose();
+                    serialPort = null;
+                }
+            }
+            catch { }
+        }
+        private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort sp = (sender as SerialPort);
+            try
+            {
+                if (sp != null && sp.IsOpen)
+                {
+                    string incoming = sp.ReadExisting();
+                    diagnosticBuffer += incoming;
+
+                    while (diagnosticBuffer.Contains("\r"))
+                    {
+                        int index = diagnosticBuffer.IndexOf("\r");
+                        string completeLine = diagnosticBuffer.Substring(0, index).Trim();
+                        diagnosticBuffer = diagnosticBuffer.Substring(index + 1);
+
+                        if (!string.IsNullOrWhiteSpace(completeLine))
+                        {
+                            if (completeLine.StartsWith("T", StringComparison.OrdinalIgnoreCase))
+                            {
+                                continue;
+                            }
+
+                            string digitsOnly = "";
+                            foreach (char c in completeLine)
+                            {
+                                if (char.IsDigit(c)) digitsOnly += c;
+                            }
+
+                            if (!string.IsNullOrEmpty(digitsOnly) && double.TryParse(digitsOnly, out double rawNumber))
+                            {
+                                double finalWeight = rawNumber / 1000.0;
+
+                                this.BeginInvoke(new MethodInvoker(delegate {
+                                    textBoxWeight.Text = finalWeight.ToString("0.000");
+                                }));
+                            }
+                            else
+                            {
+                                this.BeginInvoke(new MethodInvoker(delegate {
+                                    textBoxWeight.Text = $"RAW: {completeLine}";
+                                }));
+                            }
+                        }
+                    }
+                }
+            }
+            catch { }
+        }
+        private void ProductionDetailView_Load(object sender, EventArgs e)
+        {
+            ConnectToPort1("COM1");
         }
     }
 }

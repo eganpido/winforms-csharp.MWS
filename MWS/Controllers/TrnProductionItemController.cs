@@ -183,6 +183,8 @@ namespace MWS.Controllers
 
                 string finalBarcode = CalculateEAN13(productionBarcode);
 
+                var item = db.MstItems.FirstOrDefault(d => d.Id == itemId);
+
                 DB.TrnProductionItem newProductionItem = new DB.TrnProductionItem
                 {
                     ProductionId = productionId,
@@ -190,7 +192,7 @@ namespace MWS.Controllers
                     SizeId = 7,
                     ProductionBarcode = finalBarcode,
                     ActualWeight = weight,
-                    Classification = "CUT",
+                    Classification = item.ItemDescription,
                     Remarks = "NA"
                 };
 

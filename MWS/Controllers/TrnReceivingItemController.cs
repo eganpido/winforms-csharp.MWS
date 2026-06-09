@@ -92,11 +92,13 @@ namespace MWS.Controllers
                     return new String[] { "Current login user not found.", "0" };
                 }
 
+                var item = db.MstItems.FirstOrDefault(d => d.Id == itemId);
+
                 DB.TrnReceivingItem newReceivingItem = new DB.TrnReceivingItem
                 {
                     ReceivingId = receivingId,
                     ItemId = itemId,
-                    ItemDescription = "CUT",
+                    ItemDescription = item.ItemDescription,
                     SizeId = GetSize(weight),
                     Weight = weight,
                     Classification = "NONE"

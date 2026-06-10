@@ -204,7 +204,7 @@ namespace MWS.Views
                             };
 
                 txtTotalWeight.Text = items.Sum(a => Convert.ToDecimal(a.ColumnWeight)).ToString("#,##0.000");
-                txtTotalCount.Text = items.Count().ToString();
+                txtTotalCount.Text = items.Count(a => a.ColumnItemId == 1).ToString();
 
                 return Task.FromResult(items.ToList());
             }
@@ -435,7 +435,7 @@ namespace MWS.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}");
+                //MessageBox.Show($"Error: {ex.Message}");
                 return false;
             }
         }

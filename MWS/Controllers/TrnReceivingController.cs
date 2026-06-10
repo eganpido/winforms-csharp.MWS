@@ -52,7 +52,7 @@ namespace MWS.Controllers
                                PreparedById = d.PrepareById,
                                PreparedBy = d.MstUser.FullName,
                                TotalWeight = d.TrnReceivingItems.Sum(a => (decimal?)a.Weight) ?? 0,
-                               TotalCount = d.TrnReceivingItems.Count(),
+                               TotalCount = d.TrnReceivingItems.Count(a => a.ItemId == 1),
                                IsLocked = d.IsLocked
                            };
 

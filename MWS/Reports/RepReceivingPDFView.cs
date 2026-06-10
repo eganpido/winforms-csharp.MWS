@@ -89,7 +89,7 @@ namespace MWS.Reports
                                     };
                 if (groupSupplier.Any())
                 {
-                    foreach(var supplier in groupSupplier)
+                    foreach (var supplier in groupSupplier)
                     {
                         tableReceiving.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman12Bold)) { Border = 0, Colspan = 3, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 10f, HorizontalAlignment = 0 });
                         tableReceiving.AddCell(new PdfPCell(new Phrase(supplier.Supplier, fontTimesNewRoman12Bold)) { Border = 0, Colspan = 3, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 10f, HorizontalAlignment = 0 });
@@ -107,15 +107,15 @@ namespace MWS.Reports
                                                into g
                                                select new
                                                {
-                                                  ReceivingId = g.Key.ReceivingId,
-                                                  ReceivingNo = g.Key.ReceivingNo,
-                                                  ReceivingDate = g.Key.ReceivingDate,
-                                                  Remarks = g.Key.Remarks,
-                                                  ExpectedWeight = g.Key.ExpectedWeight
+                                                   ReceivingId = g.Key.ReceivingId,
+                                                   ReceivingNo = g.Key.ReceivingNo,
+                                                   ReceivingDate = g.Key.ReceivingDate,
+                                                   Remarks = g.Key.Remarks,
+                                                   ExpectedWeight = g.Key.ExpectedWeight
                                                };
                         if (groupReceivingNo.Any())
                         {
-                            foreach( var receivingNo in groupReceivingNo)
+                            foreach (var receivingNo in groupReceivingNo)
                             {
                                 decimal subTotal = 0;
                                 tableReceiving.AddCell(new PdfPCell(new Phrase("Receiving No.: " + receivingNo.ReceivingNo, fontTimesNewRoman11Bold)) { Border = 0, Colspan = 1, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 10f, HorizontalAlignment = 0 });
@@ -125,23 +125,27 @@ namespace MWS.Reports
                                                      where d.SupplierId == supplier.SupplierId
                                                      && d.ReceivingId == receivingNo.ReceivingId
                                                      select d;
-                                if(receivingItems.Any())
+                                if (receivingItems.Any())
                                 {
                                     tableReceiving.AddCell(new PdfPCell(new Phrase("ITEM", fontTimesNewRoman10Bold)) { PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 1 });
                                     tableReceiving.AddCell(new PdfPCell(new Phrase("SIZE", fontTimesNewRoman10Bold)) { PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 1 });
                                     tableReceiving.AddCell(new PdfPCell(new Phrase("WEIGHT", fontTimesNewRoman10Bold)) { PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 1 });
 
                                     int count = 0;
-                                    foreach(var item in receivingItems)
+                                    foreach (var item in receivingItems)
                                     {
                                         tableReceiving.AddCell(new PdfPCell(new Phrase(item.Item, fontTimesNewRoman10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 1 });
                                         tableReceiving.AddCell(new PdfPCell(new Phrase(item.Size, fontTimesNewRoman10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 1 });
-                                        tableReceiving.AddCell(new PdfPCell(new Phrase(item.Weight.ToString("#,##0.00"), fontTimesNewRoman10)) {Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 1 });
+                                        tableReceiving.AddCell(new PdfPCell(new Phrase(item.Weight.ToString("#,##0.00"), fontTimesNewRoman10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 1 });
                                         subTotal += item.Weight;
-                                        count++;
+
+                                        if (item.ItemId == 1)
+                                        {
+                                            count++;
+                                        }
                                     }
                                     tableReceiving.AddCell(new PdfPCell(new Phrase("Total Count : " + count + "      Remarks : " + receivingNo.Remarks + "      Expected Weight : " + receivingNo.ExpectedWeight, fontTimesNewRoman10Bold)) { Colspan = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 0 });
-                                    tableReceiving.AddCell(new PdfPCell(new Phrase("Sub-Total : " + subTotal.ToString("#,##0.00") + "       Variance : " + (receivingNo.ExpectedWeight - subTotal).ToString("#,##0.00"), fontTimesNewRoman10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 0 });
+                                    tableReceiving.AddCell(new PdfPCell(new Phrase("Sub-Total : " + subTotal.ToString("#,##0.00") + "       Variance : " + (subTotal - receivingNo.ExpectedWeight).ToString("#,##0.00"), fontTimesNewRoman10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 0 });
 
                                     tableReceiving.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, Colspan = 3, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 10f, HorizontalAlignment = 0 });
                                 }

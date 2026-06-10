@@ -99,7 +99,7 @@ namespace MWS.Controllers
                     ReceivingId = receivingId,
                     ItemId = itemId,
                     ItemDescription = item.ItemDescription,
-                    SizeId = GetSize(weight),
+                    SizeId = 7,
                     Weight = weight,
                     Classification = "NONE"
                 };

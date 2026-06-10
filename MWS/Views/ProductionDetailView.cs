@@ -572,7 +572,7 @@ namespace MWS.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}");
+                //MessageBox.Show($"Error: {ex.Message}");
                 return false;
             }
         }
